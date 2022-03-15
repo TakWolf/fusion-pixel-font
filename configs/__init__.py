@@ -1,6 +1,8 @@
 from configs.dump_config import DumpConfig
 from configs.git_deploy_config import GitDeployConfig
 
+target_px = 12
+
 dump_configs = [
     DumpConfig(
         'ark-pixel-zh_cn',
