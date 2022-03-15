@@ -22,7 +22,7 @@ def dump_font(dump_config):
     image_font = ImageFont.truetype(dump_config.font_path, dump_config.px)
     for code_point, glyph_name in cmap.items():
         canvas_width = math.ceil(metrics[glyph_name][0] / units_per_em * configs.target_px)
-        if canvas_width <= 0:
+        if canvas_width <= 0 or canvas_width > configs.target_px:
             canvas_width = configs.target_px
         image = Image.new('RGBA', (canvas_width, configs.target_px), (0, 0, 0, 0))
         ImageDraw.Draw(image).text(dump_config.offset_xy, chr(code_point), fill=(0, 0, 0), font=image_font)
