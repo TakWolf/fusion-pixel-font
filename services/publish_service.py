@@ -29,7 +29,12 @@ def copy_release_files():
 
 
 def copy_docs_files():
-    _copy_file('preview.png', workspace_define.outputs_dir, workspace_define.docs_dir)
+    file_names = [
+        'font-info.md',
+        'preview.png',
+    ]
+    for file_name in file_names:
+        _copy_file(file_name, workspace_define.outputs_dir, workspace_define.docs_dir)
 
 
 def copy_www_files():

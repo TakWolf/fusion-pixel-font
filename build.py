@@ -24,6 +24,7 @@ def main():
 
     alphabet, design_file_paths = font_service.classify_design_files(design_dirs)
     font_service.make_fonts(alphabet, design_file_paths)
+    info_service.make_info_file(alphabet)
     info_service.make_preview_image_file()
 
 

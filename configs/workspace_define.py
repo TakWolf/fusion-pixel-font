@@ -4,6 +4,7 @@ project_root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 assets_dir = os.path.join(project_root_dir, 'assets')
 fonts_dir = os.path.join(assets_dir, 'fonts')
+unidata_dir = os.path.join(assets_dir, 'unidata')
 design_dir = os.path.join(assets_dir, 'design')
 www_static_dir = os.path.join(assets_dir, 'www-static')
 
