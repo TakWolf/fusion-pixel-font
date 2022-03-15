@@ -7,7 +7,6 @@ from fontTools.ttLib import TTFont
 
 import configs
 from configs import workspace_define
-from utils import glyph_util
 
 logger = logging.getLogger('dump-service')
 
@@ -29,9 +28,5 @@ def dump_font(dump_config):
         ImageDraw.Draw(image).text(dump_config.offset_xy, chr(code_point), fill=(0, 0, 0), font=image_font)
         output_png_path = os.path.join(outputs_dir, f'{code_point:04X}.png')
         image.save(output_png_path)
-
-        design_data, _, _ = glyph_util.load_design_data_from_png(output_png_path)
-        glyph_util.save_design_data_to_png(design_data, output_png_path)
-
         logger.info(f'make: {output_png_path}')
     return outputs_dir
