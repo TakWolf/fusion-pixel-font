@@ -5,8 +5,8 @@ target_px = 12
 
 dump_configs = [
     DumpConfig(
-        'ark-pixel-zh_cn',
-        'ark-pixel/ark-pixel-12px-zh_cn.otf',
+        'ark-pixel',
+        'ark-pixel/ark-pixel-12px-zh_tr.otf',
     ),
     DumpConfig(
         'Galmuri-11',
@@ -19,6 +19,8 @@ dump_configs = [
         offset_xy=(-1, 0),
     ),
 ]
+
+font_config = (12, 10)
 
 git_deploy_configs = [GitDeployConfig(
     'git@github.com:TakWolf/fusion-pixel-font.git',
