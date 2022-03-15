@@ -141,3 +141,7 @@ cython_debug/
 .idea/
 
 # Project
+dump_outputs/
+outputs/
+releases/
+www/
