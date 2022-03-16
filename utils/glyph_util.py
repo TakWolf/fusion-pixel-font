@@ -21,6 +21,26 @@ def load_design_data_from_png(file_path):
     return design_data, width, height
 
 
+def save_design_data_to_png(design_data, file_path):
+    """
+    保存字形设计数据，格式为 RGBA PNG 图片，颜色处为黑色
+    """
+    bitmap = []
+    for design_data_row in design_data:
+        bitmap_row = []
+        for x in design_data_row:
+            bitmap_row.append(0)
+            bitmap_row.append(0)
+            bitmap_row.append(0)
+            if x == 0:
+                bitmap_row.append(0)
+            else:
+                bitmap_row.append(255)
+        bitmap.append(bitmap_row)
+    image = png.from_array(bitmap, 'RGBA')
+    image.save(file_path)
+
+
 def get_outlines_from_design_data(design_data, dot_size):
     """
     轮廓算法，左上坐标系

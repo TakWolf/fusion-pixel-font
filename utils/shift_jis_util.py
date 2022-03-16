@@ -21,6 +21,8 @@ def query_block(c):
             return 'single-ascii'
         elif 0xA1 <= code <= 0xDF:
             return 'single-other'
+        elif not c.isprintable():
+            return None
         else:
             raise Exception(f'impossible code: {code}')
     else:
@@ -45,8 +47,8 @@ def get_alphabet_single_ascii():
             alphabet.append(c)
         except UnicodeDecodeError:
             pass
-    alphabet.append('¥') # 0xA5
-    alphabet.append('‾') # 0x203E
+    alphabet.append('¥')  # 0xA5
+    alphabet.append('‾')  # 0x203E
     assert len(alphabet) == alphabet_single_ascii_count
     return alphabet
 
