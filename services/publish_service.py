@@ -38,7 +38,12 @@ def copy_docs_files():
 
 
 def copy_www_files():
-    _copy_file('fusion-pixel.woff2', workspace_define.outputs_dir, workspace_define.www_dir)
+    file_names = [
+        'fusion-pixel.woff2',
+        'alphabet.html',
+    ]
+    for file_name in file_names:
+        _copy_file(file_name, workspace_define.outputs_dir, workspace_define.www_dir)
 
 
 def deploy_www():

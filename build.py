@@ -26,6 +26,8 @@ def main():
     font_service.make_fonts(alphabet, design_file_paths)
     info_service.make_info_file(alphabet)
     info_service.make_preview_image_file()
+    info_service.make_alphabet_txt_file(alphabet)
+    info_service.make_alphabet_html_file(alphabet)
 
 
 if __name__ == '__main__':

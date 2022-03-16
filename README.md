@@ -31,7 +31,9 @@ Logo 来源于 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki
 
 ![preview.png](docs/preview.png)
 
-[在线示例文本](https://fusion-pixel-font.takwolf.com)
+[示例文本](https://fusion-pixel-font.takwolf.com)
+
+[字符表](https://fusion-pixel-font.takwolf.com/alphabet.html)
 
 [字符统计](docs/font-info.md)
 
