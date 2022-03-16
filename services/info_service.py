@@ -13,6 +13,8 @@ logger = logging.getLogger('info-service')
 def _get_unicode_char_count_infos(alphabet):
     count_map = {}
     for c in alphabet:
+        if not c.isprintable():
+            continue
         code_point = ord(c)
         i = unicode_util.index_block_by_code_point(configs.unicode_blocks, code_point)[0]
         count = count_map.get(i, 0)
@@ -82,9 +84,12 @@ def _write_unicode_char_count_infos_table(file, infos):
     file.write('| 区块范围 | 区块名称 | 区块含义 | 覆盖数 | 覆盖率 |\n')
     file.write('|---|---|---|---:|---:|\n')
     for unicode_block, count in infos:
-        code_point_range = f'0x{unicode_block.begin:04X}~0x{unicode_block.end:04X}'
-        progress = count / unicode_block.char_count
-        finished_emoji = "🚩" if count == unicode_block.char_count else "🚧"
+        code_point_range = f'{unicode_block.begin:04X}~{unicode_block.end:04X}'
+        if unicode_block.char_count > 0:
+            progress = count / unicode_block.char_count
+        else:
+            progress = 1
+        finished_emoji = '🚩' if progress == 1 else '🚧'
         file.write(f'| {code_point_range} | {unicode_block.name} | {unicode_block.name_cn if unicode_block.name_cn else ""} | {count} / {unicode_block.char_count} | {progress:.2%} {finished_emoji} |\n')
 
 
@@ -93,7 +98,7 @@ def _write_locale_char_count_infos_table(file, infos):
     file.write('|---|---:|---:|\n')
     for title, count, total in infos:
         progress = count / total
-        finished_emoji = "🚩" if count == total else "🚧"
+        finished_emoji = '🚩' if progress == 1 else '🚧'
         file.write(f'| {title} | {count} / {total} | {progress:.2%} {finished_emoji} |\n')
 
 
