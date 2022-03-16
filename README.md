@@ -10,8 +10,6 @@
 
 使用多个第三方像素字体合并而成，因此命名为「缝合怪」。
 
-创建这个字体，目的是在 [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) 可用前，提供一种开源免费的、临时的像素字体解决方案。
-
 这个项目提供了从第三方字模提取，到合并编译成字体所需要的完整程序。
 
 Logo 来源于 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B%E9%9B%86%E6%8F%9B%E7%B4%99%E7%89%8C%E9%81%8A%E6%88%B2) 中的 [「融合」](https://baike.baidu.com/item/%E8%9E%8D%E5%90%88/2290464) 魔法卡卡图。
@@ -25,7 +23,7 @@ Logo 来源于 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki
 
 目前使用的第三方字体列表，按照字形优先级排列：
 
-- [方舟像素字体-传统印刷版本](https://github.com/TakWolf/ark-pixel-font)
+- [方舟像素字体-12px-传统印刷版本](https://github.com/TakWolf/ark-pixel-font)
 - [Galmuri11](https://github.com/quiple/galmuri)
 - [俐方體11號](https://github.com/ACh-K/Cubic-11)
 
