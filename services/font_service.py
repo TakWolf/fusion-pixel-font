@@ -15,7 +15,7 @@ logger = logging.getLogger('font-service')
 em_dot_size = 100
 
 
-def classify_design_files(design_dirs):
+def collect_design_files(design_dirs):
     """
     收集可用字母表，生成设计文件映射表
     """

@@ -22,7 +22,7 @@ def main():
         shutil.rmtree(workspace_define.outputs_dir)
     os.makedirs(workspace_define.outputs_dir)
 
-    alphabet, design_file_paths = font_service.classify_design_files(design_dirs)
+    alphabet, design_file_paths = font_service.collect_design_files(design_dirs)
     font_service.make_fonts(alphabet, design_file_paths)
     info_service.make_info_file(alphabet)
     info_service.make_preview_image_file()
