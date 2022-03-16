@@ -14,10 +14,10 @@ logger = logging.getLogger('info-service')
 def _get_unicode_char_count_infos(alphabet):
     count_map = {}
     for c in alphabet:
-        if not c.isprintable():
-            continue
         code_point = ord(c)
-        i = unicode_util.index_block_by_code_point(configs.unicode_blocks, code_point)[0]
+        i, unicode_block = unicode_util.index_block_by_code_point(configs.unicode_blocks, code_point)
+        if not c.isprintable() and unicode_block.char_count > 0:
+            continue
         count = count_map.get(i, 0)
         count += 1
         count_map[i] = count
