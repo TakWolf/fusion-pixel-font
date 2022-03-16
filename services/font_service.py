@@ -22,18 +22,20 @@ def collect_design_files(design_dirs):
     alphabet = set()
     design_file_paths = {}
     for design_dir in reversed(design_dirs):
+        if not os.path.isdir(design_dir):
+            continue
         for design_file_parent_dir, _, design_file_names in os.walk(design_dir):
             for design_file_name in design_file_names:
-                if design_file_name.endswith('.png'):
-                    design_file_path = os.path.join(design_file_parent_dir, design_file_name)
-                    uni_hex_name = design_file_name.replace('.png', '')
-                    if uni_hex_name == 'notdef':
-                        design_file_paths['.notdef'] = design_file_path
-                    else:
-                        code_point = int(uni_hex_name, 16)
-                        if chr(code_point).isprintable():
-                            design_file_paths[code_point] = design_file_path
-                            alphabet.add(chr(code_point))
+                if not design_file_name.endswith('.png'):
+                    continue
+                design_file_path = os.path.join(design_file_parent_dir, design_file_name)
+                uni_hex_name = design_file_name.replace('.png', '')
+                if uni_hex_name == 'notdef':
+                    design_file_paths['.notdef'] = design_file_path
+                else:
+                    code_point = int(uni_hex_name, 16)
+                    design_file_paths[code_point] = design_file_path
+                    alphabet.add(chr(code_point))
     alphabet = list(alphabet)
     alphabet.sort(key=lambda c: ord(c))
     return alphabet, design_file_paths
@@ -108,8 +110,8 @@ def make_fonts(alphabet, design_file_paths):
     ascent = ascent_px * em_dot_size
     descent = descent_px * em_dot_size
 
-    display_name = f'Fusion Pixel {px}px'
-    unique_name = f'Fusion-Pixel-{px}px'
+    display_name = 'Fusion Pixel'
+    unique_name = 'Fusion-Pixel'
     style_name = 'Regular'
     version = time.strftime('%Y%m%d')
     name_strings = {
@@ -131,10 +133,10 @@ def make_fonts(alphabet, design_file_paths):
         character_map[code_point] = glyph_name
     otf_builder = _create_font_builder(name_strings, units_per_em, ascent, descent, glyph_order, character_map, design_file_paths, False)
     otf_builder.save(os.path.join(workspace_define.outputs_dir, 'fusion-pixel.otf'))
-    logger.info(f'make {px}px otf')
+    logger.info(f'make otf')
     otf_builder.font.flavor = 'woff2'
     otf_builder.save(os.path.join(workspace_define.outputs_dir, 'fusion-pixel.woff2'))
-    logger.info(f'make {px}px woff2')
+    logger.info(f'make woff2')
     ttf_builder = _create_font_builder(name_strings, units_per_em, ascent, descent, glyph_order, character_map, design_file_paths, True)
     ttf_builder.save(os.path.join(workspace_define.outputs_dir, 'fusion-pixel.ttf'))
-    logger.info(f'make {px}px ttf')
+    logger.info(f'make ttf')
