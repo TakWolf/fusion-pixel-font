@@ -51,9 +51,9 @@ def _convert_point_to_open_type(point, ascent):
 
 
 def _draw_glyph(design_file_path, ascent, is_ttf):
-    logger.info(f'draw glyph by design file {design_file_path}')
-    font_data, width, height = glyph_util.load_design_data_from_png(design_file_path)
-    outlines = glyph_util.get_outlines_from_design_data(font_data, em_dot_size)
+    logger.info(f'draw glyph {design_file_path}')
+    design_data, width, _ = glyph_util.load_design_data_from_png(design_file_path)
+    outlines = glyph_util.get_outlines_from_design_data(design_data, em_dot_size)
     if is_ttf:
         pen = TTGlyphPen(None)
     else:

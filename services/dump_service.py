@@ -37,5 +37,5 @@ def dump_font(dump_config):
         ImageDraw.Draw(image).text(dump_config.offset_xy, chr(code_point), fill=(0, 0, 0), font=image_font)
         output_png_path = os.path.join(output_png_file_to_dir, f'{code_point:04X}.png')
         image.save(output_png_path)
-        logger.info(f'make: {output_png_path}')
+        logger.info(f'make {output_png_path}')
     return outputs_dir
