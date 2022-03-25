@@ -1,4 +1,4 @@
-![banner](docs/logo.jpg)
+![banner](docs/logo.png)
 
 # 缝合怪像素字体 / Fusion Pixel Font
 
@@ -12,7 +12,7 @@
 
 这个项目提供了从第三方字模提取，到合并编译成字体所需要的完整程序。
 
-Logo 来源于 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B%E9%9B%86%E6%8F%9B%E7%B4%99%E7%89%8C%E9%81%8A%E6%88%B2) 中的 [「融合」](https://baike.baidu.com/item/%E8%9E%8D%E5%90%88/2290464) 魔法卡卡图。
+Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B%E9%9B%86%E6%8F%9B%E7%B4%99%E7%89%8C%E9%81%8A%E6%88%B2) 中的 [「融合」](https://baike.baidu.com/item/%E8%9E%8D%E5%90%88/2290464) 魔法卡卡图。
 
 ## 字源
 
