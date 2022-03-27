@@ -10,6 +10,10 @@
 
 使用多个第三方像素字体合并而成，因此命名为「缝合怪」。
 
+该字体被视为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 的一种临时替代方案。
+
+如果仍然缺字，请在 [Issues](https://github.com/TakWolf/fusion-pixel-font/issues) 提交补字申请。
+
 这个项目提供了从第三方字模提取，到合并编译成字体所需要的完整程序。
 
 Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B%E9%9B%86%E6%8F%9B%E7%B4%99%E7%89%8C%E9%81%8A%E6%88%B2) 中的 [「融合」](https://baike.baidu.com/item/%E8%9E%8D%E5%90%88/2290464) 魔法卡卡图。
@@ -26,6 +30,8 @@ Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki
 - [方舟像素字体-12px-传统印刷版本](https://github.com/TakWolf/ark-pixel-font)
 - [俐方體11號](https://github.com/ACh-K/Cubic-11)
 - [Galmuri11](https://github.com/quiple/galmuri)
+
+为了保持字源风格统一，目前偏向采用繁体中文字形写法。
 
 ## 预览
 
