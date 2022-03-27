@@ -15,14 +15,14 @@ dump_configs = [
         'ark-pixel/ark-pixel-12px-zh_tr.otf',
     ),
     DumpConfig(
-        'Galmuri-11',
-        'Galmuri/Galmuri11.ttf',
-        offset_xy=(0, -2),
-    ),
-    DumpConfig(
         'Cubic-11',
         'Cubic-11/Cubic_11_1.010_r.ttf',
         offset_xy=(-1, 0),
+    ),
+    DumpConfig(
+        'Galmuri-11',
+        'Galmuri/Galmuri11.ttf',
+        offset_xy=(0, -2),
     ),
 ]
 

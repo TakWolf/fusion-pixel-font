@@ -24,8 +24,8 @@ Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki
 目前使用的第三方字体列表，按照字形优先级排列：
 
 - [方舟像素字体-12px-传统印刷版本](https://github.com/TakWolf/ark-pixel-font)
-- [Galmuri11](https://github.com/quiple/galmuri)
 - [俐方體11號](https://github.com/ACh-K/Cubic-11)
+- [Galmuri11](https://github.com/quiple/galmuri)
 
 ## 预览
 
