@@ -10,7 +10,9 @@
 
 使用多个第三方像素字体合并而成，因此命名为「缝合怪」。
 
-该字体被视为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 的一种临时替代方案。
+该字体为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 可用前的一种临时替代方案。
+
+根据目前使用的字源，为了保持风格统一，偏向采用繁体中文字形写法。
 
 如果仍然缺字，请在 [Issues](https://github.com/TakWolf/fusion-pixel-font/issues) 提交补字申请。
 
@@ -25,13 +27,13 @@ Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki
 - 像素字体，字形尺寸为 11 × 11
 - 具有免费许可证，并且允许修改和衍生
 
-目前使用的第三方字体列表，按照字形优先级排列：
+目前使用的全部字体列表，按照字形使用优先级排列：
 
-- [方舟像素字体-12px-传统印刷版本](https://github.com/TakWolf/ark-pixel-font)
-- [俐方體11號](https://github.com/ACh-K/Cubic-11)
-- [Galmuri11](https://github.com/quiple/galmuri)
-
-为了保持字源风格统一，目前偏向采用繁体中文字形写法。
+| 字体 | 文件 | 版本 |
+|---|---|---|
+| [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) | ark-pixel-12px-zh_hk.otf | [开发快照-dev-2022-03-30]() |
+| [俐方體11號](https://github.com/ACh-K/Cubic-11) | Cubic_11_1.010_R.ttf | [Version 1.010; 20220222](https://github.com/ACh-K/Cubic-11/releases/tag/v1.010) |
+| [Galmuri](https://github.com/quiple/galmuri) | Galmuri11.ttf | [d3c8aef](https://github.com/quiple/galmuri/tree/d3c8aefd37f5069cb8b4f4a25fd53f790b001fea) |
 
 ## 预览
 
@@ -53,7 +55,7 @@ Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki
 
 使用 [SIL 开放字体许可证 第1.1版（SIL Open Font License 1.1）](LICENSE-OFL) 授权，保留字体名称「缝合怪像素 / Fusion Pixel」。
 
-使用的所有第三方字源，均兼容该许可证。
+使用的所有第三方字体，均兼容该许可证。
 
 ### 构建程序
 
