@@ -29,9 +29,9 @@ Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki
 
 | 字体 | 文件 | 版本 |
 |---|---|---|
-| [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) | ark-pixel-12px-zh_hk.otf | [dev-2022-04-05](https://github.com/TakWolf/ark-pixel-font/releases/tag/dev-2022-04-05) |
+| [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) | ark-pixel-12px-zh_hk.otf | [dev-2022-04-19](https://github.com/TakWolf/ark-pixel-font/releases/tag/dev-2022-04-19) |
 | [俐方體11號](https://github.com/ACh-K/Cubic-11) | Cubic_11_1.010_R.ttf | [Version 1.010; 20220222](https://github.com/ACh-K/Cubic-11/releases/tag/v1.010) |
-| [Galmuri](https://github.com/quiple/galmuri) | Galmuri11.ttf | [d3c8aef](https://github.com/quiple/galmuri/tree/d3c8aefd37f5069cb8b4f4a25fd53f790b001fea) |
+| [Galmuri](https://github.com/quiple/galmuri) | Galmuri11.ttf | [73331a6](https://github.com/quiple/galmuri/tree/73331a621dad4c1aa26c12e07f7582c950077405) |
 
 ## 预览
 
