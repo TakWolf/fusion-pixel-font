@@ -1,6 +1,6 @@
 import logging
 import math
-import os.path
+import os
 
 from PIL import ImageFont, Image, ImageDraw
 from fontTools.ttLib import TTFont

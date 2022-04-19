@@ -1,4 +1,4 @@
-import os.path
+import os
 
 from configs import workspace_define
 
