@@ -45,7 +45,7 @@ Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki
 
 ## 缺字
 
-目前仍然缺少 GB2312 和 Big5 标准集合的大部分二级汉字。
+目前仍然缺少 GB2312 和 Big5 编码的大部分二级汉字。
 
 这个问题会随着 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 的更新迭代而逐渐解决。
 
