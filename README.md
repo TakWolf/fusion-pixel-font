@@ -65,4 +65,4 @@ Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki
 
 ### 构建程序
 
-使用 [MIT 许可证](LICENSE) 授权。
+使用 [MIT 许可证](LICENSE-MIT) 授权。
