@@ -115,14 +115,19 @@ def make_fonts(alphabet, design_file_paths):
     style_name = 'Regular'
     version = time.strftime('%Y%m%d')
     name_strings = {
+        'copyright': 'Copyright (c) 2022, FusionPixel',
         'familyName': display_name,
         'styleName': style_name,
         'uniqueFontIdentifier': f'{unique_name}-{style_name};{version}',
         'fullName': display_name,
         'version': version,
         'psName': f'{unique_name}-{style_name}',
+        'designer': 'FusionPixel',
         'description': 'Fusion pixel font.',
         'vendorURL': 'https://fusion-pixel-font.takwolf.com',
+        'designerURL': 'https://fusion-pixel-font.takwolf.com',
+        'licenseDescription': 'This Font Software is licensed under the SIL Open Font License, Version 1.1.',
+        'licenseInfoURL': 'https://scripts.sil.org/OFL',
     }
     glyph_order = ['.notdef']
     character_map = {}
