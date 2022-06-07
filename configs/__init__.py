@@ -26,7 +26,7 @@ dump_configs = [
     ),
 ]
 
-font_config = (12, 10)
+font_config = (12, 10, 6, 8)
 
 unicode_blocks = unicode_util.load_blocks_db(os.path.join(workspace_define.unidata_dir, 'blocks.txt'))
 
