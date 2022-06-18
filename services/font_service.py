@@ -117,7 +117,7 @@ def make_fonts(alphabet, design_file_paths):
     display_name = 'Fusion Pixel'
     unique_name = 'Fusion-Pixel'
     style_name = 'Regular'
-    version = time.strftime('%Y%m%d')
+    version = time.strftime('%Y.%m.%d')
     name_strings = {
         'copyright': 'Copyright (c) 2022, FusionPixel',
         'familyName': display_name,
