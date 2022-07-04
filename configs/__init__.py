@@ -12,7 +12,7 @@ target_px = 12
 dump_configs = [
     DumpConfig(
         'ark-pixel',
-        'ark-pixel/ark-pixel-12px-zh_cn.otf',
+        'ark-pixel/ark-pixel-12px-zh_hk.otf',
     ),
     DumpConfig(
         'Cubic-11',
@@ -22,7 +22,6 @@ dump_configs = [
     DumpConfig(
         'Galmuri-11',
         'Galmuri/Galmuri11.ttf',
-        offset_xy=(0, -2),
     ),
 ]
 
