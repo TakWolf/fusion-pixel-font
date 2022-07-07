@@ -46,8 +46,8 @@
 | 3130~318F | Hangul Compatibility Jamo | 谚文兼容字母 | 93 / 94 | 98.94% 🚧 |
 | 3200~32FF | Enclosed CJK Letters and Months | 带圈或括号的中日韩字母和月份 | 141 / 255 | 55.29% 🚧 |
 | 3300~33FF | CJK Compatibility | 中日韩字符集兼容 | 39 / 256 | 15.23% 🚧 |
-| 3400~4DBF | CJK Unified Ideographs Extension A | 中日韩统一表意文字 扩展-A | 39 / 6582 | 0.59% 🚧 |
-| 4E00~9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 12698 / 20976 | 60.54% 🚧 |
+| 3400~4DBF | CJK Unified Ideographs Extension A | 中日韩统一表意文字 扩展-A | 39 / 6592 | 0.59% 🚧 |
+| 4E00~9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 12698 / 20989 | 60.50% 🚧 |
 | AC00~D7AF | Hangul Syllables | 谚文音节 | 11172 / 11172 | 100.00% 🚩 |
 | E000~F8FF | Private Use Area | 私有用户区 | 239 / 0 | 100.00% 🚩 |
 | F900~FAFF | CJK Compatibility Ideographs | 中日韩兼容表意文字 | 268 / 472 | 56.78% 🚧 |
@@ -57,7 +57,7 @@
 | FE50~FE6F | Small Form Variants | 小写形式变体 | 7 / 26 | 26.92% 🚧 |
 | FF00~FFEF | Halfwidth and Fullwidth Forms | 半角和全角形式 | 173 / 225 | 76.89% 🚧 |
 | FFF0~FFFF | Specials | 特殊 | 2 / 2 | 100.00% 🚩 |
-| 20000~2A6DF | CJK Unified Ideographs Extension B | 中日韩统一表意文字 扩展-B | 49 / 42711 | 0.11% 🚧 |
+| 20000~2A6DF | CJK Unified Ideographs Extension B | 中日韩统一表意文字 扩展-B | 49 / 42718 | 0.11% 🚧 |
 | 2A700~2B73F | CJK Unified Ideographs Extension C | 中日韩统一表意文字 扩展-C | 1 / 4149 | 0.02% 🚧 |
 | 2B740~2B81F | CJK Unified Ideographs Extension D | 中日韩统一表意文字 扩展-D | 1 / 222 | 0.45% 🚧 |
 
