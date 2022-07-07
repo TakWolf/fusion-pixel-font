@@ -8,6 +8,7 @@
 @font-face {
   font-family: Galmuri11;
   font-style: normal;
+  font-stretch: normal;
   font-weight: 400;
   font-display: swap;
   src: local('Galmuri11 Regular'),
@@ -17,6 +18,7 @@
 @font-face {
   font-family: Galmuri11;
   font-style: normal;
+  font-stretch: normal;
   font-weight: 700;
   font-display: swap;
   src: local('Galmuri11 Bold'),
@@ -24,8 +26,19 @@
        url('./Galmuri11-Bold.ttf') format('truetype');
 }
 @font-face {
+  font-family: Galmuri11;
+  font-style: normal;
+  font-stretch: condensed;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Galmuri11 Condensed'),
+       url('./Galmuri11-Condensed.woff2') format('woff2'),
+       url('./Galmuri11-Condensed.ttf') format('truetype');
+}
+@font-face {
   font-family: Galmuri9;
   font-style: normal;
+  font-stretch: normal;
   font-weight: 400;
   font-display: swap;
   src: local('Galmuri9 Regular'),
@@ -35,6 +48,7 @@
 @font-face {
   font-family: Galmuri7;
   font-style: normal;
+  font-stretch: normal;
   font-weight: 400;
   font-display: swap;
   src: local('Galmuri7 Regular'),

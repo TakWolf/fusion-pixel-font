@@ -47,7 +47,7 @@ https://takwolf.com
 |---|---|---|
 | [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) | ark-pixel-12px-zh_hk.otf | [2022.07.05](https://github.com/TakWolf/ark-pixel-font/releases/tag/2022.07.05) |
 | [俐方體11號](https://github.com/ACh-K/Cubic-11) | Cubic_11_1.010_R.ttf | [Version 1.010; 20220222](https://github.com/ACh-K/Cubic-11/releases/tag/v1.010) |
-| [Galmuri](https://github.com/quiple/galmuri) | Galmuri11.ttf | [v2.31.0](https://github.com/quiple/galmuri/releases/tag/v2.31.0) |
+| [Galmuri](https://github.com/quiple/galmuri) | Galmuri11.ttf | [v2.31.4](https://github.com/quiple/galmuri/releases/tag/v2.31.4) |
 
 ## 缺字
 
