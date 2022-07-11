@@ -34,6 +34,14 @@ Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki
 
 https://takwolf.com
 
+### PTT Retro Theme
+
+https://github.com/VdustR/term-ptt-retro-theme
+
+A retro theme for [term.ptt.cc](https://term.ptt.cc/) based on [term-ptt-custom-theme](https://github.com/VdustR/term-ptt-custom-theme) .
+
+![term-ptt-retro-theme](https://vdustr.dev/asset-2022/07-11-term-ptt-retro-theme/sign-in.png)
+
 ## 字源
 
 字源的要求：
