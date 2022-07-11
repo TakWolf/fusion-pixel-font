@@ -30,13 +30,13 @@ Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki
 
 如果您愿意将您的案例展示在这里，请在 [Issues](https://github.com/TakWolf/fusion-pixel-font/issues) 提交一个用于展示的链接，或一些截图。
 
-### 狼人小林的个人主页
+### · 狼人小林的个人主页
 
-https://takwolf.com
+☞ https://takwolf.com
 
-### PTT Retro Theme
+### · PTT Retro Theme
 
-https://github.com/VdustR/term-ptt-retro-theme
+☞ https://github.com/VdustR/term-ptt-retro-theme
 
 A retro theme for [term.ptt.cc](https://term.ptt.cc/) based on [term-ptt-custom-theme](https://github.com/VdustR/term-ptt-custom-theme) .
 
