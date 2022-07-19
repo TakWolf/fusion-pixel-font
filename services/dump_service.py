@@ -7,7 +7,6 @@ from fontTools.ttLib import TTFont
 
 import configs
 from configs import workspace_define
-from utils import unicode_util
 
 logger = logging.getLogger('dump-service')
 
@@ -20,7 +19,7 @@ def dump_font(dump_config):
     metrics = font['hmtx'].metrics
     image_font = ImageFont.truetype(dump_config.font_path, dump_config.px)
     for code_point, glyph_name in cmap.items():
-        unicode_block = unicode_util.index_block_by_code_point(configs.unicode_blocks, code_point)[1]
+        unicode_block = configs.unidata_db.get_block_by_code_point(code_point)
         canvas_width = math.ceil(metrics[glyph_name][0] / units_per_em * configs.target_px)
         if canvas_width <= 0:
             canvas_width = configs.target_px

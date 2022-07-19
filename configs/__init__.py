@@ -5,7 +5,7 @@ from jinja2 import Environment, FileSystemLoader
 from configs import workspace_define
 from configs.dump_config import DumpConfig
 from configs.git_deploy_config import GitDeployConfig
-from utils import unicode_util
+from utils.unidata_util import UnidataDB
 
 target_px = 12
 
@@ -27,7 +27,7 @@ dump_configs = [
 
 font_config = (12, 10, 6, 8)
 
-unicode_blocks = unicode_util.load_blocks_db(os.path.join(workspace_define.unidata_dir, 'blocks.txt'))
+unidata_db = UnidataDB(os.path.join(workspace_define.unidata_dir, 'Blocks.txt'))
 
 template_env = Environment(loader=FileSystemLoader(workspace_define.templates_dir))
 
