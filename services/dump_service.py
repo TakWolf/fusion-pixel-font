@@ -12,7 +12,7 @@ logger = logging.getLogger('dump-service')
 
 
 def dump_font(dump_config):
-    outputs_dir = os.path.join(workspace_define.dump_outputs_dir, dump_config.name)
+    outputs_dir = os.path.join(workspace_define.dump_dir, dump_config.name)
     font = TTFont(dump_config.font_path)
     cmap = font.getBestCmap()
     units_per_em = font['head'].unitsPerEm

@@ -139,9 +139,3 @@ cython_debug/
 
 # PyCharm
 .idea/
-
-# Project
-dump_outputs/
-outputs/
-releases/
-www/
