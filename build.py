@@ -16,12 +16,12 @@ def main():
     os.makedirs(workspace_define.outputs_dir)
     os.makedirs(workspace_define.releases_dir)
 
-    design_dirs = [workspace_define.design_dir]
+    glyphs_dirs = [workspace_define.glyphs_dir]
     for dump_config in configs.dump_configs:
-        design_dirs.append(dump_service.dump_font(dump_config))
+        glyphs_dirs.append(dump_service.dump_font(dump_config))
 
-    alphabet, design_file_paths = font_service.collect_design_files(design_dirs)
-    font_service.make_fonts(alphabet, design_file_paths)
+    alphabet, glyph_file_paths = font_service.collect_glyph_files(glyphs_dirs)
+    font_service.make_fonts(alphabet, glyph_file_paths)
     info_service.make_info_file(alphabet)
     info_service.make_preview_image_file()
     info_service.make_alphabet_txt_file(alphabet)
