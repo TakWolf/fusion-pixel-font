@@ -24,11 +24,11 @@ def collect_glyph_files(glyphs_dirs):
     for glyphs_dir in reversed(glyphs_dirs):
         if not os.path.isdir(glyphs_dir):
             continue
-        for glyph_file_from_dir, _, glyph_file_names in os.walk(glyphs_dir):
+        for glyph_file_dir, _, glyph_file_names in os.walk(glyphs_dir):
             for glyph_file_name in glyph_file_names:
                 if not glyph_file_name.endswith('.png'):
                     continue
-                glyph_file_path = os.path.join(glyph_file_from_dir, glyph_file_name)
+                glyph_file_path = os.path.join(glyph_file_dir, glyph_file_name)
                 uni_hex_name = glyph_file_name.replace('.png', '')
                 if uni_hex_name == 'notdef':
                     glyph_file_paths['.notdef'] = glyph_file_path
