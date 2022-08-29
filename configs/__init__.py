@@ -16,7 +16,7 @@ dump_configs = [
     ),
     DumpConfig(
         'Cubic-11',
-        'Cubic-11/Cubic_11_1.010_r.ttf',
+        'Cubic-11/Cubic_11_1.013_R.ttf',
         offset_xy=(-1, 0),
     ),
     DumpConfig(
