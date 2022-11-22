@@ -11,8 +11,12 @@ target_px = 12
 
 dump_configs = [
     DumpConfig(
-        'ark-pixel',
-        'ark-pixel/ark-pixel-12px-zh_hk.otf',
+        'ark-pixel-monospaced',
+        'ark-pixel-monospaced/ark-pixel-12px-monospaced-zh_cn.otf',
+    ),
+    DumpConfig(
+        'ark-pixel-old',
+        'ark-pixel-old/ark-pixel-12px-zh_cn.otf',
     ),
     DumpConfig(
         'Cubic-11',

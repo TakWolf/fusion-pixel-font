@@ -51,11 +51,13 @@ A retro theme for [term.ptt.cc](https://term.ptt.cc/) based on [term-ptt-custom-
 
 目前使用的全部字体列表，按照字形使用优先级排列：
 
+（由于「方舟像素字体」进行了等宽和比例模式的拆分，当前项目需要重构编译脚本。目前暂时使用开发分支快照）
+
 | 字体 | 文件 | 版本 |
 |---|---|---|
-| [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) | ark-pixel-12px-zh_hk.otf | [2022.08.29-开发分支快照](https://github.com/TakWolf/ark-pixel-font/releases/tag/2022.07.05) |
+| [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) | ark-pixel-12px-zh_cn.otf | [开发分支快照](https://github.com/TakWolf/ark-pixel-font/releases/) |
 | [俐方體11號](https://github.com/ACh-K/Cubic-11) | Cubic_11_1.013_R.ttf | [Version 1.013; 20220805](https://github.com/ACh-K/Cubic-11/releases/tag/v1.013) |
-| [Galmuri](https://github.com/quiple/galmuri) | Galmuri11.ttf | [v2.33.7](https://github.com/quiple/galmuri/releases/tag/v2.33.7) |
+| [Galmuri](https://github.com/quiple/galmuri) | Galmuri11.ttf | [v2.34.5](https://github.com/quiple/galmuri/releases/tag/v2.34.5) |
 
 ## 缺字
 
