@@ -3,20 +3,20 @@ import os
 import shutil
 
 import configs
-from configs import workspace_define
+from configs import path_define
 from services import dump_service, font_service, info_service, publish_service
 
 logging.basicConfig(level=logging.DEBUG)
 
 
 def main():
-    if os.path.exists(workspace_define.build_dir):
-        shutil.rmtree(workspace_define.build_dir)
-    os.makedirs(workspace_define.dump_dir)
-    os.makedirs(workspace_define.outputs_dir)
-    os.makedirs(workspace_define.releases_dir)
+    if os.path.exists(path_define.build_dir):
+        shutil.rmtree(path_define.build_dir)
+    os.makedirs(path_define.dump_dir)
+    os.makedirs(path_define.outputs_dir)
+    os.makedirs(path_define.releases_dir)
 
-    glyphs_dirs = [workspace_define.glyphs_dir]
+    glyphs_dirs = [path_define.glyphs_dir]
     for dump_config in configs.dump_configs:
         glyphs_dirs.append(dump_service.dump_font(dump_config))
 

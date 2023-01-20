@@ -2,7 +2,7 @@ import os
 
 from jinja2 import Environment, FileSystemLoader
 
-from configs import workspace_define
+from configs import path_define
 from configs.dump_config import DumpConfig
 from configs.git_deploy_config import GitDeployConfig
 from utils.unidata_util import UnidataDB
@@ -31,9 +31,9 @@ dump_configs = [
 
 font_config = (12, 10, 6, 8)
 
-unidata_db = UnidataDB(os.path.join(workspace_define.unidata_dir, 'Blocks.txt'))
+unidata_db = UnidataDB(os.path.join(path_define.unidata_dir, 'Blocks.txt'))
 
-template_env = Environment(loader=FileSystemLoader(workspace_define.templates_dir))
+template_env = Environment(loader=FileSystemLoader(path_define.templates_dir))
 
 git_deploy_configs = [GitDeployConfig(
     'git@github.com:TakWolf/fusion-pixel-font.git',

@@ -7,7 +7,7 @@ from fontTools.pens.t2CharStringPen import T2CharStringPen
 from fontTools.pens.ttGlyphPen import TTGlyphPen
 
 import configs
-from configs import workspace_define
+from configs import path_define
 from utils import glyph_util
 
 logger = logging.getLogger('font-service')
@@ -141,11 +141,11 @@ def make_fonts(alphabet, glyph_file_paths):
         glyph_order.append(glyph_name)
         character_map[code_point] = glyph_name
     otf_builder = _create_font_builder(name_strings, vertical_metrics, glyph_order, character_map, glyph_file_paths, False)
-    otf_builder.save(os.path.join(workspace_define.outputs_dir, 'fusion-pixel.otf'))
+    otf_builder.save(os.path.join(path_define.outputs_dir, 'fusion-pixel.otf'))
     logger.info(f'make otf')
     otf_builder.font.flavor = 'woff2'
-    otf_builder.save(os.path.join(workspace_define.outputs_dir, 'fusion-pixel.woff2'))
+    otf_builder.save(os.path.join(path_define.outputs_dir, 'fusion-pixel.woff2'))
     logger.info(f'make woff2')
     ttf_builder = _create_font_builder(name_strings, vertical_metrics, glyph_order, character_map, glyph_file_paths, True)
-    ttf_builder.save(os.path.join(workspace_define.outputs_dir, 'fusion-pixel.ttf'))
+    ttf_builder.save(os.path.join(path_define.outputs_dir, 'fusion-pixel.ttf'))
     logger.info(f'make ttf')

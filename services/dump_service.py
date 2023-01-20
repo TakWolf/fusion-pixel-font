@@ -6,13 +6,13 @@ from PIL import ImageFont, Image, ImageDraw
 from fontTools.ttLib import TTFont
 
 import configs
-from configs import workspace_define
+from configs import path_define
 
 logger = logging.getLogger('dump-service')
 
 
 def dump_font(dump_config):
-    outputs_dir = os.path.join(workspace_define.dump_dir, dump_config.name)
+    outputs_dir = os.path.join(path_define.dump_dir, dump_config.name)
     font = TTFont(dump_config.font_path)
     cmap = font.getBestCmap()
     units_per_em = font['head'].unitsPerEm

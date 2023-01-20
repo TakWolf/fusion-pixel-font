@@ -6,7 +6,7 @@ import shutil
 import git
 
 import configs
-from configs import workspace_define
+from configs import path_define
 
 logger = logging.getLogger('publish-service')
 
@@ -25,7 +25,7 @@ def copy_release_files():
         'fusion-pixel.woff2',
     ]
     for file_name in file_names:
-        _copy_file(file_name, workspace_define.outputs_dir, workspace_define.releases_dir)
+        _copy_file(file_name, path_define.outputs_dir, path_define.releases_dir)
 
 
 def copy_docs_files():
@@ -34,7 +34,7 @@ def copy_docs_files():
         'preview.png',
     ]
     for file_name in file_names:
-        _copy_file(file_name, workspace_define.outputs_dir, workspace_define.docs_dir)
+        _copy_file(file_name, path_define.outputs_dir, path_define.docs_dir)
 
 
 def copy_www_files():
@@ -43,11 +43,11 @@ def copy_www_files():
         'alphabet.html',
     ]
     for file_name in file_names:
-        _copy_file(file_name, workspace_define.outputs_dir, workspace_define.www_dir)
+        _copy_file(file_name, path_define.outputs_dir, path_define.www_dir)
 
 
 def deploy_www():
-    repo = git.Repo.init(workspace_define.www_dir)
+    repo = git.Repo.init(path_define.www_dir)
     repo.git.add(all=True)
     repo.git.commit(m=f'deployed at {datetime.datetime.utcnow().replace(tzinfo=datetime.timezone.utc).isoformat()}')
     current_branch_name = repo.git.branch(show_current=True)
