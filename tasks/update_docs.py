@@ -3,13 +3,13 @@ import os
 
 from configs import path_define
 from services import publish_service
+from utils import fs_util
 
 logging.basicConfig(level=logging.DEBUG)
 
 
 def main():
-    if not os.path.exists(path_define.docs_dir):
-        os.makedirs(path_define.docs_dir)
+    fs_util.make_dirs_if_not_exists(path_define.docs_dir)
 
     publish_service.copy_docs_files()
 

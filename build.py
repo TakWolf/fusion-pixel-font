@@ -5,13 +5,13 @@ import shutil
 import configs
 from configs import path_define
 from services import dump_service, font_service, info_service, publish_service
+from utils import fs_util
 
 logging.basicConfig(level=logging.DEBUG)
 
 
 def main():
-    if os.path.exists(path_define.build_dir):
-        shutil.rmtree(path_define.build_dir)
+    fs_util.delete_dir(path_define.build_dir)
     os.makedirs(path_define.dump_dir)
     os.makedirs(path_define.outputs_dir)
     os.makedirs(path_define.releases_dir)
