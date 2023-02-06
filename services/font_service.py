@@ -12,7 +12,7 @@ from utils import glyph_util
 
 logger = logging.getLogger('font-service')
 
-dot_em_units = 100
+px_units = 100
 
 
 def collect_glyph_files(glyphs_dirs):
@@ -53,11 +53,11 @@ def _convert_point_to_open_type(point, ascent):
 def _draw_glyph(glyph_file_path, ascent, is_ttf):
     logger.info(f'draw glyph {glyph_file_path}')
     glyph_data, width, _ = glyph_util.load_glyph_data_from_png(glyph_file_path)
-    outlines = glyph_util.get_outlines_from_glyph_data(glyph_data, dot_em_units)
+    outlines = glyph_util.get_outlines_from_glyph_data(glyph_data, px_units)
     if is_ttf:
         pen = TTGlyphPen(None)
     else:
-        pen = T2CharStringPen(width * dot_em_units, None)
+        pen = T2CharStringPen(width * px_units, None)
     if len(outlines) > 0:
         for outline_index, outline in enumerate(outlines):
             for point_index, point in enumerate(outline):
@@ -73,7 +73,7 @@ def _draw_glyph(glyph_file_path, ascent, is_ttf):
     else:
         pen.moveTo((0, 0))
         pen.closePath()
-    advance_width = width * dot_em_units
+    advance_width = width * px_units
     if is_ttf:
         return pen.glyph(), advance_width
     else:
@@ -107,11 +107,11 @@ def _create_font_builder(name_strings, vertical_metrics, glyph_order, character_
 def make_fonts(alphabet, glyph_file_paths):
     px, ascent_px, x_height_px, cap_height_px = configs.font_config
     descent_px = ascent_px - px
-    units_per_em = px * dot_em_units
-    ascent = ascent_px * dot_em_units
-    descent = descent_px * dot_em_units
-    x_height = x_height_px * dot_em_units
-    cap_height = cap_height_px * dot_em_units
+    units_per_em = px * px_units
+    ascent = ascent_px * px_units
+    descent = descent_px * px_units
+    x_height = x_height_px * px_units
+    cap_height = cap_height_px * px_units
     vertical_metrics = units_per_em, ascent, descent, x_height, cap_height
 
     display_name = 'Fusion Pixel'
