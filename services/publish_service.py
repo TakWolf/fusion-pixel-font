@@ -2,13 +2,30 @@ import datetime
 import logging
 import os
 import shutil
+import zipfile
 
 import git
 
 import configs
-from configs import path_define
+from configs import path_define, FontConfig
+from utils import fs_util
 
 logger = logging.getLogger('publish-service')
+
+
+def make_release_zips(width_mode, font_formats=None):
+    if font_formats is None:
+        font_formats = configs.font_formats
+
+    fs_util.make_dirs_if_not_exists(path_define.releases_dir)
+    for font_format in font_formats:
+        zip_file_path = os.path.join(path_define.releases_dir, FontConfig.get_release_zip_file_name(width_mode, font_format))
+        with zipfile.ZipFile(zip_file_path, 'w') as zip_file:
+            zip_file.write('LICENSE-OFL', 'OFL.txt')
+            font_file_name = FontConfig.get_font_file_name(width_mode, font_format)
+            font_file_path = os.path.join(path_define.outputs_dir, font_file_name)
+            zip_file.write(font_file_path, font_file_name)
+        logger.info(f'make {zip_file_path}')
 
 
 def _copy_file(file_name, from_dir, to_dir):
@@ -18,32 +35,20 @@ def _copy_file(file_name, from_dir, to_dir):
     logger.info(f'copy from {from_path} to {to_path}')
 
 
-def copy_release_files():
-    file_names = [
-        'fusion-pixel.otf',
-        'fusion-pixel.ttf',
-        'fusion-pixel.woff2',
-    ]
-    for file_name in file_names:
-        _copy_file(file_name, path_define.outputs_dir, path_define.releases_dir)
+def update_docs():
+    fs_util.make_dirs_if_not_exists(path_define.docs_dir)
+    _copy_file('preview.png', path_define.outputs_dir, path_define.docs_dir)
+    for width_mode in configs.width_modes:
+        _copy_file(FontConfig.get_info_file_name(width_mode), path_define.outputs_dir, path_define.docs_dir)
 
 
-def copy_docs_files():
-    file_names = [
-        'font-info.md',
-        'preview.png',
-    ]
-    for file_name in file_names:
-        _copy_file(file_name, path_define.outputs_dir, path_define.docs_dir)
-
-
-def copy_www_files():
-    file_names = [
-        'fusion-pixel.woff2',
-        'alphabet.html',
-    ]
-    for file_name in file_names:
-        _copy_file(file_name, path_define.outputs_dir, path_define.www_dir)
+def update_www():
+    fs_util.delete_dir(path_define.www_dir)
+    shutil.copytree(path_define.www_static_dir, path_define.www_dir)
+    _copy_file('index.html', path_define.outputs_dir, path_define.www_dir)
+    for width_mode in configs.width_modes:
+        _copy_file(FontConfig.get_font_file_name(width_mode, 'woff2'), path_define.outputs_dir, path_define.www_dir)
+        _copy_file(FontConfig.get_alphabet_html_file_name(width_mode), path_define.outputs_dir, path_define.www_dir)
 
 
 def deploy_www():

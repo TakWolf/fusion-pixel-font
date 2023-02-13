@@ -6,62 +6,48 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 [![Releases](https://img.shields.io/github/v/release/TakWolf/fusion-pixel-font)](https://github.com/TakWolf/fusion-pixel-font/releases)
 
-12 像素中文字体。
+开源的泛中日韩像素字体，尺寸为 12px。
 
-使用多个第三方像素字体合并而成，因此命名为「缝合怪」。
+该项目为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 可用前的过渡方案。本质上是用 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 作为基础，使用其他开源像素字体对缺失的字符进行补充。
 
-该项目为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 可用前的一个临时性的过渡方案。
+由于使用多个像素字体合并而成，因此命名为「缝合怪」。Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B) 中的 [「融合」](https://zh.moegirl.org.cn/%E8%9E%8D%E5%90%88) 魔法卡卡图。
 
-这个项目提供了从第三方字模提取，到合并编译成字体所需要的完整程序。
-
-Logo 捏他自 [《游戏王集换纸牌游戏》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B%E9%9B%86%E6%8F%9B%E7%B4%99%E7%89%8C%E9%81%8A%E6%88%B2) 中的 [「融合」](https://baike.baidu.com/item/%E8%9E%8D%E5%90%88/2290464) 魔法卡卡图。
+这个项目提供了从字模提取，到合并编译成字体所需要的完整程序。
 
 ## 预览
 
-![preview.png](docs/preview.png)
+![preview](docs/preview.png)
 
 [示例文本](https://fusion-pixel-font.takwolf.com)
 
-[字符表](https://fusion-pixel-font.takwolf.com/alphabet.html)
+等宽模式：[字符统计](docs/font-info-monospaced.md) · [字母表](https://fusion-pixel-font.takwolf.com/alphabet-monospaced.html)
 
-[字符统计](docs/font-info.md)
+比例模式：[字符统计](docs/font-info-proportional.md) · [字母表](https://fusion-pixel-font.takwolf.com/alphabet-proportional.html)
 
 ## 案例
 
-如果您愿意将您的案例展示在这里，请在 [Issues](https://github.com/TakWolf/fusion-pixel-font/issues) 提交一个用于展示的链接，或一些截图。
-
-### · 狼人小林的个人主页
-
-☞ https://takwolf.com
-
-### · PTT Retro Theme
-
-☞ https://github.com/VdustR/term-ptt-retro-theme
-
-A retro theme for [term.ptt.cc](https://term.ptt.cc/) based on [term-ptt-custom-theme](https://github.com/VdustR/term-ptt-custom-theme) .
-
-![term-ptt-retro-theme](https://vdustr.dev/asset-2022/07-11-term-ptt-retro-theme/sign-in.png)
+请 [在此](docs/cases.md) 查看使用案例。
 
 ## 字源
 
 字源的要求：
 
-- 像素字体，字形尺寸为 11 × 11
-- 具有免费许可证，并且允许修改和衍生
+- 字形具有像素外观，汉字部分字形尺寸为 11 × 11
+- 使用 [OFL 1.1](https://scripts.sil.org/OFL) 或与之兼容的许可证授权
+- 在 [GitHub](https://github.com) 上托管和分发字体
 
-目前使用的全部字体列表，按照字形使用优先级排列：
+以下为使用的全部字源列表，按照字形使用优先级排列：
 
-（由于「方舟像素字体」进行了等宽和比例模式的拆分，当前项目需要重构编译脚本。目前暂时使用开发分支快照）
-
-| 字体 | 文件 | 版本 |
+| 字体 | 版本 | 文件 |
 |---|---|---|
-| [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) | ark-pixel-12px-zh_cn.otf | [开发分支快照](https://github.com/TakWolf/ark-pixel-font/releases/) |
-| [俐方體11號](https://github.com/ACh-K/Cubic-11) | Cubic_11_1.013_R.ttf | [Version 1.013; 20220805](https://github.com/ACh-K/Cubic-11/releases/tag/v1.013) |
-| [Galmuri](https://github.com/quiple/galmuri) | Galmuri11.ttf | [v2.34.5](https://github.com/quiple/galmuri/releases/tag/v2.34.5) |
+| [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) | [2022.12.20](https://github.com/TakWolf/ark-pixel-font/releases/tag/2022.12.20) | 12px-zh_cn.otf |
+| [方舟像素字体-旧版](https://github.com/TakWolf/ark-pixel-font) | [2022.07.05](https://github.com/TakWolf/ark-pixel-font/releases/tag/2022.07.05) | ark-pixel-12px-zh_cn.otf |
+| [俐方體11號](https://github.com/ACh-K/Cubic-11) | [1.013](https://github.com/ACh-K/Cubic-11/releases/tag/v1.013) | Cubic_11_1.013_R.ttf |
+| [Galmuri](https://github.com/quiple/galmuri) | [2.35.6](https://github.com/quiple/galmuri/releases/tag/v2.35.6) | Galmuri11.ttf |
 
 ## 缺字
 
-目前仍然缺少 GB2312 和 Big5 编码的大部分二级汉字。
+目前仍然缺少一部分 GB2312 和 Big5 编码的二级汉字。
 
 该问题会随着 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 的更新迭代而逐渐解决。
 
@@ -69,13 +55,15 @@ A retro theme for [term.ptt.cc](https://term.ptt.cc/) based on [term-ptt-custom-
 
 ## 下载
 
-[下载地址](https://github.com/TakWolf/fusion-pixel-font/releases)
+可在 [Releases](https://github.com/TakWolf/fusion-pixel-font/releases) 下载最新的版本。
 
 ## 授权信息
 
+分为「字体」和「构建程序」两个部分。
+
 ### 字体
 
-使用 [SIL 开放字体许可证 第1.1版（SIL Open Font License 1.1）](LICENSE-OFL) 授权，保留字体名称「缝合怪像素 / Fusion Pixel」。
+使用 [SIL 开放字体许可证第 1.1 版](LICENSE-OFL) 授权，保留字体名称「缝合怪像素 / Fusion Pixel」。
 
 使用的所有第三方字体，均兼容该许可证。
 

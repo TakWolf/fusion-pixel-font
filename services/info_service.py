@@ -1,14 +1,24 @@
+import json
 import logging
 import os
 
-import minify_html
-from PIL import ImageFont, Image, ImageDraw
-
 import configs
-from configs import path_define
-from utils import unidata_util, gb2312_util, big5_util, shift_jis_util, ks_x_1001_util
+from configs import path_define, FontConfig
+from utils import unidata_util, gb2312_util, big5_util, shift_jis_util, ks_x_1001_util, fs_util
 
 logger = logging.getLogger('info-service')
+
+
+def _write_fallback_infos_table(file, alphabet, fallback_infos):
+    file.write('| 字体名 | 提供字符数 | 比例 |\n')
+    file.write('|---|---:|---:|\n')
+    total = len(alphabet)
+    fallback_names = ['ark-pixel']
+    fallback_names.extend(configs.fallback_names)
+    for fallback_name in fallback_names:
+        count = len(fallback_infos[fallback_name])
+        percentage = count / total
+        file.write(f'| {fallback_name} | {count} / {total} | {percentage:.2%} |\n')
 
 
 def _get_unicode_char_count_infos(alphabet):
@@ -30,7 +40,7 @@ def _get_locale_char_count_map(alphabet, query_block_func):
     count_map = {}
     for c in alphabet:
         block_name = query_block_func(c)
-        if block_name:
+        if block_name is not None:
             block_count = count_map.get(block_name, 0)
             block_count += 1
             count_map[block_name] = block_count
@@ -82,37 +92,54 @@ def _get_ks_x_1001_char_count_infos(alphabet):
 
 
 def _write_unicode_char_count_infos_table(file, infos):
-    file.write('| 区块范围 | 区块名称 | 区块含义 | 覆盖数 | 覆盖率 |\n')
-    file.write('|---|---|---|---:|---:|\n')
+    file.write('| 区块范围 | 区块名称 | 区块含义 | 完成数 | 缺失数 | 进度 |\n')
+    file.write('|---|---|---|---:|---:|---:|\n')
     for unicode_block, count in infos:
         code_point_range = f'{unicode_block.begin:04X} ~ {unicode_block.end:04X}'
-        if unicode_block.char_count > 0:
-            progress = count / unicode_block.char_count
-        else:
-            progress = 1
+        title = unicode_block.name
+        title_cn = unicode_block.name_cn if unicode_block.name_cn is not None else ''
+        total = unicode_block.char_count
+        progress = count / total if total > 0 else 1
         finished_emoji = '🚩' if progress == 1 else '🚧'
-        file.write(f'| {code_point_range} | {unicode_block.name} | {unicode_block.name_cn if unicode_block.name_cn else ""} | {count} / {unicode_block.char_count} | {progress:.2%} {finished_emoji} |\n')
+        file.write(f'| {code_point_range} | {title} | {title_cn} | {count} / {total} | {total - count} | {progress:.2%} {finished_emoji} |\n')
 
 
 def _write_locale_char_count_infos_table(file, infos):
-    file.write('| 区块名称 | 覆盖数 | 覆盖率 |\n')
-    file.write('|---|---:|---:|\n')
+    file.write('| 区块名称 | 完成数 | 缺失数 | 进度 |\n')
+    file.write('|---|---:|---:|---:|\n')
     for title, count, total in infos:
         progress = count / total
         finished_emoji = '🚩' if progress == 1 else '🚧'
-        file.write(f'| {title} | {count} / {total} | {progress:.2%} {finished_emoji} |\n')
+        file.write(f'| {title} | {count} / {total} | {total - count} | {progress:.2%} {finished_emoji} |\n')
 
 
-def make_info_file(alphabet):
-    file_output_path = os.path.join(path_define.outputs_dir, 'font-info.md')
-    with open(file_output_path, 'w', encoding='utf-8') as file:
-        file.write('# 缝合怪像素字体 / Fusion Pixel Font\n')
+def _get_width_mode_display_name(width_mode):
+    if width_mode == 'monospaced':
+        return '等宽模式'
+    else:  # proportional
+        return '比例模式'
+
+
+def make_info_file(width_mode, alphabet, fallback_infos):
+    fs_util.make_dirs_if_not_exists(path_define.outputs_dir)
+    info_file_path = os.path.join(path_define.outputs_dir, FontConfig.get_info_file_name(width_mode))
+    with open(info_file_path, 'w', encoding='utf-8') as file:
+        file.write(f'# {configs.font_name} {_get_width_mode_display_name(width_mode)}\n')
         file.write('\n')
         file.write('## 基本信息\n')
         file.write('\n')
         file.write('| 属性 | 值 |\n')
         file.write('|---|---|\n')
+        file.write(f'| 版本号 | {configs.font_version} |\n')
+        file.write(f'| 尺寸 | {configs.font_config.px}px |\n')
+        file.write(f'| 行高 | {configs.font_config.px if width_mode == "monospaced" else configs.font_config.line_height_px}px |\n')
         file.write(f'| 字符总数 | {len(alphabet)} |\n')
+        file.write('\n')
+        file.write('## 字源提供的字数统计\n')
+        file.write('\n')
+        file.write('按照字形使用优先级排列。\n')
+        file.write('\n')
+        _write_fallback_infos_table(file, alphabet, fallback_infos)
         file.write('\n')
         file.write('## Unicode 字符分布\n')
         file.write('\n')
@@ -138,45 +165,42 @@ def make_info_file(alphabet):
         file.write('\n')
         _write_locale_char_count_infos_table(file, _get_shift_jis_char_count_infos(alphabet))
         file.write('\n')
-        file.write('## KS X 1001 字符分布\n')
+        file.write('## KS-X-1001 字符分布\n')
         file.write('\n')
         file.write('韩语参考字符集。统计范围不包含 ASCII。\n')
         file.write('\n')
         _write_locale_char_count_infos_table(file, _get_ks_x_1001_char_count_infos(alphabet))
-    logger.info(f'make {file_output_path}')
+    logger.info(f'make {info_file_path}')
 
 
-def make_preview_image_file():
-    px = configs.font_config[0]
-    image_font = ImageFont.truetype(os.path.join(path_define.outputs_dir, 'fusion-pixel.otf'), px)
-    image = Image.new('RGBA', (px * 35, px * 19), (255, 255, 255))
-    ImageDraw.Draw(image).text((px, px), '缝合怪像素字体 / Fusion Pixel Font', fill=(0, 0, 0), font=image_font)
-    ImageDraw.Draw(image).text((px, px * 3), '我们每天度过的称之为日常的生活，其实是一个个奇迹的连续也说不定。', fill=(0, 0, 0), font=image_font)
-    ImageDraw.Draw(image).text((px, px * 5), '我們每天度過的稱之為日常的生活，其實是一個個奇跡的連續也說不定。', fill=(0, 0, 0), font=image_font)
-    ImageDraw.Draw(image).text((px, px * 7), '日々、私たちが過ごしている日常は、実は奇跡の連続なのかもしれない。', fill=(0, 0, 0), font=image_font)
-    ImageDraw.Draw(image).text((px, px * 9), 'THE QUICK BROWN FOX JUMPS OVER A LAZY DOG.', fill=(0, 0, 0), font=image_font)
-    ImageDraw.Draw(image).text((px, px * 11), 'the quick brown fox jumps over a lazy dog.', fill=(0, 0, 0), font=image_font)
-    ImageDraw.Draw(image).text((px, px * 13), '0123456789', fill=(0, 0, 0), font=image_font)
-    ImageDraw.Draw(image).text((px, px * 15), '★☆☺☹♠♡♢♣♤♥♦♧☀☼♩♪♫♬☂☁⚓✈⚔☯', fill=(0, 0, 0), font=image_font)
-    ImageDraw.Draw(image).text((px, px * 17), '☜☝☞☟♔♕♖♗♘♙♚♛♜♝♞♟', fill=(0, 0, 0), font=image_font)
-    image = image.resize((image.width * 2, image.height * 2), Image.NEAREST)
-    file_output_path = os.path.join(path_define.outputs_dir, 'preview.png')
-    image.save(file_output_path)
-    logger.info(f'make {file_output_path}')
-
-
-def make_alphabet_txt_file(alphabet):
-    file_output_path = os.path.join(path_define.outputs_dir, 'alphabet.txt')
-    with open(file_output_path, 'w', encoding='utf-8') as file:
+def make_alphabet_txt_file(width_mode, alphabet):
+    fs_util.make_dirs_if_not_exists(path_define.outputs_dir)
+    txt_file_path = os.path.join(path_define.outputs_dir, FontConfig.get_alphabet_txt_file_name(width_mode))
+    with open(txt_file_path, 'w', encoding='utf-8') as file:
         file.write(''.join(alphabet))
-    logger.info(f'make {file_output_path}')
+    logger.info(f'make {txt_file_path}')
 
 
-def make_alphabet_html_file(alphabet):
-    template = configs.template_env.get_template('alphabet.html')
-    html = template.render(alphabet=''.join([c for c in alphabet if ord(c) >= 128]))
-    html = minify_html.minify(html, minify_css=True, minify_js=True)
-    file_output_path = os.path.join(path_define.outputs_dir, 'alphabet.html')
-    with open(file_output_path, 'w', encoding='utf-8') as file:
-        file.write(html)
-    logger.info(f'make {file_output_path}')
+def _read_json_file(json_file_path):
+    with open(json_file_path, 'r', encoding='utf-8') as file:
+        data = json.loads(file.read())
+    return data
+
+
+def make_readme_md_file():
+    fallback_infos = ''
+    fallback_infos += '| 字体 | 版本 | 文件 |\n'
+    fallback_infos += '|---|---|---|\n'
+    ark_pixel_version_info = _read_json_file(os.path.join(path_define.fonts_dir, 'ark-pixel-monospaced', 'version.json'))
+    fallback_infos += f'| [方舟像素字体]({ark_pixel_version_info["repository_url"]}) | [{ark_pixel_version_info["version"]}]({ark_pixel_version_info["version_url"]}) | 12px-{configs.ark_pixel_config.language_specific}.otf |\n'
+    for fallback_name in configs.fallback_names:
+        version_info = _read_json_file(os.path.join(path_define.fonts_dir, fallback_name, 'version.json'))
+        fallback_infos += f'| [{version_info["font_name"]}]({version_info["repository_url"]}) | [{version_info["version"]}]({version_info["version_url"]}) | {version_info["font_file_name"]} |\n'
+    fallback_infos = fallback_infos.strip()
+
+    template = configs.template_env.get_template('README.md')
+    markdown = template.render(fallback_infos=fallback_infos)
+    md_file_path = os.path.join(path_define.project_root_dir, 'README.md')
+    with open(md_file_path, 'w', encoding='utf-8') as file:
+        file.write(markdown)
+    logger.info(f'make {md_file_path}')

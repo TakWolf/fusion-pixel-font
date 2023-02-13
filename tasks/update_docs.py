@@ -1,17 +1,13 @@
 import logging
-import os
 
-from configs import path_define
-from services import publish_service
-from utils import fs_util
+from services import info_service, publish_service
 
 logging.basicConfig(level=logging.DEBUG)
 
 
 def main():
-    fs_util.make_dirs_if_not_exists(path_define.docs_dir)
-
-    publish_service.copy_docs_files()
+    info_service.make_readme_md_file()
+    publish_service.update_docs()
 
 
 if __name__ == '__main__':
