@@ -1,8 +1,8 @@
 {
   "font_name": "方舟像素字体-比例模式",
   "repository_url": "https://github.com/TakWolf/ark-pixel-font",
-  "version": "2022.12.20",
-  "version_url": "https://github.com/TakWolf/ark-pixel-font/releases/tag/2022.12.20",
-  "asset_url": "https://github.com/TakWolf/ark-pixel-font/releases/download/2022.12.20/ark-pixel-font-12px-proportional-otf-v2022.12.20.zip",
+  "version": "word_12",
+  "version_url": "https://github.com/TakWolf/ark-pixel-font/tree/feature/word_12",
+  "asset_url": "https://github.com/TakWolf/ark-pixel-font/tree/feature/word_12",
   "font_file_name": "ark-pixel-12px-proportional-zh_cn.otf"
 }
