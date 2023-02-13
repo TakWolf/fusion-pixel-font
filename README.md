@@ -6,7 +6,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 [![Releases](https://img.shields.io/github/v/release/TakWolf/fusion-pixel-font)](https://github.com/TakWolf/fusion-pixel-font/releases)
 
-开源的泛中日韩像素字体，尺寸为 12px。
+开源的泛中日韩像素字体，尺寸为 12 像素。
 
 该项目为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 可用前的过渡方案。本质上是用 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 作为基础，使用其他开源像素字体对缺失的字符进行补充。
 
@@ -32,7 +32,7 @@
 
 字源的要求：
 
-- 字形具有像素外观，汉字部分字形尺寸为 11 × 11
+- 字形具有像素外观，汉字字形尺寸为 11 × 11 像素
 - 使用 [OFL 1.1](https://scripts.sil.org/OFL) 或与之兼容的许可证授权
 - 在 [GitHub](https://github.com) 上托管和分发字体
 
