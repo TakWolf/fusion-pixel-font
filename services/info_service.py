@@ -203,4 +203,5 @@ def make_readme_md_file():
     md_file_path = os.path.join(path_define.project_root_dir, 'README.md')
     with open(md_file_path, 'w', encoding='utf-8') as file:
         file.write(markdown)
+        file.write('\n')
     logger.info(f'make {md_file_path}')
