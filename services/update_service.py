@@ -30,7 +30,7 @@ def _do_download_file(url, file_path):
     os.rename(tmp_file_path, file_path)
 
 
-def download_font(download_config):
+def update_font(download_config):
     if download_config.tag_name is None:
         tag_name = _get_github_releases_latest_tag_name(download_config.repository_name)
     else:
@@ -42,30 +42,30 @@ def download_font(download_config):
     version_url = f'{repository_url}/releases/tag/{tag_name}'
     asset_file_name = download_config.asset_file_name.format(version=version)
     asset_url = f'{repository_url}/releases/download/{tag_name}/{asset_file_name}'
-    download_dir = os.path.join(path_define.cache_dir, download_config.name, tag_name)
-    download_file_path = os.path.join(download_dir, asset_file_name)
 
-    if not os.path.exists(download_file_path):
+    download_dir = os.path.join(path_define.cache_dir, download_config.name, tag_name)
+    asset_file_path = os.path.join(download_dir, asset_file_name)
+    if not os.path.exists(asset_file_path):
         logger.info(f'start download {asset_url}')
         fs_util.make_dirs_if_not_exists(download_dir)
-        _do_download_file(asset_url, download_file_path)
+        _do_download_file(asset_url, asset_file_path)
     else:
-        logger.info(f'{download_file_path} already exists')
+        logger.info(f'{asset_file_path} already exists')
 
-    unzip_dir = download_file_path.removesuffix('.zip')
-    fs_util.delete_dir(unzip_dir)
-    with zipfile.ZipFile(download_file_path) as zip_file:
-        zip_file.extractall(unzip_dir)
-    logger.info(f'unzip {download_file_path}')
+    asset_unzip_dir = asset_file_path.removesuffix('.zip')
+    fs_util.delete_dir(asset_unzip_dir)
+    with zipfile.ZipFile(asset_file_path) as zip_file:
+        zip_file.extractall(asset_unzip_dir)
+    logger.info(f'unzip {asset_unzip_dir}')
 
     font_dir = os.path.join(path_define.fonts_dir, download_config.name)
     fs_util.delete_dir(font_dir)
     os.makedirs(font_dir)
-    font_from_path = os.path.join(unzip_dir, download_config.font_file_path.format(version=version))
+    font_from_path = os.path.join(asset_unzip_dir, download_config.font_file_path.format(version=version))
     font_file_name = os.path.basename(font_from_path)
     font_to_path = os.path.join(font_dir, font_file_name)
     shutil.copyfile(font_from_path, font_to_path)
-    ofl_txt_from_path = os.path.join(unzip_dir, download_config.ofl_file_path.format(version=version))
+    ofl_txt_from_path = os.path.join(asset_unzip_dir, download_config.ofl_file_path.format(version=version))
     ofl_txt_to_path = os.path.join(font_dir, 'OFL.txt')
     shutil.copyfile(ofl_txt_from_path, ofl_txt_to_path)
     logger.info(f'update font files {font_dir}')
