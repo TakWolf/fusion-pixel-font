@@ -51,7 +51,7 @@ def make_preview_image_file():
         line_width = math.ceil(font.getlength(line))
         if line_width > content_width:
             content_width = line_width
-    content_height = configs.font_config.line_height_px * len(lines)
+    content_height = configs.font_config.display_line_height_px * len(lines)
 
     image_width = configs.font_config.px * 2 + content_width
     image_height = configs.font_config.px * 2 + content_height
@@ -60,7 +60,7 @@ def make_preview_image_file():
     cursor_y = configs.font_config.px
     for line in lines:
         _draw_text(image, (cursor_x, cursor_y), line, font)
-        cursor_y += configs.font_config.line_height_px
+        cursor_y += configs.font_config.display_line_height_px
     image = image.resize((image.width * 2, image.height * 2), Image.NEAREST)
 
     fs_util.make_dirs_if_not_exists(path_define.outputs_dir)

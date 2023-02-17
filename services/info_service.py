@@ -132,7 +132,7 @@ def make_info_file(width_mode, alphabet, fallback_infos):
         file.write('|---|---|\n')
         file.write(f'| 版本号 | {configs.font_version} |\n')
         file.write(f'| 尺寸 | {configs.font_config.px}px |\n')
-        file.write(f'| 行高 | {configs.font_config.px if width_mode == "monospaced" else configs.font_config.line_height_px}px |\n')
+        file.write(f'| 行高 | {configs.font_config.px if width_mode == "monospaced" else configs.font_config.display_line_height_px}px |\n')
         file.write(f'| 字符总数 | {len(alphabet)} |\n')
         file.write('\n')
         file.write('## 字源提供的字数统计\n')
