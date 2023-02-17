@@ -1,22 +1,15 @@
 import os.path
 import random
-from types import SimpleNamespace
 
 from jinja2 import Environment, FileSystemLoader
 
-from configs import path_define
+from configs import path_define, ark_pixel_config
 from configs.download_config import DownloadConfig
 from configs.dump_config import DumpConfig
 from configs.git_deploy_config import GitDeployConfig
 from utils.unidata_util import UnidataDB
 
 build_random_key = random.random()
-
-ark_pixel_config = SimpleNamespace(
-    repository_name='TakWolf/ark-pixel-font',
-    tag_name=None,
-    language_specific='zh_cn',
-)
 
 download_configs = [
     DownloadConfig(

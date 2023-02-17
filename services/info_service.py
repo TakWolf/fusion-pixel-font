@@ -3,7 +3,7 @@ import logging
 import os
 
 import configs
-from configs import path_define, font_config
+from configs import path_define, font_config, ark_pixel_config
 from utils import unidata_util, gb2312_util, big5_util, shift_jis_util, ks_x_1001_util, fs_util
 
 logger = logging.getLogger('info-service')
@@ -192,7 +192,7 @@ def make_readme_md_file():
     fallback_infos += '| 字体 | 版本 | 文件 |\n'
     fallback_infos += '|---|---|---|\n'
     ark_pixel_version_info = _read_json_file(os.path.join(path_define.fonts_dir, 'ark-pixel-monospaced', 'version.json'))
-    fallback_infos += f'| [方舟像素字体]({ark_pixel_version_info["repository_url"]}) | [{ark_pixel_version_info["version"]}]({ark_pixel_version_info["version_url"]}) | 12px-{configs.ark_pixel_config.language_specific}.otf |\n'
+    fallback_infos += f'| [方舟像素字体]({ark_pixel_version_info["repository_url"]}) | [{ark_pixel_version_info["version"]}]({ark_pixel_version_info["version_url"]}) | 12px-{ark_pixel_config.language_specific}.otf |\n'
     for fallback_name in configs.fallback_names:
         version_info = _read_json_file(os.path.join(path_define.fonts_dir, fallback_name, 'version.json'))
         fallback_infos += f'| [{version_info["font_name"]}]({version_info["repository_url"]}) | [{version_info["version"]}]({version_info["version_url"]}) | {version_info["font_file_name"]} |\n'
