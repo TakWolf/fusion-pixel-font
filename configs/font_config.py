@@ -33,81 +33,79 @@ class VerticalMetrics:
         self.cap_height = cap_height
 
 
-class FontConfig:
-    @staticmethod
-    def load():
-        config_file_path = os.path.join(path_define.fonts_dir, 'config.toml')
-        with open(config_file_path, 'rb') as config_file:
-            config_data = tomllib.load(config_file)['font']
-        return FontConfig(config_data)
+config_file_path = os.path.join(path_define.fonts_dir, 'config.toml')
+with open(config_file_path, 'rb') as config_file:
+    config_data = tomllib.load(config_file)['font']
 
-    def __init__(self, config_data, px_units=100):
-        self.px = config_data['px']
-        self.display_line_height_px = config_data['display_line_height_px']
-        assert (self.display_line_height_px - self.px) % 2 == 0, f'font_config {self.px}px with incorrect display_line_height_px {self.display_line_height_px}px'
-        self.monospaced_attrs = FontAttrs(config_data['monospaced'])
-        self.proportional_attrs = FontAttrs(config_data['proportional'])
-        self.px_units = px_units
+px = config_data['px']
+display_line_height_px = config_data['display_line_height_px']
+assert (display_line_height_px - px) % 2 == 0, f'font_config {px}px with incorrect display_line_height_px {display_line_height_px}px'
+monospaced_attrs = FontAttrs(config_data['monospaced'])
+proportional_attrs = FontAttrs(config_data['proportional'])
+px_units = 100
 
-    def get_units_per_em(self):
-        return self.px * self.px_units
 
-    def get_box_origin_y(self, width_mode):
-        if width_mode == 'monospaced':
-            attrs = self.monospaced_attrs
-        else:  # proportional
-            attrs = self.proportional_attrs
-        return attrs.box_origin_y_px * self.px_units
+def get_units_per_em():
+    return px * px_units
 
-    def get_vertical_metrics(self, width_mode):
-        if width_mode == 'monospaced':
-            line_height_px = self.px
-            attrs = self.monospaced_attrs
-        else:  # proportional
-            line_height_px = self.display_line_height_px
-            attrs = self.proportional_attrs
-        ascent = (attrs.box_origin_y_px + int((line_height_px - self.px) / 2)) * self.px_units
-        descent = ascent - line_height_px * self.px_units
-        x_height = attrs.x_height_px * self.px_units
-        cap_height = attrs.cap_height_px * self.px_units
-        return VerticalMetrics(ascent, descent, x_height, cap_height)
 
-    @staticmethod
-    def get_name_strings(width_mode):
-        display_name = f'{display_name_prefix} {width_mode}'
-        unique_name = f'{unique_name_prefix}-{width_mode}-{style_name}'
-        return {
-            'copyright': copyright_string,
-            'familyName': display_name,
-            'styleName': style_name,
-            'uniqueFontIdentifier': f'{unique_name};{version}',
-            'fullName': display_name,
-            'version': version,
-            'psName': unique_name,
-            'designer': designer,
-            'description': description,
-            'vendorURL': vendor_url,
-            'designerURL': designer_url,
-            'licenseDescription': license_description,
-            'licenseInfoURL': license_info_url,
-        }
+def get_box_origin_y(width_mode):
+    if width_mode == 'monospaced':
+        attrs = monospaced_attrs
+    else:  # proportional
+        attrs = proportional_attrs
+    return attrs.box_origin_y_px * px_units
 
-    @staticmethod
-    def get_font_file_name(width_mode, font_format):
-        return f'{output_name_prefix}-{width_mode}.{font_format}'
 
-    @staticmethod
-    def get_info_file_name(width_mode):
-        return f'font-info-{width_mode}.md'
+def get_vertical_metrics(width_mode):
+    if width_mode == 'monospaced':
+        line_height_px = px
+        attrs = monospaced_attrs
+    else:  # proportional
+        line_height_px = display_line_height_px
+        attrs = proportional_attrs
+    ascent = (attrs.box_origin_y_px + int((line_height_px - px) / 2)) * px_units
+    descent = ascent - line_height_px * px_units
+    x_height = attrs.x_height_px * px_units
+    cap_height = attrs.cap_height_px * px_units
+    return VerticalMetrics(ascent, descent, x_height, cap_height)
 
-    @staticmethod
-    def get_alphabet_txt_file_name(width_mode):
-        return f'alphabet-{width_mode}.txt'
 
-    @staticmethod
-    def get_release_zip_file_name(width_mode, font_format):
-        return f'{output_name_prefix}-font-{width_mode}-{font_format}-v{version}.zip'
+def get_name_strings(width_mode):
+    display_name = f'{display_name_prefix} {width_mode}'
+    unique_name = f'{unique_name_prefix}-{width_mode}-{style_name}'
+    return {
+        'copyright': copyright_string,
+        'familyName': display_name,
+        'styleName': style_name,
+        'uniqueFontIdentifier': f'{unique_name};{version}',
+        'fullName': display_name,
+        'version': version,
+        'psName': unique_name,
+        'designer': designer,
+        'description': description,
+        'vendorURL': vendor_url,
+        'designerURL': designer_url,
+        'licenseDescription': license_description,
+        'licenseInfoURL': license_info_url,
+    }
 
-    @staticmethod
-    def get_alphabet_html_file_name(width_mode):
-        return f'alphabet-{width_mode}.html'
+
+def get_font_file_name(width_mode, font_format):
+    return f'{output_name_prefix}-{width_mode}.{font_format}'
+
+
+def get_info_file_name(width_mode):
+    return f'font-info-{width_mode}.md'
+
+
+def get_alphabet_txt_file_name(width_mode):
+    return f'alphabet-{width_mode}.txt'
+
+
+def get_release_zip_file_name(width_mode, font_format):
+    return f'{output_name_prefix}-font-{width_mode}-{font_format}-v{version}.zip'
+
+
+def get_alphabet_html_file_name(width_mode):
+    return f'alphabet-{width_mode}.html'

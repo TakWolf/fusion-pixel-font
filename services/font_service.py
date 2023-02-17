@@ -6,7 +6,7 @@ from fontTools.pens.t2CharStringPen import T2CharStringPen
 from fontTools.pens.ttGlyphPen import TTGlyphPen
 
 import configs
-from configs import path_define, FontConfig
+from configs import path_define, font_config
 from utils import fs_util, glyph_util
 
 logger = logging.getLogger('font-service')
@@ -130,9 +130,9 @@ def make_fonts(width_mode, alphabet, glyph_file_paths, font_formats=None):
 
     fs_util.make_dirs_if_not_exists(path_define.outputs_dir)
 
-    name_strings = FontConfig.get_name_strings(width_mode)
-    units_per_em = configs.font_config.get_units_per_em()
-    vertical_metrics = configs.font_config.get_vertical_metrics(width_mode)
+    name_strings = font_config.get_name_strings(width_mode)
+    units_per_em = font_config.get_units_per_em()
+    vertical_metrics = font_config.get_vertical_metrics(width_mode)
     glyph_order = ['.notdef']
     character_map = {}
     for c in alphabet:
@@ -140,23 +140,23 @@ def make_fonts(width_mode, alphabet, glyph_file_paths, font_formats=None):
         glyph_name = _get_glyph_name(code_point)
         glyph_order.append(glyph_name)
         character_map[code_point] = glyph_name
-    glyph_info_builder = GlyphInfoBuilder(units_per_em, configs.font_config.get_box_origin_y(width_mode), configs.font_config.px_units)
+    glyph_info_builder = GlyphInfoBuilder(units_per_em, font_config.get_box_origin_y(width_mode), font_config.px_units)
 
     if 'otf' in font_formats or 'woff2' in font_formats:
         glyph_info_map = glyph_info_builder.build_glyph_info_map(glyph_file_paths, False)
         font_builder = _create_font_builder(name_strings, units_per_em, vertical_metrics, glyph_order, character_map, glyph_info_map, False)
         if 'otf' in font_formats:
-            font_file_path = os.path.join(path_define.outputs_dir, FontConfig.get_font_file_name(width_mode, 'otf'))
+            font_file_path = os.path.join(path_define.outputs_dir, font_config.get_font_file_name(width_mode, 'otf'))
             font_builder.save(font_file_path)
             logger.info(f'make {font_file_path}')
         if 'woff2' in font_formats:
             font_builder.font.flavor = 'woff2'
-            font_file_path = os.path.join(path_define.outputs_dir, FontConfig.get_font_file_name(width_mode, 'woff2'))
+            font_file_path = os.path.join(path_define.outputs_dir, font_config.get_font_file_name(width_mode, 'woff2'))
             font_builder.save(font_file_path)
             logger.info(f'make {font_file_path}')
     if 'ttf' in font_formats:
         glyph_info_map = glyph_info_builder.build_glyph_info_map(glyph_file_paths, True)
         font_builder = _create_font_builder(name_strings, units_per_em, vertical_metrics, glyph_order, character_map, glyph_info_map, True)
-        font_file_path = os.path.join(path_define.outputs_dir, FontConfig.get_font_file_name(width_mode, 'ttf'))
+        font_file_path = os.path.join(path_define.outputs_dir, font_config.get_font_file_name(width_mode, 'ttf'))
         font_builder.save(font_file_path)
         logger.info(f'make {font_file_path}')

@@ -4,16 +4,15 @@ import os
 
 from PIL import Image, ImageFont, ImageDraw
 
-import configs
-from configs import path_define, FontConfig
+from configs import path_define, font_config
 from utils import fs_util
 
 logger = logging.getLogger('image-service')
 
 
 def _load_font(width_mode, px_scale=1):
-    font_file_path = os.path.join(path_define.outputs_dir, FontConfig.get_font_file_name(width_mode, 'woff2'))
-    return ImageFont.truetype(font_file_path, configs.font_config.px * px_scale)
+    font_file_path = os.path.join(path_define.outputs_dir, font_config.get_font_file_name(width_mode, 'woff2'))
+    return ImageFont.truetype(font_file_path, font_config.px * px_scale)
 
 
 def _draw_text(image, xy, text, font, text_color=(0, 0, 0), shadow_color=None, line_height=None, line_gap=0, is_horizontal_centered=False, is_vertical_centered=False):
@@ -51,16 +50,16 @@ def make_preview_image_file():
         line_width = math.ceil(font.getlength(line))
         if line_width > content_width:
             content_width = line_width
-    content_height = configs.font_config.display_line_height_px * len(lines)
+    content_height = font_config.display_line_height_px * len(lines)
 
-    image_width = configs.font_config.px * 2 + content_width
-    image_height = configs.font_config.px * 2 + content_height
+    image_width = font_config.px * 2 + content_width
+    image_height = font_config.px * 2 + content_height
     image = Image.new('RGBA', (image_width, image_height), (255, 255, 255))
-    cursor_x = configs.font_config.px
-    cursor_y = configs.font_config.px
+    cursor_x = font_config.px
+    cursor_y = font_config.px
     for line in lines:
         _draw_text(image, (cursor_x, cursor_y), line, font)
-        cursor_y += configs.font_config.display_line_height_px
+        cursor_y += font_config.display_line_height_px
     image = image.resize((image.width * 2, image.height * 2), Image.NEAREST)
 
     fs_util.make_dirs_if_not_exists(path_define.outputs_dir)

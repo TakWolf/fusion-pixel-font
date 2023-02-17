@@ -7,7 +7,6 @@ from jinja2 import Environment, FileSystemLoader
 from configs import path_define
 from configs.download_config import DownloadConfig
 from configs.dump_config import DumpConfig
-from configs.font_config import FontConfig
 from configs.git_deploy_config import GitDeployConfig
 from utils.unidata_util import UnidataDB
 
@@ -82,11 +81,6 @@ fallback_names = [
     'cubic-11',
     'galmuri',
 ]
-
-font_name = font_config.display_name_prefix
-font_version = font_config.version
-
-font_config = FontConfig.load()
 
 width_modes = ['monospaced', 'proportional']
 

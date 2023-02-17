@@ -7,7 +7,7 @@ import zipfile
 import git
 
 import configs
-from configs import path_define, FontConfig
+from configs import path_define, font_config
 from utils import fs_util
 
 logger = logging.getLogger('publish-service')
@@ -19,10 +19,10 @@ def make_release_zips(width_mode, font_formats=None):
 
     fs_util.make_dirs_if_not_exists(path_define.releases_dir)
     for font_format in font_formats:
-        zip_file_path = os.path.join(path_define.releases_dir, FontConfig.get_release_zip_file_name(width_mode, font_format))
+        zip_file_path = os.path.join(path_define.releases_dir, font_config.get_release_zip_file_name(width_mode, font_format))
         with zipfile.ZipFile(zip_file_path, 'w') as zip_file:
             zip_file.write('LICENSE-OFL', 'OFL.txt')
-            font_file_name = FontConfig.get_font_file_name(width_mode, font_format)
+            font_file_name = font_config.get_font_file_name(width_mode, font_format)
             font_file_path = os.path.join(path_define.outputs_dir, font_file_name)
             zip_file.write(font_file_path, font_file_name)
         logger.info(f'make {zip_file_path}')
@@ -39,7 +39,7 @@ def update_docs():
     fs_util.make_dirs_if_not_exists(path_define.docs_dir)
     _copy_file('preview.png', path_define.outputs_dir, path_define.docs_dir)
     for width_mode in configs.width_modes:
-        _copy_file(FontConfig.get_info_file_name(width_mode), path_define.outputs_dir, path_define.docs_dir)
+        _copy_file(font_config.get_info_file_name(width_mode), path_define.outputs_dir, path_define.docs_dir)
 
 
 def update_www():
@@ -47,8 +47,8 @@ def update_www():
     shutil.copytree(path_define.www_static_dir, path_define.www_dir)
     _copy_file('index.html', path_define.outputs_dir, path_define.www_dir)
     for width_mode in configs.width_modes:
-        _copy_file(FontConfig.get_font_file_name(width_mode, 'woff2'), path_define.outputs_dir, path_define.www_dir)
-        _copy_file(FontConfig.get_alphabet_html_file_name(width_mode), path_define.outputs_dir, path_define.www_dir)
+        _copy_file(font_config.get_font_file_name(width_mode, 'woff2'), path_define.outputs_dir, path_define.www_dir)
+        _copy_file(font_config.get_alphabet_html_file_name(width_mode), path_define.outputs_dir, path_define.www_dir)
 
 
 def deploy_www():

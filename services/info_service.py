@@ -3,7 +3,7 @@ import logging
 import os
 
 import configs
-from configs import path_define, FontConfig
+from configs import path_define, font_config
 from utils import unidata_util, gb2312_util, big5_util, shift_jis_util, ks_x_1001_util, fs_util
 
 logger = logging.getLogger('info-service')
@@ -122,17 +122,17 @@ def _get_width_mode_display_name(width_mode):
 
 def make_info_file(width_mode, alphabet, fallback_infos):
     fs_util.make_dirs_if_not_exists(path_define.outputs_dir)
-    info_file_path = os.path.join(path_define.outputs_dir, FontConfig.get_info_file_name(width_mode))
+    info_file_path = os.path.join(path_define.outputs_dir, font_config.get_info_file_name(width_mode))
     with open(info_file_path, 'w', encoding='utf-8') as file:
-        file.write(f'# {configs.font_name} {_get_width_mode_display_name(width_mode)}\n')
+        file.write(f'# {font_config.display_name_prefix} {_get_width_mode_display_name(width_mode)}\n')
         file.write('\n')
         file.write('## 基本信息\n')
         file.write('\n')
         file.write('| 属性 | 值 |\n')
         file.write('|---|---|\n')
-        file.write(f'| 版本号 | {configs.font_version} |\n')
-        file.write(f'| 尺寸 | {configs.font_config.px}px |\n')
-        file.write(f'| 行高 | {configs.font_config.px if width_mode == "monospaced" else configs.font_config.display_line_height_px}px |\n')
+        file.write(f'| 版本号 | {font_config.version} |\n')
+        file.write(f'| 尺寸 | {font_config.px}px |\n')
+        file.write(f'| 行高 | {font_config.px if width_mode == "monospaced" else font_config.display_line_height_px}px |\n')
         file.write(f'| 字符总数 | {len(alphabet)} |\n')
         file.write('\n')
         file.write('## 字源提供的字数统计\n')
@@ -175,7 +175,7 @@ def make_info_file(width_mode, alphabet, fallback_infos):
 
 def make_alphabet_txt_file(width_mode, alphabet):
     fs_util.make_dirs_if_not_exists(path_define.outputs_dir)
-    txt_file_path = os.path.join(path_define.outputs_dir, FontConfig.get_alphabet_txt_file_name(width_mode))
+    txt_file_path = os.path.join(path_define.outputs_dir, font_config.get_alphabet_txt_file_name(width_mode))
     with open(txt_file_path, 'w', encoding='utf-8') as file:
         file.write(''.join(alphabet))
     logger.info(f'make {txt_file_path}')
