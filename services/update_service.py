@@ -50,7 +50,7 @@ def update_font(download_config):
         fs_util.make_dirs_if_not_exists(download_dir)
         _do_download_file(asset_url, asset_file_path)
     else:
-        logger.info(f'{asset_file_path} already exists')
+        logger.info(f'already downloaded: {asset_file_path}')
 
     asset_unzip_dir = asset_file_path.removesuffix('.zip')
     fs_util.delete_dir(asset_unzip_dir)
