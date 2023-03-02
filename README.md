@@ -41,7 +41,6 @@
 | 字体 | 版本 | 文件 |
 |---|---|---|
 | [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) | [word_12](https://github.com/TakWolf/ark-pixel-font/tree/feature/word_12) | 12px-zh_cn.otf |
-| [方舟像素字体-旧版](https://github.com/TakWolf/ark-pixel-font) | [2022.07.05](https://github.com/TakWolf/ark-pixel-font/releases/tag/2022.07.05) | ark-pixel-12px-zh_cn.otf |
 | [俐方體11號](https://github.com/ACh-K/Cubic-11) | [1.013](https://github.com/ACh-K/Cubic-11/releases/tag/v1.013) | Cubic_11_1.013_R.ttf |
 | [Galmuri](https://github.com/quiple/galmuri) | [2.35.6](https://github.com/quiple/galmuri/releases/tag/v2.35.6) | Galmuri11.ttf |
 

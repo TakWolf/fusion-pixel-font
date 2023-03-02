@@ -33,15 +33,6 @@ download_configs = [
         is_enabled=False,
     ),
     DownloadConfig(
-        name='ark-pixel-old',
-        font_name='方舟像素字体-旧版',
-        repository_name=ark_pixel_config.repository_name,
-        tag_name='2022.07.05',
-        asset_file_name='ark-pixel-font-12px-otf-v{version}.zip',
-        font_file_path=f'ark-pixel-12px-{ark_pixel_config.language_specific}.otf',
-        ofl_file_path='OFL.txt',
-    ),
-    DownloadConfig(
         name='cubic-11',
         font_name='俐方體11號',
         repository_name='ACh-K/Cubic-11',
@@ -64,13 +55,11 @@ download_configs = [
 dump_configs = [
     DumpConfig('ark-pixel-monospaced'),
     DumpConfig('ark-pixel-proportional'),
-    DumpConfig('ark-pixel-old'),
     DumpConfig('cubic-11', offset_xy=(-1, 1)),
     DumpConfig('galmuri', offset_xy=(0, 1)),
 ]
 
 fallback_names = [
-    'ark-pixel-old',
     'cubic-11',
     'galmuri',
 ]
