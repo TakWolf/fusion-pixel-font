@@ -20,7 +20,6 @@ download_configs = [
         asset_file_name='ark-pixel-font-12px-monospaced-otf-v{version}.zip',
         font_file_path=f'ark-pixel-12px-monospaced-{ark_pixel_config.language_specific}.otf',
         ofl_file_path='OFL.txt',
-        is_enabled=False,
     ),
     DownloadConfig(
         name='ark-pixel-proportional',
@@ -30,7 +29,6 @@ download_configs = [
         asset_file_name='ark-pixel-font-12px-proportional-otf-v{version}.zip',
         font_file_path=f'ark-pixel-12px-proportional-{ark_pixel_config.language_specific}.otf',
         ofl_file_path='OFL.txt',
-        is_enabled=False,
     ),
     DownloadConfig(
         name='cubic-11',
