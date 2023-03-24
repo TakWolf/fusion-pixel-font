@@ -7,7 +7,6 @@ GitPython==3.1.31
 idna==3.4
 Jinja2==3.1.2
 MarkupSafe==2.1.2
-minify_html==0.10.8
 Pillow==9.4.0
 pypng==0.20220715.0
 requests==2.28.2
