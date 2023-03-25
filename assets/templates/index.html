@@ -106,13 +106,13 @@
     <form class="options-group">
         {% for width_mode in configs.width_modes %}
         <label class="option">
-            <input name="width_mode" type="radio" {{ 'checked' if width_mode == 'proportional' else '' }} onclick="applyWidthMode('{{ width_mode }}');">
+            <input id="radio-width-mode-{{ width_mode }}" name="width_mode" type="radio" onchange="onWidthModeChange('{{ width_mode }}');">
             <span></span>
             {{ width_mode }}
         </label>
         {% endfor %}
     </form>
-    <div id="page" class="font-proportional">
+    <div id="page">
         <h1 class="title">缝合怪像素字体 / Fusion Pixel Font</h1>
         <p class="content">项目地址：<a href="https://github.com/TakWolf/fusion-pixel-font" target="_blank">https://github.com/TakWolf/fusion-pixel-font</a></p>
         <p><a class="content" href="alphabet-monospaced.html" target="_blank">等宽模式-字母表</a></p>
@@ -303,10 +303,29 @@
         <p class="content">Nintendo имеет множество дочерних компаний в Японии и за рубежом, а также таких деловых партнеров, как The Pokémon Company и HAL Laboratory. Компания Nintendo и ее сотрудники были удостоены таких наград, как Technology & Engineering Emmy Awards[en], Game Awards, Game Developers Choice Awards и «Премия Британской Академии в области видеоигр». Это одна из самых богатых и ценных компаний на японском рынке.</p>
     </div>
     <script>
-        var page = document.getElementById('page');
+        let page = document.getElementById('page');
 
-        function applyWidthMode(widthMode) {
-            page.className = 'font-' + widthMode;
+        let configs = {
+            widthMode: 'proportional',
+        };
+
+        function applyConfigs() {
+            localStorage.setItem('configs:index', JSON.stringify(configs));
+            page.className = 'font-' + configs.widthMode;
         }
+
+        function onWidthModeChange(widthMode) {
+            configs.widthMode = widthMode;
+            applyConfigs();
+        }
+
+        (function () {
+            let json = localStorage.getItem('configs:index');
+            if (json) {
+                Object.assign(configs, JSON.parse(json));
+            }
+            document.getElementById('radio-width-mode-' + configs.widthMode).checked = true;
+            applyConfigs();
+        })();
     </script>
 {% endblock %}
