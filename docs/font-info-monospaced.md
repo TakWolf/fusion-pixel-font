@@ -50,7 +50,7 @@
 | 25A0 ~ 25FF | Geometric Shapes | 几何形状 | 96 / 96 | 0 | 100.00% 🚩 |
 | 2600 ~ 26FF | Miscellaneous Symbols | 各式符号 | 128 / 256 | 128 | 50.00% 🚧 |
 | 2700 ~ 27BF | Dingbats | 杂锦 | 35 / 192 | 157 | 18.23% 🚧 |
-| 2800 ~ 28FF | Braille Patterns | 布莱叶图案 | 256 / 256 | 0 | 100.00% 🚩 |
+| 2800 ~ 28FF | Braille Patterns | 盲文图案 | 256 / 256 | 0 | 100.00% 🚩 |
 | 2C60 ~ 2C7F | Latin Extended-C | 拉丁扩充-C | 1 / 32 | 31 | 3.12% 🚧 |
 | 3000 ~ 303F | CJK Symbols and Punctuation | 中日韩符号与标点 | 36 / 63 | 27 | 57.14% 🚧 |
 | 3040 ~ 309F | Hiragana | 平假名 | 93 / 93 | 0 | 100.00% 🚩 |
@@ -62,7 +62,7 @@
 | 3400 ~ 4DBF | CJK Unified Ideographs Extension A | 中日韩统一表意文字扩充 A | 39 / 6592 | 6553 | 0.59% 🚧 |
 | 4E00 ~ 9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 14981 / 20992 | 6011 | 71.37% 🚧 |
 | AC00 ~ D7AF | Hangul Syllables | 谚文音节 | 11172 / 11172 | 0 | 100.00% 🚩 |
-| E000 ~ F8FF | Private Use Area | 私用区域 | 349 / 0 | -349 | 100.00% 🚩 |
+| E000 ~ F8FF | Private Use Area | 私用区域 | 349 / 0 | 0 | 100.00% 🚩 |
 | F900 ~ FAFF | CJK Compatibility Ideographs | 中日韩兼容表意文字 | 268 / 472 | 204 | 56.78% 🚧 |
 | FB00 ~ FB4F | Alphabetic Presentation Forms | 字母显现形式 | 5 / 58 | 53 | 8.62% 🚧 |
 | FE10 ~ FE1F | Vertical Forms | 竖排形式 | 10 / 10 | 0 | 100.00% 🚩 |
