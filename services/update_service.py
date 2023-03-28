@@ -68,6 +68,7 @@ def update_font(download_config):
     ofl_txt_from_path = os.path.join(asset_unzip_dir, download_config.ofl_file_path.format(version=version))
     ofl_txt_to_path = os.path.join(font_dir, 'OFL.txt')
     shutil.copyfile(ofl_txt_from_path, ofl_txt_to_path)
+    fs_util.delete_dir(asset_unzip_dir)
     logger.info(f'update font files {font_dir}')
 
     version_info = {
