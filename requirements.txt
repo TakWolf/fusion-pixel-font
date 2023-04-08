@@ -1,13 +1,13 @@
 Brotli==1.0.9
 certifi==2022.12.7
 charset-normalizer==3.1.0
-fonttools==4.39.2
+fonttools==4.39.3
 gitdb==4.0.10
 GitPython==3.1.31
 idna==3.4
 Jinja2==3.1.2
 MarkupSafe==2.1.2
-Pillow==9.4.0
+Pillow==9.5.0
 pypng==0.20220715.0
 requests==2.28.2
 smmap==5.0.0
