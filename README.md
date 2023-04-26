@@ -42,7 +42,7 @@
 |---|---|---|
 | [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) | [2023.03.27](https://github.com/TakWolf/ark-pixel-font/releases/tag/2023.03.27) | 12px-zh_cn.otf |
 | [俐方體11號](https://github.com/ACh-K/Cubic-11) | [1.013](https://github.com/ACh-K/Cubic-11/releases/tag/v1.013) | Cubic_11_1.013_R.ttf |
-| [Galmuri](https://github.com/quiple/galmuri) | [2.35.6](https://github.com/quiple/galmuri/releases/tag/v2.35.6) | Galmuri11.ttf |
+| [Galmuri](https://github.com/quiple/galmuri) | [2.37.1](https://github.com/quiple/galmuri/releases/tag/v2.37.1) | Galmuri11.ttf |
 
 ## 缺字
 
