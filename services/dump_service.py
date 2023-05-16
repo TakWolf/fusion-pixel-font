@@ -2,10 +2,10 @@ import logging
 import math
 import os
 
+import unidata_blocks
 from PIL import ImageFont, Image, ImageDraw
 from fontTools.ttLib import TTFont
 
-import configs
 from configs import path_define
 from utils import fs_util, glyph_util
 
@@ -30,18 +30,18 @@ def dump_font(dump_config):
         canvas_height += 1
 
     for code_point, glyph_name in cmap.items():
-        unicode_block = configs.unidata_db.get_block_by_code_point(code_point)
+        block = unidata_blocks.get_block_by_code_point(code_point)
 
         canvas_width = math.ceil(dump_config.px * metrics[glyph_name][0] / units_per_em)
         if canvas_width <= 0:
             canvas_width = dump_config.px
-        elif canvas_width > dump_config.px and unicode_block.begin != 0xE000:  # Private Use Area
+        elif canvas_width > dump_config.px and block.code_start != 0xE000:  # Private Use Area
             canvas_width = dump_config.px
 
         uni_hex_name = f'{code_point:04X}'
-        block_dir_name = f'{unicode_block.begin:04X}-{unicode_block.end:04X} {unicode_block.name}'
+        block_dir_name = f'{block.code_start:04X}-{block.code_end:04X} {block.name}'
         glyph_file_to_dir = os.path.join(dump_dir, block_dir_name)
-        if unicode_block.begin == 0x4E00:  # CJK Unified Ideographs
+        if block.code_start == 0x4E00:  # CJK Unified Ideographs
             glyph_file_to_dir = os.path.join(glyph_file_to_dir, f'{uni_hex_name[0:-2]}-')
         fs_util.make_dirs_if_not_exists(glyph_file_to_dir)
         glyph_file_to_path = os.path.join(glyph_file_to_dir, f'{uni_hex_name}.png')

@@ -7,7 +7,6 @@ from configs import path_define, ark_pixel_config
 from configs.download_config import DownloadConfig
 from configs.dump_config import DumpConfig
 from configs.git_deploy_config import GitDeployConfig
-from utils.unidata_util import UnidataDB
 
 build_random_key = random.random()
 
@@ -65,8 +64,6 @@ fallback_names = [
 width_modes = ['monospaced', 'proportional']
 
 font_formats = ['otf', 'woff2', 'ttf']
-
-unidata_db = UnidataDB(os.path.join(path_define.unidata_dir, 'Blocks.txt'))
 
 template_env = Environment(
     trim_blocks=True,
