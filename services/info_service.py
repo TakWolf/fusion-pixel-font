@@ -80,7 +80,7 @@ def _get_shiftjis_char_count_infos(alphabet):
         ('单字节-半角片假名', count_map.get('single-byte-half-width-katakana', 0), shiftjis.get_single_byte_half_width_katakana_count()),
         ('双字节-其他字符', count_map.get('double-byte-other', 0), shiftjis.get_double_byte_other_count()),
         ('双字节-汉字', count_map.get('double-byte-kanji', 0), shiftjis.get_double_byte_kanji_count()),
-        ('总计', count_map.get('total', 0), shiftjis.get_count() - shiftjis.get_single_byte_ascii_control_count()),
+        ('总计', count_map.get('total', 0) - count_map.get('single-byte-ascii-control', 0), shiftjis.get_count() - shiftjis.get_single_byte_ascii_control_count()),
     ]
 
 
