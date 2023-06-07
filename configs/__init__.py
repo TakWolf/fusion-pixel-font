@@ -1,8 +1,6 @@
 import os
 import random
 
-from jinja2 import Environment, FileSystemLoader
-
 from configs import path_define, ark_pixel_config
 from configs.download_config import DownloadConfig
 from configs.dump_config import DumpConfig
@@ -64,12 +62,6 @@ fallback_names = [
 width_modes = ['monospaced', 'proportional']
 
 font_formats = ['otf', 'woff2', 'ttf']
-
-template_env = Environment(
-    trim_blocks=True,
-    lstrip_blocks=True,
-    loader=FileSystemLoader(path_define.templates_dir),
-)
 
 git_deploy_configs = [GitDeployConfig(
     url='git@github.com:TakWolf/fusion-pixel-font.git',
