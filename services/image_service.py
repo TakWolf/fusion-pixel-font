@@ -62,7 +62,7 @@ def make_preview_image_file():
         cursor_y += font_config.display_line_height_px
     image = image.resize((image.width * 2, image.height * 2), Image.NEAREST)
 
-    fs_util.make_dirs_if_not_exists(path_define.outputs_dir)
+    fs_util.make_dirs(path_define.outputs_dir)
     image_file_path = os.path.join(path_define.outputs_dir, 'preview.png')
     image.save(image_file_path)
     logger.info(f'make {image_file_path}')

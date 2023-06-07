@@ -17,7 +17,7 @@ def make_release_zips(width_mode, font_formats=None):
     if font_formats is None:
         font_formats = configs.font_formats
 
-    fs_util.make_dirs_if_not_exists(path_define.releases_dir)
+    fs_util.make_dirs(path_define.releases_dir)
     for font_format in font_formats:
         zip_file_path = os.path.join(path_define.releases_dir, font_config.get_release_zip_file_name(width_mode, font_format))
         with zipfile.ZipFile(zip_file_path, 'w') as zip_file:
@@ -36,7 +36,7 @@ def _copy_file(file_name, from_dir, to_dir):
 
 
 def update_docs():
-    fs_util.make_dirs_if_not_exists(path_define.docs_dir)
+    fs_util.make_dirs(path_define.docs_dir)
     _copy_file('preview.png', path_define.outputs_dir, path_define.docs_dir)
     for width_mode in configs.width_modes:
         _copy_file(font_config.get_info_file_name(width_mode), path_define.outputs_dir, path_define.docs_dir)

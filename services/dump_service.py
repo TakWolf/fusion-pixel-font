@@ -14,7 +14,7 @@ logger = logging.getLogger('dump-service')
 
 def dump_font(dump_config):
     dump_dir = os.path.join(path_define.dump_dir, dump_config.name)
-    fs_util.make_dirs_if_not_exists(dump_dir)
+    fs_util.make_dirs(dump_dir)
 
     font_file_path = dump_config.get_font_file_path()
     font = TTFont(font_file_path)
@@ -43,7 +43,7 @@ def dump_font(dump_config):
         glyph_file_to_dir = os.path.join(dump_dir, block_dir_name)
         if block.code_start == 0x4E00:  # CJK Unified Ideographs
             glyph_file_to_dir = os.path.join(glyph_file_to_dir, f'{uni_hex_name[0:-2]}-')
-        fs_util.make_dirs_if_not_exists(glyph_file_to_dir)
+        fs_util.make_dirs(glyph_file_to_dir)
         glyph_file_to_path = os.path.join(glyph_file_to_dir, f'{uni_hex_name}.png')
 
         image = Image.new('RGBA', (canvas_width, canvas_height), (0, 0, 0, 0))

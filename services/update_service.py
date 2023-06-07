@@ -47,7 +47,7 @@ def update_font(download_config):
     asset_file_path = os.path.join(download_dir, asset_file_name)
     if not os.path.exists(asset_file_path):
         logger.info(f'start download {asset_url}')
-        fs_util.make_dirs_if_not_exists(download_dir)
+        fs_util.make_dirs(download_dir)
         _do_download_file(asset_url, asset_file_path)
     else:
         logger.info(f'already downloaded: {asset_file_path}')

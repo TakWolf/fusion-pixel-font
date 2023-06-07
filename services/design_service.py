@@ -3,6 +3,7 @@ import os
 
 import configs
 from configs import path_define
+from utils import fs_util
 
 logger = logging.getLogger('design-service')
 
@@ -22,22 +23,21 @@ def collect_glyph_files(width_mode):
     for fallback_name, glyphs_dir in glyphs_dir_infos:
         if not os.path.isdir(glyphs_dir):
             continue
-        for glyph_file_dir, _, glyph_file_names in os.walk(glyphs_dir):
-            for glyph_file_name in glyph_file_names:
-                if not glyph_file_name.endswith('.png'):
-                    continue
-                glyph_file_path = os.path.join(glyph_file_dir, glyph_file_name)
-                if glyph_file_name == 'notdef.png':
-                    if '.notdef' not in glyph_file_paths:
-                        glyph_file_paths['.notdef'] = glyph_file_path
-                else:
-                    uni_hex_name = glyph_file_name.removesuffix('.png').upper()
-                    code_point = int(uni_hex_name, 16)
-                    if code_point not in glyph_file_paths:
-                        glyph_file_paths[code_point] = glyph_file_path
-                        c = chr(code_point)
-                        alphabet.add(c)
-                        fallback_infos[fallback_name].add(c)
+        for glyph_file_dir, glyph_file_name in fs_util.walk_files(glyphs_dir):
+            if not glyph_file_name.endswith('.png'):
+                continue
+            glyph_file_path = os.path.join(glyph_file_dir, glyph_file_name)
+            if glyph_file_name == 'notdef.png':
+                if '.notdef' not in glyph_file_paths:
+                    glyph_file_paths['.notdef'] = glyph_file_path
+            else:
+                uni_hex_name = glyph_file_name.removesuffix('.png').upper()
+                code_point = int(uni_hex_name, 16)
+                if code_point not in glyph_file_paths:
+                    glyph_file_paths[code_point] = glyph_file_path
+                    c = chr(code_point)
+                    alphabet.add(c)
+                    fallback_infos[fallback_name].add(c)
     alphabet = list(alphabet)
     alphabet.sort()
     return alphabet, glyph_file_paths, fallback_infos

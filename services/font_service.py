@@ -128,7 +128,7 @@ def make_fonts(width_mode, alphabet, glyph_file_paths, font_formats=None):
     if font_formats is None:
         font_formats = configs.font_formats
 
-    fs_util.make_dirs_if_not_exists(path_define.outputs_dir)
+    fs_util.make_dirs(path_define.outputs_dir)
 
     name_strings = font_config.get_name_strings(width_mode)
     units_per_em = font_config.get_units_per_em()
