@@ -5,7 +5,7 @@ import configs
 from configs import path_define, font_config
 from utils import fs_util
 
-logger = logging.getLogger('html-service')
+logger = logging.getLogger('template-service')
 
 
 def make_alphabet_html_file(width_mode, alphabet):
