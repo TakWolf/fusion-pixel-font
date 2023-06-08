@@ -37,7 +37,7 @@ def _dump_font(name: str, version: str, dump_config: DumpConfig):
 
         canvas_width = math.ceil(font['hmtx'].metrics[glyph_name][0] / font['head'].unitsPerEm * dump_config.rasterize_font_size)
         if canvas_width <= 0:
-            canvas_width = dump_config.font_size
+            continue
         elif canvas_width > dump_config.font_size and block.code_start != 0xE000:  # Private Use Area
             canvas_width = dump_config.font_size
 
