@@ -1,0 +1,13 @@
+[font]
+size = 8
+line_height = 12
+
+[font.monospaced]
+box_origin_y = 7
+x_height = 0
+cap_height = 0
+
+[font.proportional]
+box_origin_y = 7
+x_height = 0
+cap_height = 0

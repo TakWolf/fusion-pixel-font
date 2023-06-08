@@ -1,0 +1,13 @@
+[font]
+size = 10
+line_height = 16
+
+[font.monospaced]
+box_origin_y = 9
+x_height = 5
+cap_height = 7
+
+[font.proportional]
+box_origin_y = 9
+x_height = 5
+cap_height = 7

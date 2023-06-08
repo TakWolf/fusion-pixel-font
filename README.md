@@ -1,60 +1,60 @@
 ![banner](docs/logo.png)
 
-# 缝合怪像素字体 / Fusion Pixel Font
+# 缝合像素字体 / Fusion Pixel Font
 
 [![SIL Open Font License 1.1](https://img.shields.io/badge/license-OFL--1.1-orange)](https://scripts.sil.org/OFL)
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 [![Releases](https://img.shields.io/github/v/release/TakWolf/fusion-pixel-font)](https://github.com/TakWolf/fusion-pixel-font/releases)
 
-开源的泛中日韩像素字体，尺寸为 12 像素。
+开源像素字体。支持 8、10 和 12 像素。
 
-该项目为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 可用前的过渡方案。本质上是用 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 作为基础，使用其他开源像素字体对缺失的字符进行补充。
+该项目为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 可用前的过渡解决方案。使用多个像素字体合并而成，因此以「缝合」命名。
 
-由于使用多个像素字体合并而成，因此命名为「缝合怪」。Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B) 中的 [「融合」](https://zh.moegirl.org.cn/%E8%9E%8D%E5%90%88) 魔法卡卡图。
+Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B) 中的 [「融合」](https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=4837&request_locale=ja) 魔法卡卡图。
 
-这个项目提供了从字模提取，到合并编译成字体所需要的完整程序。
+这个项目提供了从提取字模，合并字形到构建字体所需要的完整程序。
 
 ## 预览
 
-![preview](docs/preview.png)
+可以通过 [Playground](https://fusion-pixel-font.takwolf.com/playground.html) 实时预览字体效果。
 
-[示例文本](https://fusion-pixel-font.takwolf.com)
+### 8 像素
 
-等宽模式：[字符统计](docs/font-info-monospaced.md) · [字母表](https://fusion-pixel-font.takwolf.com/alphabet-monospaced.html)
+[示例文本](https://fusion-pixel-font.takwolf.com/demo-8px.html) · [等宽模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-8px-monospaced.html) · [比例模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-8px-proportional.html)
 
-比例模式：[字符统计](docs/font-info-proportional.md) · [字母表](https://fusion-pixel-font.takwolf.com/alphabet-proportional.html)
+![preview-8px](docs/preview-8px.png)
 
-## 案例
+### 10 像素
 
-请 [在此](docs/cases.md) 查看使用案例。
+[示例文本](https://fusion-pixel-font.takwolf.com/demo-10px.html) · [等宽模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-10px-monospaced.html) · [比例模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-10px-proportional.html)
 
-## 字源
+![preview-10px](docs/preview-10px.png)
 
-字源的要求：
+### 12 像素
 
-- 字形具有像素外观，汉字字形尺寸为 11 × 11 像素
-- 使用 [OFL 1.1](https://scripts.sil.org/OFL) 或与之兼容的许可证授权
-- 在 [GitHub](https://github.com) 上托管和分发字体
+[示例文本](https://fusion-pixel-font.takwolf.com/demo-12px.html) · [等宽模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-12px-monospaced.html) · [比例模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-12px-proportional.html)
 
-以下为使用的全部字源列表，按照字形使用优先级排列：
+![preview-12px](docs/preview-12px.png)
 
-| 字体 | 版本 | 文件 |
+## 字符统计
+
+可以通过下面的链接来查看字体各尺寸目前支持的字符情况。
+
+| 尺寸 | 等宽模式 | 比例模式 |
 |---|---|---|
-| [方舟像素字体](https://github.com/TakWolf/ark-pixel-font) | [2023.03.27](https://github.com/TakWolf/ark-pixel-font/releases/tag/2023.03.27) | 12px-zh_cn.otf |
-| [俐方體11號](https://github.com/ACh-K/Cubic-11) | [1.013](https://github.com/ACh-K/Cubic-11/releases/tag/v1.013) | Cubic_11_1.013_R.ttf |
-| [Galmuri](https://github.com/quiple/galmuri) | [2.37.1](https://github.com/quiple/galmuri/releases/tag/v2.37.1) | Galmuri11.ttf |
-
-## 缺字
-
-目前仍然缺少一部分 GB2312 和 Big5 编码的二级汉字。
-
-该问题会随着 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 的更新迭代而逐渐解决。
-
-如果你在使用过程中仍然遇到缺字的情况，请在 [Issues](https://github.com/TakWolf/fusion-pixel-font/issues) 提交缺字列表，开发者会优先补充。
+| 8px | [font-info-8px-monospaced](docs/font-info-8px-monospaced.md) | [font-info-8px-proportional](docs/font-info-8px-proportional.md) |
+| 10px | [font-info-10px-monospaced](docs/font-info-10px-monospaced.md) | [font-info-10px-proportional](docs/font-info-10px-proportional.md) |
+| 12px | [font-info-12px-monospaced](docs/font-info-12px-monospaced.md) | [font-info-12px-proportional](docs/font-info-12px-proportional.md) |
 
 ## 下载
 
 可在 [Releases](https://github.com/TakWolf/fusion-pixel-font/releases) 下载最新的版本。
+
+目前提供 `.otf`、`.ttf`、`.woff2`、`.bdf` 四种格式。
+
+## 案例
+
+请 [在此](docs/cases.md) 查看使用案例。
 
 ## 授权信息
 
@@ -62,9 +62,25 @@
 
 ### 字体
 
-使用 [SIL 开放字体许可证第 1.1 版](LICENSE-OFL) 授权，保留字体名称「缝合怪像素 / Fusion Pixel」。
+使用 [SIL 开放字体许可证第 1.1 版](LICENSE-OFL) 授权，保留字体名称「缝合像素 / Fusion Pixel」。
 
-使用的所有第三方字体，均兼容该许可证。
+第三方字源许可证如下：
+
+| 字体 | 许可证 | 备注 |
+|---|---|---|
+| [方舟像素字体 / Ark Pixel Font](https://github.com/TakWolf/ark-pixel-font) | [OFL-1.1](https://github.com/TakWolf/ark-pixel-font/blob/develop/LICENSE-OFL) | |
+| [寒蝉点阵体 / Chill-Bitmap](https://github.com/Warren2060/Chill-Bitmap) | [无类型许可证](https://github.com/Warren2060/Chill-Bitmap/blob/main/LICENSE.md) | 与 OFL-1.1 兼容 |
+| [俐方體11號／Cubic 11](https://github.com/ACh-K/Cubic-11) | [OFL-1.1](https://github.com/ACh-K/Cubic-11/blob/main/OFL.txt) | |
+| [Galmuri](https://github.com/quiple/galmuri) | [OFL-1.1](https://github.com/quiple/galmuri/blob/main/ofl.md) | |
+| [Zfull](https://github.com/andot/zfull-for-yosemite) | 无 | 无法确定字模版权和许可证兼容性 |
+
+注意，在 10 像素尺寸中使用了「Zfull」的部分字形，而这部分字形无法确定版权。
+
+因此严格来说，10 像素尺寸并不能安全的使用「OFL-1.1」授权。
+
+您在使用 10 像素尺寸时，请务必谨慎考虑可能存在的版权风险，以避免法律风险。
+
+除此之外，其他字源均使用「OFL-1.1」或与之兼容的许可证。
 
 ### 构建程序
 
@@ -72,12 +88,13 @@
 
 ## 程序依赖
 
+- [Pixel Font Builder](https://github.com/TakWolf/pixel-font-builder)
 - [FontTools](https://github.com/fonttools/fonttools)
-- [Brotli](https://github.com/google/brotli)
 - [Unidata Blocks](https://github.com/TakWolf/unidata-blocks)
 - [Character Encoding Utils](https://github.com/TakWolf/character-encoding-utils)
 - [PyPNG](https://gitlab.com/drj11/pypng)
 - [Pillow](https://github.com/python-pillow/Pillow)
+- [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/)
 - [Jinja](https://github.com/pallets/jinja)
 - [GitPython](https://github.com/gitpython-developers/GitPython)
 - [Requests](https://github.com/psf/requests)

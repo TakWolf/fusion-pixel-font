@@ -1,111 +1,63 @@
 import os
-import time
 import tomllib
+from typing import Final
 
+import configs
 from configs import path_define
-
-display_name_prefix = 'Fusion Pixel'
-unique_name_prefix = 'Fusion-Pixel'
-output_name_prefix = 'fusion-pixel'
-style_name = 'Regular'
-version = f'{time.strftime("%Y.%m.%d")}'
-copyright_string = 'Copyright (c) 2022, TakWolf (https://takwolf.com), with Reserved Font Name "Fusion Pixel".'
-designer = 'TakWolf'
-description = 'Open source pixel font.'
-vendor_url = 'https://fusion-pixel-font.takwolf.com'
-designer_url = 'https://takwolf.com'
-license_description = 'This Font Software is licensed under the SIL Open Font License, Version 1.1.'
-license_info_url = 'https://scripts.sil.org/OFL'
 
 
 class FontAttrs:
-    def __init__(self, config_data):
-        self.box_origin_y_px = config_data['box_origin_y_px']
-        self.x_height_px = config_data['x_height_px']
-        self.cap_height_px = config_data['cap_height_px']
+    def __init__(self, config_data: dict, size: int, line_height: int):
+        self.box_origin_y: int = config_data['box_origin_y']
+        self.ascent: int = self.box_origin_y + int((line_height - size) / 2)
+        self.descent: int = self.ascent - line_height
+        self.x_height: int = config_data['x_height']
+        self.cap_height: int = config_data['cap_height']
 
 
-class VerticalMetrics:
-    def __init__(self, ascent, descent, x_height, cap_height):
-        self.ascent = ascent
-        self.descent = descent
-        self.x_height = x_height
-        self.cap_height = cap_height
+class FontConfig:
+    FAMILY_NAME: Final[str] = 'Fusion Pixel'
+    MANUFACTURER: Final[str] = 'TakWolf'
+    DESIGNER: Final[str] = 'TakWolf'
+    DESCRIPTION: Final[str] = 'Open source Pan-CJK pixel font.'
+    COPYRIGHT_INFO: Final[str] = "Copyright (c) 2022, TakWolf (https://takwolf.com), with Reserved Font Name 'Fusion Pixel'."
+    LICENSE_INFO: Final[str] = 'This Font Software is licensed under the SIL Open Font License, Version 1.1.'
+    VENDOR_URL: Final[str] = 'https://fusion-pixel-font.takwolf.com'
+    DESIGNER_URL: Final[str] = 'https://takwolf.com'
+    LICENSE_URL: Final[str] = 'https://scripts.sil.org/OFL'
 
+    def __init__(self, size: int):
+        config_file_path = os.path.join(path_define.glyphs_dir, str(size), 'config.toml')
+        with open(config_file_path, 'rb') as file:
+            config_data: dict = tomllib.load(file)['font']
 
-config_file_path = os.path.join(path_define.fonts_dir, 'config.toml')
-with open(config_file_path, 'rb') as config_file:
-    config_data = tomllib.load(config_file)['font']
+        self.size: int = config_data['size']
+        assert self.size == size, f'Font config size not equals: expect {size} but actually {self.size}'
+        self.line_height: int = config_data['line_height']
+        assert (self.line_height - self.size) % 2 == 0, f"Font config {self.size}: the difference between 'line_height' and 'size' must be a multiple of 2"
 
-px = config_data['px']
-display_line_height_px = config_data['display_line_height_px']
-assert (display_line_height_px - px) % 2 == 0, f'font_config {px}px with incorrect display_line_height_px {display_line_height_px}px'
-monospaced_attrs = FontAttrs(config_data['monospaced'])
-proportional_attrs = FontAttrs(config_data['proportional'])
-px_units = 100
+        self._attrs_group = {
+            'monospaced': FontAttrs(config_data['monospaced'], self.size, self.size),
+            'proportional': FontAttrs(config_data['proportional'], self.size, self.line_height),
+        }
 
+        self.demo_html_file_name = f'demo-{self.size}px.html'
+        self.preview_image_file_name = f'preview-{self.size}px.png'
 
-def get_units_per_em():
-    return px * px_units
+    def get_attrs(self, width_mode: str) -> FontAttrs:
+        return self._attrs_group[width_mode]
 
+    def get_font_file_name(self, width_mode: str, font_format: str) -> str:
+        return f'{FontConfig.FAMILY_NAME.lower().replace(" ", "-")}-{self.size}px-{width_mode}.{font_format}'
 
-def get_box_origin_y(width_mode):
-    if width_mode == 'monospaced':
-        attrs = monospaced_attrs
-    else:  # proportional
-        attrs = proportional_attrs
-    return attrs.box_origin_y_px * px_units
+    def get_info_file_name(self, width_mode: str) -> str:
+        return f'font-info-{self.size}px-{width_mode}.md'
 
+    def get_alphabet_txt_file_name(self, width_mode: str) -> str:
+        return f'alphabet-{self.size}px-{width_mode}.txt'
 
-def get_vertical_metrics(width_mode):
-    if width_mode == 'monospaced':
-        line_height_px = px
-        attrs = monospaced_attrs
-    else:  # proportional
-        line_height_px = display_line_height_px
-        attrs = proportional_attrs
-    ascent = (attrs.box_origin_y_px + int((line_height_px - px) / 2)) * px_units
-    descent = ascent - line_height_px * px_units
-    x_height = attrs.x_height_px * px_units
-    cap_height = attrs.cap_height_px * px_units
-    return VerticalMetrics(ascent, descent, x_height, cap_height)
+    def get_release_zip_file_name(self, width_mode: str, font_format: str) -> str:
+        return f'{FontConfig.FAMILY_NAME.lower().replace(" ", "-")}-font-{self.size}px-{width_mode}-{font_format}-v{configs.version}.zip'
 
-
-def get_name_strings(width_mode):
-    display_name = f'{display_name_prefix} {width_mode}'
-    unique_name = f'{unique_name_prefix}-{width_mode}-{style_name}'
-    return {
-        'copyright': copyright_string,
-        'familyName': display_name,
-        'styleName': style_name,
-        'uniqueFontIdentifier': f'{unique_name};{version}',
-        'fullName': display_name,
-        'version': version,
-        'psName': unique_name,
-        'designer': designer,
-        'description': description,
-        'vendorURL': vendor_url,
-        'designerURL': designer_url,
-        'licenseDescription': license_description,
-        'licenseInfoURL': license_info_url,
-    }
-
-
-def get_font_file_name(width_mode, font_format):
-    return f'{output_name_prefix}-{width_mode}.{font_format}'
-
-
-def get_info_file_name(width_mode):
-    return f'font-info-{width_mode}.md'
-
-
-def get_alphabet_txt_file_name(width_mode):
-    return f'alphabet-{width_mode}.txt'
-
-
-def get_release_zip_file_name(width_mode, font_format):
-    return f'{output_name_prefix}-font-{width_mode}-{font_format}-v{version}.zip'
-
-
-def get_alphabet_html_file_name(width_mode):
-    return f'alphabet-{width_mode}.html'
+    def get_alphabet_html_file_name(self, width_mode: str) -> str:
+        return f'alphabet-{self.size}px-{width_mode}.html'

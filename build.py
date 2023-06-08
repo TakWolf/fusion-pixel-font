@@ -2,7 +2,7 @@ import logging
 
 import configs
 from configs import path_define
-from services import dump_service, design_service, font_service, info_service, publish_service, image_service, template_service
+from services import dump_service, font_service, publish_service, info_service, template_service, image_service
 from utils import fs_util
 
 logging.basicConfig(level=logging.DEBUG)
@@ -11,18 +11,20 @@ logging.basicConfig(level=logging.DEBUG)
 def main():
     fs_util.delete_dir(path_define.build_dir)
 
-    for dump_config in configs.dump_configs:
-        dump_service.dump_font(dump_config)
-
-    for width_mode in configs.width_modes:
-        alphabet, glyph_file_paths, fallback_infos = design_service.collect_glyph_files(width_mode)
-        font_service.make_fonts(width_mode, alphabet, glyph_file_paths)
-        info_service.make_info_file(width_mode, alphabet, fallback_infos)
-        info_service.make_alphabet_txt_file(width_mode, alphabet)
-        publish_service.make_release_zips(width_mode)
-        template_service.make_alphabet_html_file(width_mode, alphabet)
-    image_service.make_preview_image_file()
+    dump_service.dump_fonts()
+    for font_config in configs.font_configs:
+        font_service.format_glyph_files(font_config)
+        context = font_service.collect_glyph_files(font_config)
+        for width_mode in configs.width_modes:
+            font_service.make_font_files(font_config, context, width_mode)
+            publish_service.make_release_zips(font_config, width_mode)
+            info_service.make_info_file(font_config, context, width_mode)
+            info_service.make_alphabet_txt_file(font_config, context, width_mode)
+            template_service.make_alphabet_html_file(font_config, context, width_mode)
+        template_service.make_demo_html_file(font_config, context)
+        image_service.make_preview_image_file(font_config)
     template_service.make_index_html_file()
+    template_service.make_playground_html_file()
 
 
 if __name__ == '__main__':

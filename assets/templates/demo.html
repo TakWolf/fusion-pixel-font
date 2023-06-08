@@ -1,0 +1,180 @@
+{% extends "common/base.html" %}
+{% block title %}Fusion Pixel - Demo {{ font_config.size }}px{% endblock %}
+{% block style %}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        {% for width_mode in configs.width_modes %}
+        {% with font_family = 'Fusion-Pixel-' ~ font_config.size ~ 'px-' ~ width_mode %}
+        @font-face {
+            font-family: {{ font_family }};
+            src: url("{{ font_config.get_font_file_name(width_mode, 'woff2') }}?r={{ configs.build_random_key }}");
+        }
+        .font-{{ width_mode }} {
+            font-family: {{ font_family }}, sans-serif;
+        }
+        {% endwith %}
+        {% endfor %}
+        {% if font_config.size != 12 %}
+        @font-face {
+            font-family: Fusion-Pixel-12px-monospaced;
+            src: url("{{ configs.font_size_to_config[12].get_font_file_name('monospaced', 'woff2') }}?r={{ configs.build_random_key }}");
+        }
+        {% endif %}
+        .theme-light {
+            color: #4b4b4b;
+            background-color: white;
+        }
+        .theme-dark {
+            color: white;
+            background-color: #4b4b4b;
+        }
+        {% for width_mode in configs.width_modes %}
+        .theme-light .font-{{ width_mode }} .char-notdef-{{ width_mode }} {
+            color: #f83737;
+        }
+        .theme-dark .font-{{ width_mode }} .char-notdef-{{ width_mode }} {
+            color: #ffd339;
+        }
+        {% endfor %}
+        a {
+            word-break: break-all;
+        }
+        a:link {
+            color: cornflowerblue;
+        }
+        a:visited {
+            color: cornflowerblue;
+        }
+        .options-group {
+            height: 36px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffd339;
+        }
+        .option {
+            height: 100%;
+            margin-left: 24px;
+            margin-right: 24px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: #4b4b4b;
+            font-family: Fusion-Pixel-12px-monospaced, sans-serif;
+            font-size: 24px;
+            line-height: 36px;
+        }
+        .option input[type="radio"] {
+            display: none;
+        }
+        .option input[type="radio"] + span {
+            width: 10px;
+            height: 10px;
+            margin-left: 12px;
+            margin-right: 12px;
+            border-width: 2px;
+            border-color: #4b4b4b;
+            border-style: solid;
+        }
+        .option input[type="radio"]:checked + span {
+            background-color: #4b4b4b;
+        }
+        .btn-apply-theme {
+            position: fixed;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+        }
+        #page {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 64px 192px;
+        }
+        @media screen and (max-width: 1006px) {
+            #page {
+                width: 750px;
+                padding-left: 64px;
+                padding-right: 64px;
+            }
+        }
+        @media screen and (max-width: 750px) {
+            #page {
+                width: 100%;
+                padding-left: 64px;
+                padding-right: 64px;
+            }
+        }
+        .title {
+            margin-top: {{ font_config.size * 4 }}px;
+            margin-bottom: {{ font_config.size * 2 }}px;
+            font-size: {{ font_config.size * 3 }}px;
+            font-weight: normal;
+            line-height: {{ font_config.line_height * 3 }}px;
+        }
+        .content {
+            margin-top: {{ font_config.size * 2 }}px;
+            margin-bottom: {{ font_config.size * 2 }}px;
+            font-size: {{ font_config.size * 2 }}px;
+            line-height: {{ font_config.line_height * 2 }}px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <form class="options-group">
+        {% for width_mode in configs.width_modes %}
+        <label class="option">
+            <input id="radio-width-mode-{{ width_mode }}" name="width_mode" type="radio" onchange="onWidthModeChange('{{ width_mode }}');">
+            <span></span>
+            {{ width_mode }}
+        </label>
+        {% endfor %}
+    </form>
+    <div class="btn-apply-theme theme-light" style="top: 36px; left: 0;" onclick="onThemeChange('light');"></div>
+    <div class="btn-apply-theme theme-dark" style="top: 36px; right: 0;" onclick="onThemeChange('dark');"></div>
+    <div id="page">
+        {{ content_html }}
+    </div>
+    <script>
+        let page = document.getElementById('page');
+
+        let configs = {
+            widthMode: 'proportional',
+            theme: 'light',
+        };
+
+        function applyConfigs() {
+            localStorage.setItem('configs:demo-{{ font_config.size }}px', JSON.stringify(configs));
+            page.className = 'font-' + configs.widthMode;
+            document.body.className = 'theme-' + configs.theme;
+        }
+
+        function onWidthModeChange(widthMode) {
+            configs.widthMode = widthMode;
+            applyConfigs();
+        }
+
+        function onThemeChange(theme) {
+            configs.theme = theme;
+            applyConfigs();
+        }
+
+        (function () {
+            let json = localStorage.getItem('configs:demo-{{ font_config.size }}px');
+            if (json) {
+                Object.assign(configs, JSON.parse(json));
+            }
+            document.getElementById('radio-width-mode-' + configs.widthMode).checked = true;
+            applyConfigs();
+        })();
+    </script>
+{% endblock %}

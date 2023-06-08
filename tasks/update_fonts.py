@@ -8,8 +8,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 def main():
     for download_config in configs.download_configs:
-        if download_config.is_enabled:
-            update_service.update_font(download_config)
+        update_service.update_fonts(download_config)
+    update_service.update_chill_bitmap_license()
+    update_service.update_zfull()
 
 
 if __name__ == '__main__':
