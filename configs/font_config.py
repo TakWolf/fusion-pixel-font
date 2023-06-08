@@ -19,7 +19,7 @@ class FontConfig:
     FAMILY_NAME: Final[str] = 'Fusion Pixel'
     MANUFACTURER: Final[str] = 'TakWolf'
     DESIGNER: Final[str] = 'TakWolf'
-    DESCRIPTION: Final[str] = 'Open source Pan-CJK pixel font.'
+    DESCRIPTION: Final[str] = 'Open source pixel font.'
     COPYRIGHT_INFO: Final[str] = "Copyright (c) 2022, TakWolf (https://takwolf.com), with Reserved Font Name 'Fusion Pixel'."
     LICENSE_INFO: Final[str] = 'This Font Software is licensed under the SIL Open Font License, Version 1.1.'
     VENDOR_URL: Final[str] = 'https://fusion-pixel-font.takwolf.com'
