@@ -140,8 +140,6 @@ def make_info_file(font_config: FontConfig, context: DesignContext, width_mode: 
         file.write('\n')
         file.write('## 字源提供的字形数统计')
         file.write('\n')
-        file.write('按照字形使用优先级排列。\n')
-        file.write('\n')
         _write_fallback_count_infos_table(file, context.get_fallback_count_infos(width_mode), len(context.get_glyph_file_paths(width_mode)))
         file.write('\n')
         file.write('## Unicode 字符分布\n')
