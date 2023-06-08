@@ -130,6 +130,14 @@ name_to_dump_configs = {
             width_mode_dir_name='proportional',
         ),
     ],
+    'misaki': [
+        DumpConfig(
+            font_file_name='misaki_gothic.ttf',
+            font_size=8,
+            width_mode_dir_name='common',
+            rasterize_offset=(0, 1),
+        ),
+    ],
     'chill-bitmap': [
         DumpConfig(
             font_file_name='ChillBitmap7x.ttf',
@@ -195,7 +203,9 @@ name_to_dump_configs = {
 
 font_size_to_fallback_names = {
     8: [
+        'misaki#0',
         'chill-bitmap',
+        'misaki',
         'galmuri',
     ],
     10: [
