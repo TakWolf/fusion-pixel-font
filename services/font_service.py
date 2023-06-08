@@ -123,7 +123,7 @@ class DesignContext:
     def __init__(
             self,
             alphabet_group: dict[str, list[str]],
-            fallback_count_infos_group: dict[str, list[tuple[str, int]]],
+            fallback_count_infos_group: dict[str, dict[str, int]],
             character_mapping_group: dict[str, dict[int, str]],
             glyph_file_paths_group: dict[str, dict[str, str]],
     ):
@@ -136,7 +136,7 @@ class DesignContext:
     def get_alphabet(self, width_mode: str) -> list[str]:
         return self._alphabet_group[width_mode]
 
-    def get_fallback_count_infos(self, width_mode: str) -> list[tuple[str, int]]:
+    def get_fallback_count_infos(self, width_mode: str) -> dict[str, int]:
         return self._fallback_count_infos_group[width_mode]
 
     def get_character_mapping(self, width_mode: str) -> dict[int, str]:
@@ -200,13 +200,17 @@ def collect_glyph_files(font_config: FontConfig) -> DesignContext:
         alphabet_group[width_mode] = alphabet
 
         glyph_file_paths = glyph_file_paths_group[width_mode]
-        fallback_count_infos = []
+        fallback_count_infos = dict[str, int]()
         for name, glyphs_dir in glyphs_dir_infos:
-            count = 0
+            name = name.split('#')[0]
+            count = fallback_count_infos.get(name, 0)
             for glyph_file_path in glyph_file_paths.values():
                 if glyph_file_path.startswith(glyphs_dir):
                     count += 1
-            fallback_count_infos.append((name, count))
+            fallback_count_infos[name] = count
+        for name, count in fallback_count_infos.items():
+            if count <= 0:
+                fallback_count_infos.pop(name)
         fallback_count_infos_group[width_mode] = fallback_count_infos
 
     return DesignContext(alphabet_group, fallback_count_infos_group, character_mapping_group, glyph_file_paths_group)

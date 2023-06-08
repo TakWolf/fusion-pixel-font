@@ -91,10 +91,10 @@ def _get_ksx1001_chr_count_infos(alphabet: list[str]) -> list[tuple[str, int, in
     ]
 
 
-def _write_fallback_count_infos_table(file: IO, infos: list[tuple[str, int]], total: int):
+def _write_fallback_count_infos_table(file: IO, infos: dict[str, int], total: int):
     file.write('| 字体名 | 提供字形数 | 比例 |\n')
     file.write('|---|---:|---:|\n')
-    for name, count in infos:
+    for name, count in infos.items():
         percentage = count / total
         file.write(f'| {name} | {count} / {total} | {percentage:.2%} |\n')
 
