@@ -8,13 +8,13 @@
             box-sizing: border-box;
         }
         @font-face {
-            font-family: Fusion-Pixel-{{ font_config.size }}px-{{ width_mode }};
+            font-family: fusion-pixel-{{ font_config.size }}px-{{ width_mode }};
             src: url("{{ font_config.get_font_file_name(width_mode, 'woff2') }}?r={{ configs.build_random_key }}");
         }
         {% if width_mode == 'monospaced' %}
         body {
             color: #4b4b4b;
-            font-family: Fusion-Pixel-{{ font_config.size }}px-{{ width_mode }}, sans-serif;;
+            font-family: fusion-pixel-{{ font_config.size }}px-{{ width_mode }}, sans-serif;;
             font-size: {{ font_config.size * 4 }}px;
             line-height: {{ font_config.size * 4 }}px;
             word-break: break-all;
@@ -24,7 +24,7 @@
         {% else %}
         body {
             color: #4b4b4b;
-            font-family: Fusion-Pixel-{{ font_config.size }}px-{{ width_mode }}, sans-serif;;
+            font-family: fusion-pixel-{{ font_config.size }}px-{{ width_mode }}, sans-serif;;
             font-size: {{ font_config.size * 4 }}px;
             line-height: {{ font_config.line_height * 4 }}px;
             word-break: break-all;

@@ -9,7 +9,7 @@
         }
         {% for font_config in configs.font_configs  %}
         {% for width_mode in configs.width_modes %}
-        {% with font_family = 'Fusion-Pixel-' ~ font_config.size ~ 'px-' ~ width_mode %}
+        {% with font_family = 'fusion-pixel-' ~ font_config.size ~ 'px-' ~ width_mode %}
         @font-face {
             font-family: {{ font_family }};
             src: url("{{ font_config.get_font_file_name(width_mode, 'woff2') }}?r={{ configs.build_random_key }}");
@@ -42,7 +42,7 @@
             flex-direction: row;
             align-items: center;
             color: #4b4b4b;
-            font-family: Fusion-Pixel-12px-monospaced, sans-serif;
+            font-family: fusion-pixel-12px-monospaced, sans-serif;
             font-size: 24px;
             line-height: 36px;
         }
