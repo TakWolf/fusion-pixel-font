@@ -208,10 +208,10 @@ def collect_glyph_files(font_config: FontConfig) -> DesignContext:
                 if glyph_file_path.startswith(glyphs_dir):
                     count += 1
             fallback_count_infos[name] = count
+        fallback_count_infos_group[width_mode] = dict[str, int]()
         for name, count in fallback_count_infos.items():
-            if count <= 0:
-                fallback_count_infos.pop(name)
-        fallback_count_infos_group[width_mode] = fallback_count_infos
+            if count > 0:
+                fallback_count_infos_group[width_mode][name] = count
 
     return DesignContext(alphabet_group, fallback_count_infos_group, character_mapping_group, glyph_file_paths_group)
 
