@@ -43,6 +43,14 @@ def _dump_font(name: str, version: str, dump_config: DumpConfig):
 
         image = Image.new('RGBA', (canvas_width, canvas_height), (0, 0, 0, 0))
         ImageDraw.Draw(image).text(dump_config.rasterize_offset, chr(code_point), fill=(0, 0, 0, 255), font=image_font)
+        is_empty_glyph = True
+        for y in range(canvas_height):
+            for x in range(canvas_width):
+                if image.getpixel((x, y))[3] > 127:
+                    is_empty_glyph = False
+                    break
+        if is_empty_glyph:
+            continue
 
         hex_name = f'{code_point:04X}'
         block_dir_name = f'{block.code_start:04X}-{block.code_end:04X} {block.name}'
