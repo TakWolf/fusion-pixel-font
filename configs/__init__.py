@@ -203,7 +203,6 @@ name_to_dump_configs = {
 
 font_size_to_fallback_names = {
     8: [
-        'misaki#0',
         'chill-bitmap',
         'misaki',
         'galmuri',

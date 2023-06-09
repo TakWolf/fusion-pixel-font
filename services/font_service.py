@@ -202,16 +202,13 @@ def collect_glyph_files(font_config: FontConfig) -> DesignContext:
         glyph_file_paths = glyph_file_paths_group[width_mode]
         fallback_count_infos = dict[str, int]()
         for name, glyphs_dir in glyphs_dir_infos:
-            name = name.split('#')[0]
-            count = fallback_count_infos.get(name, 0)
+            count = 0
             for glyph_file_path in glyph_file_paths.values():
                 if glyph_file_path.startswith(glyphs_dir):
                     count += 1
-            fallback_count_infos[name] = count
-        fallback_count_infos_group[width_mode] = dict[str, int]()
-        for name, count in fallback_count_infos.items():
             if count > 0:
-                fallback_count_infos_group[width_mode][name] = count
+                fallback_count_infos[name] = count
+        fallback_count_infos_group[width_mode] = fallback_count_infos
 
     return DesignContext(alphabet_group, fallback_count_infos_group, character_mapping_group, glyph_file_paths_group)
 
