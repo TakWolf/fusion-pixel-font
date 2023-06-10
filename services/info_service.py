@@ -3,10 +3,9 @@ import os
 from typing import Callable, IO
 
 import unidata_blocks
-from unidata_blocks import UnicodeBlock
 from character_encoding_utils import gb2312, big5, shiftjis, ksx1001
+from unidata_blocks import UnicodeBlock
 
-import configs
 from configs import path_define, FontConfig
 from services.font_service import DesignContext
 from utils import fs_util
@@ -127,7 +126,7 @@ def make_info_file(font_config: FontConfig, context: DesignContext, width_mode: 
         file.write('\n')
         file.write('| 属性 | 值 |\n')
         file.write('|---|---|\n')
-        file.write(f'| 版本号 | {configs.version} |\n')
+        file.write(f'| 版本号 | {FontConfig.VERSION} |\n')
         file.write(f'| 字符总数 | {len(alphabet)} |\n')
         file.write('\n')
         file.write('## 字源提供的字形数统计')
