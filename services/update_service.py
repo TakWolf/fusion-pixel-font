@@ -87,10 +87,3 @@ def update_fonts(download_config: DownloadConfig):
         file.write(json.dumps(version_info, indent=2, ensure_ascii=False))
         file.write('\n')
     logger.info(f"Make version info file: '{version_info_file_path}'")
-
-
-def update_chill_bitmap_license():
-    url = 'https://raw.githubusercontent.com/Warren2060/Chill-Bitmap/main/LICENSE.md'
-    file_path = os.path.join(path_define.fonts_dir, 'chill-bitmap', 'LICENSE.txt')
-    _download_file(url, file_path)
-    logger.info(f"Download: '{url}'")

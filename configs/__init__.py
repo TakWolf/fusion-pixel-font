@@ -30,28 +30,28 @@ download_configs = [
         tag_name=None,
         asset_configs=[
             DownloadAssetConfig(
-                file_name='ark-pixel-font-10px-monospaced-otf-v{version}.zip',
+                file_name='ark-pixel-font-10px-monospaced-woff2-v{version}.zip',
                 copy_list=[
-                    ('ark-pixel-10px-monospaced-zh_cn.otf', 'ark-pixel-10px-monospaced-zh_cn.otf'),
+                    ('ark-pixel-10px-monospaced-zh_cn.woff2', 'ark-pixel-10px-monospaced-zh_cn.woff2'),
                     ('OFL.txt', 'LICENSE.txt'),
                 ],
             ),
             DownloadAssetConfig(
-                file_name='ark-pixel-font-10px-proportional-otf-v{version}.zip',
+                file_name='ark-pixel-font-10px-proportional-woff2-v{version}.zip',
                 copy_list=[
-                    ('ark-pixel-10px-proportional-zh_cn.otf', 'ark-pixel-10px-proportional-zh_cn.otf'),
+                    ('ark-pixel-10px-proportional-zh_cn.woff2', 'ark-pixel-10px-proportional-zh_cn.woff2'),
                 ],
             ),
             DownloadAssetConfig(
-                file_name='ark-pixel-font-12px-monospaced-otf-v{version}.zip',
+                file_name='ark-pixel-font-12px-monospaced-woff2-v{version}.zip',
                 copy_list=[
-                    ('ark-pixel-12px-monospaced-zh_cn.otf', 'ark-pixel-12px-monospaced-zh_cn.otf'),
+                    ('ark-pixel-12px-monospaced-zh_cn.woff2', 'ark-pixel-12px-monospaced-zh_cn.woff2'),
                 ],
             ),
             DownloadAssetConfig(
-                file_name='ark-pixel-font-12px-proportional-otf-v{version}.zip',
+                file_name='ark-pixel-font-12px-proportional-woff2-v{version}.zip',
                 copy_list=[
-                    ('ark-pixel-12px-proportional-zh_cn.otf', 'ark-pixel-12px-proportional-zh_cn.otf'),
+                    ('ark-pixel-12px-proportional-zh_cn.woff2', 'ark-pixel-12px-proportional-zh_cn.woff2'),
                 ],
             ),
         ],
@@ -62,9 +62,10 @@ download_configs = [
         tag_name=None,
         asset_configs=[
             DownloadAssetConfig(
-                file_name='Version.{version}.zip',
+                file_name='ChillBitmap7x_v{version}.zip',
                 copy_list=[
-                    ('ChillBitmap7x.ttf', 'ChillBitmap7x.ttf'),
+                    ('ChillBitmap7x.woff2', 'ChillBitmap7x.woff2'),
+                    ('License.txt', 'LICENSE.txt'),
                 ],
             ),
         ],
@@ -77,7 +78,7 @@ download_configs = [
             DownloadAssetConfig(
                 file_name='Cubic_11.zip',
                 copy_list=[
-                    ('fonts/ttf/Cubic_11_{version}_R.ttf', 'Cubic_11_{version}_R.ttf'),
+                    ('fonts/web/Cubic_11_{version}_R.woff2', 'Cubic_11_{version}_R.woff2'),
                     ('OFL.txt', 'LICENSE.txt'),
                 ],
             ),
@@ -107,22 +108,22 @@ download_configs = [
 name_to_dump_configs = {
     'ark-pixel': [
         DumpConfig(
-            font_file_name='ark-pixel-10px-monospaced-zh_cn.otf',
+            font_file_name='ark-pixel-10px-monospaced-zh_cn.woff2',
             font_size=10,
             width_mode_dir_name='monospaced',
         ),
         DumpConfig(
-            font_file_name='ark-pixel-10px-proportional-zh_cn.otf',
+            font_file_name='ark-pixel-10px-proportional-zh_cn.woff2',
             font_size=10,
             width_mode_dir_name='proportional',
         ),
         DumpConfig(
-            font_file_name='ark-pixel-12px-monospaced-zh_cn.otf',
+            font_file_name='ark-pixel-12px-monospaced-zh_cn.woff2',
             font_size=12,
             width_mode_dir_name='monospaced',
         ),
         DumpConfig(
-            font_file_name='ark-pixel-12px-proportional-zh_cn.otf',
+            font_file_name='ark-pixel-12px-proportional-zh_cn.woff2',
             font_size=12,
             width_mode_dir_name='proportional',
         ),
@@ -137,7 +138,7 @@ name_to_dump_configs = {
     ],
     'chill-bitmap': [
         DumpConfig(
-            font_file_name='ChillBitmap7x.ttf',
+            font_file_name='ChillBitmap7x.woff2',
             font_size=8,
             width_mode_dir_name='common',
             rasterize_offset=(0, 1),
@@ -145,7 +146,7 @@ name_to_dump_configs = {
     ],
     'cubic-11': [
         DumpConfig(
-            font_file_name='Cubic_11_{version}_R.ttf',
+            font_file_name='Cubic_11_{version}_R.woff2',
             font_size=12,
             width_mode_dir_name='common',
             rasterize_offset=(-1, 1),
