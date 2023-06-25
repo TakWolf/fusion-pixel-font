@@ -71,6 +71,20 @@ download_configs = [
         ],
     ),
     DownloadConfig(
+        name='boutique-bitmap-9x9',
+        repository_name='scott0107000/BoutiqueBitmap9x9',
+        tag_name=None,
+        asset_configs=[
+            DownloadAssetConfig(
+                file_name='BoutiqueBitmap9x9.zip',
+                copy_list=[
+                    ('BoutiqueBitmap9x9_{version}.ttf', 'BoutiqueBitmap9x9_{version}.ttf'),
+                    ('OFL.txt', 'LICENSE.txt'),
+                ],
+            ),
+        ],
+    ),
+    DownloadConfig(
         name='cubic-11',
         repository_name='ACh-K/Cubic-11',
         tag_name=None,
@@ -144,6 +158,14 @@ name_to_dump_configs = {
             rasterize_offset=(0, 1),
         ),
     ],
+    'boutique-bitmap-9x9': [
+        DumpConfig(
+            font_file_name='BoutiqueBitmap9x9_{version}.ttf',
+            font_size=10,
+            width_mode_dir_name='common',
+            rasterize_offset=(0, 1),
+        ),
+    ],
     'cubic-11': [
         DumpConfig(
             font_file_name='Cubic_11_{version}_R.woff2',
@@ -207,6 +229,7 @@ font_size_to_fallback_names = {
     ],
     10: [
         'ark-pixel',
+        'boutique-bitmap-9x9',
         'galmuri',
         'zfull',
     ],
