@@ -79,15 +79,6 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 | [精品點陣體9×9 / BoutiqueBitmap9x9](https://github.com/scott0107000/BoutiqueBitmap9x9) | [OFL-1.1](https://github.com/scott0107000/BoutiqueBitmap9x9/blob/main/OFL.txt) | |
 | [俐方體11號／Cubic 11](https://github.com/ACh-K/Cubic-11) | [OFL-1.1](https://github.com/ACh-K/Cubic-11/blob/main/OFL.txt) | |
 | [Galmuri](https://github.com/quiple/galmuri) | [OFL-1.1](https://github.com/quiple/galmuri/blob/main/ofl.md) | |
-| [Zfull](https://github.com/andot/zfull-for-yosemite) | 无 | 无法确定字模版权和许可证兼容性 |
-
-注意，在 10 像素尺寸中使用了「Zfull」的部分字形，而这部分字形无法确定版权。
-
-因此严格来说，10 像素尺寸并不能安全地使用「OFL-1.1」授权。
-
-您在使用 10 像素尺寸时，请务必谨慎考虑可能存在的版权风险，以避免法律问题。
-
-除此之外，其他字源均使用「OFL-1.1」或与之兼容的许可证。
 
 ### 构建程序
 

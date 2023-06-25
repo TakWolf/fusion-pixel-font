@@ -29,14 +29,6 @@ def make_release_zips(font_config: FontConfig, context: DesignContext, width_mod
                 if not os.path.exists(font_license_file_path):
                     continue
                 file.write(font_license_file_path, f'LICENSE/{name}.txt')
-
-            zip_static_dir = os.path.join(path_define.zip_static_dir, str(font_config.size))
-            if os.path.isdir(zip_static_dir):
-                for other_file_name in os.listdir(zip_static_dir):
-                    if os.path.splitext(other_file_name)[1] not in ['.txt']:
-                        continue
-                    other_file_path = os.path.join(zip_static_dir, other_file_name)
-                    file.write(other_file_path, other_file_name)
         logger.info(f"Make release zip: '{file_path}'")
 
 

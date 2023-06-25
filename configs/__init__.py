@@ -212,13 +212,6 @@ name_to_dump_configs = {
             rasterize_offset=(0, 1),
         ),
     ],
-    'zfull': [
-        DumpConfig(
-            font_file_name='Zfull-GB.ttf',
-            font_size=10,
-            width_mode_dir_name='common',
-        ),
-    ],
 }
 
 font_size_to_fallback_names = {
@@ -231,7 +224,6 @@ font_size_to_fallback_names = {
         'ark-pixel',
         'boutique-bitmap-9x9',
         'galmuri',
-        'zfull',
     ],
     12: [
         'ark-pixel',

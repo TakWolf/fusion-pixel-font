@@ -6,7 +6,6 @@ assets_dir = os.path.join(project_root_dir, 'assets')
 glyphs_dir = os.path.join(assets_dir, 'glyphs')
 fonts_dir = os.path.join(assets_dir, 'fonts')
 templates_dir = os.path.join(assets_dir, 'templates')
-zip_static_dir = os.path.join(assets_dir, 'zip-static')
 www_static_dir = os.path.join(assets_dir, 'www-static')
 
 cache_dir = os.path.join(project_root_dir, 'cache')
