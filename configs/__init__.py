@@ -76,7 +76,7 @@ download_configs = [
         tag_name=None,
         asset_configs=[
             DownloadAssetConfig(
-                file_name='BoutiqueBitmap9x9.zip',
+                file_name='BoutiqueBitmap9x9_{version}.zip',
                 copy_list=[
                     ('BoutiqueBitmap9x9_{version}.ttf', 'BoutiqueBitmap9x9_{version}.ttf'),
                     ('OFL.txt', 'LICENSE.txt'),
