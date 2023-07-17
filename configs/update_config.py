@@ -27,4 +27,4 @@ class UpdateConfig:
         self.name: str = config_data['name']
         self.repository_name: str = config_data['repository-name']
         self.tag_name: str | None = config_data['tag-name']
-        self.asset_configs = [DownloadAssetConfig(item_config_data) for item_config_data in config_data['asset-configs']]
+        self.asset_configs = [DownloadAssetConfig(item_data) for item_data in config_data['asset-configs']]
