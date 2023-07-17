@@ -23,8 +23,6 @@ width_mode_dir_names = [
 
 font_formats = ['otf', 'woff2', 'ttf', 'bdf']
 
-update_configs = UpdateConfig.load()
-
 name_to_dump_configs = {
     'ark-pixel': [
         DumpConfig(

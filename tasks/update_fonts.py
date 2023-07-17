@@ -1,13 +1,14 @@
 import logging
 
-import configs
+from configs import UpdateConfig
 from services import update_service
 
 logging.basicConfig(level=logging.DEBUG)
 
 
 def main():
-    for update_config in configs.update_configs:
+    update_configs = UpdateConfig.load()
+    for update_config in update_configs:
         update_service.update_fonts(update_config)
 
 
