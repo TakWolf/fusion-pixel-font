@@ -5,11 +5,11 @@ ark-pixel:
     font-size: 10
   -
     font-file-name: ark-pixel-10px-monospaced-zh_cn.woff2
-    dump-dir-name: ark-pixel/10/monospaced/zh_cn
+    dump-dir-name: ark-pixel/10/monospaced/zh_hans
     font-size: 10
   -
     font-file-name: ark-pixel-10px-monospaced-zh_tr.woff2
-    dump-dir-name: ark-pixel/10/monospaced/zh_tr
+    dump-dir-name: ark-pixel/10/monospaced/zh_hant
     font-size: 10
   -
     font-file-name: ark-pixel-10px-monospaced-ja.woff2
@@ -25,11 +25,11 @@ ark-pixel:
     font-size: 10
   -
     font-file-name: ark-pixel-10px-proportional-zh_cn.woff2
-    dump-dir-name: ark-pixel/10/proportional/zh_cn
+    dump-dir-name: ark-pixel/10/proportional/zh_hans
     font-size: 10
   -
     font-file-name: ark-pixel-10px-proportional-zh_tr.woff2
-    dump-dir-name: ark-pixel/10/proportional/zh_tr
+    dump-dir-name: ark-pixel/10/proportional/zh_hant
     font-size: 10
   -
     font-file-name: ark-pixel-10px-proportional-ja.woff2
@@ -45,11 +45,11 @@ ark-pixel:
     font-size: 12
   -
     font-file-name: ark-pixel-12px-monospaced-zh_cn.woff2
-    dump-dir-name: ark-pixel/12/monospaced/zh_cn
+    dump-dir-name: ark-pixel/12/monospaced/zh_hans
     font-size: 12
   -
     font-file-name: ark-pixel-12px-monospaced-zh_tr.woff2
-    dump-dir-name: ark-pixel/12/monospaced/zh_tr
+    dump-dir-name: ark-pixel/12/monospaced/zh_hant
     font-size: 12
   -
     font-file-name: ark-pixel-12px-monospaced-ja.woff2
@@ -65,11 +65,11 @@ ark-pixel:
     font-size: 12
   -
     font-file-name: ark-pixel-12px-proportional-zh_cn.woff2
-    dump-dir-name: ark-pixel/12/proportional/zh_cn
+    dump-dir-name: ark-pixel/12/proportional/zh_hans
     font-size: 12
   -
     font-file-name: ark-pixel-12px-proportional-zh_tr.woff2
-    dump-dir-name: ark-pixel/12/proportional/zh_tr
+    dump-dir-name: ark-pixel/12/proportional/zh_hant
     font-size: 12
   -
     font-file-name: ark-pixel-12px-proportional-ja.woff2
