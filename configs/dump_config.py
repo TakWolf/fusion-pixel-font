@@ -22,6 +22,7 @@ class DumpConfig:
         return configs
 
     def __init__(self, name: str, version: str, config_data: dict):
+        self.name = name
         self.font_file_path: str = os.path.join(path_define.fonts_dir, name, config_data['font-file-name'].format(version=version))
         self.dump_dir: str = os.path.join(path_define.dump_dir, config_data['dump-dir-name'])
         self.font_size: int = config_data['font-size']
