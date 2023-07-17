@@ -1,7 +1,7 @@
 import logging
 
 import configs
-from configs import path_define
+from configs import path_define, DumpConfig
 from services import dump_service, font_service, publish_service, info_service, template_service, image_service
 from utils import fs_util
 
@@ -11,7 +11,10 @@ logging.basicConfig(level=logging.DEBUG)
 def main():
     fs_util.delete_dir(path_define.build_dir)
 
-    dump_service.dump_fonts()
+    dump_configs = DumpConfig.load()
+    for dump_config in dump_configs:
+        dump_service.dump_font(dump_config)
+
     for font_config in configs.font_configs:
         font_service.format_glyph_files(font_config)
         context = font_service.collect_glyph_files(font_config)

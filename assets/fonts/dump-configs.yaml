@@ -1,0 +1,143 @@
+ark-pixel:
+  -
+    font-file-name: ark-pixel-10px-monospaced-latin.woff2
+    dump-dir-name: ark-pixel/10/monospaced/latin
+    font-size: 10
+  -
+    font-file-name: ark-pixel-10px-monospaced-zh_cn.woff2
+    dump-dir-name: ark-pixel/10/monospaced/zh_cn
+    font-size: 10
+  -
+    font-file-name: ark-pixel-10px-monospaced-zh_tr.woff2
+    dump-dir-name: ark-pixel/10/monospaced/zh_tr
+    font-size: 10
+  -
+    font-file-name: ark-pixel-10px-monospaced-ja.woff2
+    dump-dir-name: ark-pixel/10/monospaced/ja
+    font-size: 10
+  -
+    font-file-name: ark-pixel-10px-monospaced-ko.woff2
+    dump-dir-name: ark-pixel/10/monospaced/ko
+    font-size: 10
+  -
+    font-file-name: ark-pixel-10px-proportional-latin.woff2
+    dump-dir-name: ark-pixel/10/proportional/latin
+    font-size: 10
+  -
+    font-file-name: ark-pixel-10px-proportional-zh_cn.woff2
+    dump-dir-name: ark-pixel/10/proportional/zh_cn
+    font-size: 10
+  -
+    font-file-name: ark-pixel-10px-proportional-zh_tr.woff2
+    dump-dir-name: ark-pixel/10/proportional/zh_tr
+    font-size: 10
+  -
+    font-file-name: ark-pixel-10px-proportional-ja.woff2
+    dump-dir-name: ark-pixel/10/proportional/ja
+    font-size: 10
+  -
+    font-file-name: ark-pixel-10px-proportional-ko.woff2
+    dump-dir-name: ark-pixel/10/proportional/ko
+    font-size: 10
+  -
+    font-file-name: ark-pixel-12px-monospaced-latin.woff2
+    dump-dir-name: ark-pixel/12/monospaced/latin
+    font-size: 12
+  -
+    font-file-name: ark-pixel-12px-monospaced-zh_cn.woff2
+    dump-dir-name: ark-pixel/12/monospaced/zh_cn
+    font-size: 12
+  -
+    font-file-name: ark-pixel-12px-monospaced-zh_tr.woff2
+    dump-dir-name: ark-pixel/12/monospaced/zh_tr
+    font-size: 12
+  -
+    font-file-name: ark-pixel-12px-monospaced-ja.woff2
+    dump-dir-name: ark-pixel/12/monospaced/ja
+    font-size: 12
+  -
+    font-file-name: ark-pixel-12px-monospaced-ko.woff2
+    dump-dir-name: ark-pixel/12/monospaced/ko
+    font-size: 12
+  -
+    font-file-name: ark-pixel-12px-proportional-latin.woff2
+    dump-dir-name: ark-pixel/12/proportional/latin
+    font-size: 12
+  -
+    font-file-name: ark-pixel-12px-proportional-zh_cn.woff2
+    dump-dir-name: ark-pixel/12/proportional/zh_cn
+    font-size: 12
+  -
+    font-file-name: ark-pixel-12px-proportional-zh_tr.woff2
+    dump-dir-name: ark-pixel/12/proportional/zh_tr
+    font-size: 12
+  -
+    font-file-name: ark-pixel-12px-proportional-ja.woff2
+    dump-dir-name: ark-pixel/12/proportional/ja
+    font-size: 12
+  -
+    font-file-name: ark-pixel-12px-proportional-ko.woff2
+    dump-dir-name: ark-pixel/12/proportional/ko
+    font-size: 12
+chill-bitmap:
+  -
+    font-file-name: ChillBitmap7x.woff2
+    dump-dir-name: chill-bitmap/8
+    font-size: 8
+    rasterize-offset-y: 1
+boutique-bitmap-7x7:
+  -
+    font-file-name: BoutiqueBitmap7x7_{version}.ttf
+    dump-dir-name: boutique-bitmap/8
+    font-size: 8
+    rasterize-offset-y: 1
+boutique-bitmap-9x9:
+  -
+    font-file-name: BoutiqueBitmap9x9_{version}.ttf
+    dump-dir-name: boutique-bitmap/10
+    font-size: 10
+    rasterize-offset-y: 1
+cubic-11:
+  -
+    font-file-name: Cubic_11_{version}_R.woff2
+    dump-dir-name: cubic-11/12
+    font-size: 12
+    rasterize-offset-x: -1
+    rasterize-offset-y: 1
+galmuri:
+  -
+    font-file-name: Galmuri7.ttf
+    dump-dir-name: galmuri/8/proportional
+    font-size: 8
+    rasterize-offset-y: 1
+  -
+    font-file-name: Galmuri9.ttf
+    dump-dir-name: galmuri/10/proportional
+    font-size: 10
+    rasterize-offset-y: 1
+  -
+    font-file-name: Galmuri11.ttf
+    dump-dir-name: galmuri/12/proportional
+    font-size: 12
+    rasterize-offset-y: 1
+  -
+    font-file-name: GalmuriMono7.ttf
+    dump-dir-name: galmuri/8/monospaced
+    font-size: 8
+    rasterize-offset-y: 1
+  -
+    font-file-name: GalmuriMono9.ttf
+    dump-dir-name: galmuri/10/monospaced
+    font-size: 10
+    rasterize-offset-y: 1
+  -
+    font-file-name: GalmuriMono11.ttf
+    dump-dir-name: galmuri/12/monospaced
+    font-size: 12
+    rasterize-offset-y: 1
+misaki:
+  -
+    font-file-name: misaki_gothic.ttf
+    dump-dir-name: misaki/8
+    font-size: 8
+    rasterize-offset-y: 1
