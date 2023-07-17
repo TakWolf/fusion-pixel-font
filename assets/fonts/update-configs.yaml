@@ -7,19 +7,35 @@
       file-name: ark-pixel-font-10px-monospaced-woff2-v{version}.zip
       copy-list:
         OFL.txt: LICENSE.txt
+        ark-pixel-10px-monospaced-latin.woff2:
         ark-pixel-10px-monospaced-zh_cn.woff2:
+        ark-pixel-10px-monospaced-zh_tr.woff2:
+        ark-pixel-10px-monospaced-ja.woff2:
+        ark-pixel-10px-monospaced-ko.woff2:
     -
       file-name: ark-pixel-font-10px-proportional-woff2-v{version}.zip
       copy-list:
+        ark-pixel-10px-proportional-latin.woff2:
         ark-pixel-10px-proportional-zh_cn.woff2:
+        ark-pixel-10px-proportional-zh_tr.woff2:
+        ark-pixel-10px-proportional-ja.woff2:
+        ark-pixel-10px-proportional-ko.woff2:
     -
       file-name: ark-pixel-font-12px-monospaced-woff2-v{version}.zip
       copy-list:
+        ark-pixel-12px-monospaced-latin.woff2:
         ark-pixel-12px-monospaced-zh_cn.woff2:
+        ark-pixel-12px-monospaced-zh_tr.woff2:
+        ark-pixel-12px-monospaced-ja.woff2:
+        ark-pixel-12px-monospaced-ko.woff2:
     -
       file-name: ark-pixel-font-12px-proportional-woff2-v{version}.zip
       copy-list:
+        ark-pixel-12px-proportional-latin.woff2:
         ark-pixel-12px-proportional-zh_cn.woff2:
+        ark-pixel-12px-proportional-zh_tr.woff2:
+        ark-pixel-12px-proportional-ja.woff2:
+        ark-pixel-12px-proportional-ko.woff2:
 -
   name: chill-bitmap
   repository-name: Warren2060/Chill-Bitmap
@@ -30,6 +46,16 @@
       copy-list:
         License.txt:
         ChillBitmap7x.woff2:
+-
+  name: boutique-bitmap-7x7
+  repository-name: scott0107000/BoutiqueBitmap7x7
+  tag-name:
+  asset-configs:
+    -
+      file-name: BoutiqueBitmap7x7_{version}.zip
+      copy-list:
+        OFL.txt: LICENSE.txt
+        BoutiqueBitmap7x7_{version}.ttf:
 -
   name: boutique-bitmap-9x9
   repository-name: scott0107000/BoutiqueBitmap9x9
