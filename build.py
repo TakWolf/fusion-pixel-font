@@ -1,7 +1,8 @@
 import logging
 
 import configs
-from configs import path_define, DumpConfig
+from configs import path_define
+from configs.dump_config import DumpConfig
 from services import dump_service, font_service, publish_service, info_service, template_service, image_service
 from utils import fs_util
 

@@ -6,7 +6,8 @@ import zipfile
 
 import requests
 
-from configs import path_define, UpdateConfig
+from configs import path_define
+from configs.update_config import UpdateConfig
 from utils import fs_util
 
 logger = logging.getLogger('update-service')

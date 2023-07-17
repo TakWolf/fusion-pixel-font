@@ -6,7 +6,8 @@ import unidata_blocks
 from PIL import ImageFont, Image, ImageDraw
 from fontTools.ttLib import TTFont
 
-from configs import path_define, DumpConfig
+from configs import path_define
+from configs.dump_config import DumpConfig
 from utils import fs_util
 
 logger = logging.getLogger('dump-service')

@@ -1,9 +1,7 @@
 import random
 
-from configs.dump_config import DumpConfig
 from configs.font_config import FontConfig
 from configs.git_deploy_config import GitDeployConfig
-from configs.update_config import UpdateConfig
 
 build_random_key = random.random()
 

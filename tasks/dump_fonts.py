@@ -1,6 +1,7 @@
 import logging
 
-from configs import path_define, DumpConfig
+from configs import path_define
+from configs.dump_config import DumpConfig
 from services import dump_service
 from utils import fs_util
 
