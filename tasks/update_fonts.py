@@ -7,8 +7,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def main():
-    for download_config in configs.download_configs:
-        update_service.update_fonts(download_config)
+    for update_config in configs.update_configs:
+        update_service.update_fonts(update_config)
 
 
 if __name__ == '__main__':

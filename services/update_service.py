@@ -6,7 +6,7 @@ import zipfile
 
 import requests
 
-from configs import path_define, DownloadConfig
+from configs import path_define, UpdateConfig
 from utils import fs_util
 
 logger = logging.getLogger('update-service')
@@ -37,24 +37,24 @@ def _download_file(url: str, file_path: str):
     os.rename(tmp_file_path, file_path)
 
 
-def update_fonts(download_config: DownloadConfig):
-    if download_config.tag_name is None:
-        tag_name = _get_github_releases_latest_tag_name(download_config.repository_name)
+def update_fonts(update_config: UpdateConfig):
+    if update_config.tag_name is None:
+        tag_name = _get_github_releases_latest_tag_name(update_config.repository_name)
     else:
-        tag_name = download_config.tag_name
-    logger.info(f'{download_config.repository_name} tag: {tag_name}')
+        tag_name = update_config.tag_name
+    logger.info(f'{update_config.repository_name} tag: {tag_name}')
 
     version = tag_name.removeprefix('v')
-    repository_url = f'https://github.com/{download_config.repository_name}'
+    repository_url = f'https://github.com/{update_config.repository_name}'
 
-    download_dir = os.path.join(path_define.cache_dir, download_config.repository_name, tag_name)
+    download_dir = os.path.join(path_define.cache_dir, update_config.repository_name, tag_name)
     fs_util.make_dirs(download_dir)
 
-    fonts_dir = os.path.join(path_define.fonts_dir, download_config.name)
+    fonts_dir = os.path.join(path_define.fonts_dir, update_config.name)
     fs_util.delete_dir(fonts_dir)
     os.makedirs(fonts_dir)
 
-    for asset_config in download_config.asset_configs:
+    for asset_config in update_config.asset_configs:
         asset_file_name = asset_config.file_name.format(version=version)
         asset_file_path = os.path.join(download_dir, asset_file_name)
         if not os.path.exists(asset_file_path):

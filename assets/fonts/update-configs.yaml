@@ -1,0 +1,67 @@
+-
+  name: ark-pixel
+  repository-name: TakWolf/ark-pixel-font
+  tag-name:
+  asset-configs:
+    -
+      file-name: ark-pixel-font-10px-monospaced-woff2-v{version}.zip
+      copy-list:
+        ark-pixel-10px-monospaced-zh_cn.woff2: ark-pixel-10px-monospaced-zh_cn.woff2
+        OFL.txt: LICENSE.txt
+    -
+      file-name: ark-pixel-font-10px-proportional-woff2-v{version}.zip
+      copy-list:
+        ark-pixel-10px-proportional-zh_cn.woff2: ark-pixel-10px-proportional-zh_cn.woff2
+    -
+      file-name: ark-pixel-font-12px-monospaced-woff2-v{version}.zip
+      copy-list:
+        ark-pixel-12px-monospaced-zh_cn.woff2: ark-pixel-12px-monospaced-zh_cn.woff2
+    -
+      file-name: ark-pixel-font-12px-proportional-woff2-v{version}.zip
+      copy-list:
+        ark-pixel-12px-proportional-zh_cn.woff2: ark-pixel-12px-proportional-zh_cn.woff2
+-
+  name: chill-bitmap
+  repository-name: Warren2060/Chill-Bitmap
+  tag-name:
+  asset-configs:
+    -
+      file-name: ChillBitmap7x_v{version}.zip
+      copy-list:
+        ChillBitmap7x.woff2: ChillBitmap7x.woff2
+        License.txt: LICENSE.txt
+-
+  name: boutique-bitmap-9x9
+  repository-name: scott0107000/BoutiqueBitmap9x9
+  tag-name:
+  asset-configs:
+    -
+      file-name: BoutiqueBitmap9x9_{version}.zip
+      copy-list:
+        BoutiqueBitmap9x9_{version}.ttf: BoutiqueBitmap9x9_{version}.ttf
+        OFL.txt: LICENSE.txt
+-
+  name: cubic-11
+  repository-name: ACh-K/Cubic-11
+  tag-name:
+  asset-configs:
+    -
+      file-name: Cubic_11.zip
+      copy-list:
+        fonts/web/Cubic_11_{version}_R.woff2: Cubic_11_{version}_R.woff2
+        OFL.txt: LICENSE.txt
+-
+  name: galmuri
+  repository-name: quiple/galmuri
+  tag-name:
+  asset-configs:
+    -
+      file-name: Galmuri-v{version}.zip
+      copy-list:
+        dist/Galmuri7.ttf: Galmuri7.ttf
+        dist/Galmuri9.ttf: Galmuri9.ttf
+        dist/Galmuri11.ttf: Galmuri11.ttf
+        dist/GalmuriMono7.ttf: GalmuriMono7.ttf
+        dist/GalmuriMono9.ttf: GalmuriMono9.ttf
+        dist/GalmuriMono11.ttf: GalmuriMono11.ttf
+        dist/LICENSE.txt: LICENSE.txt
