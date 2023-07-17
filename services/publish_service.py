@@ -8,13 +8,12 @@ import git
 
 import configs
 from configs import path_define, FontConfig
-from services.font_service import DesignContext
 from utils import fs_util
 
 logger = logging.getLogger('publish-service')
 
 
-def make_release_zips(font_config: FontConfig, context: DesignContext, width_mode: str):
+def make_release_zips(font_config: FontConfig, width_mode: str):
     fs_util.make_dirs(path_define.releases_dir)
     for font_format in configs.font_formats:
         file_path = os.path.join(path_define.releases_dir, font_config.get_release_zip_file_name(width_mode, font_format))
@@ -24,7 +23,7 @@ def make_release_zips(font_config: FontConfig, context: DesignContext, width_mod
             file.write(font_file_path, font_file_name)
 
             file.write('LICENSE-OFL', 'OFL.txt')
-            for name in context.get_fallback_count_infos(width_mode).keys():
+            for name in configs.font_size_to_license_configs[font_config.size]:
                 font_license_file_path = os.path.join(path_define.fonts_dir, name, 'LICENSE.txt')
                 if not os.path.exists(font_license_file_path):
                     continue

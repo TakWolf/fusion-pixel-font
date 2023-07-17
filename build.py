@@ -17,7 +17,7 @@ def main():
         context = font_service.collect_glyph_files(font_config)
         for width_mode in configs.width_modes:
             font_service.make_font_files(font_config, context, width_mode)
-            publish_service.make_release_zips(font_config, context, width_mode)
+            publish_service.make_release_zips(font_config, width_mode)
             info_service.make_info_file(font_config, context, width_mode)
             info_service.make_alphabet_txt_file(font_config, context, width_mode)
             template_service.make_alphabet_html_file(font_config, context, width_mode)

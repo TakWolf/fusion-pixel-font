@@ -138,6 +138,25 @@ font_size_to_fallback_names = {
     ],
 }
 
+font_size_to_license_configs = {
+    8: [
+        'misaki',
+        'chill-bitmap',
+        'boutique-bitmap-7x7',
+        'galmuri',
+    ],
+    10: [
+        'ark-pixel',
+        'boutique-bitmap-9x9',
+        'galmuri',
+    ],
+    12: [
+        'ark-pixel',
+        'cubic-11',
+        'galmuri',
+    ],
+}
+
 git_deploy_configs = [GitDeployConfig(
     url='git@github.com:TakWolf/fusion-pixel-font.git',
     remote_name='github',
