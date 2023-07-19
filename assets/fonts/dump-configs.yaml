@@ -1,84 +1,9 @@
-ark-pixel:
+misaki:
   -
-    font-file-name: ark-pixel-10px-monospaced-latin.woff2
-    dump-dir-name: ark-pixel/10/monospaced/latin
-    font-size: 10
-  -
-    font-file-name: ark-pixel-10px-monospaced-zh_cn.woff2
-    dump-dir-name: ark-pixel/10/monospaced/zh_hans
-    font-size: 10
-  -
-    font-file-name: ark-pixel-10px-monospaced-zh_tr.woff2
-    dump-dir-name: ark-pixel/10/monospaced/zh_hant
-    font-size: 10
-  -
-    font-file-name: ark-pixel-10px-monospaced-ja.woff2
-    dump-dir-name: ark-pixel/10/monospaced/ja
-    font-size: 10
-  -
-    font-file-name: ark-pixel-10px-monospaced-ko.woff2
-    dump-dir-name: ark-pixel/10/monospaced/ko
-    font-size: 10
-  -
-    font-file-name: ark-pixel-10px-proportional-latin.woff2
-    dump-dir-name: ark-pixel/10/proportional/latin
-    font-size: 10
-  -
-    font-file-name: ark-pixel-10px-proportional-zh_cn.woff2
-    dump-dir-name: ark-pixel/10/proportional/zh_hans
-    font-size: 10
-  -
-    font-file-name: ark-pixel-10px-proportional-zh_tr.woff2
-    dump-dir-name: ark-pixel/10/proportional/zh_hant
-    font-size: 10
-  -
-    font-file-name: ark-pixel-10px-proportional-ja.woff2
-    dump-dir-name: ark-pixel/10/proportional/ja
-    font-size: 10
-  -
-    font-file-name: ark-pixel-10px-proportional-ko.woff2
-    dump-dir-name: ark-pixel/10/proportional/ko
-    font-size: 10
-  -
-    font-file-name: ark-pixel-12px-monospaced-latin.woff2
-    dump-dir-name: ark-pixel/12/monospaced/latin
-    font-size: 12
-  -
-    font-file-name: ark-pixel-12px-monospaced-zh_cn.woff2
-    dump-dir-name: ark-pixel/12/monospaced/zh_hans
-    font-size: 12
-  -
-    font-file-name: ark-pixel-12px-monospaced-zh_tr.woff2
-    dump-dir-name: ark-pixel/12/monospaced/zh_hant
-    font-size: 12
-  -
-    font-file-name: ark-pixel-12px-monospaced-ja.woff2
-    dump-dir-name: ark-pixel/12/monospaced/ja
-    font-size: 12
-  -
-    font-file-name: ark-pixel-12px-monospaced-ko.woff2
-    dump-dir-name: ark-pixel/12/monospaced/ko
-    font-size: 12
-  -
-    font-file-name: ark-pixel-12px-proportional-latin.woff2
-    dump-dir-name: ark-pixel/12/proportional/latin
-    font-size: 12
-  -
-    font-file-name: ark-pixel-12px-proportional-zh_cn.woff2
-    dump-dir-name: ark-pixel/12/proportional/zh_hans
-    font-size: 12
-  -
-    font-file-name: ark-pixel-12px-proportional-zh_tr.woff2
-    dump-dir-name: ark-pixel/12/proportional/zh_hant
-    font-size: 12
-  -
-    font-file-name: ark-pixel-12px-proportional-ja.woff2
-    dump-dir-name: ark-pixel/12/proportional/ja
-    font-size: 12
-  -
-    font-file-name: ark-pixel-12px-proportional-ko.woff2
-    dump-dir-name: ark-pixel/12/proportional/ko
-    font-size: 12
+    font-file-name: misaki_gothic.ttf
+    dump-dir-name: misaki/8
+    font-size: 8
+    rasterize-offset-y: 1
 chill-bitmap:
   -
     font-file-name: ChillBitmap7x.woff2
@@ -134,10 +59,4 @@ galmuri:
     font-file-name: GalmuriMono11.ttf
     dump-dir-name: galmuri/12/monospaced
     font-size: 12
-    rasterize-offset-y: 1
-misaki:
-  -
-    font-file-name: misaki_gothic.ttf
-    dump-dir-name: misaki/8
-    font-size: 8
     rasterize-offset-y: 1

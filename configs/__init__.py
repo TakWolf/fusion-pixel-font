@@ -19,25 +19,23 @@ width_mode_dir_names = [
     'proportional',
 ]
 
-font_formats = ['otf', 'woff2', 'ttf', 'bdf']
+language_flavors = [
+    'latin',
+    'zh_hans',
+    'zh_hant',
+    'ja',
+    'ko',
+]
 
-font_size_to_fallback_names = {
-    8: [
-        'chill-bitmap',
-        'misaki',
-        'galmuri',
-    ],
-    10: [
-        'ark-pixel',
-        'boutique-bitmap-9x9',
-        'galmuri',
-    ],
-    12: [
-        'ark-pixel',
-        'cubic-11',
-        'galmuri',
-    ],
+locale_to_language_flavor = {
+    'en': 'latin',
+    'zh-hans': 'zh_hans',
+    'zh-hant': 'zh_hant',
+    'ja': 'ja',
+    'ko': 'ko',
 }
+
+font_formats = ['otf', 'woff2', 'ttf', 'bdf']
 
 font_size_to_license_configs = {
     8: [

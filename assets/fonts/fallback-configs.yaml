@@ -1,0 +1,61 @@
+# 8
+-
+  from_dir: misaki/8/3040-309F Hiragana
+  to_dir: 8/common
+-
+  from_dir: misaki/8/30A0-30FF Katakana
+  to_dir: 8/common
+-
+  from_dir: galmuri/8/proportional/AC00-D7AF Hangul Syllables
+  to_dir: 8/common
+-
+  from_dir: galmuri/8/proportional/3130-318F Hangul Compatibility Jamo
+  to_dir: 8/common
+-
+  from_dir: chill-bitmap/8/4E00-9FFF CJK Unified Ideographs
+  to_dir: 8/common
+  flavor: zh_hans
+-
+  from_dir: boutique-bitmap/8/4E00-9FFF CJK Unified Ideographs
+  to_dir: 8/common
+  flavor: zh_hant
+-
+  from_dir: misaki/8/4E00-9FFF CJK Unified Ideographs
+  to_dir: 8/common
+  flavor: ja
+-
+  from_dir: galmuri/8/proportional/4E00-9FFF CJK Unified Ideographs
+  to_dir: 8/common
+  flavor: ko
+
+# 10
+-
+  from_dir: galmuri/10/proportional/AC00-D7AF Hangul Syllables
+  to_dir: 10/common
+-
+  from_dir: galmuri/10/proportional/3130-318F Hangul Compatibility Jamo
+  to_dir: 10/common
+-
+  from_dir: boutique-bitmap/10/4E00-9FFF CJK Unified Ideographs
+  to_dir: 10/common
+  flavor: zh_hant
+-
+  from_dir: galmuri/10/proportional/4E00-9FFF CJK Unified Ideographs
+  to_dir: 10/common
+  flavor: ko
+
+# 12
+-
+  from_dir: galmuri/12/proportional/AC00-D7AF Hangul Syllables
+  to_dir: 12/common
+-
+  from_dir: galmuri/12/proportional/3130-318F Hangul Compatibility Jamo
+  to_dir: 12/common
+-
+  from_dir: cubic-11/12/4E00-9FFF CJK Unified Ideographs
+  to_dir: 12/common
+  flavor: zh_hant
+-
+  from_dir: galmuri/12/proportional/4E00-9FFF CJK Unified Ideographs
+  to_dir: 12/common
+  flavor: ko

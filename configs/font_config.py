@@ -29,7 +29,7 @@ class FontConfig:
     LICENSE_URL: Final[str] = 'https://scripts.sil.org/OFL'
 
     def __init__(self, size: int):
-        config_file_path = os.path.join(path_define.glyphs_dir, str(size), 'config.toml')
+        config_file_path = os.path.join(path_define.patch_glyphs_dir, str(size), 'config.toml')
         with open(config_file_path, 'rb') as file:
             config_data: dict = tomllib.load(file)['font']
 
@@ -49,8 +49,8 @@ class FontConfig:
     def get_attrs(self, width_mode: str) -> FontAttrs:
         return self._attrs_group[width_mode]
 
-    def get_font_file_name(self, width_mode: str, font_format: str) -> str:
-        return f'{FontConfig.OUTPUTS_NAME}-{self.size}px-{width_mode}.{font_format}'
+    def get_font_file_name(self, width_mode: str, language_flavor: str, font_format: str) -> str:
+        return f'{FontConfig.OUTPUTS_NAME}-{self.size}px-{width_mode}-{language_flavor}.{font_format}'
 
     def get_info_file_name(self, width_mode: str) -> str:
         return f'font-info-{self.size}px-{width_mode}.md'
