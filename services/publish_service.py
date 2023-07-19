@@ -22,7 +22,7 @@ def make_release_zips(font_config: FontConfig, width_mode: str):
             font_file_path = os.path.join(path_define.outputs_dir, font_file_name)
             file.write(font_file_path, font_file_name)
 
-            file.write('LICENSE-OFL', 'OFL.txt')
+            file.write(os.path.join(path_define.project_root_dir, 'LICENSE-OFL'), 'OFL.txt')
             for name in configs.font_size_to_license_configs[font_config.size]:
                 font_license_file_path = os.path.join(path_define.fonts_dir, name, 'LICENSE.txt')
                 if not os.path.exists(font_license_file_path):
