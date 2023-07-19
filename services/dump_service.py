@@ -25,9 +25,9 @@ def dump_font(dump_config: DumpConfig):
 
     for code_point, glyph_name in font.getBestCmap().items():
         c = chr(code_point)
-        if not c.isprintable():
-            continue
         block = unidata_blocks.get_block_by_code_point(code_point)
+        if not c.isprintable() and block.code_start != 0xE000:  # Private Use Area
+            continue
 
         canvas_width = math.ceil(font['hmtx'].metrics[glyph_name][0] / font['head'].unitsPerEm * dump_config.rasterize_size)
         if canvas_width <= 0:
