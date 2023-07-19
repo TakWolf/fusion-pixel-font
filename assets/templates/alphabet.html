@@ -7,14 +7,64 @@
             padding: 0;
             box-sizing: border-box;
         }
+        {% for locale, language_flavor in configs.locale_to_language_flavor.items() %}
+        {% with font_family = 'fusion-pixel-' ~ font_config.size ~ 'px-' ~ width_mode ~ '-' ~ language_flavor %}
         @font-face {
-            font-family: fusion-pixel-{{ font_config.size }}px-{{ width_mode }};
-            src: url("{{ font_config.get_font_file_name(width_mode, 'woff2') }}?r={{ configs.build_random_key }}");
+            font-family: {{ font_family }};
+            src: url("{{ font_config.get_font_file_name(width_mode, language_flavor, 'woff2') }}?r={{ configs.build_random_key }}");
+        }
+        :lang({{ locale }}) {
+            font-family: {{ font_family }}, sans-serif;
+        }
+        {% endwith %}
+        {% endfor %}
+        {% if font_config.size != 12 or width_mode != 'monospaced' %}
+        @font-face {
+            font-family: fusion-pixel-12px-monospaced-latin;
+            src: url("{{ configs.font_size_to_config[12].get_font_file_name('monospaced', 'latin', 'woff2') }}?r={{ configs.build_random_key }}");
+        }
+        {% endif %}
+        .options-group {
+            height: 36px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: row;
+            background-color: #ffd339;
+        }
+        .option {
+            height: 100%;
+            margin-left: 24px;
+            margin-right: 24px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: #4b4b4b;
+            font-family: fusion-pixel-12px-monospaced-latin, sans-serif;
+            font-size: 24px;
+            line-height: 36px;
+        }
+        .option input[type="radio"] {
+            display: none;
+        }
+        .option input[type="radio"] + span {
+            width: 10px;
+            height: 10px;
+            margin-left: 12px;
+            margin-right: 12px;
+            border-width: 2px;
+            border-color: #4b4b4b;
+            border-style: solid;
+        }
+        .option input[type="radio"]:checked + span {
+            background-color: #4b4b4b;
         }
         {% if width_mode == 'monospaced' %}
-        body {
+        #content {
+            margin-top: 36px;
             color: #4b4b4b;
-            font-family: fusion-pixel-{{ font_config.size }}px-{{ width_mode }}, sans-serif;;
             font-size: {{ font_config.size * 4 }}px;
             line-height: {{ font_config.size * 4 }}px;
             word-break: break-all;
@@ -22,9 +72,9 @@
             background-size: {{ font_config.size * 2 }}px {{ font_config.size * 4 }}px;
         }
         {% else %}
-        body {
+        #content {
+            margin-top: 36px;
             color: #4b4b4b;
-            font-family: fusion-pixel-{{ font_config.size }}px-{{ width_mode }}, sans-serif;;
             font-size: {{ font_config.size * 4 }}px;
             line-height: {{ font_config.line_height * 4 }}px;
             word-break: break-all;
@@ -35,11 +85,48 @@
     </style>
 {% endblock %}
 {% block body %}
-    ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    <br>
-    abcdefghijklmnopqrstuvwxyz
-    <br>
-    0123456789 !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-    <br>
-    {{ alphabet }}
+    <form class="options-group">
+        {% for locale, language_flavor in configs.locale_to_language_flavor.items() %}
+        <label class="option">
+            <input id="radio-locale-{{ locale }}" name="locale" type="radio" onchange="onLocaleChange('{{ locale }}');">
+            <span></span>
+            {{ language_flavor.replace('_', '-') }}
+        </label>
+        {% endfor %}
+    </form>
+    <div id="content">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        <br>
+        abcdefghijklmnopqrstuvwxyz
+        <br>
+        0123456789 !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+        <br>
+        {{ alphabet }}
+    </div>
+    <script>
+        let content = document.getElementById('content');
+
+        let configs = {
+            locale: 'zh-hans',
+        };
+
+        function applyConfigs() {
+            localStorage.setItem('configs:alphabet-{{ font_config.size }}px-{{ width_mode }}', JSON.stringify(configs));
+            content.setAttribute('lang', configs.locale);
+        }
+
+        function onLocaleChange(locale) {
+            configs.locale = locale;
+            applyConfigs();
+        }
+
+        (function () {
+            let json = localStorage.getItem('configs:alphabet-{{ font_config.size }}px-{{ width_mode }}');
+            if (json) {
+                Object.assign(configs, JSON.parse(json));
+            }
+            document.getElementById('radio-locale-' + configs.locale).checked = true;
+            applyConfigs();
+        })();
+    </script>
 {% endblock %}

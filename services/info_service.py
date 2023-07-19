@@ -83,14 +83,6 @@ def _get_ksx1001_chr_count_infos(alphabet: list[str]) -> list[tuple[str, int, in
     ]
 
 
-def _write_fallback_count_infos_table(file: IO, infos: dict[str, int], total: int):
-    file.write('| 字体名 | 提供字形数 | 比例 |\n')
-    file.write('|---|---:|---:|\n')
-    for name, count in infos.items():
-        percentage = count / total
-        file.write(f'| {name} | {count} / {total} | {percentage:.2%} |\n')
-
-
 def _write_unicode_chr_count_infos_table(file: IO, infos: list[tuple[UnicodeBlock, int]]):
     file.write('| 区块范围 | 区块名称 | 区块含义 | 完成数 | 缺失数 | 进度 |\n')
     file.write('|---|---|---|---:|---:|---:|\n')
@@ -128,10 +120,6 @@ def make_info_file(font_config: FontConfig, context: DesignContext, width_mode: 
         file.write('|---|---|\n')
         file.write(f'| 版本号 | {FontConfig.VERSION} |\n')
         file.write(f'| 字符总数 | {len(alphabet)} |\n')
-        file.write('\n')
-        file.write('## 字源提供的字形数统计')
-        file.write('\n')
-        _write_fallback_count_infos_table(file, context.get_fallback_count_infos(width_mode), len(context.get_glyph_file_paths(width_mode)))
         file.write('\n')
         file.write('## Unicode 字符分布\n')
         file.write('\n')

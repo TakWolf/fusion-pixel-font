@@ -9,17 +9,21 @@
         }
         {% for font_config in configs.font_configs  %}
         {% for width_mode in configs.width_modes %}
-        {% with font_family = 'fusion-pixel-' ~ font_config.size ~ 'px-' ~ width_mode %}
-        @font-face {
-            font-family: {{ font_family }};
-            src: url("{{ font_config.get_font_file_name(width_mode, 'woff2') }}?r={{ configs.build_random_key }}");
-        }
         .font-{{ font_config.size }}px-{{ width_mode }} {
-            font-family: {{ font_family }}, serif;
             font-size: {{ font_config.size * 2 }}px;
             line-height: {{ font_config.line_height * 2 }}px;
         }
+        {% for locale, language_flavor in configs.locale_to_language_flavor.items() %}
+        {% with font_family = 'fusion-pixel-' ~ font_config.size ~ 'px-' ~ width_mode ~ '-' ~ language_flavor %}
+        @font-face {
+            font-family: {{ font_family }};
+            src: url("{{ font_config.get_font_file_name(width_mode, language_flavor, 'woff2') }}?r={{ configs.build_random_key }}");
+        }
+        .font-{{ font_config.size }}px-{{ width_mode }}:lang({{ locale }}) {
+            font-family: {{ font_family }}, serif;
+        }
         {% endwith %}
+        {% endfor %}
         {% endfor %}
         {% endfor %}
         .toolbar {
@@ -42,7 +46,7 @@
             flex-direction: row;
             align-items: center;
             color: #4b4b4b;
-            font-family: fusion-pixel-12px-monospaced, sans-serif;
+            font-family: fusion-pixel-12px-monospaced-latin, sans-serif;
             font-size: 24px;
             line-height: 36px;
         }
@@ -63,7 +67,7 @@
         }
         .content {
             position: fixed;
-            top: 72px;
+            top: 108px;
             bottom: 0;
             left: 0;
             right: 0;
@@ -99,6 +103,15 @@
             </label>
             {% endfor %}
         </div>
+        <div class="options-group" style="background-color: #6ebdff;">
+            {% for locale, language_flavor in configs.locale_to_language_flavor.items() %}
+            <label class="option">
+                <input id="radio-locale-{{ locale }}" name="locale" type="radio" onchange="onLocaleChange('{{ locale }}');">
+                <span></span>
+                {{ language_flavor.replace('_', '-') }}
+            </label>
+            {% endfor %}
+        </div>
     </form>
     <label class="content">
         <textarea id="input-box" placeholder="请随便写点什么… / Please input something…"></textarea>
@@ -109,11 +122,13 @@
         let configs = {
             fontSize: 12,
             widthMode: 'proportional',
+            locale: 'zh-hans',
         };
 
         function applyConfigs() {
             localStorage.setItem('configs:playground', JSON.stringify(configs));
             inputBox.className = 'font-' + configs.fontSize + 'px-' + configs.widthMode;
+            inputBox.setAttribute('lang', configs.locale);
         }
 
         function onFontSizeChange(fontSize) {
@@ -126,6 +141,11 @@
             applyConfigs();
         }
 
+        function onLocaleChange(locale) {
+            configs.locale = locale;
+            applyConfigs();
+        }
+
         (function () {
             let json = localStorage.getItem('configs:playground');
             if (json) {
@@ -133,6 +153,7 @@
             }
             document.getElementById('radio-font-size-' + configs.fontSize).checked = true;
             document.getElementById('radio-width-mode-' + configs.widthMode).checked = true;
+            document.getElementById('radio-locale-' + configs.locale).checked = true;
             applyConfigs();
         })();
     </script>

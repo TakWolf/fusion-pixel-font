@@ -8,19 +8,21 @@
             box-sizing: border-box;
         }
         @font-face {
-            font-family: fusion-pixel-12px-monospaced;
-            src: url("{{ configs.font_size_to_config[12].get_font_file_name('monospaced', 'woff2') }}?r={{ configs.build_random_key }}");
+            font-family: fusion-pixel-12px-monospaced-latin;
+            src: url("{{ configs.font_size_to_config[12].get_font_file_name('monospaced', 'latin', 'woff2') }}?r={{ configs.build_random_key }}");
         }
         {% for font_config in configs.font_configs  %}
-        {% with font_family = 'fusion-pixel-' ~ font_config.size ~ 'px-proportional' %}
+        {% for locale, language_flavor in configs.locale_to_language_flavor.items() %}
+        {% with font_family = 'fusion-pixel-' ~ font_config.size ~ 'px-proportional-' ~ language_flavor %}
         @font-face {
             font-family: {{ font_family }};
-            src: url("{{ font_config.get_font_file_name('proportional', 'woff2') }}?r={{ configs.build_random_key }}");
+            src: url("{{ font_config.get_font_file_name('proportional', language_flavor, 'woff2') }}?r={{ configs.build_random_key }}");
         }
-        .font-{{ font_config.size }}px-proportional {
+        .font-{{ font_config.size }}px-proportional :lang({{ locale }}) {
             font-family: {{ font_family }}, sans-serif;
         }
         {% endwith %}
+        {% endfor %}
         .font-{{ font_config.size }}px-proportional .title {
             font-size: {{ font_config.size * 4 }}px;
             font-weight: normal;
@@ -89,7 +91,7 @@
             flex-direction: row;
             align-items: center;
             color: white;
-            font-family: fusion-pixel-12px-monospaced, sans-serif;
+            font-family: fusion-pixel-12px-monospaced-latin, sans-serif;
             font-size: 24px;
             line-height: 36px;
         }
@@ -128,26 +130,27 @@
         {% endfor %}
     </form>
     <div id="page">
-        <h1 class="title">缝合像素字体 / Fusion Pixel Font</h1>
+        <h1 class="title" lang="zh-hans">缝合像素字体 / Fusion Pixel Font</h1>
         <br>
-        <div class="text">★ 开源像素字体 ★</div>
-        <div class="link-group">
+        <div class="text" lang="zh-hans">★ 开源的泛中日韩像素字体 ★</div>
+        <div class="link-group" lang="en">
             <a class="link-tab" href="https://github.com/TakWolf/fusion-pixel-font" target="_blank">github</a>
+            <a class="link-tab" href="https://discord.gg/3GKtPKtjdU" target="_blank">discord</a>
         </div>
         <br>
-        <div class="text">我们度过的每个平凡的日常，也许就是连续发生的奇迹。</div>
-        <div class="text">我們度過的每個平凡的日常，也許就是連續發生的奇蹟。</div>
-        <div class="text">日々、私たちが過ごしている日常は、実は奇跡の連続なのかもしれない。</div>
-        <div class="text">THE QUICK BROWN FOX JUMPS OVER A LAZY DOG.</div>
-        <div class="text">the quick brown fox jumps over a lazy dog.</div>
-        <div class="text">0123456789</div>
-        <div class="text">★☆☺☹♠♡♢♣♤♥♦♧☀☼♩♪♫♬☂☁⚓✈⚔☯</div>
+        <div class="text" lang="zh-hans">我们度过的每个平凡的日常，也许就是连续发生的奇迹。</div>
+        <div class="text" lang="zh-hant">我們度過的每個平凡的日常，也許就是連續發生的奇蹟。</div>
+        <div class="text" lang="ja">日々、私たちが過ごしている日常は、実は奇跡の連続なのかもしれない。</div>
+        <div class="text" lang="en">THE QUICK BROWN FOX JUMPS OVER A LAZY DOG.</div>
+        <div class="text" lang="en">the quick brown fox jumps over a lazy dog.</div>
+        <div class="text" lang="en">0123456789</div>
+        <div class="text" lang="en">★☆☺☹♠♡♢♣♤♥♦♧☀☼♩♪♫♬☂☁⚓✈⚔☯</div>
         <br>
-        <div class="link-group">
+        <div class="link-group" lang="en">
             <a class="link-tab" href="playground.html" target="_blank">playground</a>
         </div>
         {% for font_config in configs.font_configs %}
-        <div class="link-group">
+        <div class="link-group" lang="en">
             <span class="link-tab">{{ font_config.size }}px</span>
             {% for width_mode in configs.width_modes %}
             <a class="link-tab" href="alphabet-{{ font_config.size }}px-{{ width_mode }}.html" target="_blank">alphabet-{{ width_mode }}</a>
@@ -156,7 +159,7 @@
         </div>
         {% endfor %}
         <br>
-        <div class="copyright">© 2023 TakWolf</div>
+        <div class="copyright" lang="en">© 2022 TakWolf</div>
     </div>
     <script>
         let page = document.getElementById('page');

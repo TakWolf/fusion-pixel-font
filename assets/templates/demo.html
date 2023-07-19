@@ -8,20 +8,22 @@
             box-sizing: border-box;
         }
         {% for width_mode in configs.width_modes %}
-        {% with font_family = 'fusion-pixel-' ~ font_config.size ~ 'px-' ~ width_mode %}
+        {% for locale, language_flavor in configs.locale_to_language_flavor.items() %}
+        {% with font_family = 'fusion-pixel-' ~ font_config.size ~ 'px-' ~ width_mode ~ '-' ~ language_flavor %}
         @font-face {
             font-family: {{ font_family }};
-            src: url("{{ font_config.get_font_file_name(width_mode, 'woff2') }}?r={{ configs.build_random_key }}");
+            src: url("{{ font_config.get_font_file_name(width_mode, language_flavor, 'woff2') }}?r={{ configs.build_random_key }}");
         }
-        .font-{{ width_mode }} {
+        .font-{{ width_mode }} :lang({{ locale }}) {
             font-family: {{ font_family }}, sans-serif;
         }
         {% endwith %}
         {% endfor %}
+        {% endfor %}
         {% if font_config.size != 12 %}
         @font-face {
-            font-family: fusion-pixel-12px-monospaced;
-            src: url("{{ configs.font_size_to_config[12].get_font_file_name('monospaced', 'woff2') }}?r={{ configs.build_random_key }}");
+            font-family: fusion-pixel-12px-monospaced-latin;
+            src: url("{{ configs.font_size_to_config[12].get_font_file_name('monospaced', 'latin', 'woff2') }}?r={{ configs.build_random_key }}");
         }
         {% endif %}
         .theme-light {
@@ -69,7 +71,7 @@
             flex-direction: row;
             align-items: center;
             color: #4b4b4b;
-            font-family: fusion-pixel-12px-monospaced, sans-serif;
+            font-family: fusion-pixel-12px-monospaced-latin, sans-serif;
             font-size: 24px;
             line-height: 36px;
         }
