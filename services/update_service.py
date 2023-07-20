@@ -86,7 +86,7 @@ def update_glyphs_version():
     }
     file_path = os.path.join(path_define.glyphs_dir, 'version.json')
     _save_json_file(version_info, file_path)
-    logger.info(f"Update version file: '{file_path}'")
+    logger.info("Update version file: '%s'", file_path)
 
 
 def setup_glyphs():
@@ -107,17 +107,17 @@ def setup_glyphs():
     source_file_path = os.path.join(download_dir, 'source.zip')
     if not os.path.exists(source_file_path):
         asset_url = version_info["asset_url"]
-        logger.info(f"Start download: '{asset_url}'")
+        logger.info("Start download: '%s'", asset_url)
         fs_util.make_dirs(download_dir)
         _download_file(asset_url, source_file_path)
     else:
-        logger.info(f"Already downloaded: '{source_file_path}'")
+        logger.info("Already downloaded: '%s'", source_file_path)
 
     source_unzip_dir = source_file_path.removesuffix('.zip')
     fs_util.delete_dir(source_unzip_dir)
     with zipfile.ZipFile(source_file_path) as file:
         file.extractall(source_unzip_dir)
-    logger.info(f"Unzip: '{source_unzip_dir}'")
+    logger.info("Unzip: '%s'", source_unzip_dir)
 
     fs_util.delete_dir(path_define.ark_pixel_glyphs_dir)
     fs_util.make_dirs(path_define.ark_pixel_glyphs_dir)
@@ -144,7 +144,7 @@ def setup_glyphs():
     configs.font_configs = [FontConfig(font_config.size) for font_config in configs.font_configs]
     configs.font_size_to_config = {font_config.size: font_config for font_config in configs.font_configs}
     _save_json_file(version_info, current_version_file_path)
-    logger.info(f"Update glyphs: '{sha}'")
+    logger.info("Update glyphs: '%s'", sha)
 
 
 def update_fonts(update_config: UpdateConfig):
@@ -152,7 +152,7 @@ def update_fonts(update_config: UpdateConfig):
         tag_name = _get_github_releases_latest_tag_name(update_config.repository_name)
     else:
         tag_name = update_config.tag_name
-    logger.info(f'{update_config.repository_name} tag: {tag_name}')
+    logger.info("'%s' tag: '%s'", update_config.repository_name, tag_name)
 
     version = tag_name.removeprefix('v')
     repository_url = f'https://github.com/{update_config.repository_name}'
@@ -169,22 +169,22 @@ def update_fonts(update_config: UpdateConfig):
         asset_file_path = os.path.join(download_dir, asset_file_name)
         if not os.path.exists(asset_file_path):
             asset_url = f'{repository_url}/releases/download/{tag_name}/{asset_file_name}'
-            logger.info(f"Start download: '{asset_url}'")
+            logger.info("Start download: '%s'", asset_url)
             _download_file(asset_url, asset_file_path)
         else:
-            logger.info(f"Already downloaded: '{asset_file_path}'")
+            logger.info("Already downloaded: '%s'", asset_file_path)
 
         asset_unzip_dir = asset_file_path.removesuffix('.zip')
         fs_util.delete_dir(asset_unzip_dir)
         with zipfile.ZipFile(asset_file_path) as file:
             file.extractall(asset_unzip_dir)
-        logger.info(f"Unzip: '{asset_unzip_dir}'")
+        logger.info("Unzip: '%s'", asset_unzip_dir)
 
         for copy_info in asset_config.copy_list:
             from_path = os.path.join(asset_unzip_dir, copy_info[0].format(version=version))
             to_path = os.path.join(fonts_dir, copy_info[1].format(version=version))
             shutil.copyfile(from_path, to_path)
-            logger.info(f"Copy from '{from_path}' to '{to_path}'")
+            logger.info("Copy from '%s' to '%s'", from_path, to_path)
         fs_util.delete_dir(asset_unzip_dir)
 
     version_info = {
@@ -194,4 +194,4 @@ def update_fonts(update_config: UpdateConfig):
     }
     version_file_path = os.path.join(fonts_dir, 'version.json')
     _save_json_file(version_info, version_file_path)
-    logger.info(f"Update version file: '{version_file_path}'")
+    logger.info("Update version file: '%s'", version_file_path)

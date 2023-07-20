@@ -89,7 +89,7 @@ def format_patch_glyph_files(font_config: FontConfig):
 
             fs_util.make_dirs(glyph_file_to_dir)
             glyph_util.save_glyph_data_to_png(glyph_data, glyph_file_to_path)
-            logger.info(f"Format glyph file: '{glyph_file_to_path}'")
+            logger.info("Format glyph file: '%s'", glyph_file_to_path)
         fs_util.delete_dir(width_mode_dir)
         if os.path.exists(width_mode_tmp_dir):
             os.rename(width_mode_tmp_dir, width_mode_dir)
@@ -123,7 +123,7 @@ class DesignContext:
         else:
             glyph_data, glyph_width, glyph_height = glyph_util.load_glyph_data_from_png(glyph_file_path)
             self._glyph_data_pool[glyph_file_path] = glyph_data, glyph_width, glyph_height
-            logger.info(f"Load glyph file: '{glyph_file_path}'")
+            logger.info("Load glyph file: '%s'", glyph_file_path)
         return glyph_data, glyph_width, glyph_height
 
 
@@ -251,14 +251,14 @@ def make_font_files(font_config: FontConfig, context: DesignContext, width_mode:
         otf_builder = builder.to_otf_builder()
         otf_file_path = os.path.join(path_define.outputs_dir, font_config.get_font_file_name(width_mode, language_flavor, 'otf'))
         otf_builder.save(otf_file_path)
-        logger.info(f"Make font file: '{otf_file_path}'")
+        logger.info("Make font file: '%s'", otf_file_path)
         otf_builder.font.flavor = 'woff2'
         woff2_file_path = os.path.join(path_define.outputs_dir, font_config.get_font_file_name(width_mode, language_flavor, 'woff2'))
         otf_builder.save(woff2_file_path)
-        logger.info(f"Make font file: '{woff2_file_path}'")
+        logger.info("Make font file: '%s'", woff2_file_path)
         ttf_file_path = os.path.join(path_define.outputs_dir, font_config.get_font_file_name(width_mode, language_flavor, 'ttf'))
         builder.save_ttf(ttf_file_path)
-        logger.info(f"Make font file: '{ttf_file_path}'")
+        logger.info("Make font file: '%s'", ttf_file_path)
         bdf_file_path = os.path.join(path_define.outputs_dir, font_config.get_font_file_name(width_mode, language_flavor, 'bdf'))
         builder.save_bdf(bdf_file_path)
-        logger.info(f"Make font file: '{bdf_file_path}'")
+        logger.info("Make font file: '%s'", bdf_file_path)

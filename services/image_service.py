@@ -64,4 +64,4 @@ def make_preview_image_file(font_config: FontConfig):
     fs_util.make_dirs(path_define.outputs_dir)
     file_path = os.path.join(path_define.outputs_dir, font_config.preview_image_file_name)
     image.save(file_path)
-    logger.info(f"Make preview image file: '{file_path}'")
+    logger.info("Make preview image file: '%s'", file_path)

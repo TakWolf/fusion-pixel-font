@@ -29,14 +29,14 @@ def make_release_zips(font_config: FontConfig, width_mode: str):
                 if not os.path.exists(font_license_file_path):
                     continue
                 file.write(font_license_file_path, f'LICENSE/{name}.txt')
-        logger.info(f"Make release zip: '{file_path}'")
+        logger.info("Make release zip: '%s'", file_path)
 
 
 def _copy_file(file_name: str, from_dir: str, to_dir: str):
     from_path = os.path.join(from_dir, file_name)
     to_path = os.path.join(to_dir, file_name)
     shutil.copyfile(from_path, to_path)
-    logger.info(f"Copy from '{from_path}' to '{to_path}'")
+    logger.info("Copy from '%s' to '%s'", from_path, to_path)
 
 
 def update_docs():

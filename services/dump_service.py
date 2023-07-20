@@ -47,7 +47,7 @@ def dump_font(dump_config: DumpConfig):
 
         fs_util.make_dirs(glyph_file_to_dir)
         image.save(glyph_file_to_path)
-        logger.info(f"Dump glyph: '{glyph_file_to_path}'")
+        logger.info("Dump glyph: '%s'", glyph_file_to_path)
 
 
 def apply_fallback(fallback_config: FallbackConfig):
@@ -71,4 +71,4 @@ def apply_fallback(fallback_config: FallbackConfig):
         assert not os.path.exists(glyph_file_to_path), f"Glyph file duplication: '{glyph_file_from_path}'"
         fs_util.make_dirs(glyph_file_to_dir)
         shutil.copyfile(glyph_file_from_path, glyph_file_to_path)
-        logger.info(f"Copy glyph file: '{glyph_file_to_path}'")
+        logger.info("Copy glyph file: '%s'", glyph_file_to_path)
