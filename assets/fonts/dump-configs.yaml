@@ -1,62 +1,62 @@
 misaki:
   -
     font-file-name: misaki_gothic.ttf
-    dump-dir-name: misaki/8
+    dump-dir-name: misaki
     font-size: 8
     rasterize-offset-y: 1
 chill-bitmap:
   -
     font-file-name: ChillBitmap7x.woff2
-    dump-dir-name: chill-bitmap/8
+    dump-dir-name: chill-bitmap
     font-size: 8
     rasterize-offset-y: 1
 boutique-bitmap-7x7:
   -
     font-file-name: BoutiqueBitmap7x7_{version}.ttf
-    dump-dir-name: boutique-bitmap/8
+    dump-dir-name: boutique-bitmap
     font-size: 8
     rasterize-offset-y: 1
 boutique-bitmap-9x9:
   -
     font-file-name: BoutiqueBitmap9x9_{version}.ttf
-    dump-dir-name: boutique-bitmap/10
+    dump-dir-name: boutique-bitmap
     font-size: 10
     rasterize-offset-y: 1
 cubic-11:
   -
     font-file-name: Cubic_11_{version}_R.woff2
-    dump-dir-name: cubic-11/12
+    dump-dir-name: cubic-11
     font-size: 12
     rasterize-offset-x: -1
     rasterize-offset-y: 1
 galmuri:
   -
     font-file-name: Galmuri7.ttf
-    dump-dir-name: galmuri/8/proportional
+    dump-dir-name: galmuri/proportional
     font-size: 8
     rasterize-offset-y: 1
   -
     font-file-name: Galmuri9.ttf
-    dump-dir-name: galmuri/10/proportional
+    dump-dir-name: galmuri/proportional
     font-size: 10
     rasterize-offset-y: 1
   -
     font-file-name: Galmuri11.ttf
-    dump-dir-name: galmuri/12/proportional
+    dump-dir-name: galmuri/proportional
     font-size: 12
     rasterize-offset-y: 1
   -
     font-file-name: GalmuriMono7.ttf
-    dump-dir-name: galmuri/8/monospaced
+    dump-dir-name: galmuri/monospaced
     font-size: 8
     rasterize-offset-y: 1
   -
     font-file-name: GalmuriMono9.ttf
-    dump-dir-name: galmuri/10/monospaced
+    dump-dir-name: galmuri/monospaced
     font-size: 10
     rasterize-offset-y: 1
   -
     font-file-name: GalmuriMono11.ttf
-    dump-dir-name: galmuri/12/monospaced
+    dump-dir-name: galmuri/monospaced
     font-size: 12
     rasterize-offset-y: 1

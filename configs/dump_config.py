@@ -26,8 +26,8 @@ class DumpConfig:
     def __init__(self, name: str, version: str, config_data: dict):
         self.name = name
         self.font_file_path: str = os.path.join(path_define.fonts_dir, name, config_data['font-file-name'].format(version=version))
-        self.dump_dir: str = os.path.join(path_define.dump_dir, config_data['dump-dir-name'])
         self.font_size: int = config_data['font-size']
+        self.dump_dir: str = os.path.join(path_define.dump_dir, str(self.font_size), config_data['dump-dir-name'])
         self.rasterize_size: int = config_data.get('rasterize-size', self.font_size)
         self.rasterize_offset_x: int = config_data.get('rasterize-offset-x', 0)
         self.rasterize_offset_y: int = config_data.get('rasterize-offset-y', 0)
