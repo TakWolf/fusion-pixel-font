@@ -1,51 +1,51 @@
 -
   name: chill-bitmap
-  repository-name: Warren2060/Chill-Bitmap
-  tag-name:
-  asset-configs:
+  repository_name: Warren2060/Chill-Bitmap
+  tag_name:
+  asset_configs:
     -
-      file-name: ChillBitmap7x_v{version}.zip
-      copy-list:
+      file_name: ChillBitmap7x_v{version}.zip
+      copy_list:
         License.txt:
         ChillBitmap7x.woff2:
 -
   name: boutique-bitmap-7x7
-  repository-name: scott0107000/BoutiqueBitmap7x7
-  tag-name:
-  asset-configs:
+  repository_name: scott0107000/BoutiqueBitmap7x7
+  tag_name:
+  asset_configs:
     -
-      file-name: BoutiqueBitmap7x7_{version}.zip
-      copy-list:
+      file_name: BoutiqueBitmap7x7_{version}.zip
+      copy_list:
         OFL.txt: LICENSE.txt
         BoutiqueBitmap7x7_{version}.ttf:
 -
   name: boutique-bitmap-9x9
-  repository-name: scott0107000/BoutiqueBitmap9x9
-  tag-name:
-  asset-configs:
+  repository_name: scott0107000/BoutiqueBitmap9x9
+  tag_name:
+  asset_configs:
     -
-      file-name: BoutiqueBitmap9x9_{version}.zip
-      copy-list:
+      file_name: BoutiqueBitmap9x9_{version}.zip
+      copy_list:
         OFL.txt: LICENSE.txt
         BoutiqueBitmap9x9_{version}.ttf:
 -
   name: cubic-11
-  repository-name: ACh-K/Cubic-11
-  tag-name:
-  asset-configs:
+  repository_name: ACh-K/Cubic-11
+  tag_name:
+  asset_configs:
     -
-      file-name: Cubic_11.zip
-      copy-list:
+      file_name: Cubic_11.zip
+      copy_list:
         OFL.txt: LICENSE.txt
         fonts/web/Cubic_11_{version}_R.woff2: Cubic_11_{version}_R.woff2
 -
   name: galmuri
-  repository-name: quiple/galmuri
-  tag-name:
-  asset-configs:
+  repository_name: quiple/galmuri
+  tag_name:
+  asset_configs:
     -
-      file-name: Galmuri-v{version}.zip
-      copy-list:
+      file_name: Galmuri-v{version}.zip
+      copy_list:
         dist/LICENSE.txt: LICENSE.txt
         dist/Galmuri7.ttf: Galmuri7.ttf
         dist/Galmuri9.ttf: Galmuri9.ttf
