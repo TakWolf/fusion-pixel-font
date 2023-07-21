@@ -105,6 +105,12 @@ class DesignContext:
         self._glyph_file_paths_group = glyph_file_paths_group
         self._glyph_data_pool = dict[str, tuple[list[list[int]], int, int]]()
 
+    def patch(self, other: 'DesignContext'):
+        for width_mode, character_mapping in other._character_mapping_group.items():
+            self._character_mapping_group[width_mode].update(character_mapping)
+            for language_flavor, glyph_file_paths in other._glyph_file_paths_group[width_mode].items():
+                self._glyph_file_paths_group[width_mode][language_flavor].update(glyph_file_paths)
+
     def get_character_mapping(self, width_mode: str) -> dict[int, str]:
         return self._character_mapping_group[width_mode]
 
@@ -127,68 +133,64 @@ class DesignContext:
         return glyph_data, glyph_width, glyph_height
 
 
-def collect_glyph_files(font_config: FontConfig) -> DesignContext:
+def collect_glyph_files(font_config: FontConfig, glyphs_dir: str) -> DesignContext:
+    root_dir = os.path.join(glyphs_dir, str(font_config.size))
+    
     character_mapping_group = dict[str, dict[int, str]]()
     glyph_file_paths_group = dict[str, dict[str, dict[str, str]]]()
     for width_mode in configs.width_modes:
         character_mapping_group[width_mode] = {}
         glyph_file_paths_group[width_mode] = {}
+
+    glyph_file_paths_cellar = dict[str, dict[str, dict[str, str]]]()
+    for width_mode_dir_name in configs.width_mode_dir_names:
+        glyph_file_paths_cellar[width_mode_dir_name] = {
+            'default': {},
+        }
         for language_flavor in configs.language_flavors:
-            glyph_file_paths_group[width_mode][language_flavor] = {}
+            glyph_file_paths_cellar[width_mode_dir_name][language_flavor] = {}
 
-    glyphs_dirs = [
-        os.path.join(path_define.dump_dir, 'galmuri', str(font_config.size)),
-        os.path.join(path_define.fallback_glyphs_dir, str(font_config.size)),
-        os.path.join(path_define.ark_pixel_glyphs_dir, str(font_config.size)),
-        os.path.join(path_define.patch_glyphs_dir, str(font_config.size)),
-    ]
-    for glyphs_dir in glyphs_dirs:
-        glyph_file_paths_cellar = {}
-        for width_mode_dir_name in configs.width_mode_dir_names:
-            glyph_file_paths_cellar[width_mode_dir_name] = {'default': dict[str, str]()}
-            for language_flavor in configs.language_flavors:
-                glyph_file_paths_cellar[width_mode_dir_name][language_flavor] = dict[str, str]()
-
-            width_mode_dir = os.path.join(glyphs_dir, width_mode_dir_name)
-            for glyph_file_dir, glyph_file_name in fs_util.walk_files(width_mode_dir):
-                if not glyph_file_name.endswith('.png'):
-                    continue
-                glyph_file_path = os.path.join(glyph_file_dir, glyph_file_name)
-                if glyph_file_name == 'notdef.png':
-                    glyph_file_paths_cellar[width_mode_dir_name]['default']['.notdef'] = glyph_file_path
+        width_mode_dir = os.path.join(root_dir, width_mode_dir_name)
+        for glyph_file_dir, glyph_file_name in fs_util.walk_files(width_mode_dir):
+            if not glyph_file_name.endswith('.png'):
+                continue
+            glyph_file_path = os.path.join(glyph_file_dir, glyph_file_name)
+            if glyph_file_name == 'notdef.png':
+                glyph_file_paths_cellar[width_mode_dir_name]['default']['.notdef'] = glyph_file_path
+            else:
+                hex_name, language_flavors = _parse_glyph_file_name(glyph_file_name)
+                code_point = int(hex_name, 16)
+                glyph_name = f'uni{code_point:04X}'
+                if len(language_flavors) > 0:
+                    for language_flavor in language_flavors:
+                        if language_flavor == 'zh_cn':
+                            language_flavor = 'zh_hans'
+                        elif language_flavor == 'zh_tr':
+                            language_flavor = 'zh_hant'
+                        if language_flavor not in configs.language_flavors:
+                            continue
+                        assert glyph_name not in glyph_file_paths_cellar[width_mode_dir_name][language_flavor], f"Glyph name '{glyph_name}' already exists in language flavor '{language_flavor}'"
+                        glyph_file_paths_cellar[width_mode_dir_name][language_flavor][glyph_name] = glyph_file_path
                 else:
-                    hex_name, language_flavors = _parse_glyph_file_name(glyph_file_name)
-                    code_point = int(hex_name, 16)
-                    glyph_name = f'uni{code_point:04X}'
-                    if len(language_flavors) > 0:
-                        for language_flavor in language_flavors:
-                            if language_flavor == 'zh_cn':
-                                language_flavor = 'zh_hans'
-                            elif language_flavor == 'zh_tr':
-                                language_flavor = 'zh_hant'
-                            if language_flavor not in configs.language_flavors:
-                                continue
-                            assert glyph_name not in glyph_file_paths_cellar[width_mode_dir_name][language_flavor], f"Glyph name '{glyph_name}' already exists in language flavor '{language_flavor}'"
-                            glyph_file_paths_cellar[width_mode_dir_name][language_flavor][glyph_name] = glyph_file_path
-                    else:
-                        assert glyph_name not in glyph_file_paths_cellar[width_mode_dir_name]['default'], f"Glyph name '{glyph_name}' already exists"
-                        glyph_file_paths_cellar[width_mode_dir_name]['default'][glyph_name] = glyph_file_path
-                    if width_mode_dir_name == 'common' or width_mode_dir_name == 'monospaced':
-                        character_mapping_group['monospaced'][code_point] = glyph_name
-                    if width_mode_dir_name == 'common' or width_mode_dir_name == 'proportional':
-                        character_mapping_group['proportional'][code_point] = glyph_name
+                    assert glyph_name not in glyph_file_paths_cellar[width_mode_dir_name]['default'], f"Glyph name '{glyph_name}' already exists"
+                    glyph_file_paths_cellar[width_mode_dir_name]['default'][glyph_name] = glyph_file_path
+                if width_mode_dir_name == 'common' or width_mode_dir_name == 'monospaced':
+                    character_mapping_group['monospaced'][code_point] = glyph_name
+                if width_mode_dir_name == 'common' or width_mode_dir_name == 'proportional':
+                    character_mapping_group['proportional'][code_point] = glyph_name
 
-            for language_flavor in configs.language_flavors:
-                for glyph_name, glyph_file_path in glyph_file_paths_cellar[width_mode_dir_name][language_flavor].items():
-                    if glyph_name not in glyph_file_paths_cellar[width_mode_dir_name]['default']:
-                        glyph_file_paths_cellar[width_mode_dir_name]['default'][glyph_name] = glyph_file_path
+        for language_flavor in configs.language_flavors:
+            for glyph_name, glyph_file_path in glyph_file_paths_cellar[width_mode_dir_name][language_flavor].items():
+                if glyph_name not in glyph_file_paths_cellar[width_mode_dir_name]['default']:
+                    glyph_file_paths_cellar[width_mode_dir_name]['default'][glyph_name] = glyph_file_path
 
-        for width_mode in configs.width_modes:
-            for language_flavor in configs.language_flavors:
-                glyph_file_paths_group[width_mode][language_flavor].update(glyph_file_paths_cellar['common']['default'])
-                glyph_file_paths_group[width_mode][language_flavor].update(glyph_file_paths_cellar['common'][language_flavor])
-                glyph_file_paths_group[width_mode][language_flavor].update(glyph_file_paths_cellar[width_mode]['default'])
-                glyph_file_paths_group[width_mode][language_flavor].update(glyph_file_paths_cellar[width_mode][language_flavor])
+    for width_mode in configs.width_modes:
+        for language_flavor in configs.language_flavors:
+            glyph_file_paths = dict(glyph_file_paths_cellar['common']['default'])
+            glyph_file_paths.update(glyph_file_paths_cellar['common'][language_flavor])
+            glyph_file_paths.update(glyph_file_paths_cellar[width_mode]['default'])
+            glyph_file_paths.update(glyph_file_paths_cellar[width_mode][language_flavor])
+            glyph_file_paths_group[width_mode][language_flavor] = glyph_file_paths
 
     return DesignContext(character_mapping_group, glyph_file_paths_group)
 
