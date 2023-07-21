@@ -2,7 +2,6 @@ import logging
 
 import configs
 from configs import path_define
-from configs.fallback_config import FallbackConfig
 from services import dump_service, font_service, publish_service, info_service, template_service, image_service
 from utils import fs_util
 
@@ -17,11 +16,10 @@ def main():
         for dump_config in dump_configs:
             dump_service.dump_font(dump_config)
 
-    fallback_configs = FallbackConfig.load()
-    for fallback_config in fallback_configs:
-        dump_service.apply_fallback(fallback_config)
+        fallback_configs = configs.font_size_to_fallback_configs[font_config.size]
+        for fallback_config in fallback_configs:
+            dump_service.apply_fallback(fallback_config)
 
-    for font_config in configs.font_configs:
         font_service.format_patch_glyph_files(font_config)
         context = font_service.collect_glyph_files(font_config)
         for width_mode in configs.width_modes:

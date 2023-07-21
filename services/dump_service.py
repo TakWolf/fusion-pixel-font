@@ -7,7 +7,6 @@ import unidata_blocks
 from PIL import ImageFont, Image, ImageDraw
 from fontTools.ttLib import TTFont
 
-from configs import path_define
 from configs.dump_config import DumpConfig
 from configs.fallback_config import FallbackConfig
 from utils import fs_util
@@ -51,10 +50,8 @@ def dump_font(dump_config: DumpConfig):
 
 
 def apply_fallback(fallback_config: FallbackConfig):
-    from_dir = os.path.join(path_define.dump_dir, fallback_config.from_dir)
-    assert os.path.isdir(from_dir), f"Dump dir not exist: '{from_dir}'"
-    to_dir = os.path.join(path_define.fallback_glyphs_dir, fallback_config.to_dir)
-    for glyph_file_from_dir, glyph_file_name in fs_util.walk_files(from_dir):
+    assert os.path.isdir(fallback_config.from_dir), f"Dump dir not exist: '{fallback_config.from_dir}'"
+    for glyph_file_from_dir, glyph_file_name in fs_util.walk_files(fallback_config.from_dir):
         if not glyph_file_name.endswith('.png'):
             continue
         glyph_file_from_path = os.path.join(glyph_file_from_dir, glyph_file_name)
@@ -62,7 +59,7 @@ def apply_fallback(fallback_config: FallbackConfig):
         code_point = int(hex_name, 16)
         block = unidata_blocks.get_block_by_code_point(code_point)
         block_dir_name = f'{block.code_start:04X}-{block.code_end:04X} {block.name}'
-        glyph_file_to_dir = os.path.join(to_dir, block_dir_name)
+        glyph_file_to_dir = os.path.join(fallback_config.to_dir, block_dir_name)
         if block.code_start == 0x4E00:  # CJK Unified Ideographs
             glyph_file_to_dir = os.path.join(glyph_file_to_dir, f'{hex_name[0:-2]}-')
         if fallback_config.flavor is not None:
