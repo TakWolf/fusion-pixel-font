@@ -35,6 +35,10 @@
   to_dir: common
   flavor: ko
 -
+  font_size: 8
+  from_dir: galmuri-proportional/E000-F8FF Private Use Area
+  to_dir: common
+-
   font_size: 10
   from_dir: galmuri-proportional/AC00-D7AF Hangul Syllables
   to_dir: common
@@ -53,6 +57,10 @@
   to_dir: common
   flavor: ko
 -
+  font_size: 10
+  from_dir: galmuri-proportional/E000-F8FF Private Use Area
+  to_dir: common
+-
   font_size: 12
   from_dir: galmuri-proportional/AC00-D7AF Hangul Syllables
   to_dir: common
@@ -70,3 +78,7 @@
   from_dir: galmuri-proportional/4E00-9FFF CJK Unified Ideographs
   to_dir: common
   flavor: ko
+-
+  font_size: 12
+  from_dir: galmuri-proportional/E000-F8FF Private Use Area
+  to_dir: common
