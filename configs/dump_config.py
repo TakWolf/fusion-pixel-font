@@ -3,23 +3,25 @@ import os
 
 import yaml
 
+import configs
 from configs import path_define
 
 
 class DumpConfig:
     @staticmethod
-    def load() -> list['DumpConfig']:
+    def load() -> dict[int, list['DumpConfig']]:
         configs_file_path = os.path.join(path_define.fonts_dir, 'dump-configs.yaml')
         with open(configs_file_path, 'rb') as file:
             configs_data: dict = yaml.safe_load(file)
-        configs = []
+        font_size_to_dump_configs = {font_config.size: [] for font_config in configs.font_configs}
         for name, list_data in configs_data.items():
             version_file_path = os.path.join(path_define.fonts_dir, name, 'version.json')
             with open(version_file_path, 'r', encoding='utf-8') as file:
                 version: str = json.loads(file.read())['version']
             for item_data in list_data:
-                configs.append(DumpConfig(name, version, item_data))
-        return configs
+                dump_config = DumpConfig(name, version, item_data)
+                font_size_to_dump_configs[dump_config.font_size].append(dump_config)
+        return font_size_to_dump_configs
 
     def __init__(self, name: str, version: str, config_data: dict):
         self.name = name

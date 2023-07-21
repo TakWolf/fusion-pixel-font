@@ -1,5 +1,6 @@
 import random
 
+from configs.dump_config import DumpConfig
 from configs.font_config import FontConfig
 from configs.git_deploy_config import GitDeployConfig
 
@@ -36,6 +37,8 @@ locale_to_language_flavor = {
 }
 
 font_formats = ['otf', 'woff2', 'ttf', 'bdf']
+
+font_size_to_dump_configs = DumpConfig.load()
 
 font_size_to_license_configs = {
     8: [
