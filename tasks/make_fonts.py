@@ -13,8 +13,10 @@ def main():
     fs_util.delete_dir(path_define.releases_dir)
 
     for font_config in configs.font_configs:
-        font_service.format_patch_glyph_files(font_config)
-        context = font_service.collect_glyph_files(font_config)
+        context = font_service.collect_glyph_files(font_config, path_define.fallback_glyphs_dir)
+        context.patch(font_service.collect_glyph_files(font_config, path_define.ark_pixel_glyphs_dir))
+        context.patch(font_service.collect_glyph_files(font_config, path_define.patch_glyphs_dir))
+
         for width_mode in configs.width_modes:
             font_service.make_font_files(font_config, context, width_mode)
             publish_service.make_release_zips(font_config, width_mode)
