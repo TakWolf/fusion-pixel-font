@@ -89,7 +89,7 @@ def update_glyphs_version():
     logger.info("Update version file: '%s'", file_path)
 
 
-def setup_glyphs():
+def setup_ark_pixel_glyphs():
     current_version_file_path = os.path.join(path_define.ark_pixel_glyphs_dir, 'version.json')
     if os.path.isfile(current_version_file_path):
         current_sha = _load_json_file(current_version_file_path)['sha']
