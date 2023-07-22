@@ -8,22 +8,22 @@
   to_dir: common
 -
   font_size: 8
-  from_dir: galmuri-proportional/AC00-D7AF Hangul Syllables
+  from_dir: galmuri/AC00-D7AF Hangul Syllables
   to_dir: common
 -
   font_size: 8
-  from_dir: galmuri-proportional/3130-318F Hangul Compatibility Jamo
+  from_dir: galmuri/3130-318F Hangul Compatibility Jamo
   to_dir: common
 -
   font_size: 8
   from_dir: chill-bitmap/4E00-9FFF CJK Unified Ideographs
   to_dir: common
-  flavor: zh_hans
+  flavor: zh_cn
 -
   font_size: 8
   from_dir: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
   to_dir: common
-  flavor: zh_hant
+  flavor: zh_tr
 -
   font_size: 8
   from_dir: misaki/4E00-9FFF CJK Unified Ideographs
@@ -31,54 +31,54 @@
   flavor: ja
 -
   font_size: 8
-  from_dir: galmuri-proportional/4E00-9FFF CJK Unified Ideographs
+  from_dir: galmuri/4E00-9FFF CJK Unified Ideographs
   to_dir: common
   flavor: ko
 -
   font_size: 8
-  from_dir: galmuri-proportional/E000-F8FF Private Use Area
+  from_dir: galmuri/E000-F8FF Private Use Area
   to_dir: common
 -
   font_size: 10
-  from_dir: galmuri-proportional/AC00-D7AF Hangul Syllables
+  from_dir: galmuri/AC00-D7AF Hangul Syllables
   to_dir: common
 -
   font_size: 10
-  from_dir: galmuri-proportional/3130-318F Hangul Compatibility Jamo
+  from_dir: galmuri/3130-318F Hangul Compatibility Jamo
   to_dir: common
 -
   font_size: 10
   from_dir: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
   to_dir: common
-  flavor: zh_hant
+  flavor: zh_tr
 -
   font_size: 10
-  from_dir: galmuri-proportional/4E00-9FFF CJK Unified Ideographs
+  from_dir: galmuri/4E00-9FFF CJK Unified Ideographs
   to_dir: common
   flavor: ko
 -
   font_size: 10
-  from_dir: galmuri-proportional/E000-F8FF Private Use Area
+  from_dir: galmuri/E000-F8FF Private Use Area
   to_dir: common
 -
   font_size: 12
-  from_dir: galmuri-proportional/AC00-D7AF Hangul Syllables
+  from_dir: galmuri/AC00-D7AF Hangul Syllables
   to_dir: common
 -
   font_size: 12
-  from_dir: galmuri-proportional/3130-318F Hangul Compatibility Jamo
+  from_dir: galmuri/3130-318F Hangul Compatibility Jamo
   to_dir: common
 -
   font_size: 12
   from_dir: cubic-11/4E00-9FFF CJK Unified Ideographs
   to_dir: common
-  flavor: zh_hant
+  flavor: zh_tr
 -
   font_size: 12
-  from_dir: galmuri-proportional/4E00-9FFF CJK Unified Ideographs
+  from_dir: galmuri/4E00-9FFF CJK Unified Ideographs
   to_dir: common
   flavor: ko
 -
   font_size: 12
-  from_dir: galmuri-proportional/E000-F8FF Private Use Area
+  from_dir: galmuri/E000-F8FF Private Use Area
   to_dir: common

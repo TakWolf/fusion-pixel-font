@@ -32,31 +32,21 @@ cubic-11:
 galmuri:
   -
     font_file_name: Galmuri7.ttf
-    dump_dir_name: galmuri-proportional
+    dump_dir_name: galmuri
     font_size: 8
     rasterize_offset_y: 1
   -
     font_file_name: Galmuri9.ttf
-    dump_dir_name: galmuri-proportional
+    dump_dir_name: galmuri
     font_size: 10
     rasterize_offset_y: 1
   -
     font_file_name: Galmuri11.ttf
-    dump_dir_name: galmuri-proportional
+    dump_dir_name: galmuri
     font_size: 12
     rasterize_offset_y: 1
   -
     font_file_name: GalmuriMono7.ttf
     dump_dir_name: galmuri-monospaced
     font_size: 8
-    rasterize_offset_y: 1
-  -
-    font_file_name: GalmuriMono9.ttf
-    dump_dir_name: galmuri-monospaced
-    font_size: 10
-    rasterize_offset_y: 1
-  -
-    font_file_name: GalmuriMono11.ttf
-    dump_dir_name: galmuri-monospaced
-    font_size: 12
     rasterize_offset_y: 1
