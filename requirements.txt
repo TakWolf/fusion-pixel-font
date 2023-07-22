@@ -1,8 +1,8 @@
 pixel-font-builder==0.0.4
-fonttools==4.41.0
+fonttools==4.41.1
 unidata-blocks==0.0.3
 character-encoding-utils==0.0.5
-PyYAML==6.0
+PyYAML==6.0.1
 pypng==0.20220715.0
 Pillow==10.0.0
 beautifulsoup4==4.12.2
