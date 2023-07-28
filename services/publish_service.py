@@ -15,20 +15,36 @@ logger = logging.getLogger('publish-service')
 
 def make_release_zips(font_config: FontConfig, width_mode: str):
     fs_util.make_dirs(path_define.releases_dir)
+
     for font_format in configs.font_formats:
         file_path = os.path.join(path_define.releases_dir, font_config.get_release_zip_file_name(width_mode, font_format))
         with zipfile.ZipFile(file_path, 'w') as file:
-            for language_flavor in configs.language_flavors:
-                font_file_name = font_config.get_font_file_name(width_mode, language_flavor, font_format)
-                font_file_path = os.path.join(path_define.outputs_dir, font_file_name)
-                file.write(font_file_path, font_file_name)
-
             file.write(os.path.join(path_define.project_root_dir, 'LICENSE-OFL'), 'OFL.txt')
             for name in configs.font_size_to_license_configs[font_config.size]:
                 font_license_file_path = os.path.join(path_define.fonts_dir, name, 'LICENSE.txt')
                 if not os.path.exists(font_license_file_path):
                     continue
                 file.write(font_license_file_path, f'LICENSE/{name}.txt')
+
+            for language_flavor in configs.language_flavors:
+                font_file_name = font_config.get_font_file_name(width_mode, language_flavor, font_format)
+                font_file_path = os.path.join(path_define.outputs_dir, font_file_name)
+                file.write(font_file_path, font_file_name)
+        logger.info("Make release zip: '%s'", file_path)
+
+    for font_format in configs.font_collection_formats:
+        file_path = os.path.join(path_define.releases_dir, font_config.get_release_zip_file_name(width_mode, font_format))
+        with zipfile.ZipFile(file_path, 'w') as file:
+            file.write(os.path.join(path_define.project_root_dir, 'LICENSE-OFL'), 'OFL.txt')
+            for name in configs.font_size_to_license_configs[font_config.size]:
+                font_license_file_path = os.path.join(path_define.fonts_dir, name, 'LICENSE.txt')
+                if not os.path.exists(font_license_file_path):
+                    continue
+                file.write(font_license_file_path, f'LICENSE/{name}.txt')
+
+            font_file_name = font_config.get_font_collection_file_name(width_mode, font_format)
+            font_file_path = os.path.join(path_define.outputs_dir, font_file_name)
+            file.write(font_file_path, font_file_name)
         logger.info("Make release zip: '%s'", file_path)
 
 

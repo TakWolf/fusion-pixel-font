@@ -21,6 +21,16 @@ width_mode_dir_names = [
     'proportional',
 ]
 
+language_file_flavors = [
+    'latin',
+    'zh_cn',
+    'zh_hk',
+    'zh_tw',
+    'zh_tr',
+    'ja',
+    'ko',
+]
+
 language_flavors = [
     'latin',
     'zh_hans',
@@ -38,6 +48,8 @@ locale_to_language_flavor = {
 }
 
 font_formats = ['otf', 'woff2', 'ttf', 'bdf']
+
+font_collection_formats = ['otc', 'ttc']
 
 font_size_to_dump_configs = DumpConfig.load()
 
