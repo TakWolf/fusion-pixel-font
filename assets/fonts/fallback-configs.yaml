@@ -1,5 +1,9 @@
 -
   font_size: 8
+  from_dir: chill-bitmap
+  to_dir: common
+-
+  font_size: 8
   from_dir: misaki/3040-309F Hiragana
   to_dir: common
 -

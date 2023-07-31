@@ -67,7 +67,6 @@ def apply_fallback(fallback_config: FallbackConfig):
         if fallback_config.flavor is not None:
             glyph_file_name = f'{hex_name} {fallback_config.flavor}.png'
         glyph_file_to_path = os.path.join(glyph_file_to_dir, glyph_file_name)
-        assert not os.path.exists(glyph_file_to_path), f"Glyph file duplication: '{glyph_file_from_path}'"
         fs_util.make_dirs(glyph_file_to_dir)
         shutil.copyfile(glyph_file_from_path, glyph_file_to_path)
         logger.info("Copy glyph file: '%s'", glyph_file_to_path)
