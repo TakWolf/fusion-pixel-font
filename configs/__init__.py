@@ -7,9 +7,6 @@ from configs.git_deploy_config import GitDeployConfig
 
 build_random_key = random.random()
 
-font_configs = [FontConfig(size) for size in [8, 10, 12]]
-font_size_to_config = {font_config.size: font_config for font_config in font_configs}
-
 width_modes = [
     'monospaced',
     'proportional',
@@ -50,6 +47,9 @@ locale_to_language_flavor = {
 font_formats = ['otf', 'woff2', 'ttf', 'bdf']
 
 font_collection_formats = ['otc', 'ttc']
+
+font_configs = [FontConfig(size) for size in [8, 10, 12]]
+font_size_to_config = {font_config.size: font_config for font_config in font_configs}
 
 font_size_to_dump_configs = DumpConfig.load()
 

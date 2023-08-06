@@ -1,13 +1,14 @@
 [font]
 size = 8
-line_height = 12
 
 [font.monospaced]
-box_origin_y = 7
+ascent = 7
+descent = -1
 x_height = 4
 cap_height = 6
 
 [font.proportional]
-box_origin_y = 7
+ascent = 9
+descent = -3
 x_height = 4
 cap_height = 6
