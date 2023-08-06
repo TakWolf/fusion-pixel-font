@@ -37,7 +37,7 @@ def make_alphabet_html_file(font_config: FontConfig, context: DesignContext, wid
 
 def _handle_demo_html_element(context: DesignContext, soup: bs4.BeautifulSoup, element: bs4.PageElement):
     if isinstance(element, bs4.element.Tag):
-        for child_element in list(element.contents):
+        for child_element in element.contents:
             _handle_demo_html_element(context, soup, child_element)
     elif isinstance(element, bs4.element.NavigableString):
         alphabet_monospaced = context.get_alphabet('monospaced')
