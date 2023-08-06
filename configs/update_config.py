@@ -8,7 +8,7 @@ from configs import path_define
 class DownloadAssetConfig:
     def __init__(self, config_data: dict):
         self.file_name: str = config_data['file_name']
-        self.copy_list = []
+        self.copy_list: list[tuple[str, str]] = []
         for from_path, to_path in config_data['copy_list'].items():
             if to_path is None:
                 to_path = from_path

@@ -102,10 +102,10 @@ def format_patch_glyph_files(font_config: FontConfig):
 class DesignContext:
     def __init__(self, glyphs_registry: dict[str, dict[int, dict[str, tuple[str, str]]]]):
         self._glyphs_registry = glyphs_registry
-        self._alphabet_cacher = dict[str, set[str]]()
-        self._character_mapping_cacher = dict[str, dict[int, str]]()
-        self._glyph_file_paths_cacher = dict[str, dict[str, str]]()
-        self._glyph_data_cacher = dict[str, tuple[list[list[int]], int, int]]()
+        self._alphabet_cacher: dict[str, set[str]] = {}
+        self._character_mapping_cacher: dict[str, dict[int, str]] = {}
+        self._glyph_file_paths_cacher: dict[str, dict[str, str]] = {}
+        self._glyph_data_cacher: dict[str, tuple[list[list[int]], int, int]] = {}
 
     def patch(self, other: 'DesignContext'):
         self._alphabet_cacher.clear()
@@ -171,7 +171,7 @@ class DesignContext:
 def collect_glyph_files(font_config: FontConfig, glyphs_dir: str) -> DesignContext:
     root_dir = os.path.join(glyphs_dir, str(font_config.size))
 
-    glyphs_cellar = dict[str, dict[int, dict[str, tuple[str, str]]]]()
+    glyphs_cellar = {}
     for width_mode_dir_name in configs.width_mode_dir_names:
         glyphs_cellar[width_mode_dir_name] = {}
         width_mode_dir = os.path.join(root_dir, width_mode_dir_name)
@@ -203,7 +203,7 @@ def collect_glyph_files(font_config: FontConfig, glyphs_dir: str) -> DesignConte
                     glyph_infos['default'] = glyph_infos[language_flavor]
                     break
 
-    glyphs_registry = dict[str, dict[int, dict[str, tuple[str, str]]]]()
+    glyphs_registry = {}
     for width_mode in configs.width_modes:
         glyphs_registry[width_mode] = dict(glyphs_cellar['common'])
         glyphs_registry[width_mode].update(glyphs_cellar[width_mode])
