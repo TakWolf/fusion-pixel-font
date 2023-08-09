@@ -27,7 +27,7 @@
   font_size: 8
   from_dir: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
   to_dir: common
-  flavor: zh_tr
+  flavor: zh_tw
 -
   font_size: 8
   from_dir: misaki/4E00-9FFF CJK Unified Ideographs
@@ -54,7 +54,7 @@
   font_size: 10
   from_dir: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
   to_dir: common
-  flavor: zh_tr
+  flavor: zh_tw
 -
   font_size: 10
   from_dir: galmuri/4E00-9FFF CJK Unified Ideographs
@@ -76,7 +76,7 @@
   font_size: 12
   from_dir: cubic-11/4E00-9FFF CJK Unified Ideographs
   to_dir: common
-  flavor: zh_tr
+  flavor: zh_tw
 -
   font_size: 12
   from_dir: galmuri/4E00-9FFF CJK Unified Ideographs
