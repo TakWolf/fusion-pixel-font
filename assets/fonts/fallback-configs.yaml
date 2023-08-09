@@ -45,15 +45,6 @@
   to_dir: common
 -
   font_size: 8
-  from_dir: chill-bitmap/3000-303F CJK Symbols and Punctuation
-  to_dir: common
--
-  font_size: 8
-  from_dir: boutique-bitmap/3000-303F CJK Symbols and Punctuation
-  to_dir: common
-  flavor: zh_tw
--
-  font_size: 8
   from_dir: boutique-bitmap/3100-312F Bopomofo
   to_dir: common
 -
