@@ -29,10 +29,6 @@
   to_dir: common
 -
   font_size: 8
-  from_dir: chill-bitmap/2580-259F Block Elements
-  to_dir: common
--
-  font_size: 8
   from_dir: chill-bitmap/2600-26FF Miscellaneous Symbols
   to_dir: common
 -
