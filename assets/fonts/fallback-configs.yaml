@@ -21,14 +21,6 @@
   to_dir: common
 -
   font_size: 8
-  from_dir: chill-bitmap/2190-21FF Arrows
-  to_dir: common
--
-  font_size: 8
-  from_dir: boutique-bitmap/2190-21FF Arrows
-  to_dir: common
--
-  font_size: 8
   from_dir: chill-bitmap/2200-22FF Mathematical Operators
   to_dir: common
 -
