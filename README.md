@@ -117,11 +117,9 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 如果这个项目对您有帮助，请考虑赞助来支持开发工作。
 
-- [收款码](https://github.com/TakWolf/TakWolf/blob/master/payment-qr-codes.md)
-- [爱发电](https://afdian.net/@takwolf)
+[![赞赏码](https://raw.githubusercontent.com/TakWolf/TakWolf/master/images/payqr-badge-x2.png)](https://github.com/TakWolf/TakWolf/blob/master/payment-qr-codes.md)
+[![爱发电](https://raw.githubusercontent.com/TakWolf/TakWolf/master/images/afdian-badge-x2.png)](https://afdian.net/@takwolf)
 
-赞助时请留下您的称呼，该信息将会被添加到赞助商列表中。
-
-可以通过下面的链接来查看收到的赞助的具体情况：
+请通过下面的链接来查看收到的赞助的具体情况：
 
 [赞助详情](https://github.com/TakWolf/TakWolf/blob/master/sponsors.md)
