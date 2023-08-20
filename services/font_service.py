@@ -239,7 +239,7 @@ def _create_builder(
     if language_flavor == 'zh_hans':
         language_file_flavor = 'zh_cn'
     elif language_flavor == 'zh_hant':
-        language_file_flavor = 'zh_tw'
+        language_file_flavor = 'zh_tr'
     else:
         language_file_flavor = language_flavor
 
