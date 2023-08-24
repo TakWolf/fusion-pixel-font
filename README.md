@@ -10,14 +10,11 @@
 
 开源的泛中日韩像素字体。支持 8、10 和 12 像素。
 
-该项目为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 可用前的过渡解决方案。使用多个像素字体合并而成，因此以「缝合」命名。
+该项目为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 的临时性过渡方案。使用多个像素字体合并而成，因此以「缝合」命名。
 
 Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B) 中的 [「融合」](https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=4837&request_locale=ja) 魔法卡卡图。
 
 这个项目提供了从提取字模，合并字形到构建字体所需要的完整程序。
-
-- [Discord](https://discord.gg/3GKtPKtjdU)
-- [QQ 群](https://jq.qq.com/?_wv=1027&k=EXtKGHar)
 
 ## 预览
 
@@ -75,7 +72,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 请 [在此](docs/cases.md) 查看使用案例。
 
-## 授权信息
+## 授权许可
 
 分为「字体」和「构建程序」两个部分。
 
@@ -98,6 +95,11 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 ### 构建程序
 
 使用 [MIT 许可证](LICENSE-MIT) 授权。
+
+## 官方社区
+
+- [「像素字体工房」Discord 服务器](https://discord.gg/3GKtPKtjdU)
+- [「像素字体工房」QQ 群 (302383204)](https://jq.qq.com/?_wv=1027&k=EXtKGHar)
 
 ## 程序依赖
 
