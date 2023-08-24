@@ -1,7 +1,7 @@
-pixel-font-builder==0.0.9
-fonttools==4.42.0
-unidata-blocks==0.0.5
-character-encoding-utils==0.0.5
+pixel-font-builder==0.0.10
+fonttools==4.42.1
+unidata-blocks==0.0.6
+character-encoding-utils==0.0.6
 PyYAML==6.0.1
 pypng==0.20220715.0
 Pillow==10.0.0
