@@ -103,8 +103,8 @@ def setup_ark_pixel_glyphs():
         return
     logger.info('Need setup glyphs')
 
-    download_dir = os.path.join(path_define.cache_dir, 'ark-pixel-font', version_info['sha'])
-    source_file_path = os.path.join(download_dir, 'source.zip')
+    download_dir = os.path.join(path_define.cache_dir, 'ark-pixel-font')
+    source_file_path = os.path.join(download_dir, f'{sha}.zip')
     if not os.path.exists(source_file_path):
         asset_url = version_info["asset_url"]
         logger.info("Start download: '%s'", asset_url)
@@ -113,16 +113,16 @@ def setup_ark_pixel_glyphs():
     else:
         logger.info("Already downloaded: '%s'", source_file_path)
 
-    source_unzip_dir = source_file_path.removesuffix('.zip')
+    source_unzip_dir = os.path.join(download_dir, f'ark-pixel-font-{sha}')
     fs_util.delete_dir(source_unzip_dir)
     with zipfile.ZipFile(source_file_path) as file:
-        file.extractall(source_unzip_dir)
+        file.extractall(download_dir)
     logger.info("Unzip: '%s'", source_unzip_dir)
 
     fs_util.delete_dir(path_define.ark_pixel_glyphs_dir)
     fs_util.make_dirs(path_define.ark_pixel_glyphs_dir)
     for font_config in configs.font_configs:
-        source_glyphs_from_dir = os.path.join(source_unzip_dir, f'ark-pixel-font-{sha}', 'assets', 'glyphs', str(font_config.size))
+        source_glyphs_from_dir = os.path.join(source_unzip_dir, 'assets', 'glyphs', str(font_config.size))
         if not os.path.isdir(source_glyphs_from_dir):
             continue
         source_glyphs_to_dir = os.path.join(path_define.ark_pixel_glyphs_dir, str(font_config.size))
@@ -136,7 +136,7 @@ def setup_ark_pixel_glyphs():
     ark_pixel_license_dir = os.path.join(path_define.fonts_dir, 'ark-pixel')
     fs_util.delete_dir(ark_pixel_license_dir)
     fs_util.make_dirs(ark_pixel_license_dir)
-    ark_pixel_license_from_path = os.path.join(source_unzip_dir, f'ark-pixel-font-{sha}', 'LICENSE-OFL')
+    ark_pixel_license_from_path = os.path.join(source_unzip_dir, 'LICENSE-OFL')
     ark_pixel_license_to_path = os.path.join(ark_pixel_license_dir, 'LICENSE.txt')
     shutil.copyfile(ark_pixel_license_from_path, ark_pixel_license_to_path)
 
