@@ -4,8 +4,8 @@ unidata-blocks==0.0.6
 character-encoding-utils==0.0.6
 PyYAML==6.0.1
 pypng==0.20220715.0
-Pillow==10.0.0
+Pillow==10.0.1
 beautifulsoup4==4.12.2
 Jinja2==3.1.2
-GitPython==3.1.32
+GitPython==3.1.36
 requests==2.31.0
