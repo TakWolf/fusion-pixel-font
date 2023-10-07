@@ -1,5 +1,5 @@
 pixel-font-builder==0.0.10
-fonttools==4.43.0
+fonttools==4.43.1
 unidata-blocks==0.0.8
 character-encoding-utils==0.0.6
 PyYAML==6.0.1
