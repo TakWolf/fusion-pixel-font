@@ -56,7 +56,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 |---|---|
 | latin | 拉丁语 |
 | zh_hans | 中文-简体 |
-| zh-hant | 中文-繁體 |
+| zh_hant | 中文-繁體 |
 | ja | 日语 |
 | ko | 朝鲜语 |
 
