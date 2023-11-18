@@ -10,9 +10,9 @@
 
 开源的泛中日韩像素字体。支持 8、10 和 12 像素。
 
-该项目为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 的临时性过渡方案。使用多个像素字体合并而成，因此以「缝合」命名。
+该项目为[「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font)的临时性过渡方案。使用多个像素字体合并而成，因此以「缝合」命名。
 
-Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B) 中的 [「融合」](https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=4837&request_locale=ja) 魔法卡卡图。
+Logo 捏他自[《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B)中的[「融合」](https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=4837&request_locale=ja)魔法卡卡图。
 
 这个项目提供了从提取字模，合并字形到构建字体所需要的完整程序。
 
@@ -81,7 +81,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 ### 字体
 
-使用 [SIL 开放字体许可证第 1.1 版](LICENSE-OFL) 授权，保留字体名称「缝合像素 / Fusion Pixel」。
+使用[「SIL 开放字体许可证第 1.1 版」](LICENSE-OFL)授权，保留字体名称「缝合像素 / Fusion Pixel」。
 
 第三方字源许可证如下：
 
@@ -97,7 +97,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 ### 构建程序
 
-使用 [MIT 许可证](LICENSE-MIT) 授权。
+使用[「MIT 许可证」](LICENSE-MIT)授权。
 
 ## 官方社区
 
