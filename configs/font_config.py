@@ -1,5 +1,5 @@
+import datetime
 import os
-import time
 import tomllib
 from typing import Final
 
@@ -20,7 +20,7 @@ class Metrics:
 
 
 class FontConfig:
-    VERSION: Final[str] = time.strftime("%Y.%m.%d")
+    VERSION: Final[str] = datetime.datetime.now(datetime.UTC).strftime("%Y.%m.%d")
     FAMILY_NAME: Final[str] = 'Fusion Pixel'
     OUTPUTS_NAME: Final[str] = 'fusion-pixel'
     MANUFACTURER: Final[str] = 'TakWolf'
