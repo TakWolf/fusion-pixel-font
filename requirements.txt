@@ -1,5 +1,5 @@
-pixel-font-builder==0.0.10
-fonttools==4.43.1
+pixel-font-builder==0.0.11
+fonttools==4.45.1
 unidata-blocks==0.0.8
 character-encoding-utils==0.0.6
 PyYAML==6.0.1
@@ -7,5 +7,5 @@ pypng==0.20220715.0
 Pillow==10.1.0
 beautifulsoup4==4.12.2
 Jinja2==3.1.2
-GitPython==3.1.38
+GitPython==3.1.40
 requests==2.31.0
