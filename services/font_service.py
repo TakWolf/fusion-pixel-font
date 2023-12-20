@@ -266,11 +266,12 @@ def _create_builder(
 
     builder.horizontal_header.ascent = layout_params.ascent
     builder.horizontal_header.descent = layout_params.descent
-    builder.horizontal_header.x_height = layout_params.x_height
-    builder.horizontal_header.cap_height = layout_params.cap_height
 
     builder.vertical_header.ascent = layout_params.ascent
     builder.vertical_header.descent = layout_params.descent
+
+    builder.properties.x_height = layout_params.x_height
+    builder.properties.cap_height = layout_params.cap_height
 
     character_mapping = context.get_character_mapping(width_mode, language_file_flavor)
     builder.character_mapping.update(character_mapping)
