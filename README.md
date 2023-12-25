@@ -1,4 +1,4 @@
-![banner](docs/logo.png)
+![banner](docs/logo-x2.png)
 
 # 缝合像素字体 / Fusion Pixel Font
 
