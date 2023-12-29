@@ -12,12 +12,6 @@ width_modes = [
     'proportional',
 ]
 
-width_mode_dir_names = [
-    'common',
-    'monospaced',
-    'proportional',
-]
-
 language_file_flavors = [
     'latin',
     'zh_cn',
