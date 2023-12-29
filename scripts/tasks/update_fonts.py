@@ -1,7 +1,7 @@
 import logging
 
-from configs.update_config import UpdateConfig
-from services import update_service
+from scripts.configs.update_config import UpdateConfig
+from scripts.services import update_service
 
 logging.basicConfig(level=logging.DEBUG)
 

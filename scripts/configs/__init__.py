@@ -1,9 +1,9 @@
 import random
 
-from configs.dump_config import DumpConfig
-from configs.fallback_config import FallbackConfig
-from configs.font_config import FontConfig
-from configs.git_deploy_config import GitDeployConfig
+from scripts.configs.dump_config import DumpConfig
+from scripts.configs.fallback_config import FallbackConfig
+from scripts.configs.font_config import FontConfig
+from scripts.configs.git_deploy_config import GitDeployConfig
 
 build_random_key = random.random()
 

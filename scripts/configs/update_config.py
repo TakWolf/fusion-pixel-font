@@ -2,7 +2,7 @@ import os
 
 import yaml
 
-from configs import path_define
+from scripts.configs import path_define
 
 
 class DownloadAssetConfig:

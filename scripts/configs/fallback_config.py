@@ -2,8 +2,8 @@ import os
 
 import yaml
 
-import configs
-from configs import path_define
+from scripts import configs
+from scripts.configs import path_define
 
 
 class FallbackConfig:

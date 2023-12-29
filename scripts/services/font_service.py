@@ -7,9 +7,9 @@ import unidata_blocks
 from pixel_font_builder import FontBuilder, FontCollectionBuilder, Glyph, StyleName, SerifMode
 from pixel_font_builder.opentype import Flavor
 
-import configs
-from configs import FontConfig, path_define
-from utils import fs_util, glyph_util
+from scripts import configs
+from scripts.configs import FontConfig, path_define
+from scripts.utils import fs_util, glyph_util
 
 logger = logging.getLogger('font-service')
 
