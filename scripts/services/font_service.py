@@ -2,6 +2,7 @@ import logging
 import math
 import os
 import unicodedata
+from collections import defaultdict
 
 import unidata_blocks
 from pixel_font_builder import FontBuilder, FontCollectionBuilder, Glyph, StyleName, SerifMode
@@ -187,8 +188,11 @@ class DesignContext:
 
 
 def collect_glyph_files(font_config: FontConfig, glyphs_dir: str) -> DesignContext:
-    cellar = {}
+    # FIXME
+    cellar = defaultdict(dict)
     root_dir = os.path.join(glyphs_dir, str(font_config.size))
+    # FIXME
+    fs_util.make_dirs(root_dir)
     for width_mode_dir_name in os.listdir(root_dir):
         width_mode_dir = os.path.join(root_dir, width_mode_dir_name)
         if not os.path.isdir(width_mode_dir):
