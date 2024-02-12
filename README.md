@@ -2,7 +2,7 @@
 
 # 缝合像素字体 / Fusion Pixel Font
 
-[![SIL Open Font License 1.1](https://img.shields.io/badge/license-OFL--1.1-orange)](https://scripts.sil.org/OFL)
+[![SIL Open Font License 1.1](https://img.shields.io/badge/license-OFL--1.1-orange)](https://openfontlicense.org)
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 [![Releases](https://img.shields.io/github/v/release/TakWolf/fusion-pixel-font)](https://github.com/TakWolf/fusion-pixel-font/releases)
 [![Discord](https://img.shields.io/discord/949265373964947458?logo=discord&logoColor=white&label=discord)](https://discord.gg/3GKtPKtjdU)
