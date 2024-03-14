@@ -61,7 +61,7 @@ def make_preview_image_file(font_config: FontConfig):
     _draw_text(image, (font_config.size, font_config.size + font_config.line_height * 8), '★☆☺☹♠♡♢♣♤♥♦♧☀☼♩♪♫♬☂☁⚓✈⚔☯', font_latin)
     image = image.resize((image.width * 2, image.height * 2), Image.Resampling.NEAREST)
 
-    fs_util.make_dirs(path_define.outputs_dir)
+    fs_util.make_dir(path_define.outputs_dir)
     file_path = os.path.join(path_define.outputs_dir, font_config.preview_image_file_name)
     image.save(file_path)
     logger.info("Make preview image file: '%s'", file_path)

@@ -93,7 +93,7 @@ def format_patch_glyph_files(font_config: FontConfig):
 
                 if file_path_to != file_path_from:
                     assert not os.path.exists(file_path_to), f"Glyph file duplication: '{file_path_from}'"
-                    fs_util.make_dirs(file_dir_to)
+                    fs_util.make_dir(file_dir_to)
                     os.remove(file_path_from)
                 glyph_util.save_glyph_data_to_png(glyph_data, file_path_to)
                 logger.info("Format glyph file: '%s'", file_path_to)
@@ -192,7 +192,7 @@ def collect_glyph_files(font_config: FontConfig, glyphs_dir: str) -> DesignConte
     cellar = defaultdict(dict)
     root_dir = os.path.join(glyphs_dir, str(font_config.size))
     # FIXME
-    fs_util.make_dirs(root_dir)
+    fs_util.make_dir(root_dir)
     for width_mode_dir_name in os.listdir(root_dir):
         width_mode_dir = os.path.join(root_dir, width_mode_dir_name)
         if not os.path.isdir(width_mode_dir):
@@ -309,7 +309,7 @@ def _create_builder(
 
 
 def make_font_files(font_config: FontConfig, context: DesignContext, width_mode: str):
-    fs_util.make_dirs(path_define.outputs_dir)
+    fs_util.make_dir(path_define.outputs_dir)
 
     glyph_cacher = {}
 

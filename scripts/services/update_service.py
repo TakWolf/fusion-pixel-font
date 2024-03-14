@@ -108,7 +108,7 @@ def setup_ark_pixel_glyphs():
     if not os.path.exists(source_file_path):
         asset_url = version_info["asset_url"]
         logger.info("Start download: '%s'", asset_url)
-        fs_util.make_dirs(download_dir)
+        fs_util.make_dir(download_dir)
         _download_file(asset_url, source_file_path)
     else:
         logger.info("Already downloaded: '%s'", source_file_path)
@@ -120,7 +120,7 @@ def setup_ark_pixel_glyphs():
     logger.info("Unzip: '%s'", source_unzip_dir)
 
     fs_util.delete_dir(path_define.ark_pixel_glyphs_dir)
-    fs_util.make_dirs(path_define.ark_pixel_glyphs_dir)
+    fs_util.make_dir(path_define.ark_pixel_glyphs_dir)
     for font_config in configs.font_configs:
         source_glyphs_dir_from = os.path.join(source_unzip_dir, 'assets', 'glyphs', str(font_config.size))
         if not os.path.isdir(source_glyphs_dir_from):
@@ -135,7 +135,7 @@ def setup_ark_pixel_glyphs():
 
     ark_pixel_license_dir = os.path.join(path_define.fonts_dir, 'ark-pixel')
     fs_util.delete_dir(ark_pixel_license_dir)
-    fs_util.make_dirs(ark_pixel_license_dir)
+    fs_util.make_dir(ark_pixel_license_dir)
     ark_pixel_license_path_from = os.path.join(source_unzip_dir, 'LICENSE-OFL')
     ark_pixel_license_path_to = os.path.join(ark_pixel_license_dir, 'LICENSE.txt')
     shutil.copyfile(ark_pixel_license_path_from, ark_pixel_license_path_to)
@@ -158,7 +158,7 @@ def update_fonts(update_config: UpdateConfig):
     repository_url = f'https://github.com/{update_config.repository_name}'
 
     download_dir = os.path.join(path_define.cache_dir, update_config.repository_name, tag_name)
-    fs_util.make_dirs(download_dir)
+    fs_util.make_dir(download_dir)
 
     fonts_dir = os.path.join(path_define.fonts_dir, update_config.name)
     fs_util.delete_dir(fonts_dir)

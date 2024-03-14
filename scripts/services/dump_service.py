@@ -46,7 +46,7 @@ def dump_font(dump_config: DumpConfig, exclude_alphabet: set[str]):
             glyph_file_dir = os.path.join(glyph_file_dir, f'{hex_name[0:-2]}-')
         glyph_file_path = os.path.join(glyph_file_dir, f'{hex_name}.png')
 
-        fs_util.make_dirs(glyph_file_dir)
+        fs_util.make_dir(glyph_file_dir)
         image.save(glyph_file_path)
         logger.info("Dump glyph: '%s'", glyph_file_path)
 
@@ -68,6 +68,6 @@ def apply_fallback(fallback_config: FallbackConfig):
             if fallback_config.flavor is not None:
                 glyph_file_name = f'{hex_name} {fallback_config.flavor}.png'
             glyph_file_path_to = os.path.join(glyph_file_dir_to, glyph_file_name)
-            fs_util.make_dirs(glyph_file_dir_to)
+            fs_util.make_dir(glyph_file_dir_to)
             shutil.copyfile(glyph_file_path_from, glyph_file_path_to)
             logger.info("Copy glyph file: '%s'", glyph_file_path_to)
