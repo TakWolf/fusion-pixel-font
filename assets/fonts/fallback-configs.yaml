@@ -1,153 +1,153 @@
 # 基础兼容
 -
   font_size: 8
-  from_dir: chill-bitmap/0080-00FF Latin-1 Supplement
-  to_dir: common
+  dir_from: chill-bitmap/0080-00FF Latin-1 Supplement
+  dir_to: common
 -
   font_size: 8
-  from_dir: chill-bitmap/0100-017F Latin Extended-A
-  to_dir: common
+  dir_from: chill-bitmap/0100-017F Latin Extended-A
+  dir_to: common
 -
   font_size: 8
-  from_dir: chill-bitmap/0180-024F Latin Extended-B
-  to_dir: common
+  dir_from: chill-bitmap/0180-024F Latin Extended-B
+  dir_to: common
 -
   font_size: 8
-  from_dir: boutique-bitmap/2000-206F General Punctuation
-  to_dir: common
+  dir_from: boutique-bitmap/2000-206F General Punctuation
+  dir_to: common
 -
   font_size: 8
-  from_dir: boutique-bitmap/2150-218F Number Forms
-  to_dir: common
+  dir_from: boutique-bitmap/2150-218F Number Forms
+  dir_to: common
 -
   font_size: 8
-  from_dir: chill-bitmap/2200-22FF Mathematical Operators
-  to_dir: common
+  dir_from: chill-bitmap/2200-22FF Mathematical Operators
+  dir_to: common
 -
   font_size: 8
-  from_dir: chill-bitmap/2460-24FF Enclosed Alphanumerics
-  to_dir: common
+  dir_from: chill-bitmap/2460-24FF Enclosed Alphanumerics
+  dir_to: common
 -
   font_size: 8
-  from_dir: chill-bitmap/2600-26FF Miscellaneous Symbols
-  to_dir: common
+  dir_from: chill-bitmap/2600-26FF Miscellaneous Symbols
+  dir_to: common
 -
   font_size: 8
-  from_dir: boutique-bitmap/3100-312F Bopomofo
-  to_dir: common
+  dir_from: boutique-bitmap/3100-312F Bopomofo
+  dir_to: common
 -
   font_size: 8
-  from_dir: boutique-bitmap/3200-32FF Enclosed CJK Letters and Months
-  to_dir: common
+  dir_from: boutique-bitmap/3200-32FF Enclosed CJK Letters and Months
+  dir_to: common
 -
   font_size: 8
-  from_dir: chill-bitmap/FE10-FE1F Vertical Forms
-  to_dir: common
+  dir_from: chill-bitmap/FE10-FE1F Vertical Forms
+  dir_to: common
 -
   font_size: 8
-  from_dir: chill-bitmap/FE30-FE4F CJK Compatibility Forms
-  to_dir: common
+  dir_from: chill-bitmap/FE30-FE4F CJK Compatibility Forms
+  dir_to: common
 -
   font_size: 8
-  from_dir: chill-bitmap/FE50-FE6F Small Form Variants
-  to_dir: common
+  dir_from: chill-bitmap/FE50-FE6F Small Form Variants
+  dir_to: common
 -
   font_size: 8
-  from_dir: boutique-bitmap/FF00-FFEF Halfwidth and Fullwidth Forms
-  to_dir: common
+  dir_from: boutique-bitmap/FF00-FFEF Halfwidth and Fullwidth Forms
+  dir_to: common
 
 
 # 汉字
 -
   font_size: 8
-  from_dir: chill-bitmap/4E00-9FFF CJK Unified Ideographs
-  to_dir: common
+  dir_from: chill-bitmap/4E00-9FFF CJK Unified Ideographs
+  dir_to: common
   flavor: zh_cn
 -
   font_size: 8
-  from_dir: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
-  to_dir: common
+  dir_from: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
+  dir_to: common
   flavor: zh_hk,zh_tw,zh_tr
 -
   font_size: 8
-  from_dir: misaki/4E00-9FFF CJK Unified Ideographs
-  to_dir: common
+  dir_from: misaki/4E00-9FFF CJK Unified Ideographs
+  dir_to: common
   flavor: ja
 -
   font_size: 8
-  from_dir: galmuri/4E00-9FFF CJK Unified Ideographs
-  to_dir: common
+  dir_from: galmuri/4E00-9FFF CJK Unified Ideographs
+  dir_to: common
   flavor: ko
 -
   font_size: 10
-  from_dir: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
-  to_dir: common
+  dir_from: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
+  dir_to: common
   flavor: zh_hk,zh_tw,zh_tr
 -
   font_size: 10
-  from_dir: galmuri/4E00-9FFF CJK Unified Ideographs
-  to_dir: common
+  dir_from: galmuri/4E00-9FFF CJK Unified Ideographs
+  dir_to: common
   flavor: ko
 -
   font_size: 12
-  from_dir: cubic-11/4E00-9FFF CJK Unified Ideographs
-  to_dir: common
+  dir_from: cubic-11/4E00-9FFF CJK Unified Ideographs
+  dir_to: common
   flavor: zh_hk,zh_tw,zh_tr
 -
   font_size: 12
-  from_dir: galmuri/4E00-9FFF CJK Unified Ideographs
-  to_dir: common
+  dir_from: galmuri/4E00-9FFF CJK Unified Ideographs
+  dir_to: common
   flavor: ko
 
 
 # 日语假名
 -
   font_size: 8
-  from_dir: misaki/3040-309F Hiragana
-  to_dir: common
+  dir_from: misaki/3040-309F Hiragana
+  dir_to: common
 -
   font_size: 8
-  from_dir: misaki/30A0-30FF Katakana
-  to_dir: common
+  dir_from: misaki/30A0-30FF Katakana
+  dir_to: common
 
 
 # 谚文
 -
   font_size: 8
-  from_dir: galmuri/3130-318F Hangul Compatibility Jamo
-  to_dir: common
+  dir_from: galmuri/3130-318F Hangul Compatibility Jamo
+  dir_to: common
 -
   font_size: 10
-  from_dir: galmuri/3130-318F Hangul Compatibility Jamo
-  to_dir: common
+  dir_from: galmuri/3130-318F Hangul Compatibility Jamo
+  dir_to: common
 -
   font_size: 12
-  from_dir: galmuri/3130-318F Hangul Compatibility Jamo
-  to_dir: common
+  dir_from: galmuri/3130-318F Hangul Compatibility Jamo
+  dir_to: common
 -
   font_size: 8
-  from_dir: galmuri/AC00-D7AF Hangul Syllables
-  to_dir: common
+  dir_from: galmuri/AC00-D7AF Hangul Syllables
+  dir_to: common
 -
   font_size: 10
-  from_dir: galmuri/AC00-D7AF Hangul Syllables
-  to_dir: common
+  dir_from: galmuri/AC00-D7AF Hangul Syllables
+  dir_to: common
 -
   font_size: 12
-  from_dir: galmuri/AC00-D7AF Hangul Syllables
-  to_dir: common
+  dir_from: galmuri/AC00-D7AF Hangul Syllables
+  dir_to: common
 
 
 # Galmuri 特殊私有字形
 -
   font_size: 8
-  from_dir: galmuri/E000-F8FF Private Use Area
-  to_dir: common
+  dir_from: galmuri/E000-F8FF Private Use Area
+  dir_to: common
 -
   font_size: 10
-  from_dir: galmuri/E000-F8FF Private Use Area
-  to_dir: common
+  dir_from: galmuri/E000-F8FF Private Use Area
+  dir_to: common
 -
   font_size: 12
-  from_dir: galmuri/E000-F8FF Private Use Area
-  to_dir: common
+  dir_from: galmuri/E000-F8FF Private Use Area
+  dir_to: common

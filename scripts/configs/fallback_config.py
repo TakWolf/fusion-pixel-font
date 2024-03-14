@@ -20,6 +20,6 @@ class FallbackConfig:
 
     def __init__(self, config_data: dict):
         self.font_size: int = config_data['font_size']
-        self.from_dir: str = os.path.join(path_define.dump_dir, str(self.font_size), config_data['from_dir'])
-        self.to_dir: str = os.path.join(path_define.fallback_glyphs_dir, str(self.font_size), config_data['to_dir'])
+        self.dir_from: str = os.path.join(path_define.dump_dir, str(self.font_size), config_data['dir_from'])
+        self.dir_to: str = os.path.join(path_define.fallback_glyphs_dir, str(self.font_size), config_data['dir_to'])
         self.flavor: str | None = config_data.get('flavor', None)

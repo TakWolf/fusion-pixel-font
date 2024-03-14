@@ -122,23 +122,23 @@ def setup_ark_pixel_glyphs():
     fs_util.delete_dir(path_define.ark_pixel_glyphs_dir)
     fs_util.make_dirs(path_define.ark_pixel_glyphs_dir)
     for font_config in configs.font_configs:
-        source_glyphs_from_dir = os.path.join(source_unzip_dir, 'assets', 'glyphs', str(font_config.size))
-        if not os.path.isdir(source_glyphs_from_dir):
+        source_glyphs_dir_from = os.path.join(source_unzip_dir, 'assets', 'glyphs', str(font_config.size))
+        if not os.path.isdir(source_glyphs_dir_from):
             continue
-        source_glyphs_to_dir = os.path.join(path_define.ark_pixel_glyphs_dir, str(font_config.size))
-        shutil.copytree(source_glyphs_from_dir, source_glyphs_to_dir)
+        source_glyphs_dir_to = os.path.join(path_define.ark_pixel_glyphs_dir, str(font_config.size))
+        shutil.copytree(source_glyphs_dir_from, source_glyphs_dir_to)
 
-        config_file_from_path = os.path.join(path_define.ark_pixel_glyphs_dir, str(font_config.size), 'config.toml')
-        config_file_to_path = os.path.join(path_define.patch_glyphs_dir, str(font_config.size), 'config.toml')
-        os.remove(config_file_to_path)
-        os.rename(config_file_from_path, config_file_to_path)
+        config_file_path_from = os.path.join(path_define.ark_pixel_glyphs_dir, str(font_config.size), 'config.toml')
+        config_file_path_to = os.path.join(path_define.patch_glyphs_dir, str(font_config.size), 'config.toml')
+        os.remove(config_file_path_to)
+        os.rename(config_file_path_from, config_file_path_to)
 
     ark_pixel_license_dir = os.path.join(path_define.fonts_dir, 'ark-pixel')
     fs_util.delete_dir(ark_pixel_license_dir)
     fs_util.make_dirs(ark_pixel_license_dir)
-    ark_pixel_license_from_path = os.path.join(source_unzip_dir, 'LICENSE-OFL')
-    ark_pixel_license_to_path = os.path.join(ark_pixel_license_dir, 'LICENSE.txt')
-    shutil.copyfile(ark_pixel_license_from_path, ark_pixel_license_to_path)
+    ark_pixel_license_path_from = os.path.join(source_unzip_dir, 'LICENSE-OFL')
+    ark_pixel_license_path_to = os.path.join(ark_pixel_license_dir, 'LICENSE.txt')
+    shutil.copyfile(ark_pixel_license_path_from, ark_pixel_license_path_to)
 
     fs_util.delete_dir(source_unzip_dir)
     configs.font_configs = [FontConfig(font_config.size) for font_config in configs.font_configs]
