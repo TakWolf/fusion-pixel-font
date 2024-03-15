@@ -1,9 +1,5 @@
-import logging
-
 from scripts.configs.update_config import UpdateConfig
 from scripts.services import update_service
-
-logging.basicConfig(level=logging.DEBUG)
 
 
 def main():
