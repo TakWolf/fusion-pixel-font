@@ -11,7 +11,7 @@ from scripts.configs.dump import DumpConfig
 from scripts.configs.fallback import FallbackConfig
 from scripts.utils import fs_util
 
-logger = logging.getLogger('dump-service')
+logger = logging.getLogger('dump_service')
 
 
 def dump_font(dump_config: DumpConfig, exclude_alphabet: set[str]):

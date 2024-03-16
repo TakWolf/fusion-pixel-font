@@ -11,7 +11,7 @@ from scripts.configs.ark_pixel_config import SourceType
 from scripts.configs.update import UpdateConfig
 from scripts.utils import fs_util
 
-logger = logging.getLogger('update-service')
+logger = logging.getLogger('update_service')
 
 
 def _get_github_releases_latest_tag_name(repository_name: str) -> str:

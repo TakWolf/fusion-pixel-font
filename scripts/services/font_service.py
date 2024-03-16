@@ -12,7 +12,7 @@ from scripts import configs
 from scripts.configs import FontConfig, path_define
 from scripts.utils import fs_util, glyph_util
 
-logger = logging.getLogger('font-service')
+logger = logging.getLogger('font_service')
 
 
 def _parse_glyph_file_name(file_name: str) -> tuple[int, list[str]]:
