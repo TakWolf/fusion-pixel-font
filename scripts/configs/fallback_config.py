@@ -1,17 +1,15 @@
 import os
 
-import yaml
-
 from scripts import configs
 from scripts.configs import path_define
+from scripts.utils import fs_util
 
 
 class FallbackConfig:
     @staticmethod
     def load() -> dict[int, list['FallbackConfig']]:
         file_path = os.path.join(path_define.fonts_dir, 'fallback-configs.yaml')
-        with open(file_path, 'rb') as file:
-            configs_data: dict = yaml.safe_load(file)
+        configs_data: dict = fs_util.read_yaml(file_path)
         font_size_to_fallback_configs = {font_config.size: [] for font_config in configs.font_configs}
         for config_data in configs_data:
             fallback_config = FallbackConfig(config_data)

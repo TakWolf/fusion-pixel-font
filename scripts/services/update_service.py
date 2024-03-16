@@ -1,4 +1,3 @@
-import json
 import logging
 import os
 import shutil
@@ -51,17 +50,6 @@ def _download_file(url: str, file_path: str):
     os.rename(tmp_file_path, file_path)
 
 
-def _save_json_file(data: dict, file_path: str):
-    with open(file_path, 'w', encoding='utf-8') as file:
-        file.write(json.dumps(data, indent=2, ensure_ascii=False))
-        file.write('\n')
-
-
-def _load_json_file(file_path: str) -> dict:
-    with open(file_path, 'r', encoding='utf-8') as file:
-        return json.loads(file.read())
-
-
 def update_glyphs_version():
     if ark_pixel_config.source_type == SourceType.TAG:
         tag_name = ark_pixel_config.source_name
@@ -85,19 +73,19 @@ def update_glyphs_version():
         'asset_url': f'https://github.com/{ark_pixel_config.repository_name}/archive/{sha}.zip',
     }
     file_path = os.path.join(path_define.glyphs_dir, 'version.json')
-    _save_json_file(version_info, file_path)
+    fs_util.write_json(version_info, file_path)
     logger.info("Update version file: '%s'", file_path)
 
 
 def setup_ark_pixel_glyphs():
     current_version_file_path = os.path.join(path_define.ark_pixel_glyphs_dir, 'version.json')
     if os.path.isfile(current_version_file_path):
-        current_sha = _load_json_file(current_version_file_path)['sha']
+        current_sha = fs_util.read_json(current_version_file_path)['sha']
     else:
         current_sha = None
 
     version_file_path = os.path.join(path_define.glyphs_dir, 'version.json')
-    version_info = _load_json_file(version_file_path)
+    version_info = fs_util.read_json(version_file_path)
     sha = version_info['sha']
     if current_sha == sha:
         return
@@ -143,7 +131,7 @@ def setup_ark_pixel_glyphs():
     fs_util.delete_dir(source_unzip_dir)
     configs.font_configs = [FontConfig(font_config.size) for font_config in configs.font_configs]
     configs.font_size_to_config = {font_config.size: font_config for font_config in configs.font_configs}
-    _save_json_file(version_info, current_version_file_path)
+    fs_util.write_json(version_info, current_version_file_path)
     logger.info("Update glyphs: '%s'", sha)
 
 
@@ -193,5 +181,5 @@ def update_fonts(update_config: UpdateConfig):
         'version_url': f'{repository_url}/releases/tag/{tag_name}',
     }
     version_file_path = os.path.join(fonts_dir, 'version.json')
-    _save_json_file(version_info, version_file_path)
+    fs_util.write_json(version_info, version_file_path)
     logger.info("Update version file: '%s'", version_file_path)
