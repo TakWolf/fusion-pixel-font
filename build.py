@@ -5,7 +5,10 @@ from scripts.utils import fs_util
 
 
 def main():
-    fs_util.delete_dir(path_define.build_dir)
+    fs_util.delete_dir(path_define.dump_dir)
+    fs_util.delete_dir(path_define.fallback_glyphs_dir)
+    fs_util.delete_dir(path_define.outputs_dir)
+    fs_util.delete_dir(path_define.releases_dir)
 
     update_service.setup_ark_pixel_glyphs()
 
