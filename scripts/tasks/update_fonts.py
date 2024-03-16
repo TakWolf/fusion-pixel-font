@@ -1,4 +1,4 @@
-from scripts.configs.update_config import UpdateConfig
+from scripts.configs.update import UpdateConfig
 from scripts.services import update_service
 
 

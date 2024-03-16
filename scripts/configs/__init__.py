@@ -1,7 +1,7 @@
-from scripts.configs.dump_config import DumpConfig
-from scripts.configs.fallback_config import FallbackConfig
-from scripts.configs.font_config import FontConfig
-from scripts.configs.git_deploy_config import GitDeployConfig
+from scripts.configs.dump import DumpConfig
+from scripts.configs.fallback import FallbackConfig
+from scripts.configs.font import FontConfig
+from scripts.configs.deploy import GitDeployConfig
 
 width_modes = [
     'monospaced',

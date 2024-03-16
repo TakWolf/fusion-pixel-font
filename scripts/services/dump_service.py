@@ -7,8 +7,8 @@ import unidata_blocks
 from PIL import ImageFont, Image, ImageDraw
 from fontTools.ttLib import TTFont
 
-from scripts.configs.dump_config import DumpConfig
-from scripts.configs.fallback_config import FallbackConfig
+from scripts.configs.dump import DumpConfig
+from scripts.configs.fallback import FallbackConfig
 from scripts.utils import fs_util
 
 logger = logging.getLogger('dump-service')
