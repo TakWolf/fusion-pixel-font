@@ -6,8 +6,7 @@ import zipfile
 import requests
 
 from scripts import configs
-from scripts.configs import path_define, ark_pixel_config, FontConfig
-from scripts.configs.ark_pixel_config import SourceType
+from scripts.configs import path_define, ark_pixel_config, FontConfig, GitSourceType
 from scripts.configs.update import UpdateConfig
 from scripts.utils import fs_util
 
@@ -51,17 +50,17 @@ def _download_file(url: str, file_path: str):
 
 
 def update_glyphs_version():
-    if ark_pixel_config.source_type == SourceType.TAG:
+    if ark_pixel_config.source_type == GitSourceType.TAG:
         tag_name = ark_pixel_config.source_name
         if tag_name is None:
             tag_name = _get_github_releases_latest_tag_name(ark_pixel_config.repository_name)
         sha = _get_github_tag_sha(ark_pixel_config.repository_name, tag_name)
         version = tag_name
-    elif ark_pixel_config.source_type == SourceType.BRANCH:
+    elif ark_pixel_config.source_type == GitSourceType.BRANCH:
         branch_name = ark_pixel_config.source_name
         sha = _get_github_branch_latest_commit_sha(ark_pixel_config.repository_name, branch_name)
         version = branch_name
-    elif ark_pixel_config.source_type == SourceType.COMMIT:
+    elif ark_pixel_config.source_type == GitSourceType.COMMIT:
         sha = ark_pixel_config.source_name
         version = sha
     else:

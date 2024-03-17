@@ -2,6 +2,7 @@ from scripts.configs.dump import DumpConfig
 from scripts.configs.fallback import FallbackConfig
 from scripts.configs.font import FontConfig
 from scripts.configs.deploy import GitDeployConfig
+from scripts.configs.source import GithubSourceConfig, GitSourceType
 
 width_modes = [
     'monospaced',
@@ -64,6 +65,12 @@ font_size_to_license_configs = {
         'galmuri',
     ],
 }
+
+ark_pixel_config = GithubSourceConfig(
+    repository_name='TakWolf/ark-pixel-font',
+    source_type=GitSourceType.TAG,
+    source_name=None,
+)
 
 git_deploy_config = GitDeployConfig(
     url='git@github.com:TakWolf/fusion-pixel-font.git',
