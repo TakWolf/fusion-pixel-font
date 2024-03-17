@@ -11,7 +11,7 @@ class DumpConfig:
     def load() -> dict[int, list['DumpConfig']]:
         configs_file_path = os.path.join(path_define.fonts_dir, 'dump-configs.yaml')
         configs_data: dict = fs_util.read_yaml(configs_file_path)
-        font_size_to_dump_configs = {font_config.size: [] for font_config in configs.font_configs}
+        font_size_to_dump_configs = {font_size: [] for font_size in configs.font_sizes}
         for name, list_data in configs_data.items():
             version_file_path = os.path.join(path_define.fonts_dir, name, 'version.json')
             version: str = json.loads(fs_util.read_str(version_file_path))['version']

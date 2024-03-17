@@ -109,7 +109,7 @@ def setup_ark_pixel_glyphs():
 
     fs_util.delete_dir(path_define.ark_pixel_glyphs_dir)
     fs_util.make_dir(path_define.ark_pixel_glyphs_dir)
-    for font_config in configs.font_configs:
+    for font_config in configs.font_configs.values():
         source_glyphs_dir_from = os.path.join(source_unzip_dir, 'assets', 'glyphs', str(font_config.size))
         if not os.path.isdir(source_glyphs_dir_from):
             continue
@@ -129,8 +129,7 @@ def setup_ark_pixel_glyphs():
     shutil.copyfile(ark_pixel_license_path_from, ark_pixel_license_path_to)
 
     fs_util.delete_dir(source_unzip_dir)
-    configs.font_configs = [FontConfig(font_config.size) for font_config in configs.font_configs]
-    configs.font_size_to_config = {font_config.size: font_config for font_config in configs.font_configs}
+    configs.font_configs = {font_size: FontConfig(font_size) for font_size in configs.font_sizes}
     fs_util.write_json(version_info, current_version_file_path)
     logger.info("Update glyphs: '%s'", sha)
 
