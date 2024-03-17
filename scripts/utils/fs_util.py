@@ -95,7 +95,8 @@ def read_json(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> dict
 
 
 def write_json(data: dict, path: str | bytes | os.PathLike[str] | os.PathLike[bytes]):
-    write_str(json.dumps(data, indent=2, ensure_ascii=False), path)
+    text = json.dumps(data, indent=2, ensure_ascii=False)
+    write_str(f'{text}\n', path)
 
 
 def read_toml(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> dict:
