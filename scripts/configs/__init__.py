@@ -36,7 +36,7 @@ locale_to_language_flavor = {
 
 font_sizes = [8, 10, 12]
 
-font_configs = {font_size: FontConfig(font_size) for font_size in font_sizes}
+font_configs = FontConfig.load_all()
 
 font_formats = ['otf', 'woff2', 'ttf', 'bdf']
 
