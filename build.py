@@ -21,11 +21,11 @@ def main():
         for width_mode in configs.width_modes:
             exclude_alphabet.update(base_context.get_alphabet(width_mode))
 
-        dump_configs = configs.font_size_to_dump_configs[font_config.size]
+        dump_configs = configs.dump_configs[font_config.size]
         for dump_config in dump_configs:
             dump_service.dump_font(dump_config, exclude_alphabet)
 
-        fallback_configs = configs.font_size_to_fallback_configs[font_config.size]
+        fallback_configs = configs.fallback_configs[font_config.size]
         for fallback_config in fallback_configs:
             dump_service.apply_fallback(fallback_config)
 

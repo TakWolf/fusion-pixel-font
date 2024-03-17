@@ -43,11 +43,11 @@ font_formats = ['otf', 'woff2', 'ttf', 'bdf']
 
 font_collection_formats = ['otc', 'ttc']
 
-font_size_to_dump_configs = DumpConfig.load()
+dump_configs = DumpConfig.load_all()
 
-font_size_to_fallback_configs = FallbackConfig.load()
+fallback_configs = FallbackConfig.load_all()
 
-font_size_to_license_configs = {
+license_configs = {
     8: [
         'misaki',
         'chill-bitmap',

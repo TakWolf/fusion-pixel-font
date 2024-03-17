@@ -7,14 +7,14 @@ from scripts.utils import fs_util
 
 class FallbackConfig:
     @staticmethod
-    def load() -> dict[int, list['FallbackConfig']]:
+    def load_all() -> dict[int, list['FallbackConfig']]:
         file_path = os.path.join(path_define.fonts_dir, 'fallback-configs.yaml')
         configs_data: dict = fs_util.read_yaml(file_path)
-        font_size_to_fallback_configs = {font_size: [] for font_size in configs.font_sizes}
+        fallback_configs = {font_size: [] for font_size in configs.font_sizes}
         for config_data in configs_data:
             fallback_config = FallbackConfig(config_data)
-            font_size_to_fallback_configs[fallback_config.font_size].append(fallback_config)
-        return font_size_to_fallback_configs
+            fallback_configs[fallback_config.font_size].append(fallback_config)
+        return fallback_configs
 
     def __init__(self, config_data: dict):
         self.font_size: int = config_data['font_size']

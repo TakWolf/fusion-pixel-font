@@ -19,7 +19,7 @@ def make_release_zips(font_config: FontConfig, width_mode: str):
         file_path = os.path.join(path_define.releases_dir, font_config.get_release_zip_file_name(width_mode, font_format))
         with zipfile.ZipFile(file_path, 'w') as file:
             file.write(os.path.join(path_define.project_root_dir, 'LICENSE-OFL'), 'OFL.txt')
-            for name in configs.font_size_to_license_configs[font_config.size]:
+            for name in configs.license_configs[font_config.size]:
                 font_license_file_path = os.path.join(path_define.fonts_dir, name, 'LICENSE.txt')
                 if not os.path.exists(font_license_file_path):
                     continue
@@ -35,7 +35,7 @@ def make_release_zips(font_config: FontConfig, width_mode: str):
         file_path = os.path.join(path_define.releases_dir, font_config.get_release_zip_file_name(width_mode, font_format))
         with zipfile.ZipFile(file_path, 'w') as file:
             file.write(os.path.join(path_define.project_root_dir, 'LICENSE-OFL'), 'OFL.txt')
-            for name in configs.font_size_to_license_configs[font_config.size]:
+            for name in configs.license_configs[font_config.size]:
                 font_license_file_path = os.path.join(path_define.fonts_dir, name, 'LICENSE.txt')
                 if not os.path.exists(font_license_file_path):
                     continue
