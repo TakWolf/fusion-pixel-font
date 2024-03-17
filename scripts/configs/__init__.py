@@ -64,8 +64,8 @@ font_size_to_license_configs = {
     ],
 }
 
-git_deploy_configs = [GitDeployConfig(
+git_deploy_config = GitDeployConfig(
     url='git@github.com:TakWolf/fusion-pixel-font.git',
     remote_name='github',
     branch_name='gh-pages',
-)]
+)
