@@ -113,9 +113,10 @@ def setup_ark_pixel_glyphs():
     fs_util.make_dir(path_define.ark_pixel_glyphs_dir)
     for font_config in configs.font_configs.values():
         source_glyphs_dir_from = os.path.join(source_unzip_dir, 'assets', 'glyphs', str(font_config.size))
-        if not os.path.isdir(source_glyphs_dir_from):
-            continue
         source_glyphs_dir_to = os.path.join(path_define.ark_pixel_glyphs_dir, str(font_config.size))
+        if not os.path.isdir(source_glyphs_dir_from):
+            fs_util.make_dir(source_glyphs_dir_to)
+            continue
         shutil.copytree(source_glyphs_dir_from, source_glyphs_dir_to)
 
         config_file_path_from = os.path.join(path_define.ark_pixel_glyphs_dir, str(font_config.size), 'config.toml')
