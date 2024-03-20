@@ -141,5 +141,4 @@ cython_debug/
 .idea/
 
 # Project
-cache/
 assets/glyphs/ark-pixel/
