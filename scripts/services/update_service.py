@@ -139,16 +139,21 @@ def update_fonts(update_config: UpdateConfig):
     else:
         tag_name = update_config.tag_name
     logger.info("'%s' tag: '%s'", update_config.repository_name, tag_name)
-
     version = tag_name.removeprefix('v')
-    repository_url = f'https://github.com/{update_config.repository_name}'
 
+    fonts_dir = os.path.join(path_define.fonts_dir, update_config.name)
+    version_file_path = os.path.join(fonts_dir, 'version.json')
+    version_info = fs_util.read_json(version_file_path)
+    if version == version_info['version']:
+        return
+    logger.info("Need update fonts: '%s'", update_config.name)
+
+    repository_url = f'https://github.com/{update_config.repository_name}'
     download_dir = os.path.join(path_define.cache_dir, update_config.repository_name, tag_name)
     fs_util.make_dir(download_dir)
 
-    fonts_dir = os.path.join(path_define.fonts_dir, update_config.name)
     fs_util.delete_dir(fonts_dir)
-    os.makedirs(fonts_dir)
+    fs_util.make_dir(fonts_dir)
 
     for asset_config in update_config.asset_configs:
         asset_file_name = asset_config.file_name.format(version=version)
