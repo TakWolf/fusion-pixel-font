@@ -49,7 +49,7 @@ def _download_file(url: str, file_path: str):
     os.rename(tmp_file_path, file_path)
 
 
-def update_glyphs_version():
+def update_ark_pixel_glyphs_version():
     if ark_pixel_config.source_type == GitSourceType.TAG:
         tag_name = ark_pixel_config.source_name
         if tag_name is None:
@@ -71,22 +71,25 @@ def update_glyphs_version():
         'version_url': f'https://github.com/{ark_pixel_config.repository_name}/tree/{version}',
         'asset_url': f'https://github.com/{ark_pixel_config.repository_name}/archive/{sha}.zip',
     }
-    file_path = os.path.join(path_define.glyphs_dir, 'version.json')
+    file_dir = os.path.join(path_define.fonts_dir, 'ark-pixel')
+    fs_util.make_dir(file_dir)
+    file_path = os.path.join(file_dir, 'version.json')
     fs_util.write_json(version_info, file_path)
     logger.info("Update version file: '%s'", file_path)
 
 
 def setup_ark_pixel_glyphs():
-    current_version_file_path = os.path.join(path_define.ark_pixel_glyphs_dir, 'version.json')
-    if os.path.isfile(current_version_file_path):
-        current_sha = fs_util.read_json(current_version_file_path)['sha']
+    build_version_file_path = os.path.join(path_define.ark_pixel_glyphs_dir, 'version.json')
+    if os.path.isfile(build_version_file_path):
+        build_sha = fs_util.read_json(build_version_file_path)['sha']
     else:
-        current_sha = None
+        build_sha = None
 
-    version_file_path = os.path.join(path_define.glyphs_dir, 'version.json')
+    font_ark_pixel_dir = os.path.join(path_define.fonts_dir, 'ark-pixel')
+    version_file_path = os.path.join(font_ark_pixel_dir, 'version.json')
     version_info = fs_util.read_json(version_file_path)
     sha = version_info['sha']
-    if current_sha == sha:
+    if build_sha == sha:
         return
     logger.info('Need setup glyphs')
 
@@ -120,16 +123,13 @@ def setup_ark_pixel_glyphs():
         os.remove(config_file_path_to)
         os.rename(config_file_path_from, config_file_path_to)
 
-    ark_pixel_license_dir = os.path.join(path_define.fonts_dir, 'ark-pixel')
-    fs_util.delete_dir(ark_pixel_license_dir)
-    fs_util.make_dir(ark_pixel_license_dir)
-    ark_pixel_license_path_from = os.path.join(source_unzip_dir, 'LICENSE-OFL')
-    ark_pixel_license_path_to = os.path.join(ark_pixel_license_dir, 'LICENSE.txt')
-    shutil.copyfile(ark_pixel_license_path_from, ark_pixel_license_path_to)
+    license_path_from = os.path.join(source_unzip_dir, 'LICENSE-OFL')
+    license_path_to = os.path.join(font_ark_pixel_dir, 'LICENSE.txt')
+    shutil.copyfile(license_path_from, license_path_to)
 
     fs_util.delete_dir(source_unzip_dir)
     configs.font_configs = FontConfig.load_all()
-    fs_util.write_json(version_info, current_version_file_path)
+    fs_util.write_json(version_info, build_version_file_path)
     logger.info("Update glyphs: '%s'", sha)
 
 

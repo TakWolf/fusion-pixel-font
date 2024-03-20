@@ -3,7 +3,7 @@ from scripts.services import update_service
 
 
 def main():
-    update_service.update_glyphs_version()
+    update_service.update_ark_pixel_glyphs_version()
     update_service.setup_ark_pixel_glyphs()
 
     update_configs = UpdateConfig.load()

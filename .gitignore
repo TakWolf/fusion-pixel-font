@@ -139,6 +139,3 @@ cython_debug/
 
 # PyCharm
 .idea/
-
-# Project
-assets/glyphs/ark-pixel/
