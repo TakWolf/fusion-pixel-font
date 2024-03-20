@@ -17,7 +17,7 @@ class DownloadAssetConfig:
 class UpdateConfig:
     @staticmethod
     def load() -> list['UpdateConfig']:
-        file_path = os.path.join(path_define.fonts_dir, 'update-configs.yaml')
+        file_path = os.path.join(path_define.assets_dir, 'update-configs.yaml')
         configs_data: dict = fs_util.read_yaml(file_path)
         return [UpdateConfig(config_data) for config_data in configs_data]
 

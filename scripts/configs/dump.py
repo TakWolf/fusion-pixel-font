@@ -9,7 +9,7 @@ from scripts.utils import fs_util
 class DumpConfig:
     @staticmethod
     def load_all() -> dict[int, list['DumpConfig']]:
-        configs_file_path = os.path.join(path_define.fonts_dir, 'dump-configs.yaml')
+        configs_file_path = os.path.join(path_define.assets_dir, 'dump-configs.yaml')
         configs_data: dict = fs_util.read_yaml(configs_file_path)
         dump_configs = {font_size: [] for font_size in configs.font_sizes}
         for name, list_data in configs_data.items():
