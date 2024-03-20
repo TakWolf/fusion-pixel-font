@@ -8,34 +8,9 @@ import requests
 from scripts import configs
 from scripts.configs import path_define, ark_pixel_config, FontConfig, GitSourceType
 from scripts.configs.update import UpdateConfig
-from scripts.utils import fs_util
+from scripts.utils import fs_util, github_api
 
 logger = logging.getLogger('update_service')
-
-
-def _get_github_releases_latest_tag_name(repository_name: str) -> str:
-    url = f'https://api.github.com/repos/{repository_name}/releases/latest'
-    response = requests.get(url)
-    assert response.ok, url
-    return response.json()['tag_name']
-
-
-def _get_github_tag_sha(repository_name: str, tag_name: str) -> str:
-    url = f'https://api.github.com/repos/{repository_name}/tags'
-    response = requests.get(url)
-    assert response.ok, url
-    tag_infos = response.json()
-    for tag_info in tag_infos:
-        if tag_info['name'] == tag_name:
-            return tag_info['commit']['sha']
-    raise Exception(f"Tag info not found: '{tag_name}'")
-
-
-def _get_github_branch_latest_commit_sha(repository_name: str, branch_name: str) -> str:
-    url = f'https://api.github.com/repos/{repository_name}/branches/{branch_name}'
-    response = requests.get(url)
-    assert response.ok, url
-    return response.json()['commit']['sha']
 
 
 def _download_file(url: str, file_path: str):
@@ -53,12 +28,12 @@ def update_ark_pixel_glyphs_version():
     if ark_pixel_config.source_type == GitSourceType.TAG:
         tag_name = ark_pixel_config.source_name
         if tag_name is None:
-            tag_name = _get_github_releases_latest_tag_name(ark_pixel_config.repository_name)
-        sha = _get_github_tag_sha(ark_pixel_config.repository_name, tag_name)
+            tag_name = github_api.get_releases_latest_tag_name(ark_pixel_config.repository_name)
+        sha = github_api.get_tag_sha(ark_pixel_config.repository_name, tag_name)
         version = tag_name
     elif ark_pixel_config.source_type == GitSourceType.BRANCH:
         branch_name = ark_pixel_config.source_name
-        sha = _get_github_branch_latest_commit_sha(ark_pixel_config.repository_name, branch_name)
+        sha = github_api.get_branch_latest_commit_sha(ark_pixel_config.repository_name, branch_name)
         version = branch_name
     elif ark_pixel_config.source_type == GitSourceType.COMMIT:
         sha = ark_pixel_config.source_name
@@ -136,7 +111,7 @@ def setup_ark_pixel_glyphs():
 
 def update_fonts(update_config: UpdateConfig):
     if update_config.tag_name is None:
-        tag_name = _get_github_releases_latest_tag_name(update_config.repository_name)
+        tag_name = github_api.get_releases_latest_tag_name(update_config.repository_name)
     else:
         tag_name = update_config.tag_name
     logger.info("'%s' tag: '%s'", update_config.repository_name, tag_name)
