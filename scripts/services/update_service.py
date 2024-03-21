@@ -58,7 +58,7 @@ def setup_ark_pixel_glyphs():
     download_dir = os.path.join(path_define.cache_dir, 'ark-pixel-font')
     source_file_path = os.path.join(download_dir, f'{sha}.zip')
     if not os.path.exists(source_file_path):
-        asset_url = version_info["asset_url"]
+        asset_url = version_info['asset_url']
         logger.info("Start download: '%s'", asset_url)
         fs_util.make_dir(download_dir)
         download_util.download_file(asset_url, source_file_path)
