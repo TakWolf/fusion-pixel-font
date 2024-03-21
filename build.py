@@ -1,6 +1,7 @@
 from scripts import configs
 from scripts.configs import path_define
-from scripts.services import update_service, font_service, dump_service, publish_service, info_service, template_service, image_service
+from scripts.services import update_service, dump_service, publish_service, info_service, template_service, image_service
+from scripts.services.font_service import DesignContext, FontContext
 from scripts.utils import fs_util
 
 
@@ -13,13 +14,13 @@ def main():
     update_service.setup_ark_pixel_glyphs()
 
     for font_config in configs.font_configs.values():
-        font_service.format_patch_glyph_files(font_config)
-        base_context = font_service.collect_glyph_files(font_config, path_define.ark_pixel_glyphs_dir)
-        base_context.patch(font_service.collect_glyph_files(font_config, path_define.patch_glyphs_dir))
+        design_context = DesignContext.load(font_config, path_define.patch_glyphs_dir)
+        design_context.standardize()
+        design_context.fallback(DesignContext.load(font_config, path_define.ark_pixel_glyphs_dir))
 
         exclude_alphabet = set()
         for width_mode in configs.width_modes:
-            exclude_alphabet.update(base_context.get_alphabet(width_mode))
+            exclude_alphabet.update(design_context.get_alphabet(width_mode))
 
         dump_configs = configs.dump_configs[font_config.size]
         for dump_config in dump_configs:
@@ -29,16 +30,21 @@ def main():
         for fallback_config in fallback_configs:
             dump_service.apply_fallback(fallback_config)
 
-        context = font_service.collect_glyph_files(font_config, path_define.fallback_glyphs_dir)
-        context.patch(base_context)
+        design_context.fallback(DesignContext.load(font_config, path_define.fallback_glyphs_dir))
 
         for width_mode in configs.width_modes:
-            font_service.make_font_files(font_config, context, width_mode)
+            font_context = FontContext(design_context, width_mode)
+            font_context.make_otf()
+            font_context.make_woff2()
+            font_context.make_ttf()
+            font_context.make_bdf()
+            font_context.make_otc()
+            font_context.make_ttc()
             publish_service.make_release_zips(font_config, width_mode)
-            info_service.make_info_file(font_config, context, width_mode)
-            info_service.make_alphabet_txt_file(font_config, context, width_mode)
-            template_service.make_alphabet_html_file(font_config, context, width_mode)
-        template_service.make_demo_html_file(font_config, context)
+            info_service.make_info_file(design_context, width_mode)
+            info_service.make_alphabet_txt_file(design_context, width_mode)
+            template_service.make_alphabet_html_file(design_context, width_mode)
+        template_service.make_demo_html_file(design_context)
         image_service.make_preview_image_file(font_config)
     template_service.make_index_html_file()
     template_service.make_playground_html_file()
