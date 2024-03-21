@@ -1,4 +1,4 @@
-pixel-font-builder==0.0.15
+pixel-font-builder==0.0.16
 fonttools==4.50.0
 unidata-blocks==0.0.9
 character-encoding-utils==0.0.6
