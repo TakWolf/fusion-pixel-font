@@ -117,14 +117,6 @@
   dir_from: galmuri/3130-318F Hangul Compatibility Jamo
   dir_to: common
 -
-  font_size: 10
-  dir_from: galmuri/3130-318F Hangul Compatibility Jamo
-  dir_to: common
--
-  font_size: 12
-  dir_from: galmuri/3130-318F Hangul Compatibility Jamo
-  dir_to: common
--
   font_size: 8
   dir_from: galmuri/AC00-D7AF Hangul Syllables
   dir_to: common
