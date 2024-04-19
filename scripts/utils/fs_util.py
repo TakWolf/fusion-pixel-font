@@ -90,11 +90,11 @@ def write_str(text: str, path: str | bytes | os.PathLike[str] | os.PathLike[byte
         file.write(text)
 
 
-def read_json(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> dict:
+def read_json(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> dict | list:
     return json.loads(read_str(path))
 
 
-def write_json(data: dict, path: str | bytes | os.PathLike[str] | os.PathLike[bytes]):
+def write_json(data: dict | list, path: str | bytes | os.PathLike[str] | os.PathLike[bytes]):
     text = json.dumps(data, indent=2, ensure_ascii=False)
     write_str(f'{text}\n', path)
 
