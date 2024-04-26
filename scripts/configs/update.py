@@ -18,7 +18,7 @@ class UpdateConfig:
     @staticmethod
     def load() -> list['UpdateConfig']:
         file_path = os.path.join(path_define.assets_dir, 'update-configs.yaml')
-        configs_data: dict = fs_util.read_yaml(file_path)
+        configs_data: list = fs_util.read_yaml(file_path)
         return [UpdateConfig(config_data) for config_data in configs_data]
 
     def __init__(self, config_data: dict):

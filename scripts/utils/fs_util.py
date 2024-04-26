@@ -103,5 +103,5 @@ def read_toml(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> dict
     return tomllib.loads(read_str(path))
 
 
-def read_yaml(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> dict:
+def read_yaml(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> dict | list:
     return yaml.safe_load(read_str(path))

@@ -9,7 +9,7 @@ class FallbackConfig:
     @staticmethod
     def load_all() -> dict[int, list['FallbackConfig']]:
         file_path = os.path.join(path_define.assets_dir, 'fallback-configs.yaml')
-        configs_data: dict = fs_util.read_yaml(file_path)
+        configs_data: list = fs_util.read_yaml(file_path)
         fallback_configs = {font_size: [] for font_size in configs.font_sizes}
         for config_data in configs_data:
             fallback_config = FallbackConfig(config_data)
