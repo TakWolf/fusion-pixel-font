@@ -14,7 +14,7 @@ logger = logging.getLogger('publish_service')
 
 def make_release_zips(font_config: FontConfig, width_mode: str, special_folder: bool = False):
     if special_folder:
-        releases_dir = f'{path_define.releases_dir}-{font_config.size}px-{width_mode}'
+        releases_dir = f'{path_define.releases_dir}-{font_config.font_size}px-{width_mode}'
     else:
         releases_dir = path_define.releases_dir
     fs_util.make_dir(releases_dir)
@@ -23,7 +23,7 @@ def make_release_zips(font_config: FontConfig, width_mode: str, special_folder: 
         file_path = os.path.join(releases_dir, font_config.get_release_zip_file_name(width_mode, font_format))
         with zipfile.ZipFile(file_path, 'w') as file:
             file.write(os.path.join(path_define.project_root_dir, 'LICENSE-OFL'), 'OFL.txt')
-            for name in configs.license_configs[font_config.size]:
+            for name in configs.license_configs[font_config.font_size]:
                 font_license_file_path = os.path.join(path_define.fonts_dir, name, 'LICENSE.txt')
                 if not os.path.exists(font_license_file_path):
                     continue
@@ -39,7 +39,7 @@ def make_release_zips(font_config: FontConfig, width_mode: str, special_folder: 
         file_path = os.path.join(releases_dir, font_config.get_release_zip_file_name(width_mode, font_format))
         with zipfile.ZipFile(file_path, 'w') as file:
             file.write(os.path.join(path_define.project_root_dir, 'LICENSE-OFL'), 'OFL.txt')
-            for name in configs.license_configs[font_config.size]:
+            for name in configs.license_configs[font_config.font_size]:
                 font_license_file_path = os.path.join(path_define.fonts_dir, name, 'LICENSE.txt')
                 if not os.path.exists(font_license_file_path):
                     continue

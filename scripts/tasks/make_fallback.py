@@ -8,7 +8,7 @@ def main():
     fs_util.delete_dir(path_define.fallback_glyphs_dir)
 
     for font_config in configs.font_configs.values():
-        fallback_configs = configs.fallback_configs[font_config.size]
+        fallback_configs = configs.fallback_configs[font_config.font_size]
         for fallback_config in fallback_configs:
             dump_service.apply_fallback(fallback_config)
 
