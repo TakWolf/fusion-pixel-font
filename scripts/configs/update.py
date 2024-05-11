@@ -5,24 +5,40 @@ from scripts.utils import fs_util
 
 
 class DownloadAssetConfig:
-    def __init__(self, config_data: dict):
-        self.file_name: str = config_data['file_name']
-        self.copy_list: list[tuple[str, str]] = []
-        for from_path, to_path in config_data['copy_list'].items():
-            if to_path is None:
-                to_path = from_path
-            self.copy_list.append((from_path, to_path))
+    def __init__(self, file_name: str, copy_list: list[tuple[str, str]]):
+        self.file_name = file_name
+        self.copy_list = copy_list
 
 
 class UpdateConfig:
     @staticmethod
-    def load() -> list['UpdateConfig']:
-        file_path = os.path.join(path_define.assets_dir, 'update-configs.yaml')
-        configs_data: list = fs_util.read_yaml(file_path)
-        return [UpdateConfig(config_data) for config_data in configs_data]
+    def load_all() -> list['UpdateConfig']:
+        configs_data = fs_util.read_yaml(os.path.join(path_define.assets_dir, 'update-configs.yaml'))
+        update_configs = []
+        for config_data in configs_data:
+            name = config_data['name']
+            repository_name = config_data['repository_name']
+            tag_name = config_data['tag_name']
+            asset_configs = []
+            for asset_data in config_data['asset_configs']:
+                file_name = asset_data['file_name']
+                copy_list = []
+                for from_path, to_path in asset_data['copy_list'].items():
+                    if to_path is None:
+                        to_path = from_path
+                    copy_list.append((from_path, to_path))
+                asset_configs.append(DownloadAssetConfig(file_name, copy_list))
+            update_configs.append(UpdateConfig(name, repository_name, tag_name, asset_configs))
+        return update_configs
 
-    def __init__(self, config_data: dict):
-        self.name: str = config_data['name']
-        self.repository_name: str = config_data['repository_name']
-        self.tag_name: str | None = config_data['tag_name']
-        self.asset_configs = [DownloadAssetConfig(item_data) for item_data in config_data['asset_configs']]
+    def __init__(
+            self,
+            name: str,
+            repository_name: str,
+            tag_name: str | None,
+            asset_configs: list[DownloadAssetConfig],
+    ):
+        self.name = name
+        self.repository_name = repository_name
+        self.tag_name = tag_name
+        self.asset_configs = asset_configs

@@ -3,6 +3,7 @@ import logging
 import os
 import shutil
 import tomllib
+from typing import Any
 
 import yaml
 
@@ -90,18 +91,18 @@ def write_str(text: str, path: str | bytes | os.PathLike[str] | os.PathLike[byte
         file.write(text)
 
 
-def read_json(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> dict | list:
+def read_json(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> Any:
     return json.loads(read_str(path))
 
 
-def write_json(data: dict | list, path: str | bytes | os.PathLike[str] | os.PathLike[bytes]):
+def write_json(data: Any, path: str | bytes | os.PathLike[str] | os.PathLike[bytes]):
     text = json.dumps(data, indent=2, ensure_ascii=False)
     write_str(f'{text}\n', path)
 
 
-def read_toml(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> dict:
+def read_toml(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> Any:
     return tomllib.loads(read_str(path))
 
 
-def read_yaml(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> dict | list:
+def read_yaml(path: str | bytes | os.PathLike[str] | os.PathLike[bytes]) -> Any:
     return yaml.safe_load(read_str(path))
