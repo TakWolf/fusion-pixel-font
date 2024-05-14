@@ -1,7 +1,7 @@
+from scripts.configs.deploy import GitDeployConfig
 from scripts.configs.dump import DumpConfig
 from scripts.configs.fallback import FallbackConfig
 from scripts.configs.font import FontConfig
-from scripts.configs.deploy import GitDeployConfig
 from scripts.configs.source import GithubSourceConfig, GitSourceType
 
 width_modes = [
