@@ -30,6 +30,14 @@ class DumpConfig:
                 ))
         return dump_configs
 
+    name: str
+    font_file_path: str
+    font_size: int
+    dump_dir: str
+    rasterize_size: int
+    rasterize_offset_x: int
+    rasterize_offset_y: int
+
     def __init__(
             self,
             name: str,

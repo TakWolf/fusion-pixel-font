@@ -8,6 +8,10 @@ class GitSourceType(StrEnum):
 
 
 class GithubSourceConfig:
+    repository_name: str
+    source_type: GitSourceType
+    source_name: str | None
+
     def __init__(self, repository_name: str, source_type: GitSourceType, source_name: str = None):
         self.repository_name = repository_name
         self.source_type = source_type

@@ -23,6 +23,11 @@ class FallbackConfig:
             ))
         return fallback_configs
 
+    font_size: int
+    dir_from: str
+    dir_to: str
+    flavor: str | None
+
     def __init__(
             self,
             font_size: int,

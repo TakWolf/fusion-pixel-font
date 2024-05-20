@@ -5,6 +5,9 @@ from scripts.utils import fs_util
 
 
 class DownloadAssetConfig:
+    file_name: str
+    copy_list: list[tuple[str, str]]
+
     def __init__(self, file_name: str, copy_list: list[tuple[str, str]]):
         self.file_name = file_name
         self.copy_list = copy_list
@@ -30,6 +33,11 @@ class UpdateConfig:
                 asset_configs.append(DownloadAssetConfig(file_name, copy_list))
             update_configs.append(UpdateConfig(name, repository_name, tag_name, asset_configs))
         return update_configs
+
+    name: str
+    repository_name: str
+    tag_name: str | None
+    asset_configs: list[DownloadAssetConfig]
 
     def __init__(
             self,
