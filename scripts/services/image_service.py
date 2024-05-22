@@ -5,7 +5,6 @@ from PIL import Image, ImageFont, ImageDraw
 from PIL.ImageFont import FreeTypeFont
 
 from scripts.configs import path_define, FontConfig
-from scripts.utils import fs_util
 
 logger = logging.getLogger('image_service')
 
@@ -61,7 +60,7 @@ def make_preview_image_file(font_config: FontConfig):
     _draw_text(image, (font_config.font_size, font_config.font_size + font_config.line_height * 8), '★☆☺☹♠♡♢♣♤♥♦♧☀☼♩♪♫♬☂☁⚓✈⚔☯', font_latin)
     image = image.resize((image.width * 2, image.height * 2), Image.Resampling.NEAREST)
 
-    fs_util.make_dir(path_define.outputs_dir)
+    os.makedirs(path_define.outputs_dir, exist_ok=True)
     file_path = os.path.join(path_define.outputs_dir, font_config.preview_image_file_name)
     image.save(file_path)
     logger.info("Make preview image file: '%s'", file_path)

@@ -34,7 +34,7 @@ def update_ark_pixel_glyphs_version():
         'asset_url': f'https://github.com/{ark_pixel_config.repository_name}/archive/{sha}.zip',
     }
     file_dir = os.path.join(path_define.fonts_dir, 'ark-pixel')
-    fs_util.make_dir(file_dir)
+    os.makedirs(file_dir, exist_ok=True)
     file_path = os.path.join(file_dir, 'version.json')
     fs_util.write_json(version_info, file_path)
     logger.info("Update version file: '%s'", file_path)
@@ -60,7 +60,7 @@ def setup_ark_pixel_glyphs():
     if not os.path.exists(source_file_path):
         asset_url = version_info['asset_url']
         logger.info("Start download: '%s'", asset_url)
-        fs_util.make_dir(download_dir)
+        os.makedirs(download_dir, exist_ok=True)
         download_util.download_file(asset_url, source_file_path)
     else:
         logger.info("Already downloaded: '%s'", source_file_path)
@@ -72,12 +72,12 @@ def setup_ark_pixel_glyphs():
     logger.info("Unzip: '%s'", source_unzip_dir)
 
     fs_util.delete_dir(path_define.ark_pixel_glyphs_dir)
-    fs_util.make_dir(path_define.ark_pixel_glyphs_dir)
+    os.makedirs(path_define.ark_pixel_glyphs_dir)
     for font_config in configs.font_configs.values():
         source_glyphs_dir_from = os.path.join(source_unzip_dir, 'assets', 'glyphs', str(font_config.font_size))
         source_glyphs_dir_to = os.path.join(path_define.ark_pixel_glyphs_dir, str(font_config.font_size))
         if not os.path.isdir(source_glyphs_dir_from):
-            fs_util.make_dir(source_glyphs_dir_to)
+            os.makedirs(source_glyphs_dir_to)
             continue
         shutil.copytree(source_glyphs_dir_from, source_glyphs_dir_to)
 
@@ -113,10 +113,10 @@ def update_fonts(update_config: UpdateConfig):
 
     repository_url = f'https://github.com/{update_config.repository_name}'
     download_dir = os.path.join(path_define.cache_dir, update_config.repository_name, tag_name)
-    fs_util.make_dir(download_dir)
+    os.makedirs(download_dir, exist_ok=True)
 
     fs_util.delete_dir(fonts_dir)
-    fs_util.make_dir(fonts_dir)
+    os.makedirs(fonts_dir)
 
     for asset_config in update_config.asset_configs:
         asset_file_name = asset_config.file_name.format(version=version)

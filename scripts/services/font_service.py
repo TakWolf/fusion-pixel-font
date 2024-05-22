@@ -173,7 +173,7 @@ class DesignContext:
                     file_path = os.path.join(file_dir, file_name)
                     if glyph_file.file_path != file_path:
                         assert not os.path.exists(file_path), f"Glyph file duplication: '{glyph_file.file_path}' -> '{file_path}'"
-                        fs_util.make_dir(file_dir)
+                        os.makedirs(file_dir, exist_ok=True)
                         os.rename(glyph_file.file_path, file_path)
                         glyph_file.file_path = file_path
                         logger.info(f"Standardize glyph file path: '{glyph_file.file_path}'")
@@ -348,7 +348,7 @@ class FontContext:
         return builder
 
     def make_otf(self):
-        fs_util.make_dir(path_define.outputs_dir)
+        os.makedirs(path_define.outputs_dir, exist_ok=True)
         for language_flavor in configs.language_flavors:
             builder = self._get_builder(language_flavor)
             file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'otf'))
@@ -356,7 +356,7 @@ class FontContext:
             logger.info("Make font file: '%s'", file_path)
 
     def make_woff2(self):
-        fs_util.make_dir(path_define.outputs_dir)
+        os.makedirs(path_define.outputs_dir, exist_ok=True)
         for language_flavor in configs.language_flavors:
             builder = self._get_builder(language_flavor)
             file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'woff2'))
@@ -364,7 +364,7 @@ class FontContext:
             logger.info("Make font file: '%s'", file_path)
 
     def make_ttf(self):
-        fs_util.make_dir(path_define.outputs_dir)
+        os.makedirs(path_define.outputs_dir, exist_ok=True)
         for language_flavor in configs.language_flavors:
             builder = self._get_builder(language_flavor)
             file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'ttf'))
@@ -372,7 +372,7 @@ class FontContext:
             logger.info("Make font file: '%s'", file_path)
 
     def make_bdf(self):
-        fs_util.make_dir(path_define.outputs_dir)
+        os.makedirs(path_define.outputs_dir, exist_ok=True)
         for language_flavor in configs.language_flavors:
             builder = self._get_builder(language_flavor)
             file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'bdf'))
@@ -380,7 +380,7 @@ class FontContext:
             logger.info("Make font file: '%s'", file_path)
 
     def make_pcf(self):
-        fs_util.make_dir(path_define.outputs_dir)
+        os.makedirs(path_define.outputs_dir, exist_ok=True)
         for language_flavor in configs.language_flavors:
             builder = self._get_builder(language_flavor)
             file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'pcf'))
@@ -397,14 +397,14 @@ class FontContext:
         return self._collection_builder
 
     def make_otc(self):
-        fs_util.make_dir(path_define.outputs_dir)
+        os.makedirs(path_define.outputs_dir, exist_ok=True)
         collection_builder = self._get_collection_builder()
         file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_collection_file_name(self.width_mode, 'otc'))
         collection_builder.save_otc(file_path)
         logger.info("Make font collection file: '%s'", file_path)
 
     def make_ttc(self):
-        fs_util.make_dir(path_define.outputs_dir)
+        os.makedirs(path_define.outputs_dir, exist_ok=True)
         collection_builder = self._get_collection_builder()
         file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_collection_file_name(self.width_mode, 'ttc'))
         collection_builder.save_ttc(file_path)
