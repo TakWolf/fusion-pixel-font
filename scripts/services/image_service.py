@@ -1,5 +1,4 @@
 import logging
-import os
 
 from PIL import Image, ImageFont, ImageDraw
 from PIL.ImageFont import FreeTypeFont
@@ -10,7 +9,7 @@ logger = logging.getLogger('image_service')
 
 
 def _load_font(font_config: FontConfig, width_mode: str, language_flavor: str, scale: int = 1) -> FreeTypeFont:
-    file_path = os.path.join(path_define.outputs_dir, font_config.get_font_file_name(width_mode, language_flavor, 'woff2'))
+    file_path = path_define.outputs_dir.joinpath(font_config.get_font_file_name(width_mode, language_flavor, 'woff2'))
     return ImageFont.truetype(file_path, font_config.font_size * scale)
 
 
@@ -60,7 +59,7 @@ def make_preview_image_file(font_config: FontConfig):
     _draw_text(image, (font_config.font_size, font_config.font_size + font_config.line_height * 8), '★☆☺☹♠♡♢♣♤♥♦♧☀☼♩♪♫♬☂☁⚓✈⚔☯', font_latin)
     image = image.resize((image.width * 2, image.height * 2), Image.Resampling.NEAREST)
 
-    os.makedirs(path_define.outputs_dir, exist_ok=True)
-    file_path = os.path.join(path_define.outputs_dir, font_config.preview_image_file_name)
+    path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
+    file_path = path_define.outputs_dir.joinpath(font_config.preview_image_file_name)
     image.save(file_path)
     logger.info("Make preview image file: '%s'", file_path)

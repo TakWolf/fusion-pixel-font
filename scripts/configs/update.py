@@ -1,5 +1,3 @@
-import os
-
 from scripts.configs import path_define
 from scripts.utils import fs_util
 
@@ -16,7 +14,7 @@ class DownloadAssetConfig:
 class UpdateConfig:
     @staticmethod
     def load_all() -> list['UpdateConfig']:
-        configs_data = fs_util.read_yaml(os.path.join(path_define.assets_dir, 'update-configs.yaml'))
+        configs_data = fs_util.read_yaml(path_define.assets_dir.joinpath('update-configs.yaml'))
         update_configs = []
         for config_data in configs_data:
             name = config_data['name']

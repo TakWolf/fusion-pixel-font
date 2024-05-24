@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from scripts import configs
 from scripts.configs import path_define
@@ -8,14 +8,14 @@ from scripts.utils import fs_util
 class DumpConfig:
     @staticmethod
     def load_all() -> dict[int, list['DumpConfig']]:
-        configs_data = fs_util.read_yaml(os.path.join(path_define.assets_dir, 'dump-configs.yaml'))
+        configs_data = fs_util.read_yaml(path_define.assets_dir.joinpath('dump-configs.yaml'))
         dump_configs = {font_size: [] for font_size in configs.font_sizes}
         for name, items_data in configs_data.items():
-            version = fs_util.read_json(os.path.join(path_define.fonts_dir, name, 'version.json'))['version']
+            version = fs_util.read_json(path_define.fonts_dir.joinpath(name, 'version.json'))['version']
             for item_data in items_data:
-                font_file_path = os.path.join(path_define.fonts_dir, name, item_data['font_file_name'].format(version=version))
+                font_file_path = path_define.fonts_dir.joinpath(name, item_data['font_file_name'].format(version=version))
                 font_size = item_data['font_size']
-                dump_dir = os.path.join(path_define.dump_dir, str(font_size), item_data['dump_dir_name'])
+                dump_dir = path_define.dump_dir.joinpath(str(font_size), item_data['dump_dir_name'])
                 rasterize_size = item_data.get('rasterize_size', font_size)
                 rasterize_offset_x = item_data.get('rasterize_offset_x', 0)
                 rasterize_offset_y = item_data.get('rasterize_offset_y', 0)
@@ -31,9 +31,9 @@ class DumpConfig:
         return dump_configs
 
     name: str
-    font_file_path: str
+    font_file_path: Path
     font_size: int
-    dump_dir: str
+    dump_dir: Path
     rasterize_size: int
     rasterize_offset_x: int
     rasterize_offset_y: int
@@ -41,9 +41,9 @@ class DumpConfig:
     def __init__(
             self,
             name: str,
-            font_file_path: str,
+            font_file_path: Path,
             font_size: int,
-            dump_dir: str,
+            dump_dir: Path,
             rasterize_size: int,
             rasterize_offset_x: int,
             rasterize_offset_y: int,

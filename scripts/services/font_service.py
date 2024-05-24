@@ -1,8 +1,9 @@
 import logging
 import math
-import os
 import re
+import shutil
 import unicodedata
+from pathlib import Path
 
 import unidata_blocks
 from pixel_font_builder import FontBuilder, FontCollectionBuilder, WeightName, SerifStyle, SlantStyle, Glyph
@@ -17,8 +18,8 @@ logger = logging.getLogger('font_service')
 
 class GlyphFile:
     @staticmethod
-    def load(file_path: str) -> 'GlyphFile':
-        tokens = re.split(r'\s+', os.path.basename(file_path).removesuffix('.png'), 1)
+    def load(file_path: Path) -> 'GlyphFile':
+        tokens = re.split(r'\s+', file_path.stem, 1)
 
         if tokens[0] == 'notdef':
             code_point = -1
@@ -36,14 +37,14 @@ class GlyphFile:
 
         return GlyphFile(file_path, code_point, language_flavors)
 
-    file_path: str
+    file_path: Path
     bitmap: list[list[int]]
     width: int
     height: int
     code_point: int
     language_flavors: list[str]
 
-    def __init__(self, file_path: str, code_point: int, language_flavors: list[str]):
+    def __init__(self, file_path: Path, code_point: int, language_flavors: list[str]):
         self.file_path = file_path
         self.bitmap, self.width, self.height = bitmap_util.load_png(file_path)
         self.code_point = code_point
@@ -62,22 +63,22 @@ class GlyphFile:
 
 class DesignContext:
     @staticmethod
-    def load(font_config: FontConfig, glyphs_dir: str) -> 'DesignContext':
+    def load(font_config: FontConfig, glyphs_dir: Path) -> 'DesignContext':
         glyph_file_registry = {}
 
-        root_dir = os.path.join(glyphs_dir, str(font_config.font_size))
-        for width_mode_dir_name in os.listdir(root_dir):
-            width_mode_dir = os.path.join(root_dir, width_mode_dir_name)
-            if not os.path.isdir(width_mode_dir):
+        root_dir = glyphs_dir.joinpath(str(font_config.font_size))
+        for width_mode_dir in root_dir.iterdir():
+            if not width_mode_dir.is_dir():
                 continue
+            width_mode_dir_name = width_mode_dir.name
             assert width_mode_dir_name == 'common' or width_mode_dir_name in configs.width_modes, f"Width mode '{width_mode_dir_name}' undefined: '{width_mode_dir}'"
 
             code_point_registry = {}
-            for file_dir, _, file_names in os.walk(width_mode_dir):
+            for file_dir, _, file_names in width_mode_dir.walk():
                 for file_name in file_names:
                     if not file_name.endswith('.png'):
                         continue
-                    file_path = os.path.join(file_dir, file_name)
+                    file_path = file_dir.joinpath(file_name)
                     glyph_file = GlyphFile.load(file_path)
 
                     if glyph_file.code_point not in code_point_registry:
@@ -106,7 +107,7 @@ class DesignContext:
         return DesignContext(font_config, glyphs_dir, glyph_file_registry)
 
     font_config: FontConfig
-    glyphs_dir: str
+    glyphs_dir: Path
     _glyph_file_registry: dict[str, dict[int, dict[str, GlyphFile]]]
     _sequence_pool: dict[str, list[int]]
     _alphabet_pool: dict[str, set[str]]
@@ -116,7 +117,7 @@ class DesignContext:
     def __init__(
             self,
             font_config: FontConfig,
-            glyphs_dir: str,
+            glyphs_dir: Path,
             glyph_file_registry: dict[str, dict[int, dict[str, GlyphFile]]],
     ):
         self.font_config = font_config
@@ -128,9 +129,9 @@ class DesignContext:
         self._glyph_files_pool = {}
 
     def standardize(self):
-        root_dir = os.path.join(self.glyphs_dir, str(self.font_config.font_size))
+        root_dir = self.glyphs_dir.joinpath(str(self.font_config.font_size))
         for width_mode_dir_name, code_point_registry in self._glyph_file_registry.items():
-            width_mode_dir = os.path.join(root_dir, width_mode_dir_name)
+            width_mode_dir = root_dir.joinpath(width_mode_dir_name)
             for language_flavor_registry in code_point_registry.values():
                 for glyph_file in set(language_flavor_registry.values()):
                     if glyph_file.code_point == -1:
@@ -143,9 +144,9 @@ class DesignContext:
                         block = unidata_blocks.get_block_by_code_point(glyph_file.code_point)
                         hex_name = f'{glyph_file.code_point:04X}'
                         file_name = f'{hex_name}{' ' if len(glyph_file.language_flavors) > 0 else ''}{','.join(glyph_file.language_flavors)}.png'
-                        file_dir = os.path.join(width_mode_dir, f'{block.code_start:04X}-{block.code_end:04X} {block.name}')
+                        file_dir = width_mode_dir.joinpath(f'{block.code_start:04X}-{block.code_end:04X} {block.name}')
                         if block.code_start == 0x4E00:  # CJK Unified Ideographs
-                            file_dir = os.path.join(file_dir, f'{hex_name[0:-2]}-')
+                            file_dir = file_dir.joinpath(f'{hex_name[0:-2]}-')
 
                     if width_mode_dir_name == 'common' or width_mode_dir_name == 'monospaced':
                         assert glyph_file.height == self.font_config.font_size, f"Glyph data error: '{glyph_file.file_path}'"
@@ -170,20 +171,17 @@ class DesignContext:
 
                     bitmap_util.save_png(glyph_file.bitmap, glyph_file.file_path)
 
-                    file_path = os.path.join(file_dir, file_name)
+                    file_path = file_dir.joinpath(file_name)
                     if glyph_file.file_path != file_path:
-                        assert not os.path.exists(file_path), f"Glyph file duplication: '{glyph_file.file_path}' -> '{file_path}'"
-                        os.makedirs(file_dir, exist_ok=True)
-                        os.rename(glyph_file.file_path, file_path)
+                        assert not file_path.exists(), f"Glyph file duplication: '{glyph_file.file_path}' -> '{file_path}'"
+                        file_dir.mkdir(parents=True, exist_ok=True)
+                        glyph_file.file_path.rename(file_path)
                         glyph_file.file_path = file_path
                         logger.info(f"Standardize glyph file path: '{glyph_file.file_path}'")
 
-        for file_dir, _, _ in os.walk(root_dir, topdown=False):
-            file_names = os.listdir(file_dir)
-            if '.DS_Store' in file_names:
-                file_names.remove('.DS_Store')
-            if len(file_names) == 0:
-                fs_util.delete_dir(file_dir)
+        for file_dir, _, _ in root_dir.walk(top_down=False):
+            if fs_util.is_empty_dir(file_dir):
+                shutil.rmtree(file_dir)
 
     def fallback(self, other: 'DesignContext'):
         for width_mode, other_code_point_registry in other._glyph_file_registry.items():
@@ -268,7 +266,7 @@ class DesignContext:
 
 def _create_builder(
         design_context: DesignContext,
-        glyph_pool: dict[str, Glyph],
+        glyph_pool: dict[Path, Glyph],
         width_mode: str,
         language_flavor: str,
         is_collection: bool,
@@ -328,7 +326,7 @@ def _create_builder(
 class FontContext:
     design_context: DesignContext
     width_mode: str
-    _glyph_pool: dict[str, Glyph]
+    _glyph_pool: dict[Path, Glyph]
     _builders: dict[str, FontBuilder]
     _collection_builder: FontCollectionBuilder | None
 
@@ -348,42 +346,42 @@ class FontContext:
         return builder
 
     def make_otf(self):
-        os.makedirs(path_define.outputs_dir, exist_ok=True)
+        path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
         for language_flavor in configs.language_flavors:
             builder = self._get_builder(language_flavor)
-            file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'otf'))
+            file_path = path_define.outputs_dir.joinpath(self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'otf'))
             builder.save_otf(file_path)
             logger.info("Make font file: '%s'", file_path)
 
     def make_woff2(self):
-        os.makedirs(path_define.outputs_dir, exist_ok=True)
+        path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
         for language_flavor in configs.language_flavors:
             builder = self._get_builder(language_flavor)
-            file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'woff2'))
+            file_path = path_define.outputs_dir.joinpath(self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'woff2'))
             builder.save_otf(file_path, flavor=Flavor.WOFF2)
             logger.info("Make font file: '%s'", file_path)
 
     def make_ttf(self):
-        os.makedirs(path_define.outputs_dir, exist_ok=True)
+        path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
         for language_flavor in configs.language_flavors:
             builder = self._get_builder(language_flavor)
-            file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'ttf'))
+            file_path = path_define.outputs_dir.joinpath(self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'ttf'))
             builder.save_ttf(file_path)
             logger.info("Make font file: '%s'", file_path)
 
     def make_bdf(self):
-        os.makedirs(path_define.outputs_dir, exist_ok=True)
+        path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
         for language_flavor in configs.language_flavors:
             builder = self._get_builder(language_flavor)
-            file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'bdf'))
+            file_path = path_define.outputs_dir.joinpath(self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'bdf'))
             builder.save_bdf(file_path)
             logger.info("Make font file: '%s'", file_path)
 
     def make_pcf(self):
-        os.makedirs(path_define.outputs_dir, exist_ok=True)
+        path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
         for language_flavor in configs.language_flavors:
             builder = self._get_builder(language_flavor)
-            file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'pcf'))
+            file_path = path_define.outputs_dir.joinpath(self.design_context.font_config.get_font_file_name(self.width_mode, language_flavor, 'pcf'))
             builder.save_pcf(file_path)
             logger.info("Make font file: '%s'", file_path)
 
@@ -397,15 +395,15 @@ class FontContext:
         return self._collection_builder
 
     def make_otc(self):
-        os.makedirs(path_define.outputs_dir, exist_ok=True)
+        path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
         collection_builder = self._get_collection_builder()
-        file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_collection_file_name(self.width_mode, 'otc'))
+        file_path = path_define.outputs_dir.joinpath(self.design_context.font_config.get_font_collection_file_name(self.width_mode, 'otc'))
         collection_builder.save_otc(file_path)
         logger.info("Make font collection file: '%s'", file_path)
 
     def make_ttc(self):
-        os.makedirs(path_define.outputs_dir, exist_ok=True)
+        path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
         collection_builder = self._get_collection_builder()
-        file_path = os.path.join(path_define.outputs_dir, self.design_context.font_config.get_font_collection_file_name(self.width_mode, 'ttc'))
+        file_path = path_define.outputs_dir.joinpath(self.design_context.font_config.get_font_collection_file_name(self.width_mode, 'ttc'))
         collection_builder.save_ttc(file_path)
         logger.info("Make font collection file: '%s'", file_path)
