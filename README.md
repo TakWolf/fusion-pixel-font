@@ -84,7 +84,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 |---|---|---|
 | [方舟像素字体 / Ark Pixel Font](https://github.com/TakWolf/ark-pixel-font) | [OFL-1.1](https://github.com/TakWolf/ark-pixel-font/blob/develop/LICENSE-OFL) | 提供 10、12 像素基础字形和参数 |
 | [美咲フォント / Misaki](https://littlelimit.net/misaki.htm) | [无类型许可证](assets/fonts/misaki/LICENSE.txt)，兼容 OFL-1.1 | 提供 8 像素日语汉字字形 |
-| [寒蝉点阵体 / Chill-Bitmap](https://github.com/Warren2060/Chill-Bitmap) | [无类型许可证](https://github.com/Warren2060/Chill-Bitmap/blob/main/LICENSE.md)，兼容 OFL-1.1 | 提供 8 像素简体中文汉字字形 |
+| [美績点陣體 / MisekiBitmap](https://github.com/ItMarki/MisekiBitmap) | [OFL-1.1](https://github.com/ItMarki/MisekiBitmap/blob/main/LICENSE) | 提供 8 像素简体中文汉字字形 |
 | [精品點陣體7×7 / BoutiqueBitmap7x7](https://github.com/scott0107000/BoutiqueBitmap7x7) | [OFL-1.1](https://github.com/scott0107000/BoutiqueBitmap7x7/blob/main/OFL.txt) | 提供 8 像素繁体中文汉字字形 |
 | [精品點陣體9×9 / BoutiqueBitmap9x9](https://github.com/scott0107000/BoutiqueBitmap9x9) | [OFL-1.1](https://github.com/scott0107000/BoutiqueBitmap9x9/blob/main/OFL.txt) | 提供 10 像素繁体中文汉字补充 |
 | [俐方體11號／Cubic 11](https://github.com/ACh-K/Cubic-11) | [OFL-1.1](https://github.com/ACh-K/Cubic-11/blob/main/OFL.txt) | 提供 12 像素繁体中文汉字补充 |

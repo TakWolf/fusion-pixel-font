@@ -1,13 +1,13 @@
 -
-  name: chill-bitmap
-  repository_name: Warren2060/Chill-Bitmap
+  name: miseki-bitmap
+  repository_name: ItMarki/MisekiBitmap
   tag_name:
   asset_configs:
     -
-      file_name: ChillBitmap7x_v{version}.zip
+      file_name: licensepack.zip
       copy_list:
-        License.txt: LICENSE.txt
-        ChillBitmap7x.woff2:
+        licensepack/LICENSE.txt: LICENSE.txt
+        licensepack/MisekiBitmap.ttf: MisekiBitmap.ttf
 -
   name: boutique-bitmap-7x7
   repository_name: scott0107000/BoutiqueBitmap7x7

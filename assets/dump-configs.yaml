@@ -4,10 +4,10 @@ misaki:
     dump_dir_name: misaki
     font_size: 8
     rasterize_offset_y: 1
-chill-bitmap:
+miseki-bitmap:
   -
-    font_file_name: ChillBitmap7x.woff2
-    dump_dir_name: chill-bitmap
+    font_file_name: MisekiBitmap.ttf
+    dump_dir_name: miseki-bitmap
     font_size: 8
     rasterize_offset_y: 1
 boutique-bitmap-7x7:

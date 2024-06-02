@@ -50,7 +50,7 @@ locale_to_language_flavor = {
 license_configs = {
     8: [
         'misaki',
-        'chill-bitmap',
+        'miseki-bitmap',
         'boutique-bitmap-7x7',
         'galmuri',
     ],
