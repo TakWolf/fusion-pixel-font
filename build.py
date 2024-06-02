@@ -1,5 +1,5 @@
 from scripts import configs
-from scripts.configs import path_define
+from scripts.configs import path_define, FontConfig, DumpConfig, FallbackConfig
 from scripts.services import update_service, dump_service, publish_service, info_service, template_service, image_service
 from scripts.services.font_service import DesignContext, FontContext
 from scripts.utils import fs_util
@@ -13,7 +13,11 @@ def main():
 
     update_service.setup_ark_pixel_glyphs()
 
-    for font_config in configs.font_configs.values():
+    font_configs = FontConfig.load_all()
+    dump_configs = DumpConfig.load_all()
+    fallback_configs = FallbackConfig.load_all()
+
+    for font_size, font_config in font_configs.items():
         design_context = DesignContext.load(font_config, path_define.patch_glyphs_dir)
         design_context.standardize()
         design_context.fallback(DesignContext.load(font_config, path_define.ark_pixel_glyphs_dir))
@@ -22,12 +26,10 @@ def main():
         for width_mode in configs.width_modes:
             exclude_alphabet.update(design_context.get_alphabet(width_mode))
 
-        dump_configs = configs.dump_configs[font_config.font_size]
-        for dump_config in dump_configs:
+        for dump_config in dump_configs[font_size]:
             dump_service.dump_font(dump_config, exclude_alphabet)
 
-        fallback_configs = configs.fallback_configs[font_config.font_size]
-        for fallback_config in fallback_configs:
+        for fallback_config in fallback_configs[font_size]:
             dump_service.apply_fallback(fallback_config)
 
         design_context.fallback(DesignContext.load(font_config, path_define.fallback_glyphs_dir))
@@ -47,8 +49,8 @@ def main():
             template_service.make_alphabet_html_file(design_context, width_mode)
         template_service.make_demo_html_file(design_context)
         image_service.make_preview_image_file(font_config)
-    template_service.make_index_html_file()
-    template_service.make_playground_html_file()
+    template_service.make_index_html_file(font_configs)
+    template_service.make_playground_html_file(font_configs)
 
 
 if __name__ == '__main__':

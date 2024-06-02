@@ -6,6 +6,16 @@ from scripts.configs.fallback import FallbackConfig
 from scripts.configs.font import FontConfig
 from scripts.configs.source import GithubSourceConfig, GitSourceType
 
+font_version = '2024.05.12'
+
+font_version_time = datetime.datetime.fromisoformat(f'{font_version.replace('.', '-')}T00:00:00Z')
+
+font_sizes = [8, 10, 12]
+
+font_formats = ['otf', 'woff2', 'ttf', 'bdf', 'pcf']
+
+font_collection_formats = ['otc', 'ttc']
+
 width_modes = [
     'monospaced',
     'proportional',
@@ -36,22 +46,6 @@ locale_to_language_flavor = {
     'ja': 'ja',
     'ko': 'ko',
 }
-
-font_version = '2024.05.12'
-
-font_version_time = datetime.datetime.fromisoformat(f'{font_version.replace('.', '-')}T00:00:00Z')
-
-font_sizes = [8, 10, 12]
-
-font_configs = FontConfig.load_all()
-
-font_formats = ['otf', 'woff2', 'ttf', 'bdf', 'pcf']
-
-font_collection_formats = ['otc', 'ttc']
-
-dump_configs = DumpConfig.load_all()
-
-fallback_configs = FallbackConfig.load_all()
 
 license_configs = {
     8: [

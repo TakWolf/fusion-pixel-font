@@ -4,7 +4,7 @@ import shutil
 import zipfile
 
 from scripts import configs
-from scripts.configs import path_define, ark_pixel_config, FontConfig, GitSourceType
+from scripts.configs import path_define, ark_pixel_config, GitSourceType
 from scripts.configs.update import UpdateConfig
 from scripts.utils import fs_util, github_api, download_util
 
@@ -73,16 +73,16 @@ def setup_ark_pixel_glyphs():
 
     fs_util.delete_dir(path_define.ark_pixel_glyphs_dir)
     path_define.ark_pixel_glyphs_dir.mkdir(parents=True)
-    for font_config in configs.font_configs.values():
-        source_glyphs_dir_from = source_unzip_dir.joinpath('assets', 'glyphs', str(font_config.font_size))
-        source_glyphs_dir_to = path_define.ark_pixel_glyphs_dir.joinpath(str(font_config.font_size))
+    for font_size in configs.font_sizes:
+        source_glyphs_dir_from = source_unzip_dir.joinpath('assets', 'glyphs', str(font_size))
+        source_glyphs_dir_to = path_define.ark_pixel_glyphs_dir.joinpath(str(font_size))
         if not source_glyphs_dir_from.is_dir():
             source_glyphs_dir_to.mkdir(parents=True)
             continue
         shutil.copytree(source_glyphs_dir_from, source_glyphs_dir_to)
 
-        config_file_path_from = path_define.ark_pixel_glyphs_dir.joinpath(str(font_config.font_size), 'config.toml')
-        config_file_path_to = path_define.patch_glyphs_dir.joinpath(str(font_config.font_size), 'config.toml')
+        config_file_path_from = path_define.ark_pixel_glyphs_dir.joinpath(str(font_size), 'config.toml')
+        config_file_path_to = path_define.patch_glyphs_dir.joinpath(str(font_size), 'config.toml')
         os.remove(config_file_path_to)
         config_file_path_from.rename(config_file_path_to)
 
@@ -91,7 +91,6 @@ def setup_ark_pixel_glyphs():
     shutil.copyfile(license_path_from, license_path_to)
 
     fs_util.delete_dir(source_unzip_dir)
-    configs.font_configs = FontConfig.load_all()
     fs_util.write_json(version_info, build_version_file_path)
     logger.info("Update glyphs: '%s'", sha)
 

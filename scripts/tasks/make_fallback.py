@@ -1,5 +1,4 @@
-from scripts import configs
-from scripts.configs import path_define
+from scripts.configs import path_define, FallbackConfig
 from scripts.services import dump_service
 from scripts.utils import fs_util
 
@@ -7,8 +6,7 @@ from scripts.utils import fs_util
 def main():
     fs_util.delete_dir(path_define.fallback_glyphs_dir)
 
-    for font_config in configs.font_configs.values():
-        fallback_configs = configs.fallback_configs[font_config.font_size]
+    for fallback_configs in FallbackConfig.load_all().values():
         for fallback_config in fallback_configs:
             dump_service.apply_fallback(fallback_config)
 
