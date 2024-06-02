@@ -105,9 +105,10 @@ def update_fonts(update_config: UpdateConfig):
 
     fonts_dir = path_define.fonts_dir.joinpath(update_config.name)
     version_file_path = fonts_dir.joinpath('version.json')
-    version_info = fs_util.read_json(version_file_path)
-    if version == version_info['version']:
-        return
+    if version_file_path.exists():
+        version_info = fs_util.read_json(version_file_path)
+        if version == version_info['version']:
+            return
     logger.info("Need update fonts: '%s'", update_config.name)
 
     repository_url = f'https://github.com/{update_config.repository_name}'
