@@ -12,7 +12,7 @@ from scripts.configs.fallback import FallbackConfig
 logger = logging.getLogger('dump_service')
 
 
-def dump_font(dump_config: DumpConfig, exclude_alphabet: set[str]):
+def dump_font(dump_config: DumpConfig):
     font = TTFont(dump_config.font_file_path)
     image_font = ImageFont.truetype(dump_config.font_file_path, dump_config.rasterize_size)
 
@@ -22,8 +22,6 @@ def dump_font(dump_config: DumpConfig, exclude_alphabet: set[str]):
 
     for code_point, glyph_name in font.getBestCmap().items():
         c = chr(code_point)
-        if c in exclude_alphabet:
-            continue
         block = unidata_blocks.get_block_by_code_point(code_point)
         if not c.isprintable() and block.code_start != 0xE000:  # Private Use Area
             continue
