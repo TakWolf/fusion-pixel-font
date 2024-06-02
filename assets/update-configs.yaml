@@ -6,7 +6,7 @@
     -
       file_name: ChillBitmap7x_v{version}.zip
       copy_list:
-        License.txt:
+        License.txt: LICENSE.txt
         ChillBitmap7x.woff2:
 -
   name: boutique-bitmap-7x7
