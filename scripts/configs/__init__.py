@@ -72,8 +72,8 @@ ark_pixel_config = GithubSourceConfig(
     source_name=None,
 )
 
-git_deploy_config = GitDeployConfig(
+git_deploy_configs = [GitDeployConfig(
     url='git@github.com:TakWolf/fusion-pixel-font.git',
     remote_name='github',
     branch_name='gh-pages',
-)
+)]
