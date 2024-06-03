@@ -8,43 +8,33 @@ import zipfile
 import git
 
 from scripts import configs
-from scripts.configs import path_define, FontConfig
+from scripts.configs import path_define
 
 logger = logging.getLogger('publish_service')
 
 
-def make_release_zips(font_config: FontConfig, width_mode: str):
+def make_release_zips(font_size: int, width_mode: str):
     path_define.releases_dir.mkdir(parents=True, exist_ok=True)
 
     for font_format in configs.font_formats:
-        file_path = path_define.releases_dir.joinpath(f'fusion-pixel-font-{font_config.font_size}px-{width_mode}-{font_format}-v{configs.font_version}.zip')
+        file_path = path_define.releases_dir.joinpath(f'fusion-pixel-font-{font_size}px-{width_mode}-{font_format}-v{configs.font_version}.zip')
         with zipfile.ZipFile(file_path, 'w') as file:
             file.write(path_define.project_root_dir.joinpath('LICENSE-OFL'), 'OFL.txt')
-            for name in configs.license_configs[font_config.font_size]:
-                font_license_file_path = path_define.fonts_dir.joinpath(name, 'LICENSE.txt')
-                if not font_license_file_path.exists():
-                    continue
-                file.write(font_license_file_path, f'LICENSE/{name}.txt')
-
+            for name in configs.license_configs[font_size]:
+                file.write(path_define.fonts_dir.joinpath(name, 'LICENSE.txt'), f'LICENSE/{name}.txt')
             for language_flavor in configs.language_flavors:
-                font_file_name = f'fusion-pixel-{font_config.font_size}px-{width_mode}-{language_flavor}.{font_format}'
-                font_file_path = path_define.outputs_dir.joinpath(font_file_name)
-                file.write(font_file_path, font_file_name)
+                font_file_name = f'fusion-pixel-{font_size}px-{width_mode}-{language_flavor}.{font_format}'
+                file.write(path_define.outputs_dir.joinpath(font_file_name), font_file_name)
         logger.info("Make release zip: '%s'", file_path)
 
     for font_format in configs.font_collection_formats:
-        file_path = path_define.releases_dir.joinpath(f'fusion-pixel-font-{font_config.font_size}px-{width_mode}-{font_format}-v{configs.font_version}.zip')
+        file_path = path_define.releases_dir.joinpath(f'fusion-pixel-font-{font_size}px-{width_mode}-{font_format}-v{configs.font_version}.zip')
         with zipfile.ZipFile(file_path, 'w') as file:
             file.write(path_define.project_root_dir.joinpath('LICENSE-OFL'), 'OFL.txt')
-            for name in configs.license_configs[font_config.font_size]:
-                font_license_file_path = path_define.fonts_dir.joinpath(name, 'LICENSE.txt')
-                if not font_license_file_path.exists():
-                    continue
-                file.write(font_license_file_path, f'LICENSE/{name}.txt')
-
-            font_file_name = f'fusion-pixel-{font_config.font_size}px-{width_mode}.{font_format}'
-            font_file_path = path_define.outputs_dir.joinpath(font_file_name)
-            file.write(font_file_path, font_file_name)
+            for name in configs.license_configs[font_size]:
+                file.write(path_define.fonts_dir.joinpath(name, 'LICENSE.txt'), f'LICENSE/{name}.txt')
+            font_file_name = f'fusion-pixel-{font_size}px-{width_mode}.{font_format}'
+            file.write(path_define.outputs_dir.joinpath(font_file_name), font_file_name)
         logger.info("Make release zip: '%s'", file_path)
 
 

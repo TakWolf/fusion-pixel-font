@@ -10,7 +10,7 @@ def main():
     fs_util.delete_dir(path_define.releases_dir)
 
     font_configs = FontConfig.load_all()
-    for font_config in font_configs.values():
+    for font_size, font_config in font_configs.items():
         design_context = DesignContext.load(font_config, path_define.patch_glyphs_dir)
         design_context.fallback(DesignContext.load(font_config, path_define.ark_pixel_glyphs_dir))
         design_context.fallback(DesignContext.load(font_config, path_define.fallback_glyphs_dir))
@@ -22,7 +22,7 @@ def main():
             font_context.make_bdf()
             font_context.make_otc()
             font_context.make_ttc()
-            publish_service.make_release_zips(font_config, width_mode)
+            publish_service.make_release_zips(font_size, width_mode)
             info_service.make_info_file(design_context, width_mode)
             info_service.make_alphabet_txt_file(design_context, width_mode)
             template_service.make_alphabet_html_file(design_context, width_mode)
