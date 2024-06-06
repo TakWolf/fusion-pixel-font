@@ -17,7 +17,7 @@ def main():
     # https://github.com/ItMarki/MisekiBitmap/issues/3
     # 「美績点陣體」的位图层字形映射错乱，这里主动将其删除，以保证栅格化正确
     font_file_path = path_define.fonts_dir.joinpath('miseki-bitmap', 'MisekiBitmap.ttf')
-    font = TTFont(font_file_path)
+    font = TTFont(font_file_path, recalcTimestamp=False)
     font.reader.tables.pop('EBLC', None)
     font.reader.tables.pop('EBDT', None)
     font.save(font_file_path)
