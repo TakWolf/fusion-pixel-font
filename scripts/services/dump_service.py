@@ -13,6 +13,7 @@ logger = logging.getLogger('dump_service')
 
 
 def dump_font(dump_config: DumpConfig):
+    logger.info("Dump glyphs: '%s'", dump_config.dump_dir)
     font = TTFont(dump_config.font_file_path)
     image_font = ImageFont.truetype(dump_config.font_file_path, dump_config.rasterize_size)
 
@@ -44,11 +45,12 @@ def dump_font(dump_config: DumpConfig):
 
         glyph_file_dir.mkdir(parents=True, exist_ok=True)
         image.save(glyph_file_path)
-        logger.info("Dump glyph: '%s'", glyph_file_path)
+        logger.debug("Dump glyph: '%s'", glyph_file_path)
 
 
 def apply_fallback(fallback_config: FallbackConfig):
     assert fallback_config.dir_from.is_dir(), f"Dump dir not exist: '{fallback_config.dir_from}'"
+    logger.info("Fallback glyphs: '%s' '%s' -> '%s'", fallback_config.flavor, fallback_config.dir_from, fallback_config.dir_to)
     for glyph_file_dir_from, _, glyph_file_names in fallback_config.dir_from.walk():
         for glyph_file_name in glyph_file_names:
             if not glyph_file_name.endswith('.png'):
@@ -66,4 +68,4 @@ def apply_fallback(fallback_config: FallbackConfig):
             glyph_file_path_to = glyph_file_dir_to.joinpath(glyph_file_name)
             glyph_file_dir_to.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(glyph_file_path_from, glyph_file_path_to)
-            logger.info("Copy glyph file: '%s'", glyph_file_path_to)
+            logger.debug("Copy glyph file: '%s'", glyph_file_path_to)
