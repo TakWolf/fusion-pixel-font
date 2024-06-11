@@ -20,7 +20,7 @@ def main():
 
     font_config = FontConfig.load(font_size)
     design_context = DesignContext.load(font_config, path_define.patch_glyphs_dir)
-    design_context.standardize()
+    design_context.standardized()
     design_context.fallback(DesignContext.load(font_config, path_define.ark_pixel_glyphs_dir))
     design_context.fallback(DesignContext.load(font_config, path_define.fallback_glyphs_dir))
     font_context = FontContext(design_context, width_mode)
