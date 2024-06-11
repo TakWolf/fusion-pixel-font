@@ -5,7 +5,7 @@ from PIL.ImageFont import FreeTypeFont
 
 from scripts.configs import path_define, FontConfig
 
-logger = logging.getLogger('image_service')
+logger = logging.getLogger(__name__)
 
 
 def _load_font(font_config: FontConfig, width_mode: str, language_flavor: str, scale: int = 1) -> FreeTypeFont:

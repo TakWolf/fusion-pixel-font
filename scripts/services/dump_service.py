@@ -9,7 +9,7 @@ from fontTools.ttLib import TTFont
 from scripts.configs.dump import DumpConfig
 from scripts.configs.fallback import FallbackConfig
 
-logger = logging.getLogger('dump_service')
+logger = logging.getLogger(__name__)
 
 
 def dump_font(dump_config: DumpConfig):
