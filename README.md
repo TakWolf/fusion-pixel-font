@@ -5,8 +5,8 @@
 [![License OFL](https://img.shields.io/badge/license-OFL--1.1-orange)](https://openfontlicense.org)
 [![License MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 [![Releases](https://img.shields.io/github/v/release/TakWolf/fusion-pixel-font)](https://github.com/TakWolf/fusion-pixel-font/releases)
-[![Discord](https://img.shields.io/discord/949265373964947458?color=4E5AF0&logo=discord&logoColor=white&label=discord)](https://discord.gg/3GKtPKtjdU)
-[![QQ Group](https://img.shields.io/badge/QQ群-302383204-brightgreen?logo=tencentqq&logoColor=white)](https://jq.qq.com/?_wv=1027&k=EXtKGHar)
+[![Discord](https://img.shields.io/badge/discord-像素字体工房-4E5AF0?logo=discord&logoColor=white)](https://discord.gg/3GKtPKtjdU)
+[![QQ Group](https://img.shields.io/badge/QQ群-像素字体工房-brightgreen?logo=tencentqq&logoColor=white)](https://qm.qq.com/q/X1mLrLLGYS)
 
 开源的泛中日韩像素字体，黑体无衬线风格，支持 8、10 和 12 像素。
 
@@ -97,7 +97,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 ## 官方社区
 
 - [「像素字体工房」Discord 服务器](https://discord.gg/3GKtPKtjdU)
-- [「像素字体工房」QQ 群 (302383204)](https://jq.qq.com/?_wv=1027&k=EXtKGHar)
+- [「像素字体工房」QQ 群 (302383204)](https://qm.qq.com/q/X1mLrLLGYS)
 
 ## 程序依赖
 
