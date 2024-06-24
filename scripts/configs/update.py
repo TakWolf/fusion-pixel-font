@@ -3,10 +3,10 @@ from scripts.utils import fs_util
 
 
 class DownloadAssetConfig:
-    file_name: str
+    file_name: str | None
     copy_list: list[tuple[str, str]]
 
-    def __init__(self, file_name: str, copy_list: list[tuple[str, str]]):
+    def __init__(self, file_name: str | None, copy_list: list[tuple[str, str]]):
         self.file_name = file_name
         self.copy_list = copy_list
 
@@ -22,7 +22,7 @@ class UpdateConfig:
             tag_name = config_data['tag_name']
             asset_configs = []
             for asset_data in config_data['asset_configs']:
-                file_name = asset_data['file_name']
+                file_name = asset_data.get('file_name', None)
                 copy_list = []
                 for from_path, to_path in asset_data['copy_list'].items():
                     if to_path is None:

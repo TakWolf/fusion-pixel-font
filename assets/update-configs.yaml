@@ -34,10 +34,9 @@
   tag_name:
   asset_configs:
     -
-      file_name: Cubic_11.zip
       copy_list:
-        OFL.txt: LICENSE.txt
-        fonts/web/Cubic_11_{version}_R.woff2: Cubic_11_{version}_R.woff2
+        Cubic-11-{version}/OFL.txt: LICENSE.txt
+        Cubic-11-{version}/fonts/web/Cubic_11_{version}_R.woff2: Cubic_11_{version}_R.woff2
 -
   name: galmuri
   repository_name: quiple/galmuri

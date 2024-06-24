@@ -119,10 +119,14 @@ def update_fonts(update_config: UpdateConfig):
     fonts_dir.mkdir(parents=True)
 
     for asset_config in update_config.asset_configs:
-        asset_file_name = asset_config.file_name.format(version=version)
+        if asset_config.file_name is None:
+            asset_file_name = f'{tag_name}.zip'
+            asset_url = f'{repository_url}/archive/refs/tags/{asset_file_name}'
+        else:
+            asset_file_name = asset_config.file_name.format(version=version)
+            asset_url = f'{repository_url}/releases/download/{tag_name}/{asset_file_name}'
         asset_file_path = download_dir.joinpath(asset_file_name)
         if not asset_file_path.exists():
-            asset_url = f'{repository_url}/releases/download/{tag_name}/{asset_file_name}'
             logger.info("Start download: '%s'", asset_url)
             download_util.download_file(asset_url, asset_file_path)
         else:
