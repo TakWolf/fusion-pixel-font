@@ -1,5 +1,5 @@
-from scripts.configs.update import UpdateConfig
-from scripts.services import update_service
+from tools.configs.update import UpdateConfig
+from tools.services import update_service
 
 
 def main():

@@ -1,6 +1,6 @@
-from scripts.configs import path_define, DumpConfig
-from scripts.services import dump_service
-from scripts.utils import fs_util
+from tools.configs import path_define, DumpConfig
+from tools.services import dump_service
+from tools.utils import fs_util
 
 
 def main():

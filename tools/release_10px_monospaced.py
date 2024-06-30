@@ -1,14 +1,14 @@
 import itertools
 
-from scripts import configs
-from scripts.configs import path_define, FontConfig, DumpConfig, FallbackConfig
-from scripts.services import update_service, dump_service, publish_service, info_service
-from scripts.services.font_service import DesignContext, FontContext
+from tools import configs
+from tools.configs import path_define, FontConfig, DumpConfig, FallbackConfig
+from tools.services import update_service, dump_service, publish_service, info_service
+from tools.services.font_service import DesignContext, FontContext
 
 
 def main():
     font_size = 10
-    width_mode = 'proportional'
+    width_mode = 'monospaced'
 
     update_service.setup_ark_pixel_glyphs()
 

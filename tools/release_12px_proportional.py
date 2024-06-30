@@ -1,9 +1,9 @@
 import itertools
 
-from scripts import configs
-from scripts.configs import path_define, FontConfig, DumpConfig, FallbackConfig
-from scripts.services import update_service, dump_service, publish_service, info_service
-from scripts.services.font_service import DesignContext, FontContext
+from tools import configs
+from tools.configs import path_define, FontConfig, DumpConfig, FallbackConfig
+from tools.services import update_service, dump_service, publish_service, info_service
+from tools.services.font_service import DesignContext, FontContext
 
 
 def main():

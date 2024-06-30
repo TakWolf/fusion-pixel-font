@@ -11,9 +11,9 @@ from pixel_font_builder import FontBuilder, FontCollectionBuilder, WeightName, S
 from pixel_font_builder.opentype import Flavor
 from pixel_font_knife import mono_bitmap_util
 
-from scripts import configs
-from scripts.configs import FontConfig, path_define
-from scripts.utils import fs_util
+from tools import configs
+from tools.configs import FontConfig, path_define
+from tools.utils import fs_util
 
 logger = logging.getLogger(__name__)
 

@@ -1,8 +1,8 @@
-from scripts.configs.deploy import GitDeployConfig
-from scripts.configs.dump import DumpConfig
-from scripts.configs.fallback import FallbackConfig
-from scripts.configs.font import FontConfig
-from scripts.configs.source import GithubSourceConfig, GitSourceType
+from tools.configs.deploy import GitDeployConfig
+from tools.configs.dump import DumpConfig
+from tools.configs.fallback import FallbackConfig
+from tools.configs.font import FontConfig
+from tools.configs.source import GithubSourceConfig, GitSourceType
 
 font_version = '2024.05.12'
 

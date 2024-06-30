@@ -3,10 +3,10 @@ import os
 import shutil
 import zipfile
 
-from scripts import configs
-from scripts.configs import path_define, ark_pixel_config, GitSourceType
-from scripts.configs.update import UpdateConfig
-from scripts.utils import fs_util, github_api, download_util
+from tools import configs
+from tools.configs import path_define, ark_pixel_config, GitSourceType
+from tools.configs.update import UpdateConfig
+from tools.utils import fs_util, github_api, download_util
 
 logger = logging.getLogger(__name__)
 

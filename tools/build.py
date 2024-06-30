@@ -1,19 +1,33 @@
 import itertools
 
-from scripts import configs
-from scripts.configs import path_define, FontConfig
-from scripts.services import publish_service, info_service, template_service, image_service
-from scripts.services.font_service import DesignContext, FontContext
-from scripts.utils import fs_util
+from tools import configs
+from tools.configs import path_define, FontConfig, DumpConfig, FallbackConfig
+from tools.services import update_service, dump_service, publish_service, info_service, template_service, image_service
+from tools.services.font_service import DesignContext, FontContext
+from tools.utils import fs_util
 
 
 def main():
+    fs_util.delete_dir(path_define.dump_dir)
+    fs_util.delete_dir(path_define.fallback_glyphs_dir)
     fs_util.delete_dir(path_define.outputs_dir)
     fs_util.delete_dir(path_define.releases_dir)
 
+    update_service.setup_ark_pixel_glyphs()
+
     font_configs = FontConfig.load_all()
+    dump_configs = DumpConfig.load_all()
+    fallback_configs = FallbackConfig.load_all()
+
     for font_size, font_config in font_configs.items():
+        for dump_config in dump_configs[font_size]:
+            dump_service.dump_font(dump_config)
+
+        for fallback_config in fallback_configs[font_size]:
+            dump_service.apply_fallback(fallback_config)
+
         design_context = DesignContext.load(font_config, path_define.patch_glyphs_dir)
+        design_context.standardized()
         design_context.fallback(DesignContext.load(font_config, path_define.ark_pixel_glyphs_dir))
         design_context.fallback(DesignContext.load(font_config, path_define.fallback_glyphs_dir))
         for width_mode in configs.width_modes:
