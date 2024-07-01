@@ -1,4 +1,5 @@
-from tools.configs import path_define, DumpConfig
+from tools.configs import path_define
+from tools.configs.dump import DumpConfig
 from tools.services import dump_service
 from tools.utils import fs_util
 

@@ -1,4 +1,5 @@
-from tools.configs import path_define, FallbackConfig
+from tools.configs import path_define
+from tools.configs.fallback import FallbackConfig
 from tools.services import dump_service
 from tools.utils import fs_util
 
