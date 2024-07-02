@@ -19,12 +19,20 @@ _environment = Environment(
 
 _build_random_key = random.random()
 
+_locale_to_language_flavor = {
+    'en': 'latin',
+    'zh-hans': 'zh_hans',
+    'zh-hant': 'zh_hant',
+    'ja': 'ja',
+    'ko': 'ko',
+}
+
 
 def _make_html(template_name: str, file_name: str, params: dict[str, object] | None = None):
     params = {} if params is None else dict(params)
     params['build_random_key'] = _build_random_key
     params['width_modes'] = configs.width_modes
-    params['locale_to_language_flavor'] = configs.locale_to_language_flavor
+    params['locale_to_language_flavor'] = _locale_to_language_flavor
 
     html = _environment.get_template(template_name).render(params)
 

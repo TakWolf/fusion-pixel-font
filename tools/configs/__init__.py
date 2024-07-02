@@ -4,10 +4,6 @@ font_version = '2024.05.12'
 
 font_sizes = [8, 10, 12]
 
-font_formats = ['otf', 'woff2', 'ttf', 'bdf', 'pcf']
-
-font_collection_formats = ['otc', 'ttc']
-
 width_modes = [
     'monospaced',
     'proportional',
@@ -31,13 +27,9 @@ language_flavors = [
     'ko',
 ]
 
-locale_to_language_flavor = {
-    'en': 'latin',
-    'zh-hans': 'zh_hans',
-    'zh-hant': 'zh_hant',
-    'ja': 'ja',
-    'ko': 'ko',
-}
+font_formats = ['otf', 'woff2', 'ttf', 'bdf', 'pcf']
+
+font_collection_formats = ['otc', 'ttc']
 
 license_configs = {
     8: [
