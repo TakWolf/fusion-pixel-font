@@ -1,4 +1,3 @@
-from tools.configs.source import GithubSourceConfig, GitSourceType
 
 font_version = '2024.05.12'
 
@@ -49,9 +48,3 @@ license_configs = {
         'galmuri',
     ],
 }
-
-ark_pixel_config = GithubSourceConfig(
-    repository_name='TakWolf/ark-pixel-font',
-    source_type=GitSourceType.TAG,
-    source_name=None,
-)

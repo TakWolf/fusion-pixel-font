@@ -4,7 +4,7 @@ import shutil
 import zipfile
 
 from tools import configs
-from tools.configs import path_define, ark_pixel_config, GitSourceType
+from tools.configs import path_define
 from tools.configs.update import UpdateConfig
 from tools.utils import fs_util, github_api, download_util
 
@@ -12,26 +12,30 @@ logger = logging.getLogger(__name__)
 
 
 def update_ark_pixel_glyphs_version():
-    if ark_pixel_config.source_type == GitSourceType.TAG:
-        tag_name = ark_pixel_config.source_name
+    repository_name = 'TakWolf/ark-pixel-font'
+    source_type = 'tag'
+    source_name = None
+
+    if source_type == 'tag':
+        tag_name = source_name
         if tag_name is None:
-            tag_name = github_api.get_releases_latest_tag_name(ark_pixel_config.repository_name)
-        sha = github_api.get_tag_sha(ark_pixel_config.repository_name, tag_name)
+            tag_name = github_api.get_releases_latest_tag_name(repository_name)
+        sha = github_api.get_tag_sha(repository_name, tag_name)
         version = tag_name
-    elif ark_pixel_config.source_type == GitSourceType.BRANCH:
-        branch_name = ark_pixel_config.source_name
-        sha = github_api.get_branch_latest_commit_sha(ark_pixel_config.repository_name, branch_name)
+    elif source_type == 'branch':
+        branch_name = source_name
+        sha = github_api.get_branch_latest_commit_sha(repository_name, branch_name)
         version = branch_name
-    elif ark_pixel_config.source_type == GitSourceType.COMMIT:
-        sha = ark_pixel_config.source_name
+    elif source_type == 'commit':
+        sha = source_name
         version = sha
     else:
-        raise Exception(f"Unknown source type: '{ark_pixel_config.source_type}'")
+        raise Exception(f"Unknown source type: '{source_type}'")
     version_info = {
         'sha': sha,
         'version': version,
-        'version_url': f'https://github.com/{ark_pixel_config.repository_name}/tree/{version}',
-        'asset_url': f'https://github.com/{ark_pixel_config.repository_name}/archive/{sha}.zip',
+        'version_url': f'https://github.com/{repository_name}/tree/{version}',
+        'asset_url': f'https://github.com/{repository_name}/archive/{sha}.zip',
     }
     file_dir = path_define.fonts_dir.joinpath('ark-pixel')
     file_dir.mkdir(parents=True, exist_ok=True)
