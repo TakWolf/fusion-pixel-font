@@ -84,9 +84,11 @@ def setup_ark_pixel_glyphs():
             continue
         shutil.copytree(source_glyphs_dir_from, source_glyphs_dir_to)
 
-        config_file_path_from = path_define.ark_pixel_glyphs_dir.joinpath(str(font_size), 'config.toml')
-        config_file_path_to = path_define.patch_glyphs_dir.joinpath(str(font_size), 'config.toml')
-        os.remove(config_file_path_to)
+        config_file_path_from = path_define.ark_pixel_glyphs_dir.joinpath(str(font_size), 'config.yaml')
+        config_file_path_to = path_define.patch_glyphs_dir.joinpath(str(font_size), 'config.yaml')
+        if config_file_path_to.exists():
+            os.remove(config_file_path_to)
+        config_file_path_to.parent.mkdir(parents=True, exist_ok=True)
         config_file_path_from.rename(config_file_path_to)
 
     license_path_from = source_unzip_dir.joinpath('LICENSE-OFL')

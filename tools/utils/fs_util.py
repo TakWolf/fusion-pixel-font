@@ -1,6 +1,5 @@
 import json
 import shutil
-import tomllib
 from pathlib import Path
 from typing import Any
 
@@ -26,10 +25,6 @@ def read_json(path: Path) -> Any:
 
 def write_json(data: Any, path: Path):
     path.write_text(f'{json.dumps(data, indent=2, ensure_ascii=False)}\n', 'utf-8')
-
-
-def read_toml(path: Path) -> Any:
-    return tomllib.loads(path.read_text('utf-8'))
 
 
 def read_yaml(path: Path) -> Any:
