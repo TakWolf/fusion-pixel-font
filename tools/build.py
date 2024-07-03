@@ -1,4 +1,5 @@
 import itertools
+import shutil
 
 from tools import configs
 from tools.configs import path_define
@@ -7,14 +8,11 @@ from tools.configs.fallback import FallbackConfig
 from tools.configs.font import FontConfig
 from tools.services import update_service, dump_service, publish_service, info_service, template_service, image_service
 from tools.services.font_service import DesignContext, FontContext
-from tools.utils import fs_util
 
 
 def main():
-    fs_util.delete_dir(path_define.dump_dir)
-    fs_util.delete_dir(path_define.fallback_glyphs_dir)
-    fs_util.delete_dir(path_define.outputs_dir)
-    fs_util.delete_dir(path_define.releases_dir)
+    if path_define.build_dir.exists():
+        shutil.rmtree(path_define.build_dir)
 
     update_service.setup_ark_pixel_glyphs()
 

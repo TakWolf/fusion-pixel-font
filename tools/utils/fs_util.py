@@ -1,14 +1,8 @@
 import json
-import shutil
 from pathlib import Path
 from typing import Any
 
 import yaml
-
-
-def delete_dir(path: Path):
-    if path.exists():
-        shutil.rmtree(path)
 
 
 def is_empty_dir(path: Path) -> bool:

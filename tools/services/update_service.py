@@ -69,12 +69,14 @@ def setup_ark_pixel_glyphs():
         logger.info("Already downloaded: '%s'", source_file_path)
 
     source_unzip_dir = downloads_dir.joinpath(f'ark-pixel-font-{sha}')
-    fs_util.delete_dir(source_unzip_dir)
+    if source_unzip_dir.exists():
+        shutil.rmtree(source_unzip_dir)
     with zipfile.ZipFile(source_file_path) as file:
         file.extractall(downloads_dir)
     logger.info("Unzip: '%s'", source_unzip_dir)
 
-    fs_util.delete_dir(path_define.ark_pixel_glyphs_dir)
+    if path_define.ark_pixel_glyphs_dir.exists():
+        shutil.rmtree(path_define.ark_pixel_glyphs_dir)
     path_define.ark_pixel_glyphs_dir.mkdir(parents=True)
     for font_size in configs.font_sizes:
         source_glyphs_dir_from = source_unzip_dir.joinpath('assets', 'glyphs', str(font_size))
@@ -95,7 +97,8 @@ def setup_ark_pixel_glyphs():
     license_path_to = font_ark_pixel_dir.joinpath('LICENSE.txt')
     shutil.copyfile(license_path_from, license_path_to)
 
-    fs_util.delete_dir(source_unzip_dir)
+    if source_unzip_dir.exists():
+        shutil.rmtree(source_unzip_dir)
     fs_util.write_json(version_info, cache_version_file_path)
     logger.info("Update glyphs: '%s'", sha)
 
@@ -120,7 +123,8 @@ def update_fonts(update_config: UpdateConfig):
     downloads_dir = path_define.downloads_dir.joinpath(update_config.repository_name, tag_name)
     downloads_dir.mkdir(parents=True, exist_ok=True)
 
-    fs_util.delete_dir(fonts_dir)
+    if fonts_dir.exists():
+        shutil.rmtree(fonts_dir)
     fonts_dir.mkdir(parents=True)
 
     for asset_config in update_config.asset_configs:
@@ -138,7 +142,8 @@ def update_fonts(update_config: UpdateConfig):
             logger.info("Already downloaded: '%s'", asset_file_path)
 
         asset_unzip_dir = asset_file_path.with_suffix('')
-        fs_util.delete_dir(asset_unzip_dir)
+        if asset_unzip_dir.exists():
+            shutil.rmtree(asset_unzip_dir)
         with zipfile.ZipFile(asset_file_path) as file:
             file.extractall(asset_unzip_dir)
         logger.info("Unzip: '%s'", asset_unzip_dir)
@@ -148,7 +153,8 @@ def update_fonts(update_config: UpdateConfig):
             to_path = fonts_dir.joinpath(copy_info[1].format(version=version))
             shutil.copyfile(from_path, to_path)
             logger.info("Copy from '%s' to '%s'", from_path, to_path)
-        fs_util.delete_dir(asset_unzip_dir)
+        if asset_unzip_dir.exists():
+            shutil.rmtree(asset_unzip_dir)
 
     version_info = {
         'repository_url': repository_url,
