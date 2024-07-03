@@ -7,9 +7,11 @@ patch_glyphs_dir = assets_dir.joinpath('patch-glyphs')
 fonts_dir = assets_dir.joinpath('fonts')
 templates_dir = assets_dir.joinpath('templates')
 
+cache_dir = project_root_dir.joinpath('cache')
+downloads_dir = cache_dir.joinpath('downloads')
+ark_pixel_glyphs_dir = cache_dir.joinpath('ark-pixel-glyphs')
+
 build_dir = project_root_dir.joinpath('build')
-cache_dir = build_dir.joinpath('cache')
-ark_pixel_glyphs_dir = build_dir.joinpath('ark-pixel-glyphs')
 dump_dir = build_dir.joinpath('dump')
 fallback_glyphs_dir = build_dir.joinpath('fallback-glyphs')
 outputs_dir = build_dir.joinpath('outputs')

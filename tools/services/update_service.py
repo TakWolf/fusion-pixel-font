@@ -37,42 +37,41 @@ def update_ark_pixel_glyphs_version():
         'version_url': f'https://github.com/{repository_name}/tree/{version}',
         'asset_url': f'https://github.com/{repository_name}/archive/{sha}.zip',
     }
-    file_dir = path_define.fonts_dir.joinpath('ark-pixel')
-    file_dir.mkdir(parents=True, exist_ok=True)
-    file_path = file_dir.joinpath('version.json')
+    file_path = path_define.fonts_dir.joinpath('ark-pixel').joinpath('version.json')
+    file_path.parent.mkdir(parents=True, exist_ok=True)
     fs_util.write_json(version_info, file_path)
     logger.info("Update version file: '%s'", file_path)
 
 
 def setup_ark_pixel_glyphs():
-    build_version_file_path = path_define.ark_pixel_glyphs_dir.joinpath('version.json')
-    if build_version_file_path.is_file():
-        build_sha = fs_util.read_json(build_version_file_path)['sha']
+    cache_version_file_path = path_define.ark_pixel_glyphs_dir.joinpath('version.json')
+    if cache_version_file_path.is_file():
+        cache_sha = fs_util.read_json(cache_version_file_path)['sha']
     else:
-        build_sha = None
+        cache_sha = None
 
     font_ark_pixel_dir = path_define.fonts_dir.joinpath('ark-pixel')
     version_file_path = font_ark_pixel_dir.joinpath('version.json')
     version_info = fs_util.read_json(version_file_path)
     sha = version_info['sha']
-    if build_sha == sha:
+    if cache_sha == sha:
         return
     logger.info('Need setup glyphs')
 
-    download_dir = path_define.cache_dir.joinpath('ark-pixel-font')
-    source_file_path = download_dir.joinpath(f'{sha}.zip')
+    downloads_dir = path_define.downloads_dir.joinpath('ark-pixel-font')
+    source_file_path = downloads_dir.joinpath(f'{sha}.zip')
     if not source_file_path.exists():
         asset_url = version_info['asset_url']
         logger.info("Start download: '%s'", asset_url)
-        download_dir.mkdir(parents=True, exist_ok=True)
+        downloads_dir.mkdir(parents=True, exist_ok=True)
         download_util.download_file(asset_url, source_file_path)
     else:
         logger.info("Already downloaded: '%s'", source_file_path)
 
-    source_unzip_dir = download_dir.joinpath(f'ark-pixel-font-{sha}')
+    source_unzip_dir = downloads_dir.joinpath(f'ark-pixel-font-{sha}')
     fs_util.delete_dir(source_unzip_dir)
     with zipfile.ZipFile(source_file_path) as file:
-        file.extractall(download_dir)
+        file.extractall(downloads_dir)
     logger.info("Unzip: '%s'", source_unzip_dir)
 
     fs_util.delete_dir(path_define.ark_pixel_glyphs_dir)
@@ -95,7 +94,7 @@ def setup_ark_pixel_glyphs():
     shutil.copyfile(license_path_from, license_path_to)
 
     fs_util.delete_dir(source_unzip_dir)
-    fs_util.write_json(version_info, build_version_file_path)
+    fs_util.write_json(version_info, cache_version_file_path)
     logger.info("Update glyphs: '%s'", sha)
 
 
@@ -116,8 +115,8 @@ def update_fonts(update_config: UpdateConfig):
     logger.info("Need update fonts: '%s'", update_config.name)
 
     repository_url = f'https://github.com/{update_config.repository_name}'
-    download_dir = path_define.cache_dir.joinpath(update_config.repository_name, tag_name)
-    download_dir.mkdir(parents=True, exist_ok=True)
+    downloads_dir = path_define.downloads_dir.joinpath(update_config.repository_name, tag_name)
+    downloads_dir.mkdir(parents=True, exist_ok=True)
 
     fs_util.delete_dir(fonts_dir)
     fonts_dir.mkdir(parents=True)
@@ -129,7 +128,7 @@ def update_fonts(update_config: UpdateConfig):
         else:
             asset_file_name = asset_config.file_name.format(version=version)
             asset_url = f'{repository_url}/releases/download/{tag_name}/{asset_file_name}'
-        asset_file_path = download_dir.joinpath(asset_file_name)
+        asset_file_path = downloads_dir.joinpath(asset_file_name)
         if not asset_file_path.exists():
             logger.info("Start download: '%s'", asset_url)
             download_util.download_file(asset_url, asset_file_path)
