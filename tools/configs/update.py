@@ -18,13 +18,13 @@ class UpdateConfig:
         update_configs = []
         for config_data in configs_data:
             name = config_data['name']
-            repository_name = config_data['repository_name']
-            tag_name = config_data['tag_name']
+            repository_name = config_data['repository-name']
+            tag_name = config_data['tag-name']
             asset_configs = []
-            for asset_data in config_data['asset_configs']:
-                file_name = asset_data.get('file_name', None)
+            for asset_data in config_data['asset-configs']:
+                file_name = asset_data.get('file-name', None)
                 copy_list = []
-                for from_path, to_path in asset_data['copy_list'].items():
+                for from_path, to_path in asset_data['copy-list'].items():
                     if to_path is None:
                         to_path = from_path
                     copy_list.append((from_path, to_path))

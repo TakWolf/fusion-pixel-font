@@ -1,50 +1,50 @@
 -
   name: miseki-bitmap
-  repository_name: ItMarki/MisekiBitmap
-  tag_name:
-  asset_configs:
+  repository-name: ItMarki/MisekiBitmap
+  tag-name:
+  asset-configs:
     -
-      file_name: licensepack.zip
-      copy_list:
+      file-name: licensepack.zip
+      copy-list:
         licensepack/LICENSE.txt: LICENSE.txt
         licensepack/MisekiBitmap.ttf: MisekiBitmap.ttf
 -
   name: boutique-bitmap-7x7
-  repository_name: scott0107000/BoutiqueBitmap7x7
-  tag_name:
-  asset_configs:
+  repository-name: scott0107000/BoutiqueBitmap7x7
+  tag-name:
+  asset-configs:
     -
-      file_name: BoutiqueBitmap7x7_{version}.zip
-      copy_list:
+      file-name: BoutiqueBitmap7x7_{version}.zip
+      copy-list:
         OFL.txt: LICENSE.txt
         BoutiqueBitmap7x7_{version}.ttf:
 -
   name: boutique-bitmap-9x9
-  repository_name: scott0107000/BoutiqueBitmap9x9
-  tag_name:
-  asset_configs:
+  repository-name: scott0107000/BoutiqueBitmap9x9
+  tag-name:
+  asset-configs:
     -
-      file_name: BoutiqueBitmap9x9_{version}.zip
-      copy_list:
+      file-name: BoutiqueBitmap9x9_{version}.zip
+      copy-list:
         OFL.txt: LICENSE.txt
         BoutiqueBitmap9x9_{version}.ttf:
 -
   name: cubic-11
-  repository_name: ACh-K/Cubic-11
-  tag_name:
-  asset_configs:
+  repository-name: ACh-K/Cubic-11
+  tag-name:
+  asset-configs:
     -
-      copy_list:
+      copy-list:
         Cubic-11-{version}/OFL.txt: LICENSE.txt
         Cubic-11-{version}/fonts/web/Cubic_11_{version}_R.woff2: Cubic_11_{version}_R.woff2
 -
   name: galmuri
-  repository_name: quiple/galmuri
-  tag_name:
-  asset_configs:
+  repository-name: quiple/galmuri
+  tag-name:
+  asset-configs:
     -
-      file_name: Galmuri-v{version}.zip
-      copy_list:
+      file-name: Galmuri-v{version}.zip
+      copy-list:
         dist/LICENSE.txt: LICENSE.txt
         dist/Galmuri7.ttf: Galmuri7.ttf
         dist/Galmuri9.ttf: Galmuri9.ttf

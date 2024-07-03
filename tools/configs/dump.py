@@ -13,12 +13,12 @@ class DumpConfig:
         for name, items_data in configs_data.items():
             version = fs_util.read_json(path_define.fonts_dir.joinpath(name, 'version.json'))['version']
             for item_data in items_data:
-                font_file_path = path_define.fonts_dir.joinpath(name, item_data['font_file_name'].format(version=version))
-                font_size = item_data['font_size']
-                dump_dir = path_define.dump_dir.joinpath(str(font_size), item_data['dump_dir_name'])
-                rasterize_size = item_data.get('rasterize_size', font_size)
-                rasterize_offset_x = item_data.get('rasterize_offset_x', 0)
-                rasterize_offset_y = item_data.get('rasterize_offset_y', 0)
+                font_file_path = path_define.fonts_dir.joinpath(name, item_data['font-file-name'].format(version=version))
+                font_size = item_data['font-size']
+                dump_dir = path_define.dump_dir.joinpath(str(font_size), item_data['dump-dir-name'])
+                rasterize_size = item_data.get('rasterize-size', font_size)
+                rasterize_offset_x = item_data.get('rasterize-offset-x', 0)
+                rasterize_offset_y = item_data.get('rasterize-offset-y', 0)
                 dump_configs[font_size].append(DumpConfig(
                     name,
                     font_file_path,

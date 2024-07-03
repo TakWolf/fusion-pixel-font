@@ -11,9 +11,9 @@ class FallbackConfig:
         configs_data = fs_util.read_yaml(path_define.assets_dir.joinpath('fallback-configs.yml'))
         fallback_configs = {font_size: [] for font_size in configs.font_sizes}
         for config_data in configs_data:
-            font_size = config_data['font_size']
-            dir_from = path_define.dump_dir.joinpath(str(font_size), config_data['dir_from'])
-            dir_to = path_define.fallback_glyphs_dir.joinpath(str(font_size), config_data['dir_to'])
+            font_size = config_data['font-size']
+            dir_from = path_define.dump_dir.joinpath(str(font_size), config_data['dir-from'])
+            dir_to = path_define.fallback_glyphs_dir.joinpath(str(font_size), config_data['dir-to'])
             flavor = config_data.get('flavor', None)
             fallback_configs[font_size].append(FallbackConfig(
                 font_size,
