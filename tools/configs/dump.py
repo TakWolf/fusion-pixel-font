@@ -7,7 +7,7 @@ from tools.utils import fs_util
 
 class DumpConfig:
     @staticmethod
-    def load_all() -> dict[int, list['DumpConfig']]:
+    def load() -> dict[int, list['DumpConfig']]:
         configs_data = fs_util.read_yaml(path_define.assets_dir.joinpath('dump-configs.yml'))
         dump_configs = {font_size: [] for font_size in configs.font_sizes}
         for name, items_data in configs_data.items():

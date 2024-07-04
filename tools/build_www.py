@@ -10,9 +10,9 @@ from tools.services.font_service import DesignContext, FontContext
 def main():
     update_service.setup_ark_pixel_glyphs()
 
-    font_configs = FontConfig.load_all()
-    dump_configs = DumpConfig.load_all()
-    fallback_configs = FallbackConfig.load_all()
+    font_configs = {font_size: FontConfig.load(font_size) for font_size in configs.font_sizes}
+    dump_configs = DumpConfig.load()
+    fallback_configs = FallbackConfig.load()
 
     for font_size, font_config in font_configs.items():
         for dump_config in dump_configs[font_size]:

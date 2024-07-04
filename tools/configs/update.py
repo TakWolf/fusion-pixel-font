@@ -13,7 +13,7 @@ class DownloadAssetConfig:
 
 class UpdateConfig:
     @staticmethod
-    def load_all() -> list['UpdateConfig']:
+    def load() -> list['UpdateConfig']:
         configs_data = fs_util.read_yaml(path_define.assets_dir.joinpath('update-configs.yml'))
         update_configs = []
         for config_data in configs_data:

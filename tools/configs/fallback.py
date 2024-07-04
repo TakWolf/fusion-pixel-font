@@ -7,7 +7,7 @@ from tools.utils import fs_util
 
 class FallbackConfig:
     @staticmethod
-    def load_all() -> dict[int, list['FallbackConfig']]:
+    def load() -> dict[int, list['FallbackConfig']]:
         configs_data = fs_util.read_yaml(path_define.assets_dir.joinpath('fallback-configs.yml'))
         fallback_configs = {font_size: [] for font_size in configs.font_sizes}
         for config_data in configs_data:
