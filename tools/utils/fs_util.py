@@ -22,4 +22,5 @@ def write_json(data: Any, path: Path):
 
 
 def read_yaml(path: Path) -> Any:
-    return yaml.safe_load(path.read_text('utf-8'))
+    with path.open('rb') as file:
+        return yaml.safe_load(file)
