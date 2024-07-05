@@ -1,13 +1,13 @@
 from pathlib import Path
 
 from tools import configs
-from tools.configs import path_define
+from tools.configs import path_define, FontSize, LanguageFileFlavors
 from tools.utils import fs_util
 
 
 class FallbackConfig:
     @staticmethod
-    def load() -> dict[int, list['FallbackConfig']]:
+    def load() -> dict[FontSize, list['FallbackConfig']]:
         configs_data = fs_util.read_yaml(path_define.assets_dir.joinpath('fallback-configs.yml'))
         fallback_configs = {font_size: [] for font_size in configs.font_sizes}
         for config_data in configs_data:
@@ -23,17 +23,17 @@ class FallbackConfig:
             ))
         return fallback_configs
 
-    font_size: int
+    font_size: FontSize
     dir_from: Path
     dir_to: Path
-    flavor: str | None
+    flavor: LanguageFileFlavors | None
 
     def __init__(
             self,
-            font_size: int,
+            font_size: FontSize,
             dir_from: Path,
             dir_to: Path,
-            flavor: str | None,
+            flavor: LanguageFileFlavors | None,
     ):
         self.font_size = font_size
         self.dir_from = dir_from

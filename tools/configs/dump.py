@@ -1,13 +1,13 @@
 from pathlib import Path
 
 from tools import configs
-from tools.configs import path_define
+from tools.configs import path_define, FontSize
 from tools.utils import fs_util
 
 
 class DumpConfig:
     @staticmethod
-    def load() -> dict[int, list['DumpConfig']]:
+    def load() -> dict[FontSize, list['DumpConfig']]:
         configs_data = fs_util.read_yaml(path_define.assets_dir.joinpath('dump-configs.yml'))
         dump_configs = {font_size: [] for font_size in configs.font_sizes}
         for name, items_data in configs_data.items():
@@ -32,7 +32,7 @@ class DumpConfig:
 
     name: str
     font_file_path: Path
-    font_size: int
+    font_size: FontSize
     dump_dir: Path
     rasterize_size: int
     rasterize_offset_x: int
@@ -42,7 +42,7 @@ class DumpConfig:
             self,
             name: str,
             font_file_path: Path,
-            font_size: int,
+            font_size: FontSize,
             dump_dir: Path,
             rasterize_size: int,
             rasterize_offset_x: int,
