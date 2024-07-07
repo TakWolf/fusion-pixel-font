@@ -28,7 +28,7 @@ def main():
             dump_service.apply_fallback(fallback_config)
 
         design_context = DesignContext.load(font_config, path_define.patch_glyphs_dir)
-        design_context.standardized()
+        design_context.format_glyph_files()
         design_context.fallback(DesignContext.load(font_config, path_define.ark_pixel_glyphs_dir))
         design_context.fallback(DesignContext.load(font_config, path_define.fallback_glyphs_dir))
         for width_mode in configs.width_modes:
