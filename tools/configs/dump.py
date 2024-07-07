@@ -1,17 +1,19 @@
+import json
 from pathlib import Path
+
+import yaml
 
 from tools import configs
 from tools.configs import path_define, FontSize
-from tools.utils import fs_util
 
 
 class DumpConfig:
     @staticmethod
     def load() -> dict[FontSize, list['DumpConfig']]:
-        configs_data = fs_util.read_yaml(path_define.assets_dir.joinpath('dump-configs.yml'))
+        configs_data = yaml.safe_load(path_define.assets_dir.joinpath('dump-configs.yml').read_bytes())
         dump_configs = {font_size: [] for font_size in configs.font_sizes}
         for name, items_data in configs_data.items():
-            version = fs_util.read_json(path_define.fonts_dir.joinpath(name, 'version.json'))['version']
+            version = json.loads(path_define.fonts_dir.joinpath(name, 'version.json').read_bytes())['version']
             for item_data in items_data:
                 font_file_path = path_define.fonts_dir.joinpath(name, item_data['font-file-name'].format(version=version))
                 font_size = item_data['font-size']

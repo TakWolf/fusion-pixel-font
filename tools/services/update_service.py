@@ -1,3 +1,4 @@
+import json
 import os
 import shutil
 import zipfile
@@ -7,7 +8,7 @@ from loguru import logger
 from tools import configs
 from tools.configs import path_define
 from tools.configs.update import UpdateConfig
-from tools.utils import fs_util, github_api, download_util
+from tools.utils import github_api, download_util
 
 
 def update_ark_pixel_glyphs_version():
@@ -38,20 +39,20 @@ def update_ark_pixel_glyphs_version():
     }
     file_path = path_define.fonts_dir.joinpath('ark-pixel').joinpath('version.json')
     file_path.parent.mkdir(parents=True, exist_ok=True)
-    fs_util.write_json(version_info, file_path)
+    file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
     logger.info("Update version file: '{}'", file_path)
 
 
 def setup_ark_pixel_glyphs():
     cache_version_file_path = path_define.ark_pixel_glyphs_dir.joinpath('version.json')
     if cache_version_file_path.is_file():
-        cache_sha = fs_util.read_json(cache_version_file_path)['sha']
+        cache_sha = json.loads(cache_version_file_path.read_bytes())['sha']
     else:
         cache_sha = None
 
     font_ark_pixel_dir = path_define.fonts_dir.joinpath('ark-pixel')
     version_file_path = font_ark_pixel_dir.joinpath('version.json')
-    version_info = fs_util.read_json(version_file_path)
+    version_info = json.loads(version_file_path.read_bytes())
     sha = version_info['sha']
     if cache_sha == sha:
         return
@@ -98,7 +99,7 @@ def setup_ark_pixel_glyphs():
 
     if source_unzip_dir.exists():
         shutil.rmtree(source_unzip_dir)
-    fs_util.write_json(version_info, cache_version_file_path)
+    cache_version_file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
     logger.info("Update glyphs: '{}'", sha)
 
 
@@ -113,7 +114,7 @@ def update_fonts(update_config: UpdateConfig):
     fonts_dir = path_define.fonts_dir.joinpath(update_config.name)
     version_file_path = fonts_dir.joinpath('version.json')
     if version_file_path.exists():
-        version_info = fs_util.read_json(version_file_path)
+        version_info = json.loads(version_file_path.read_bytes())
         if version == version_info['version']:
             return
     logger.info("Need update fonts: '{}'", update_config.name)
@@ -161,5 +162,5 @@ def update_fonts(update_config: UpdateConfig):
         'version_url': f'{repository_url}/releases/tag/{tag_name}',
     }
     version_file_path = fonts_dir.joinpath('version.json')
-    fs_util.write_json(version_info, version_file_path)
+    version_file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
     logger.info("Update version file: '{}'", version_file_path)

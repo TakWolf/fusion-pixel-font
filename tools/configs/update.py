@@ -1,5 +1,6 @@
+import yaml
+
 from tools.configs import path_define
-from tools.utils import fs_util
 
 
 class DownloadAssetConfig:
@@ -14,7 +15,7 @@ class DownloadAssetConfig:
 class UpdateConfig:
     @staticmethod
     def load() -> list['UpdateConfig']:
-        configs_data = fs_util.read_yaml(path_define.assets_dir.joinpath('update-configs.yml'))
+        configs_data = yaml.safe_load(path_define.assets_dir.joinpath('update-configs.yml').read_bytes())
         update_configs = []
         for config_data in configs_data:
             name = config_data['name']
