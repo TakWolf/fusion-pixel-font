@@ -1,12 +1,9 @@
-import logging
-
 from PIL import Image, ImageFont, ImageDraw
 from PIL.ImageFont import FreeTypeFont
+from loguru import logger
 
 from tools.configs import path_define
 from tools.configs.font import FontConfig
-
-logger = logging.getLogger(__name__)
 
 
 def _load_font(font_config: FontConfig, width_mode: str, language_flavor: str, scale: int = 1) -> FreeTypeFont:
@@ -63,4 +60,4 @@ def make_preview_image(font_config: FontConfig):
     path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
     file_path = path_define.outputs_dir.joinpath(f'preview-{font_config.font_size}px.png')
     image.save(file_path)
-    logger.info("Make preview image: '%s'", file_path)
+    logger.info("Make preview image: '{}'", file_path)

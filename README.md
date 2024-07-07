@@ -111,6 +111,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 - [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/)
 - [Jinja](https://github.com/pallets/jinja)
 - [HTTPX](https://github.com/encode/httpx)
+- [Loguru](https://github.com/Delgan/loguru)
 
 ## 赞助
 

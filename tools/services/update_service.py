@@ -1,14 +1,13 @@
-import logging
 import os
 import shutil
 import zipfile
+
+from loguru import logger
 
 from tools import configs
 from tools.configs import path_define
 from tools.configs.update import UpdateConfig
 from tools.utils import fs_util, github_api, download_util
-
-logger = logging.getLogger(__name__)
 
 
 def update_ark_pixel_glyphs_version():
@@ -40,7 +39,7 @@ def update_ark_pixel_glyphs_version():
     file_path = path_define.fonts_dir.joinpath('ark-pixel').joinpath('version.json')
     file_path.parent.mkdir(parents=True, exist_ok=True)
     fs_util.write_json(version_info, file_path)
-    logger.info("Update version file: '%s'", file_path)
+    logger.info("Update version file: '{}'", file_path)
 
 
 def setup_ark_pixel_glyphs():
@@ -62,18 +61,18 @@ def setup_ark_pixel_glyphs():
     source_file_path = downloads_dir.joinpath(f'{sha}.zip')
     if not source_file_path.exists():
         asset_url = version_info['asset_url']
-        logger.info("Start download: '%s'", asset_url)
+        logger.info("Start download: '{}'", asset_url)
         downloads_dir.mkdir(parents=True, exist_ok=True)
         download_util.download_file(asset_url, source_file_path)
     else:
-        logger.info("Already downloaded: '%s'", source_file_path)
+        logger.info("Already downloaded: '{}'", source_file_path)
 
     source_unzip_dir = downloads_dir.joinpath(f'ark-pixel-font-{sha}')
     if source_unzip_dir.exists():
         shutil.rmtree(source_unzip_dir)
     with zipfile.ZipFile(source_file_path) as file:
         file.extractall(downloads_dir)
-    logger.info("Unzip: '%s'", source_unzip_dir)
+    logger.info("Unzip: '{}'", source_unzip_dir)
 
     if path_define.ark_pixel_glyphs_dir.exists():
         shutil.rmtree(path_define.ark_pixel_glyphs_dir)
@@ -100,7 +99,7 @@ def setup_ark_pixel_glyphs():
     if source_unzip_dir.exists():
         shutil.rmtree(source_unzip_dir)
     fs_util.write_json(version_info, cache_version_file_path)
-    logger.info("Update glyphs: '%s'", sha)
+    logger.info("Update glyphs: '{}'", sha)
 
 
 def update_fonts(update_config: UpdateConfig):
@@ -108,7 +107,7 @@ def update_fonts(update_config: UpdateConfig):
         tag_name = github_api.get_releases_latest_tag_name(update_config.repository_name)
     else:
         tag_name = update_config.tag_name
-    logger.info("'%s' tag: '%s'", update_config.repository_name, tag_name)
+    logger.info("'{}' tag: '{}'", update_config.repository_name, tag_name)
     version = tag_name.removeprefix('v')
 
     fonts_dir = path_define.fonts_dir.joinpath(update_config.name)
@@ -117,7 +116,7 @@ def update_fonts(update_config: UpdateConfig):
         version_info = fs_util.read_json(version_file_path)
         if version == version_info['version']:
             return
-    logger.info("Need update fonts: '%s'", update_config.name)
+    logger.info("Need update fonts: '{}'", update_config.name)
 
     repository_url = f'https://github.com/{update_config.repository_name}'
     downloads_dir = path_define.downloads_dir.joinpath(update_config.repository_name, tag_name)
@@ -136,23 +135,23 @@ def update_fonts(update_config: UpdateConfig):
             asset_url = f'{repository_url}/releases/download/{tag_name}/{asset_file_name}'
         asset_file_path = downloads_dir.joinpath(asset_file_name)
         if not asset_file_path.exists():
-            logger.info("Start download: '%s'", asset_url)
+            logger.info("Start download: '{}'", asset_url)
             download_util.download_file(asset_url, asset_file_path)
         else:
-            logger.info("Already downloaded: '%s'", asset_file_path)
+            logger.info("Already downloaded: '{}'", asset_file_path)
 
         asset_unzip_dir = asset_file_path.with_suffix('')
         if asset_unzip_dir.exists():
             shutil.rmtree(asset_unzip_dir)
         with zipfile.ZipFile(asset_file_path) as file:
             file.extractall(asset_unzip_dir)
-        logger.info("Unzip: '%s'", asset_unzip_dir)
+        logger.info("Unzip: '{}'", asset_unzip_dir)
 
         for copy_info in asset_config.copy_list:
             from_path = asset_unzip_dir.joinpath(copy_info[0].format(version=version))
             to_path = fonts_dir.joinpath(copy_info[1].format(version=version))
             shutil.copyfile(from_path, to_path)
-            logger.info("Copy from '%s' to '%s'", from_path, to_path)
+            logger.info("Copy from '{}' to '{}'", from_path, to_path)
         if asset_unzip_dir.exists():
             shutil.rmtree(asset_unzip_dir)
 
@@ -163,4 +162,4 @@ def update_fonts(update_config: UpdateConfig):
     }
     version_file_path = fonts_dir.joinpath('version.json')
     fs_util.write_json(version_info, version_file_path)
-    logger.info("Update version file: '%s'", version_file_path)
+    logger.info("Update version file: '{}'", version_file_path)
