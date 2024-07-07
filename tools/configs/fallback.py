@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from tools import configs
-from tools.configs import path_define, FontSize, LanguageFileFlavors
+from tools.configs import path_define, FontSize, LanguageFileFlavor
 from tools.utils import fs_util
 
 
@@ -26,14 +26,14 @@ class FallbackConfig:
     font_size: FontSize
     dir_from: Path
     dir_to: Path
-    flavor: LanguageFileFlavors | None
+    flavor: LanguageFileFlavor | None
 
     def __init__(
             self,
             font_size: FontSize,
             dir_from: Path,
             dir_to: Path,
-            flavor: LanguageFileFlavors | None,
+            flavor: LanguageFileFlavor | None,
     ):
         self.font_size = font_size
         self.dir_from = dir_from

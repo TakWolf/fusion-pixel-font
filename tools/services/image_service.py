@@ -2,11 +2,11 @@ from PIL import Image, ImageFont, ImageDraw
 from PIL.ImageFont import FreeTypeFont
 from loguru import logger
 
-from tools.configs import path_define
+from tools.configs import path_define, WidthMode, LanguageFlavor
 from tools.configs.font import FontConfig
 
 
-def _load_font(font_config: FontConfig, width_mode: str, language_flavor: str, scale: int = 1) -> FreeTypeFont:
+def _load_font(font_config: FontConfig, width_mode: WidthMode, language_flavor: LanguageFlavor, scale: int = 1) -> FreeTypeFont:
     file_path = path_define.outputs_dir.joinpath(f'fusion-pixel-{font_config.font_size}px-{width_mode}-{language_flavor}.woff2')
     return ImageFont.truetype(file_path, font_config.font_size * scale)
 
