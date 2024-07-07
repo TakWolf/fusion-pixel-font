@@ -43,7 +43,6 @@ def dump_font(dump_config: DumpConfig):
 
         glyph_file_dir.mkdir(parents=True, exist_ok=True)
         image.save(glyph_file_path)
-        logger.debug("Dump glyph: '{}'", glyph_file_path)
 
 
 def apply_fallback(fallback_config: FallbackConfig):
@@ -66,4 +65,3 @@ def apply_fallback(fallback_config: FallbackConfig):
             glyph_file_path_to = glyph_file_dir_to.joinpath(glyph_file_name)
             glyph_file_dir_to.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(glyph_file_path_from, glyph_file_path_to)
-            logger.debug("Copy glyph file: '{}'", glyph_file_path_to)
