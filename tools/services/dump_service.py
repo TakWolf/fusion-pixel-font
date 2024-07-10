@@ -46,7 +46,7 @@ def dump_font(dump_config: DumpConfig):
 
 
 def apply_fallback(fallback_config: FallbackConfig):
-    assert fallback_config.dir_from.is_dir(), f"Dump dir not exist: '{fallback_config.dir_from}'"
+    assert fallback_config.dir_from.is_dir(), f"dump dir not exist: '{fallback_config.dir_from}'"
     logger.info("Fallback glyphs: '{}' '{}' -> '{}'", fallback_config.flavor, fallback_config.dir_from, fallback_config.dir_to)
     for glyph_file_dir_from, _, glyph_file_names in fallback_config.dir_from.walk():
         for glyph_file_name in glyph_file_names:
