@@ -112,6 +112,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 - [Jinja](https://github.com/pallets/jinja)
 - [HTTPX](https://github.com/encode/httpx)
 - [Loguru](https://github.com/Delgan/loguru)
+- [Cyclopts](https://github.com/BrianPugh/cyclopts)
 
 ## 赞助
 
