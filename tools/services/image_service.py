@@ -2,13 +2,13 @@ from PIL import Image, ImageFont, ImageDraw
 from PIL.ImageFont import FreeTypeFont
 from loguru import logger
 
-from tools.configs import path_define, WidthMode, LanguageFlavor
+from tools.configs import path_define, FontSize, WidthMode, LanguageFlavor
 from tools.configs.font import FontConfig
 
 
-def _load_font(font_config: FontConfig, width_mode: WidthMode, language_flavor: LanguageFlavor, scale: int = 1) -> FreeTypeFont:
-    file_path = path_define.outputs_dir.joinpath(f'fusion-pixel-{font_config.font_size}px-{width_mode}-{language_flavor}.woff2')
-    return ImageFont.truetype(file_path, font_config.font_size * scale)
+def _load_font(font_size: FontSize, width_mode: WidthMode, language_flavor: LanguageFlavor, scale: int = 1) -> FreeTypeFont:
+    file_path = path_define.outputs_dir.joinpath(f'fusion-pixel-{font_size}px-{width_mode}-{language_flavor}.woff2')
+    return ImageFont.truetype(file_path, font_size * scale)
 
 
 def _draw_text(
@@ -40,10 +40,10 @@ def _draw_text(
 
 
 def make_preview_image(font_config: FontConfig):
-    font_latin = _load_font(font_config, 'proportional', 'latin')
-    font_zh_hans = _load_font(font_config, 'proportional', 'zh_hans')
-    font_zh_hant = _load_font(font_config, 'proportional', 'zh_hant')
-    font_ja = _load_font(font_config, 'proportional', 'ja')
+    font_latin = _load_font(font_config.font_size, 'proportional', 'latin')
+    font_zh_hans = _load_font(font_config.font_size, 'proportional', 'zh_hans')
+    font_zh_hant = _load_font(font_config.font_size, 'proportional', 'zh_hant')
+    font_ja = _load_font(font_config.font_size, 'proportional', 'ja')
 
     image = Image.new('RGBA', (font_config.font_size * 27, font_config.font_size * 2 + font_config.line_height * 9), (255, 255, 255, 255))
     _draw_text(image, (font_config.font_size, font_config.font_size), '缝合像素字体 / Fusion Pixel Font', font_zh_hans)

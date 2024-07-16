@@ -9,16 +9,19 @@ from tools.services.font_service import DesignContext
 def main():
     update_service.setup_ark_pixel_glyphs()
 
-    font_configs = {font_size: FontConfig.load(font_size) for font_size in configs.font_sizes}
     dump_configs = DumpConfig.load()
     fallback_configs = FallbackConfig.load()
-    for font_size, font_config in font_configs.items():
+    font_configs = {}
+
+    for font_size in configs.font_sizes:
         for dump_config in dump_configs[font_size]:
             dump_service.dump_font(dump_config)
 
         for fallback_config in fallback_configs[font_size]:
             dump_service.apply_fallback(fallback_config)
 
+        font_config = FontConfig.load(font_size)
+        font_configs[font_size] = font_config
         design_context = DesignContext.load(font_config)
         for width_mode in configs.width_modes:
             design_context.make_fonts(width_mode, 'woff2')
