@@ -45,8 +45,8 @@
     -
       file-name: Galmuri-v{version}.zip
       copy-list:
-        dist/LICENSE.txt: LICENSE.txt
-        dist/Galmuri7.ttf: Galmuri7.ttf
-        dist/Galmuri9.ttf: Galmuri9.ttf
-        dist/Galmuri11.ttf: Galmuri11.ttf
-        dist/GalmuriMono7.ttf: GalmuriMono7.ttf
+        LICENSE.txt: LICENSE.txt
+        Galmuri7.ttf: Galmuri7.ttf
+        Galmuri9.ttf: Galmuri9.ttf
+        Galmuri11.ttf: Galmuri11.ttf
+        GalmuriMono7.ttf: GalmuriMono7.ttf
