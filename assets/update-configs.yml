@@ -36,7 +36,7 @@
     -
       copy-list:
         Cubic-11-{version}/OFL.txt: LICENSE.txt
-        Cubic-11-{version}/fonts/web/Cubic_11_{version}_R.woff2: Cubic_11_{version}_R.woff2
+        Cubic-11-{version}/fonts/web/Cubic_11.woff2: Cubic_11.woff2
 -
   name: galmuri
   repository-name: quiple/galmuri
