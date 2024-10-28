@@ -4,7 +4,7 @@ fonttools==4.54.1
 unidata-blocks==0.0.15
 character-encoding-utils==0.0.8
 PyYAML==6.0.2
-pillow==10.4.0
+pillow==11.0.0
 beautifulsoup4==4.12.3
 Jinja2==3.1.4
 httpx==0.27.2
