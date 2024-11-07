@@ -31,11 +31,10 @@ type LanguageFileFlavor = Literal[
 ]
 language_file_flavors = list[LanguageFileFlavor](get_args(LanguageFileFlavor.__value__))
 
-type FontFormat = Literal['otf', 'ttf', 'woff2', 'bdf', 'pcf']
+type FontFormat = Literal['otf', 'ttf', 'woff2', 'bdf', 'pcf', 'otc', 'ttc']
 font_formats = list[FontFormat](get_args(FontFormat.__value__))
 
-type FontCollectionFormat = Literal['otc', 'ttc']
-font_collection_formats = list[FontCollectionFormat](get_args(FontCollectionFormat.__value__))
+font_collection_formats = ['otc', 'ttc']
 
 license_configs = {
     8: [
