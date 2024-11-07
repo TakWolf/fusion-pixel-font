@@ -44,9 +44,9 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 | 尺寸 | 等宽模式 | 比例模式 |
 |---|---|---|
-| 8px | [font-info-8px-monospaced](docs/font-info-8px-monospaced.md) | [font-info-8px-proportional](docs/font-info-8px-proportional.md) |
-| 10px | [font-info-10px-monospaced](docs/font-info-10px-monospaced.md) | [font-info-10px-proportional](docs/font-info-10px-proportional.md) |
-| 12px | [font-info-12px-monospaced](docs/font-info-12px-monospaced.md) | [font-info-12px-proportional](docs/font-info-12px-proportional.md) |
+| 8px | [info-8px-monospaced](docs/info-8px-monospaced.md) | [info-8px-proportional](docs/info-8px-proportional.md) |
+| 10px | [info-10px-monospaced](docs/info-10px-monospaced.md) | [info-10px-proportional](docs/info-10px-proportional.md) |
+| 12px | [info-12px-monospaced](docs/info-12px-monospaced.md) | [info-12px-proportional](docs/info-12px-proportional.md) |
 
 ## 语言特定字形
 
