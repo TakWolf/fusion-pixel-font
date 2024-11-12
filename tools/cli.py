@@ -3,6 +3,7 @@ from typing import Literal
 
 from cyclopts import App
 from loguru import logger
+from pixel_font_knife import glyph_mapping_util
 
 from tools import configs
 from tools.configs import path_define, FontSize, WidthMode, FontFormat, Attachment
@@ -55,6 +56,10 @@ def main(
 
     update_service.setup_ark_pixel_glyphs()
 
+    mappings = [
+        glyph_mapping_util.load_mapping(path_define.ark_pixel_glyphs_dir.joinpath('cjk-radicals-supplement-mapping.yml')),
+        glyph_mapping_util.load_mapping(path_define.ark_pixel_glyphs_dir.joinpath('kangxi-radicals-mapping.yml')),
+    ]
     dump_configs = DumpConfig.load()
     fallback_configs = FallbackConfig.load()
     font_configs = {}
@@ -68,7 +73,7 @@ def main(
 
         font_config = FontConfig.load(font_size)
         font_configs[font_size] = font_config
-        design_context = DesignContext.load(font_config)
+        design_context = DesignContext.load(font_config, mappings)
         design_contexts[font_size] = design_context
         for width_mode in width_modes:
             for font_format in font_formats:

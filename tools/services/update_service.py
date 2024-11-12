@@ -93,9 +93,9 @@ def setup_ark_pixel_glyphs():
         config_file_path_to.parent.mkdir(parents=True, exist_ok=True)
         config_file_path_from.rename(config_file_path_to)
 
-    license_path_from = source_unzip_dir.joinpath('LICENSE-OFL')
-    license_path_to = font_ark_pixel_dir.joinpath('LICENSE.txt')
-    shutil.copyfile(license_path_from, license_path_to)
+    shutil.copyfile(source_unzip_dir.joinpath('assets', 'cjk-radicals-supplement-mapping.yml'), path_define.ark_pixel_glyphs_dir.joinpath('cjk-radicals-supplement-mapping.yml'))
+    shutil.copyfile(source_unzip_dir.joinpath('assets', 'kangxi-radicals-mapping.yml'), path_define.ark_pixel_glyphs_dir.joinpath('kangxi-radicals-mapping.yml'))
+    shutil.copyfile(source_unzip_dir.joinpath('LICENSE-OFL'), font_ark_pixel_dir.joinpath('LICENSE.txt'))
 
     if source_unzip_dir.exists():
         shutil.rmtree(source_unzip_dir)
