@@ -33,10 +33,10 @@ class DesignContext:
                     flavor_group['zh_hans'] = flavor_group['zh_cn']
                 if 'zh_tr' in flavor_group:
                     flavor_group['zh_hant'] = flavor_group['zh_tr']
-                if '' not in flavor_group:
+                if None not in flavor_group:
                     for language_flavor in configs.language_file_flavors:
                         if language_flavor in flavor_group:
-                            flavor_group[''] = flavor_group[language_flavor]
+                            flavor_group[None] = flavor_group[language_flavor]
                             break
 
         return DesignContext(font_config, glyph_files)
