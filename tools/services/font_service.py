@@ -24,11 +24,7 @@ class DesignContext:
             context.update(glyph_file_util.load_context(path_define.patch_glyphs_dir.joinpath(str(font_config.font_size), width_mode_dir_name)))
             contexts[width_mode_dir_name] = context
 
-        glyph_files = {}
-        for width_mode in configs.width_modes:
-            glyph_files[width_mode] = dict(contexts['common'])
-            glyph_files[width_mode].update(contexts[width_mode])
-            for flavor_group in glyph_files[width_mode].values():
+            for flavor_group in context.values():
                 if 'zh_cn' in flavor_group:
                     flavor_group['zh_hans'] = flavor_group['zh_cn']
                 if 'zh_tr' in flavor_group:
@@ -38,6 +34,11 @@ class DesignContext:
                         if language_flavor in flavor_group:
                             flavor_group[None] = flavor_group[language_flavor]
                             break
+
+        glyph_files = {}
+        for width_mode in configs.width_modes:
+            glyph_files[width_mode] = dict(contexts['common'])
+            glyph_files[width_mode].update(contexts[width_mode])
 
         return DesignContext(font_config, glyph_files)
 
