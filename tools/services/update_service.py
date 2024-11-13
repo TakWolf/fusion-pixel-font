@@ -1,11 +1,9 @@
 import json
-import os
 import shutil
 import zipfile
 
 from loguru import logger
 
-from tools import configs
 from tools.configs import path_define
 from tools.configs.update import UpdateConfig
 from tools.utils import github_api, download_util
@@ -77,25 +75,12 @@ def setup_ark_pixel_glyphs():
 
     if path_define.ark_pixel_glyphs_dir.exists():
         shutil.rmtree(path_define.ark_pixel_glyphs_dir)
-    path_define.ark_pixel_glyphs_dir.mkdir(parents=True)
-    for font_size in configs.font_sizes:
-        source_glyphs_dir_from = source_unzip_dir.joinpath('assets', 'glyphs', str(font_size))
-        source_glyphs_dir_to = path_define.ark_pixel_glyphs_dir.joinpath(str(font_size))
-        if not source_glyphs_dir_from.is_dir():
-            source_glyphs_dir_to.mkdir(parents=True)
-            continue
-        shutil.copytree(source_glyphs_dir_from, source_glyphs_dir_to)
-
-        config_file_path_from = path_define.ark_pixel_glyphs_dir.joinpath(str(font_size), 'config.yml')
-        config_file_path_to = path_define.patch_glyphs_dir.joinpath(str(font_size), 'config.yml')
-        if config_file_path_to.exists():
-            os.remove(config_file_path_to)
-        config_file_path_to.parent.mkdir(parents=True, exist_ok=True)
-        config_file_path_from.rename(config_file_path_to)
-
-    shutil.copyfile(source_unzip_dir.joinpath('assets', 'cjk-radicals-supplement-mapping.yml'), path_define.ark_pixel_glyphs_dir.joinpath('cjk-radicals-supplement-mapping.yml'))
-    shutil.copyfile(source_unzip_dir.joinpath('assets', 'kangxi-radicals-mapping.yml'), path_define.ark_pixel_glyphs_dir.joinpath('kangxi-radicals-mapping.yml'))
+    for font_size in [10, 12]:
+        shutil.copyfile(source_unzip_dir.joinpath('assets', 'glyphs', str(font_size), 'config.yml'), path_define.patch_glyphs_dir.joinpath(str(font_size), 'config.yml'))
     shutil.copyfile(source_unzip_dir.joinpath('LICENSE-OFL'), font_ark_pixel_dir.joinpath('LICENSE.txt'))
+    source_unzip_dir.joinpath('assets', 'glyphs').rename(path_define.ark_pixel_glyphs_dir)
+    source_unzip_dir.joinpath('assets', 'cjk-radicals-supplement-mapping.yml').rename(path_define.ark_pixel_glyphs_dir.joinpath('cjk-radicals-supplement-mapping.yml'))
+    source_unzip_dir.joinpath('assets', 'kangxi-radicals-mapping.yml').rename(path_define.ark_pixel_glyphs_dir.joinpath('kangxi-radicals-mapping.yml'))
 
     if source_unzip_dir.exists():
         shutil.rmtree(source_unzip_dir)
