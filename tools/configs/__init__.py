@@ -1,6 +1,6 @@
 from typing import Literal, get_args
 
-version = '2024.11.04'
+version = '2024.11.25'
 
 type FontSize = Literal[8, 10, 12]
 font_sizes = list[FontSize](get_args(FontSize.__value__))
