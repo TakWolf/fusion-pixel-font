@@ -60,8 +60,9 @@ def main(
     update_service.setup_ark_pixel_glyphs()
 
     mappings = [
-        glyph_mapping_util.load_mapping(path_define.ark_pixel_glyphs_dir.joinpath('cjk-radicals-supplement-mapping.yml')),
-        glyph_mapping_util.load_mapping(path_define.ark_pixel_glyphs_dir.joinpath('kangxi-radicals-mapping.yml')),
+        glyph_mapping_util.load_mapping(path_define.ark_pixel_mappings_dir.joinpath('2700-27BF Dingbats.yml')),
+        glyph_mapping_util.load_mapping(path_define.ark_pixel_mappings_dir.joinpath('2E80-2EFF CJK Radicals Supplement.yml')),
+        glyph_mapping_util.load_mapping(path_define.ark_pixel_mappings_dir.joinpath('2F00-2FDF Kangxi Radicals.yml')),
     ]
     dump_configs = DumpConfig.load()
     fallback_configs = FallbackConfig.load()
