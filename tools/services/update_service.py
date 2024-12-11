@@ -75,12 +75,13 @@ def setup_ark_pixel_glyphs():
 
     if path_define.ark_pixel_glyphs_dir.exists():
         shutil.rmtree(path_define.ark_pixel_glyphs_dir)
+    if path_define.ark_pixel_mappings_dir.exists():
+        shutil.rmtree(path_define.ark_pixel_mappings_dir)
     for font_size in [10, 12]:
         shutil.copyfile(source_unzip_dir.joinpath('assets', 'glyphs', str(font_size), 'config.yml'), path_define.patch_glyphs_dir.joinpath(str(font_size), 'config.yml'))
     shutil.copyfile(source_unzip_dir.joinpath('LICENSE-OFL'), font_ark_pixel_dir.joinpath('LICENSE.txt'))
     source_unzip_dir.joinpath('assets', 'glyphs').rename(path_define.ark_pixel_glyphs_dir)
-    source_unzip_dir.joinpath('assets', 'cjk-radicals-supplement-mapping.yml').rename(path_define.ark_pixel_glyphs_dir.joinpath('cjk-radicals-supplement-mapping.yml'))
-    source_unzip_dir.joinpath('assets', 'kangxi-radicals-mapping.yml').rename(path_define.ark_pixel_glyphs_dir.joinpath('kangxi-radicals-mapping.yml'))
+    source_unzip_dir.joinpath('assets', 'mappings').rename(path_define.ark_pixel_mappings_dir)
 
     if source_unzip_dir.exists():
         shutil.rmtree(source_unzip_dir)
