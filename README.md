@@ -7,6 +7,7 @@
 [![Releases](https://img.shields.io/github/v/release/TakWolf/fusion-pixel-font)](https://github.com/TakWolf/fusion-pixel-font/releases)
 [![Discord](https://img.shields.io/badge/discord-像素字体工房-4E5AF0?logo=discord&logoColor=white)](https://discord.gg/3GKtPKtjdU)
 [![QQ Group](https://img.shields.io/badge/QQ群-像素字体工房-brightgreen?logo=tencentqq&logoColor=white)](https://qm.qq.com/q/X1mLrLLGYS)
+[<img src="https://api.gitsponsors.com/api/badge/img?id=470222777" height="20">](https://api.gitsponsors.com/api/badge/link?p=ijWQf/vOj5CYw4+ZLUvi9fOwFOpX3TeJfF4IZFUrzB7dOPTb06JzBe1cdib589NZQk+Qttj7ogAMiHmynSJHHBTsVueik5L0xDPbVrjQyv7+anx4P1gxnGZdjZalwv0+EzytgsqQt88tBFtHjpperQ==)
 
 开源的泛中日韩像素字体，黑体无衬线风格，支持 8、10 和 12 像素。
 
