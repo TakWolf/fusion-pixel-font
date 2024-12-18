@@ -25,9 +25,8 @@ class DesignContext:
             context.update(glyph_file_util.load_context(path_define.patch_glyphs_dir.joinpath(str(font_config.font_size), width_mode_dir_name)))
             contexts[width_mode_dir_name] = context
 
-            if width_mode_dir_name == 'common':
-                for mapping in mappings:
-                    glyph_mapping_util.apply_mapping(context, mapping)
+            for mapping in mappings:
+                glyph_mapping_util.apply_mapping(context, mapping)
 
             for flavor_group in context.values():
                 if 'zh_cn' in flavor_group:
