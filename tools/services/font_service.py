@@ -23,22 +23,24 @@ class DesignContext:
             context = glyph_file_util.load_context(path_define.fallback_glyphs_dir.joinpath(str(font_config.font_size), width_mode_dir_name))
             context.update(glyph_file_util.load_context(path_define.ark_pixel_glyphs_dir.joinpath(str(font_config.font_size), width_mode_dir_name)))
             context.update(glyph_file_util.load_context(path_define.patch_glyphs_dir.joinpath(str(font_config.font_size), width_mode_dir_name)))
-            contexts[width_mode_dir_name] = context
 
-            if width_mode_dir_name == 'common':
-                for mapping in mappings:
-                    glyph_mapping_util.apply_mapping(context, mapping)
+            for flavor_group in context.values():
+                if None not in flavor_group:
+                    for language_flavor in configs.language_file_flavors:
+                        if language_flavor in flavor_group:
+                            flavor_group[None] = flavor_group[language_flavor]
+                            break
+
+            for mapping in mappings:
+                glyph_mapping_util.apply_mapping(context, mapping)
 
             for flavor_group in context.values():
                 if 'zh_cn' in flavor_group:
                     flavor_group['zh_hans'] = flavor_group['zh_cn']
                 if 'zh_tr' in flavor_group:
                     flavor_group['zh_hant'] = flavor_group['zh_tr']
-                if None not in flavor_group:
-                    for language_flavor in configs.language_file_flavors:
-                        if language_flavor in flavor_group:
-                            flavor_group[None] = flavor_group[language_flavor]
-                            break
+
+            contexts[width_mode_dir_name] = context
 
         glyph_files = {}
         for width_mode in configs.width_modes:
