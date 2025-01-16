@@ -1,5 +1,7 @@
 [BoutiqueBitmap9x9]
-2020-2022《字言字語》Cen-cyun, Liu. Luke Liu.
+Copyright © 2025 字言字型 版權所有。
+Copyright © 2025 fancy type foundry. All rights reserved.
+2020-2025《字言字語》Cen-cyun, Liu. Luke Liu.
 https://fontspeech.blogspot.com/
 These fonts are free software.
 Unlimited permission is granted to use, copy, and distribute them, with or without modification, either commercially or noncommercially.
@@ -24,6 +26,8 @@ THESE FONTS ARE PROVIDED "AS IS" WITHOUT WARRANTY.
 M+のライセンスに準じます。
 M+ FONT LICENSEについては、配布物に含まれる
 mplus_bitmap_fonts をご覧ください。
+[Fusion Pixel]
+Copyright (c) 2022, TakWolf (https://takwolf.com), with Reserved Font Name 'Fusion Pixel'.
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
