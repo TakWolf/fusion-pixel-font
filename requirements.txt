@@ -8,5 +8,6 @@ pillow==11.1.0
 beautifulsoup4==4.12.3
 Jinja2==3.1.5
 httpx==0.28.1
+tqdm==4.67.1
 loguru==0.7.3
 cyclopts==3.1.3
