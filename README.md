@@ -6,7 +6,7 @@
 [![License MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/MIT)
 [![Releases](https://img.shields.io/github/v/release/TakWolf/fusion-pixel-font)](https://github.com/TakWolf/fusion-pixel-font/releases)
 [![Discord](https://img.shields.io/badge/discord-像素字体工房-4E5AF0?logo=discord&logoColor=white)](https://discord.gg/3GKtPKtjdU)
-[![QQ Group](https://img.shields.io/badge/QQ群-像素字体工房-brightgreen?logo=tencentqq&logoColor=white)](https://qm.qq.com/q/X1mLrLLGYS)
+[![QQ Group](https://img.shields.io/badge/QQ群-像素字体工房-brightgreen?logo=qq&logoColor=white)](https://qm.qq.com/q/X1mLrLLGYS)
 
 开源的泛中日韩像素字体，黑体无衬线风格，支持 8、10 和 12 像素。
 
