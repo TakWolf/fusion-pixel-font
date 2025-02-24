@@ -68,9 +68,28 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 - [GitHub Releases](https://github.com/TakWolf/fusion-pixel-font/releases)
 
-目前提供 `.otf`、`.ttf`、`.woff2`、`.bdf`、`.pcf` 五种单字体格式，以及 `.otc`、`.ttc` 两种集合字体格式。
+## 程序依赖
 
-## 授权许可
+- [Pixel Font Builder](https://github.com/TakWolf/pixel-font-builder)
+- [Pixel Font Knife](https://github.com/TakWolf/pixel-font-knife)
+- [FontTools](https://github.com/fonttools/fonttools)
+- [Unidata Blocks](https://github.com/TakWolf/unidata-blocks)
+- [Character Encoding Utils](https://github.com/TakWolf/character-encoding-utils)
+- [PyYAML](https://github.com/yaml/pyyaml)
+- [Pillow](https://github.com/python-pillow/Pillow)
+- [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/)
+- [Jinja](https://github.com/pallets/jinja)
+- [HTTPX](https://github.com/encode/httpx)
+- [tqdm](https://github.com/tqdm/tqdm)
+- [Loguru](https://github.com/Delgan/loguru)
+- [Cyclopts](https://github.com/BrianPugh/cyclopts)
+
+## 官方社区
+
+- [「像素字体工房」Discord 服务器](https://discord.gg/3GKtPKtjdU)
+- [「像素字体工房」QQ 群 (302383204)](https://qm.qq.com/q/X1mLrLLGYS)
+
+## 许可证
 
 分为「字体」和「构建程序」两个部分。
 
@@ -93,27 +112,6 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 ### 构建程序
 
 使用 [「MIT 许可证」](LICENSE-MIT) 授权。
-
-## 官方社区
-
-- [「像素字体工房」Discord 服务器](https://discord.gg/3GKtPKtjdU)
-- [「像素字体工房」QQ 群 (302383204)](https://qm.qq.com/q/X1mLrLLGYS)
-
-## 程序依赖
-
-- [Pixel Font Builder](https://github.com/TakWolf/pixel-font-builder)
-- [Pixel Font Knife](https://github.com/TakWolf/pixel-font-knife)
-- [FontTools](https://github.com/fonttools/fonttools)
-- [Unidata Blocks](https://github.com/TakWolf/unidata-blocks)
-- [Character Encoding Utils](https://github.com/TakWolf/character-encoding-utils)
-- [PyYAML](https://github.com/yaml/pyyaml)
-- [Pillow](https://github.com/python-pillow/Pillow)
-- [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/)
-- [Jinja](https://github.com/pallets/jinja)
-- [HTTPX](https://github.com/encode/httpx)
-- [tqdm](https://github.com/tqdm/tqdm)
-- [Loguru](https://github.com/Delgan/loguru)
-- [Cyclopts](https://github.com/BrianPugh/cyclopts)
 
 ## 赞助
 
