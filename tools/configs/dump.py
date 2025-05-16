@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 from pathlib import Path
 
@@ -9,7 +11,7 @@ from tools.configs import path_define, FontSize
 
 class DumpConfig:
     @staticmethod
-    def load() -> dict[FontSize, list['DumpConfig']]:
+    def load() -> dict[FontSize, list[DumpConfig]]:
         configs_data = yaml.safe_load(path_define.assets_dir.joinpath('dump-configs.yml').read_bytes())
         dump_configs = {font_size: [] for font_size in configs.font_sizes}
         for name, items_data in configs_data.items():

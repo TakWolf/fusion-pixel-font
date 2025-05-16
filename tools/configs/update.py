@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import yaml
 
 from tools.configs import path_define
@@ -14,7 +16,7 @@ class DownloadAssetConfig:
 
 class UpdateConfig:
     @staticmethod
-    def load() -> list['UpdateConfig']:
+    def load() -> list[UpdateConfig]:
         configs_data = yaml.safe_load(path_define.assets_dir.joinpath('update-configs.yml').read_bytes())
         update_configs = []
         for config_data in configs_data:
