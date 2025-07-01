@@ -2,8 +2,8 @@ from PIL import Image, ImageFont, ImageDraw
 from PIL.ImageFont import FreeTypeFont
 from loguru import logger
 
+from tools import configs
 from tools.configs import path_define
-from tools.configs.font import FontConfig
 from tools.configs.options import FontSize, WidthMode, LanguageFlavor
 
 
@@ -40,25 +40,26 @@ def _draw_text(
     draw.text((x, y), text, fill=text_color, font=font, spacing=spacing)
 
 
-def make_preview_image(font_config: FontConfig):
-    font_latin = _load_font(font_config.font_size, 'proportional', 'latin')
-    font_zh_hans = _load_font(font_config.font_size, 'proportional', 'zh_hans')
-    font_zh_hant = _load_font(font_config.font_size, 'proportional', 'zh_hant')
-    font_ja = _load_font(font_config.font_size, 'proportional', 'ja')
+def make_preview_image(font_size: FontSize):
+    font_latin = _load_font(font_size, 'proportional', 'latin')
+    font_zh_hans = _load_font(font_size, 'proportional', 'zh_hans')
+    font_zh_hant = _load_font(font_size, 'proportional', 'zh_hant')
+    font_ja = _load_font(font_size, 'proportional', 'ja')
+    line_height = configs.font_configs[font_size].line_height
 
-    image = Image.new('RGBA', (font_config.font_size * 27, font_config.font_size * 2 + font_config.line_height * 9), (255, 255, 255, 255))
-    _draw_text(image, (font_config.font_size, font_config.font_size), '缝合像素字体 / Fusion Pixel Font', font_zh_hans)
-    _draw_text(image, (font_config.font_size, font_config.font_size + font_config.line_height), '我们度过的每个平凡的日常，也许就是连续发生的奇迹。', font_zh_hans)
-    _draw_text(image, (font_config.font_size, font_config.font_size + font_config.line_height * 2), '我們度過的每個平凡的日常，也許就是連續發生的奇蹟。', font_zh_hant)
-    _draw_text(image, (font_config.font_size, font_config.font_size + font_config.line_height * 3), '日々、私たちが過ごしている日常は、', font_ja)
-    _draw_text(image, (font_config.font_size, font_config.font_size + font_config.line_height * 4), '実は奇跡の連続なのかもしれない。', font_ja)
-    _draw_text(image, (font_config.font_size, font_config.font_size + font_config.line_height * 5), 'THE QUICK BROWN FOX JUMPS OVER A LAZY DOG.', font_latin)
-    _draw_text(image, (font_config.font_size, font_config.font_size + font_config.line_height * 6), 'the quick brown fox jumps over a lazy dog.', font_latin)
-    _draw_text(image, (font_config.font_size, font_config.font_size + font_config.line_height * 7), '0123456789', font_latin)
-    _draw_text(image, (font_config.font_size, font_config.font_size + font_config.line_height * 8), '★☆☺☹♠♡♢♣♤♥♦♧☀☼♩♪♫♬☂☁⚓✈⚔☯', font_latin)
+    image = Image.new('RGBA', (font_size * 27, font_size * 2 + line_height * 9), (255, 255, 255, 255))
+    _draw_text(image, (font_size, font_size), '缝合像素字体 / Fusion Pixel Font', font_zh_hans)
+    _draw_text(image, (font_size, font_size + line_height), '我们度过的每个平凡的日常，也许就是连续发生的奇迹。', font_zh_hans)
+    _draw_text(image, (font_size, font_size + line_height * 2), '我們度過的每個平凡的日常，也許就是連續發生的奇蹟。', font_zh_hant)
+    _draw_text(image, (font_size, font_size + line_height * 3), '日々、私たちが過ごしている日常は、', font_ja)
+    _draw_text(image, (font_size, font_size + line_height * 4), '実は奇跡の連続なのかもしれない。', font_ja)
+    _draw_text(image, (font_size, font_size + line_height * 5), 'THE QUICK BROWN FOX JUMPS OVER A LAZY DOG.', font_latin)
+    _draw_text(image, (font_size, font_size + line_height * 6), 'the quick brown fox jumps over a lazy dog.', font_latin)
+    _draw_text(image, (font_size, font_size + line_height * 7), '0123456789', font_latin)
+    _draw_text(image, (font_size, font_size + line_height * 8), '★☆☺☹♠♡♢♣♤♥♦♧☀☼♩♪♫♬☂☁⚓✈⚔☯', font_latin)
     image = image.resize((image.width * 2, image.height * 2), Image.Resampling.NEAREST)
 
     path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
-    file_path = path_define.outputs_dir.joinpath(f'preview-{font_config.font_size}px.png')
+    file_path = path_define.outputs_dir.joinpath(f'preview-{font_size}px.png')
     image.save(file_path)
     logger.info("Make preview image: '{}'", file_path)

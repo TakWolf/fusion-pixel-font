@@ -1,4 +1,4 @@
-from tools.configs.update import UpdateConfig
+from tools import configs
 from tools.services import update_service
 
 
@@ -6,8 +6,7 @@ def main():
     update_service.update_ark_pixel_glyphs_version()
     update_service.setup_ark_pixel_glyphs()
 
-    update_configs = UpdateConfig.load()
-    for update_config in update_configs:
+    for update_config in configs.update_configs:
         update_service.update_fonts(update_config)
 
 

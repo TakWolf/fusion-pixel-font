@@ -1,6 +1,18 @@
-from tools.configs import path_define
+from tools.configs import path_define, options
+from tools.configs.dump import DumpConfig
+from tools.configs.fallback import FallbackConfig
+from tools.configs.font import FontConfig
+from tools.configs.update import UpdateConfig
 
 version = '2025.03.14'
+
+update_configs = UpdateConfig.load()
+
+dump_configs = DumpConfig.load()
+
+fallback_configs = FallbackConfig.load()
+
+font_configs = {font_size: FontConfig.load(font_size) for font_size in options.font_sizes}
 
 mapping_file_paths = [
     path_define.ark_pixel_mappings_dir.joinpath('2700-27BF Dingbats.yml'),
