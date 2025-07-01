@@ -59,7 +59,7 @@ def main(
 
     update_service.setup_ark_pixel_glyphs()
 
-    mappings = [glyph_mapping_util.load_mapping(mapping_file_path) for mapping_file_path in configs.mapping_file_paths]
+    mappings = [glyph_mapping_util.load_mapping(file_path) for file_path in configs.mapping_file_paths]
     dump_configs = DumpConfig.load()
     fallback_configs = FallbackConfig.load()
     font_configs = {}
