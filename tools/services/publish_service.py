@@ -5,7 +5,8 @@ import zipfile
 from loguru import logger
 
 from tools import configs
-from tools.configs import path_define, FontSize, WidthMode, FontFormat
+from tools.configs import path_define, options
+from tools.configs.options import FontSize, WidthMode, FontFormat
 
 
 def make_release_zips(font_size: FontSize, width_mode: WidthMode, font_formats: list[FontFormat]):
@@ -17,8 +18,8 @@ def make_release_zips(font_size: FontSize, width_mode: WidthMode, font_formats: 
             file.write(path_define.project_root_dir.joinpath('LICENSE-OFL'), 'OFL.txt')
             for name in configs.license_configs[font_size]:
                 file.write(path_define.fonts_dir.joinpath(name, 'LICENSE.txt'), f'LICENSE/{name}.txt')
-            if font_format in configs.font_single_formats:
-                for language_flavor in configs.language_flavors:
+            if font_format in options.font_single_formats:
+                for language_flavor in options.language_flavors:
                     font_file_name = f'fusion-pixel-{font_size}px-{width_mode}-{language_flavor}.{font_format}'
                     file.write(path_define.outputs_dir.joinpath(font_file_name), font_file_name)
             else:

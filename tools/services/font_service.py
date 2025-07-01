@@ -12,22 +12,23 @@ from pixel_font_knife.glyph_file_util import GlyphFile, GlyphFlavorGroup
 from pixel_font_knife.glyph_mapping_util import SourceFlavorGroup
 
 from tools import configs
-from tools.configs import path_define, FontSize, WidthMode, LanguageFlavor, FontFormat
+from tools.configs import path_define, options
 from tools.configs.font import FontConfig
+from tools.configs.options import FontSize, WidthMode, LanguageFlavor, FontFormat
 
 
 class DesignContext:
     @staticmethod
     def load(font_config: FontConfig, mappings: list[dict[int, SourceFlavorGroup]]) -> DesignContext:
         contexts = {}
-        for width_mode_dir_name in itertools.chain(['common'], configs.width_modes):
+        for width_mode_dir_name in itertools.chain(['common'], options.width_modes):
             context = glyph_file_util.load_context(path_define.fallback_glyphs_dir.joinpath(str(font_config.font_size), width_mode_dir_name))
             context.update(glyph_file_util.load_context(path_define.ark_pixel_glyphs_dir.joinpath(str(font_config.font_size), width_mode_dir_name)))
             context.update(glyph_file_util.load_context(path_define.patch_glyphs_dir.joinpath(str(font_config.font_size), width_mode_dir_name)))
 
             for flavor_group in context.values():
                 if None not in flavor_group:
-                    for language_flavor in configs.language_file_flavors:
+                    for language_flavor in options.language_file_flavors:
                         if language_flavor in flavor_group:
                             flavor_group[None] = flavor_group[language_flavor]
                             break
@@ -44,7 +45,7 @@ class DesignContext:
             contexts[width_mode_dir_name] = context
 
         glyph_files = {}
-        for width_mode in configs.width_modes:
+        for width_mode in options.width_modes:
             glyph_files[width_mode] = dict(contexts['common'])
             glyph_files[width_mode].update(contexts[width_mode])
 
@@ -93,7 +94,7 @@ class DesignContext:
         if key in self._glyph_sequence_cache:
             glyph_sequence = self._glyph_sequence_cache[key]
         else:
-            glyph_sequence = glyph_file_util.get_glyph_sequence(self._glyph_files[width_mode], configs.language_flavors if language_flavor is None else [language_flavor])
+            glyph_sequence = glyph_file_util.get_glyph_sequence(self._glyph_files[width_mode], options.language_flavors if language_flavor is None else [language_flavor])
             self._glyph_sequence_cache[key] = glyph_sequence
         return glyph_sequence
 
@@ -148,7 +149,7 @@ class DesignContext:
 
     def _create_collection_builder(self, width_mode: WidthMode) -> FontCollectionBuilder:
         collection_builder = FontCollectionBuilder()
-        for language_flavor in configs.language_flavors:
+        for language_flavor in options.language_flavors:
             builder = self._create_builder(width_mode, language_flavor, is_collection=True)
             collection_builder.append(builder)
         return collection_builder
@@ -156,9 +157,9 @@ class DesignContext:
     def make_fonts(self, width_mode: WidthMode, font_formats: list[FontFormat]):
         path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
 
-        font_single_formats = [font_format for font_format in font_formats if font_format in configs.font_single_formats]
+        font_single_formats = [font_format for font_format in font_formats if font_format in options.font_single_formats]
         if len(font_single_formats) > 0:
-            for language_flavor in configs.language_flavors:
+            for language_flavor in options.language_flavors:
                 builder = self._create_builder(width_mode, language_flavor, is_collection=False)
                 for font_format in font_single_formats:
                     file_path = path_define.outputs_dir.joinpath(f'fusion-pixel-{self.font_size}px-{width_mode}-{language_flavor}.{font_format}')
@@ -174,7 +175,7 @@ class DesignContext:
                         getattr(builder, f'save_{font_format}')(file_path)
                     logger.info("Make font: '{}'", file_path)
 
-        font_collection_formats = [font_format for font_format in font_formats if font_format in configs.font_collection_formats]
+        font_collection_formats = [font_format for font_format in font_formats if font_format in options.font_collection_formats]
         if len(font_collection_formats) > 0:
             builder = self._create_collection_builder(width_mode)
             for font_format in font_collection_formats:
