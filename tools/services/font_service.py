@@ -14,6 +14,7 @@ from pixel_font_knife.glyph_mapping_util import SourceFlavorGroup
 from tools import configs
 from tools.configs import path_define, options
 from tools.configs.options import FontSize, WidthMode, LanguageFlavor, FontFormat
+from tools.services import dump_service
 
 
 class DesignContext:
@@ -177,3 +178,23 @@ class DesignContext:
                 file_path = path_define.outputs_dir.joinpath(f'fusion-pixel-{self.font_size}px-{width_mode}.{font_format}')
                 getattr(builder, f'save_{font_format}')(file_path)
                 logger.info("Make font collection: '{}'", file_path)
+
+
+def load_mappings() -> list[dict[int, SourceFlavorGroup]]:
+    mappings = [glyph_mapping_util.load_mapping(file_path) for file_path in configs.mapping_file_paths]
+    return mappings
+
+
+def load_design_contexts(font_sizes: list[FontSize]) -> dict[FontSize, DesignContext]:
+    mappings = load_mappings()
+    design_contexts = {}
+    for font_size in font_sizes:
+        for dump_config in configs.dump_configs[font_size]:
+            dump_service.dump_font(dump_config)
+
+        for fallback_config in configs.fallback_configs[font_size]:
+            dump_service.apply_fallback(fallback_config)
+
+        design_context = DesignContext.load(font_size, mappings)
+        design_contexts[font_size] = design_context
+    return design_contexts
