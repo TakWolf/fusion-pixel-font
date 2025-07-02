@@ -2,11 +2,11 @@ from tools.configs import path_define, options
 from tools.configs.dump import DumpConfig
 from tools.configs.fallback import FallbackConfig
 from tools.configs.font import FontConfig
-from tools.configs.update import UpdateConfig
+from tools.configs.upgrade import UpgradeConfig
 
 version = '2025.03.14'
 
-update_configs = UpdateConfig.load()
+upgrade_configs = UpgradeConfig.load()
 
 dump_configs = DumpConfig.load()
 

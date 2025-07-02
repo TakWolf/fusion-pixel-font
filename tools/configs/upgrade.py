@@ -14,11 +14,11 @@ class DownloadAssetConfig:
         self.copy_list = copy_list
 
 
-class UpdateConfig:
+class UpgradeConfig:
     @staticmethod
-    def load() -> list[UpdateConfig]:
-        configs_data = yaml.safe_load(path_define.assets_dir.joinpath('update-configs.yml').read_bytes())
-        update_configs = []
+    def load() -> list[UpgradeConfig]:
+        configs_data = yaml.safe_load(path_define.assets_dir.joinpath('upgrade-configs.yml').read_bytes())
+        upgrade_configs = []
         for config_data in configs_data:
             name = config_data['name']
             repository_name = config_data['repository-name']
@@ -32,8 +32,8 @@ class UpdateConfig:
                         to_path = from_path
                     copy_list.append((from_path, to_path))
                 asset_configs.append(DownloadAssetConfig(file_name, copy_list))
-            update_configs.append(UpdateConfig(name, repository_name, tag_name, asset_configs))
-        return update_configs
+            upgrade_configs.append(UpgradeConfig(name, repository_name, tag_name, asset_configs))
+        return upgrade_configs
 
     name: str
     repository_name: str

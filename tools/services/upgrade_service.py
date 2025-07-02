@@ -4,12 +4,11 @@ import zipfile
 
 from loguru import logger
 
-from tools.configs import path_define
-from tools.configs.update import UpdateConfig
+from tools.configs import path_define, UpgradeConfig
 from tools.utils import github_api, download_util
 
 
-def update_ark_pixel_glyphs_version():
+def upgrade_ark_pixel():
     repository_name = 'TakWolf/ark-pixel-font'
     source_type = 'tag'
     source_name = None
@@ -41,7 +40,7 @@ def update_ark_pixel_glyphs_version():
     logger.info("Update version file: '{}'", file_path)
 
 
-def setup_ark_pixel_glyphs():
+def setup_ark_pixel():
     cache_version_file_path = path_define.ark_pixel_glyphs_dir.joinpath('version.json')
     if cache_version_file_path.is_file():
         cache_sha = json.loads(cache_version_file_path.read_bytes())['sha']
@@ -89,31 +88,31 @@ def setup_ark_pixel_glyphs():
     logger.info("Update glyphs: '{}'", sha)
 
 
-def update_fonts(update_config: UpdateConfig):
-    if update_config.tag_name is None:
-        tag_name = github_api.get_releases_latest_tag_name(update_config.repository_name)
+def upgrade_fonts(upgrade_config: UpgradeConfig):
+    if upgrade_config.tag_name is None:
+        tag_name = github_api.get_releases_latest_tag_name(upgrade_config.repository_name)
     else:
-        tag_name = update_config.tag_name
-    logger.info("'{}' tag: '{}'", update_config.repository_name, tag_name)
+        tag_name = upgrade_config.tag_name
+    logger.info("'{}' tag: '{}'", upgrade_config.repository_name, tag_name)
     version = tag_name.removeprefix('v')
 
-    fonts_dir = path_define.fonts_dir.joinpath(update_config.name)
+    fonts_dir = path_define.fonts_dir.joinpath(upgrade_config.name)
     version_file_path = fonts_dir.joinpath('version.json')
     if version_file_path.exists():
         version_info = json.loads(version_file_path.read_bytes())
         if version == version_info['version']:
             return
-    logger.info("Need update fonts: '{}'", update_config.name)
+    logger.info("Need update fonts: '{}'", upgrade_config.name)
 
-    repository_url = f'https://github.com/{update_config.repository_name}'
-    downloads_dir = path_define.downloads_dir.joinpath(update_config.repository_name, tag_name)
+    repository_url = f'https://github.com/{upgrade_config.repository_name}'
+    downloads_dir = path_define.downloads_dir.joinpath(upgrade_config.repository_name, tag_name)
     downloads_dir.mkdir(parents=True, exist_ok=True)
 
     if fonts_dir.exists():
         shutil.rmtree(fonts_dir)
     fonts_dir.mkdir(parents=True)
 
-    for asset_config in update_config.asset_configs:
+    for asset_config in upgrade_config.asset_configs:
         if asset_config.file_name is None:
             asset_file_name = f'{tag_name}.zip'
             asset_url = f'{repository_url}/archive/refs/tags/{asset_file_name}'

@@ -7,7 +7,7 @@ from loguru import logger
 from tools import configs
 from tools.configs import path_define, options
 from tools.configs.options import FontSize, WidthMode, FontFormat, Attachment
-from tools.services import update_service, font_service, publish_service, info_service, template_service, image_service
+from tools.services import upgrade_service, font_service, publish_service, info_service, template_service, image_service
 
 app = App(
     version=configs.version,
@@ -53,7 +53,7 @@ def main(
         shutil.rmtree(path_define.build_dir)
         logger.info("Delete dir: '{}'", path_define.build_dir)
 
-    update_service.setup_ark_pixel_glyphs()
+    upgrade_service.setup_ark_pixel()
 
     design_contexts = font_service.load_design_contexts(font_sizes)
     for design_context in design_contexts.values():
