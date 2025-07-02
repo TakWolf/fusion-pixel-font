@@ -4,7 +4,7 @@ from tools.configs.fallback import FallbackConfig
 from tools.configs.font import FontConfig
 from tools.configs.upgrade import UpgradeConfig
 
-version = '2025.03.14'
+version = '2025.07.02'
 
 upgrade_configs = UpgradeConfig.load()
 
