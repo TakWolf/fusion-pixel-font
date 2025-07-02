@@ -11,9 +11,9 @@ from tools.configs.options import FontSize, LanguageFileFlavor
 class FallbackConfig:
     @staticmethod
     def load() -> dict[FontSize, list[FallbackConfig]]:
-        configs_data = yaml.safe_load(path_define.assets_dir.joinpath('fallback-configs.yml').read_bytes())
+        data = yaml.safe_load(path_define.assets_dir.joinpath('fallback-configs.yml').read_bytes())
         fallback_configs = {font_size: [] for font_size in options.font_sizes}
-        for config_data in configs_data:
+        for config_data in data:
             font_size = config_data['font-size']
             dir_from = path_define.dump_dir.joinpath(str(font_size), config_data['dir-from'])
             dir_to = path_define.fallback_glyphs_dir.joinpath(str(font_size), config_data['dir-to'])

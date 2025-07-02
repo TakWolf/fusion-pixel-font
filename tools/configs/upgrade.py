@@ -17,9 +17,9 @@ class DownloadAssetConfig:
 class UpgradeConfig:
     @staticmethod
     def load() -> list[UpgradeConfig]:
-        configs_data = yaml.safe_load(path_define.assets_dir.joinpath('upgrade-configs.yml').read_bytes())
+        data = yaml.safe_load(path_define.assets_dir.joinpath('upgrade-configs.yml').read_bytes())
         upgrade_configs = []
-        for config_data in configs_data:
+        for config_data in data:
             name = config_data['name']
             repository_name = config_data['repository-name']
             tag_name = config_data['tag-name']

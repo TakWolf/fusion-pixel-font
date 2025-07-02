@@ -1,9 +1,9 @@
 from tools.configs import options
-from tools.services import upgrade_service, font_service, check_service
+from tools.services import setup_service, font_service, check_service
 
 
 def main():
-    upgrade_service.setup_ark_pixel()
+    setup_service.setup_ark_pixel()
 
     mappings = font_service.load_mappings()
     for font_size in options.font_sizes:

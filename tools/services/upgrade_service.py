@@ -36,56 +36,8 @@ def upgrade_ark_pixel():
     }
     file_path = path_define.fonts_dir.joinpath('ark-pixel').joinpath('version.json')
     file_path.parent.mkdir(parents=True, exist_ok=True)
-    file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
+    file_path.write_text(json.dumps(version_info, indent=2, ensure_ascii=False), 'utf-8')
     logger.info("Update version file: '{}'", file_path)
-
-
-def setup_ark_pixel():
-    cache_version_file_path = path_define.ark_pixel_glyphs_dir.joinpath('version.json')
-    if cache_version_file_path.is_file():
-        cache_sha = json.loads(cache_version_file_path.read_bytes())['sha']
-    else:
-        cache_sha = None
-
-    font_ark_pixel_dir = path_define.fonts_dir.joinpath('ark-pixel')
-    version_file_path = font_ark_pixel_dir.joinpath('version.json')
-    version_info = json.loads(version_file_path.read_bytes())
-    sha = version_info['sha']
-    if cache_sha == sha:
-        return
-    logger.info('Need setup glyphs')
-
-    downloads_dir = path_define.downloads_dir.joinpath('ark-pixel-font')
-    source_file_path = downloads_dir.joinpath(f'{sha}.zip')
-    if not source_file_path.exists():
-        asset_url = version_info['asset_url']
-        logger.info("Start download: '{}'", asset_url)
-        downloads_dir.mkdir(parents=True, exist_ok=True)
-        download_util.download_file(asset_url, source_file_path)
-    else:
-        logger.info("Already downloaded: '{}'", source_file_path)
-
-    source_unzip_dir = downloads_dir.joinpath(f'ark-pixel-font-{sha}')
-    if source_unzip_dir.exists():
-        shutil.rmtree(source_unzip_dir)
-    with zipfile.ZipFile(source_file_path) as file:
-        file.extractall(downloads_dir)
-    logger.info("Unzip: '{}'", source_unzip_dir)
-
-    if path_define.ark_pixel_glyphs_dir.exists():
-        shutil.rmtree(path_define.ark_pixel_glyphs_dir)
-    if path_define.ark_pixel_mappings_dir.exists():
-        shutil.rmtree(path_define.ark_pixel_mappings_dir)
-    for font_size in [10, 12]:
-        shutil.copyfile(source_unzip_dir.joinpath('assets', 'glyphs', str(font_size), 'config.yml'), path_define.patch_glyphs_dir.joinpath(str(font_size), 'config.yml'))
-    shutil.copyfile(source_unzip_dir.joinpath('LICENSE-OFL'), font_ark_pixel_dir.joinpath('LICENSE.txt'))
-    source_unzip_dir.joinpath('assets', 'glyphs').rename(path_define.ark_pixel_glyphs_dir)
-    source_unzip_dir.joinpath('assets', 'mappings').rename(path_define.ark_pixel_mappings_dir)
-
-    if source_unzip_dir.exists():
-        shutil.rmtree(source_unzip_dir)
-    cache_version_file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
-    logger.info("Update glyphs: '{}'", sha)
 
 
 def upgrade_fonts(upgrade_config: UpgradeConfig):
@@ -102,7 +54,7 @@ def upgrade_fonts(upgrade_config: UpgradeConfig):
         version_info = json.loads(version_file_path.read_bytes())
         if version == version_info['version']:
             return
-    logger.info("Need update fonts: '{}'", upgrade_config.name)
+    logger.info("Need upgrade fonts: '{}'", upgrade_config.name)
 
     repository_url = f'https://github.com/{upgrade_config.repository_name}'
     downloads_dir = path_define.downloads_dir.joinpath(upgrade_config.repository_name, tag_name)
@@ -147,5 +99,5 @@ def upgrade_fonts(upgrade_config: UpgradeConfig):
         'version_url': f'{repository_url}/releases/tag/{tag_name}',
     }
     version_file_path = fonts_dir.joinpath('version.json')
-    version_file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
+    version_file_path.write_text(json.dumps(version_info, indent=2, ensure_ascii=False), 'utf-8')
     logger.info("Update version file: '{}'", version_file_path)
