@@ -28,16 +28,17 @@ def upgrade_ark_pixel():
         version = sha
     else:
         raise Exception(f"Unknown source type: '{source_type}'")
+
     version_info = {
         'sha': sha,
         'version': version,
         'version_url': f'https://github.com/{repository_name}/tree/{version}',
         'asset_url': f'https://github.com/{repository_name}/archive/{sha}.zip',
     }
-    file_path = path_define.fonts_dir.joinpath('ark-pixel').joinpath('version.json')
-    file_path.parent.mkdir(parents=True, exist_ok=True)
-    file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
-    logger.info("Update version file: '{}'", file_path)
+    version_file_path = path_define.fonts_dir.joinpath('ark-pixel').joinpath('version.json')
+    version_file_path.parent.mkdir(parents=True, exist_ok=True)
+    version_file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
+    logger.info("Update version file: '{}'", version_file_path)
 
 
 def upgrade_fonts(upgrade_config: UpgradeConfig):
