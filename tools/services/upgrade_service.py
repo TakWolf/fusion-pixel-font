@@ -36,7 +36,7 @@ def upgrade_ark_pixel():
     }
     file_path = path_define.fonts_dir.joinpath('ark-pixel').joinpath('version.json')
     file_path.parent.mkdir(parents=True, exist_ok=True)
-    file_path.write_text(json.dumps(version_info, indent=2, ensure_ascii=False), 'utf-8')
+    file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
     logger.info("Update version file: '{}'", file_path)
 
 
@@ -99,5 +99,5 @@ def upgrade_fonts(upgrade_config: UpgradeConfig):
         'version_url': f'{repository_url}/releases/tag/{tag_name}',
     }
     version_file_path = fonts_dir.joinpath('version.json')
-    version_file_path.write_text(json.dumps(version_info, indent=2, ensure_ascii=False), 'utf-8')
+    version_file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
     logger.info("Update version file: '{}'", version_file_path)

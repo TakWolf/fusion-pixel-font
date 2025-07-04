@@ -53,5 +53,5 @@ def setup_ark_pixel():
 
     if source_unzip_dir.exists():
         shutil.rmtree(source_unzip_dir)
-    cache_version_file_path.write_text(json.dumps(version_info, indent=2, ensure_ascii=False), 'utf-8')
+    cache_version_file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
     logger.info("Setup glyphs: '{}'", sha)
