@@ -6,12 +6,6 @@ from tools.configs.upgrade import UpgradeConfig
 
 version = '2025.07.02'
 
-upgrade_configs = UpgradeConfig.load()
-
-dump_configs = DumpConfig.load()
-
-fallback_configs = FallbackConfig.load()
-
 font_configs = {font_size: FontConfig.load(font_size) for font_size in options.font_sizes}
 
 mapping_file_paths = [
