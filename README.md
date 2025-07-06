@@ -1,4 +1,4 @@
-![banner](docs/logo@2x.png)
+![Logo](docs/logo@2x.png)
 
 # 缝合像素字体 / Fusion Pixel Font
 
@@ -24,19 +24,19 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 [示例文本](https://fusion-pixel-font.takwolf.com/demo-8px.html) · [等宽模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-8px-monospaced.html) · [比例模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-8px-proportional.html)
 
-![preview-8px](docs/preview-8px.png)
+![Preview-8px](docs/preview-8px.png)
 
 ### 10 像素
 
 [示例文本](https://fusion-pixel-font.takwolf.com/demo-10px.html) · [等宽模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-10px-monospaced.html) · [比例模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-10px-proportional.html)
 
-![preview-10px](docs/preview-10px.png)
+![Preview-10px](docs/preview-10px.png)
 
 ### 12 像素
 
 [示例文本](https://fusion-pixel-font.takwolf.com/demo-12px.html) · [等宽模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-12px-monospaced.html) · [比例模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-12px-proportional.html)
 
-![preview-12px](docs/preview-12px.png)
+![Preview-12px](docs/preview-12px.png)
 
 ## 字符统计
 
