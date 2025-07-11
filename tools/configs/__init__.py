@@ -32,3 +32,11 @@ license_configs = {
         'galmuri',
     ],
 }
+
+locale_to_language_flavor = {
+    'en': 'latin',
+    'zh-hans': 'zh_hans',
+    'zh-hant': 'zh_hant',
+    'ja': 'ja',
+    'ko': 'ko',
+}
