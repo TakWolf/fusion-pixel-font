@@ -1,6 +1,6 @@
 pixel-font-builder==0.0.37
 pixel-font-knife==0.0.16
-fonttools[woff]==4.58.5
+fonttools[woff]==4.59.0
 unidata-blocks==0.0.17
 character-encoding-utils==0.0.9
 pyyaml==6.0.2
