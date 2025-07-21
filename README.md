@@ -62,12 +62,6 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 尽管如此，这个项目仍然是一个基于补丁的字体解决方案。你不应该对语言特定字形抱有特别的期待。
 
-## 下载
-
-可通过以下渠道下载最新的版本：
-
-- [GitHub Releases](https://github.com/TakWolf/fusion-pixel-font/releases)
-
 ## 程序依赖
 
 - [Pixel Font Builder](https://github.com/TakWolf/pixel-font-builder)
