@@ -4,8 +4,8 @@
 
 | 属性 | 值 |
 |---|---|
-| 版本号 | 2025.07.21 |
-| 字符总数 | 32373 |
+| 版本号 | 2025.07.30 |
+| 字符总数 | 32719 |
 
 ## Unicode 字符分布
 
@@ -35,27 +35,27 @@ Unicode 版本：16.0.0
 | 2E80 ~ 2EFF | CJK Radicals Supplement | 中日韩部首增补 | 115 / 115 | 0 | 100.00% 🚩 |
 | 2F00 ~ 2FDF | Kangxi Radicals | 康熙部首 | 214 / 214 | 0 | 100.00% 🚩 |
 | 2FF0 ~ 2FFF | Ideographic Description Characters | 表意文字描述字符 | 16 / 16 | 0 | 100.00% 🚩 |
-| 3000 ~ 303F | CJK Symbols and Punctuation | 中日韩符号与标点 | 49 / 63 | 14 | 77.78% 🚧 |
+| 3000 ~ 303F | CJK Symbols and Punctuation | 中日韩符号与标点 | 52 / 63 | 11 | 82.54% 🚧 |
 | 3040 ~ 309F | Hiragana | 平假名 | 93 / 93 | 0 | 100.00% 🚩 |
 | 30A0 ~ 30FF | Katakana | 片假名 | 96 / 96 | 0 | 100.00% 🚩 |
 | 3100 ~ 312F | Bopomofo | 注音字母 | 43 / 43 | 0 | 100.00% 🚩 |
 | 3130 ~ 318F | Hangul Compatibility Jamo | 谚文兼容字母 | 94 / 94 | 0 | 100.00% 🚩 |
 | 3200 ~ 32FF | Enclosed CJK Letters and Months | 包围中日韩字母与月份 | 92 / 255 | 163 | 36.08% 🚧 |
 | 3300 ~ 33FF | CJK Compatibility | 中日韩兼容 | 60 / 256 | 196 | 23.44% 🚧 |
-| 3400 ~ 4DBF | CJK Unified Ideographs Extension A | 中日韩统一表意文字扩充 A | 119 / 6592 | 6473 | 1.81% 🚧 |
-| 4E00 ~ 9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 18133 / 20992 | 2859 | 86.38% 🚧 |
+| 3400 ~ 4DBF | CJK Unified Ideographs Extension A | 中日韩统一表意文字扩充 A | 146 / 6592 | 6446 | 2.21% 🚧 |
+| 4E00 ~ 9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 18441 / 20992 | 2551 | 87.85% 🚧 |
 | AC00 ~ D7AF | Hangul Syllables | 谚文音节 | 11172 / 11172 | 0 | 100.00% 🚩 |
 | E000 ~ F8FF | Private Use Area | 私用区域 | 211 / 0 | 0 | 100.00% 🚩 |
 | FE10 ~ FE1F | Vertical Forms | 竖排形式 | 10 / 10 | 0 | 100.00% 🚩 |
 | FE30 ~ FE4F | CJK Compatibility Forms | 中日韩兼容形式 | 32 / 32 | 0 | 100.00% 🚩 |
 | FF00 ~ FFEF | Halfwidth and Fullwidth Forms | 半宽与全宽形式 | 173 / 225 | 52 | 76.89% 🚧 |
 | FFF0 ~ FFFF | Specials | 特殊 | 2 / 2 | 0 | 100.00% 🚩 |
-| 20000 ~ 2A6DF | CJK Unified Ideographs Extension B | 中日韩统一表意文字扩充 B | 34 / 42720 | 42686 | 0.08% 🚧 |
-| 2A700 ~ 2B73F | CJK Unified Ideographs Extension C | 中日韩统一表意文字扩充 C | 22 / 4154 | 4132 | 0.53% 🚧 |
-| 2B740 ~ 2B81F | CJK Unified Ideographs Extension D | 中日韩统一表意文字扩充 D | 4 / 222 | 218 | 1.80% 🚧 |
+| 20000 ~ 2A6DF | CJK Unified Ideographs Extension B | 中日韩统一表意文字扩充 B | 37 / 42720 | 42683 | 0.09% 🚧 |
+| 2A700 ~ 2B73F | CJK Unified Ideographs Extension C | 中日韩统一表意文字扩充 C | 23 / 4154 | 4131 | 0.55% 🚧 |
+| 2B740 ~ 2B81F | CJK Unified Ideographs Extension D | 中日韩统一表意文字扩充 D | 6 / 222 | 216 | 2.70% 🚧 |
 | 2B820 ~ 2CEAF | CJK Unified Ideographs Extension E | 中日韩统一表意文字扩充 E | 7 / 5762 | 5755 | 0.12% 🚧 |
-| 2CEB0 ~ 2EBEF | CJK Unified Ideographs Extension F | 中日韩统一表意文字扩充 F | 1 / 7473 | 7472 | 0.01% 🚧 |
-| 30000 ~ 3134F | CJK Unified Ideographs Extension G | 中日韩统一表意文字扩充 G | 1 / 4939 | 4938 | 0.02% 🚧 |
+| 2CEB0 ~ 2EBEF | CJK Unified Ideographs Extension F | 中日韩统一表意文字扩充 F | 2 / 7473 | 7471 | 0.03% 🚧 |
+| 30000 ~ 3134F | CJK Unified Ideographs Extension G | 中日韩统一表意文字扩充 G | 2 / 4939 | 4937 | 0.04% 🚧 |
 
 ## GB2312 字符分布
 
@@ -64,9 +64,9 @@ Unicode 版本：16.0.0
 | 区块名称 | 完成数 | 缺失数 | 进度 |
 |---|---:|---:|---:|
 | 一级汉字 | 3755 / 3755 | 0 | 100.00% 🚩 |
-| 二级汉字 | 2748 / 3008 | 260 | 91.36% 🚧 |
+| 二级汉字 | 2775 / 3008 | 233 | 92.25% 🚧 |
 | 其他字符 | 651 / 682 | 31 | 95.45% 🚧 |
-| 总计 | 7154 / 7445 | 291 | 96.09% 🚧 |
+| 总计 | 7181 / 7445 | 264 | 96.45% 🚧 |
 
 ## Big5 字符分布
 
@@ -75,9 +75,9 @@ Unicode 版本：16.0.0
 | 区块名称 | 完成数 | 缺失数 | 进度 |
 |---|---:|---:|---:|
 | 常用汉字 | 5401 / 5401 | 0 | 100.00% 🚩 |
-| 次常用汉字 | 6109 / 7652 | 1543 | 79.84% 🚧 |
+| 次常用汉字 | 6292 / 7652 | 1360 | 82.23% 🚧 |
 | 其他字符 | 344 / 408 | 64 | 84.31% 🚧 |
-| 总计 | 11854 / 13461 | 1607 | 88.06% 🚧 |
+| 总计 | 12037 / 13461 | 1424 | 89.42% 🚧 |
 
 ## Shift-JIS 字符分布
 
@@ -98,6 +98,6 @@ Unicode 版本：16.0.0
 | 区块名称 | 完成数 | 缺失数 | 进度 |
 |---|---:|---:|---:|
 | 谚文音节 | 2350 / 2350 | 0 | 100.00% 🚩 |
-| 汉字 | 4564 / 4888 | 324 | 93.37% 🚧 |
+| 汉字 | 4575 / 4888 | 313 | 93.60% 🚧 |
 | 其他字符 | 786 / 988 | 202 | 79.55% 🚧 |
-| 总计 | 7700 / 8226 | 526 | 93.61% 🚧 |
+| 总计 | 7711 / 8226 | 515 | 93.74% 🚧 |
