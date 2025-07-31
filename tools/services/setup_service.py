@@ -43,9 +43,6 @@ def setup_ark_pixel():
     if path_define.ark_pixel_glyphs_dir.exists():
         shutil.rmtree(path_define.ark_pixel_glyphs_dir)
     source_unzip_dir.joinpath('assets', 'glyphs').rename(path_define.ark_pixel_glyphs_dir)
-    for font_size in [10, 12]:
-        os.remove(path_define.ark_pixel_glyphs_dir.joinpath(str(font_size), 'config.yml'))
-    shutil.rmtree(path_define.ark_pixel_glyphs_dir.joinpath('16'))
 
     if path_define.ark_pixel_mappings_dir.exists():
         shutil.rmtree(path_define.ark_pixel_mappings_dir)
