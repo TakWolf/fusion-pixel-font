@@ -12,7 +12,7 @@ from tools.configs.options import FontSize
 class DumpConfig:
     @staticmethod
     def load() -> dict[FontSize, list[DumpConfig]]:
-        data = yaml.safe_load(path_define.assets_dir.joinpath('dump-configs.yml').read_bytes())
+        data = yaml.safe_load(path_define.configs_dir.joinpath('dump.yml').read_bytes())
         dump_configs = {font_size: [] for font_size in options.font_sizes}
         for name, items_data in data.items():
             version = json.loads(path_define.fonts_dir.joinpath(name, 'version.json').read_bytes())['version']

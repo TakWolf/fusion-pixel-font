@@ -11,7 +11,7 @@ from tools.configs.options import FontSize, LanguageFileFlavor
 class FallbackConfig:
     @staticmethod
     def load() -> dict[FontSize, list[FallbackConfig]]:
-        data = yaml.safe_load(path_define.assets_dir.joinpath('fallback-configs.yml').read_bytes())
+        data = yaml.safe_load(path_define.configs_dir.joinpath('fallback.yml').read_bytes())
         fallback_configs = {font_size: [] for font_size in options.font_sizes}
         for config_data in data:
             font_size = config_data['font-size']
