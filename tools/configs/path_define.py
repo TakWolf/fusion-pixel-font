@@ -11,6 +11,7 @@ templates_dir = assets_dir.joinpath('templates')
 cache_dir = project_root_dir.joinpath('cache')
 downloads_dir = cache_dir.joinpath('downloads')
 ark_pixel_glyphs_dir = cache_dir.joinpath('ark-pixel-glyphs')
+ark_pixel_configs_dir = cache_dir.joinpath('ark-pixel-configs')
 ark_pixel_mappings_dir = cache_dir.joinpath('ark-pixel-mappings')
 
 build_dir = project_root_dir.joinpath('build')
