@@ -89,7 +89,7 @@ def upgrade_fonts(upgrade_config: UpgradeConfig):
         for copy_info in asset_config.copy_list:
             from_path = asset_unzip_dir.joinpath(copy_info[0].format(version=version))
             to_path = fonts_dir.joinpath(copy_info[1].format(version=version))
-            shutil.copyfile(from_path, to_path)
+            from_path.copy(to_path)
             logger.info("Copy from '{}' to '{}'", from_path, to_path)
         if asset_unzip_dir.exists():
             shutil.rmtree(asset_unzip_dir)
