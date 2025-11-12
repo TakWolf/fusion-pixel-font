@@ -16,5 +16,5 @@ dependencies = [
     "httpx[http2]==0.28.1",
     "tqdm==4.67.1",
     "loguru==0.7.3",
-    "cyclopts==3.24.0",
+    "cyclopts==4.2.4",
 ]
