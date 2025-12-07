@@ -16,6 +16,14 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 这个项目提供了从提取字模，合并字形到构建字体所需要的完整程序。
 
+> [!IMPORTANT]
+> 
+> 我们正在进行有关该字体使用情况的调查。
+> 
+> 如果可以，请帮忙填写下面链接的问卷。非常感谢！
+> 
+> https://wj.qq.com/s2/24009025/7f6a/
+
 ## 预览
 
 可以通过 [Playground](https://fusion-pixel-font.takwolf.com/playground.html) 实时预览字体效果。
