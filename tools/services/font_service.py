@@ -5,7 +5,7 @@ from datetime import datetime
 from loguru import logger
 from pixel_font_builder import FontBuilder, WeightName, SerifStyle, SlantStyle, WidthStyle, Glyph, opentype
 from pixel_font_knife import glyph_file_util, glyph_mapping_util
-from pixel_font_knife.glyph_file_util import GlyphFile, GlyphFlavorGroup
+from pixel_font_knife.glyph_file_util import GlyphFlavorGroup
 from pixel_font_knife.glyph_mapping_util import SourceFlavorGroup
 
 from tools import configs
@@ -51,8 +51,6 @@ class DesignContext:
     font_size: FontSize
     _contexts: dict[str, dict[int, GlyphFlavorGroup]]
     _glyph_files: dict[WidthMode, dict[int, GlyphFlavorGroup]]
-    _glyph_sequence_cache: dict[str, list[GlyphFile]]
-    _character_mapping_cache: dict[str, dict[int, str]]
     _alphabet_cache: dict[str, set[str]]
     _proportional_kerning_values: dict[tuple[str, str], int] | None
 
@@ -65,28 +63,8 @@ class DesignContext:
         self.font_size = font_size
         self._contexts = contexts
         self._glyph_files = glyph_files
-        self._glyph_sequence_cache = {}
-        self._character_mapping_cache = {}
         self._alphabet_cache = {}
         self._proportional_kerning_values = None
-
-    def _get_glyph_sequence(self, width_mode: WidthMode, language_flavor: LanguageFlavor) -> list[GlyphFile]:
-        key = f'{width_mode}#{language_flavor}'
-        if key in self._glyph_sequence_cache:
-            glyph_sequence = self._glyph_sequence_cache[key]
-        else:
-            glyph_sequence = glyph_file_util.get_glyph_sequence(self._glyph_files[width_mode], [language_flavor])
-            self._glyph_sequence_cache[key] = glyph_sequence
-        return glyph_sequence
-
-    def _get_character_mapping(self, width_mode: WidthMode, language_flavor: LanguageFlavor) -> dict[int, str]:
-        key = f'{width_mode}#{language_flavor}'
-        if key in self._character_mapping_cache:
-            character_mapping = self._character_mapping_cache[key]
-        else:
-            character_mapping = glyph_file_util.get_character_mapping(self._glyph_files[width_mode], language_flavor)
-            self._character_mapping_cache[key] = character_mapping
-        return character_mapping
 
     def get_alphabet(self, width_mode: WidthMode) -> set[str]:
         if width_mode in self._alphabet_cache:
@@ -95,11 +73,6 @@ class DesignContext:
             alphabet = {chr(code_point) for code_point in self._glyph_files[width_mode] if code_point >= 0}
             self._alphabet_cache[width_mode] = alphabet
         return alphabet
-
-    def _get_proportional_kerning_values(self) -> dict[tuple[str, str], int]:
-        if self._proportional_kerning_values is None:
-            self._proportional_kerning_values = kerning_service.generate_kerning_values(self.font_size, self._contexts['proportional'])
-        return self._proportional_kerning_values
 
     def _create_builder(self, width_mode: WidthMode, language_flavor: LanguageFlavor) -> FontBuilder:
         layout_metric = configs.font_configs[self.font_size].layout_metrics[width_mode]
@@ -134,7 +107,7 @@ class DesignContext:
         builder.meta_info.designer_url = 'https://takwolf.com'
         builder.meta_info.license_url = 'https://github.com/TakWolf/fusion-pixel-font/blob/master/LICENSE-OFL'
 
-        glyph_sequence = self._get_glyph_sequence(width_mode, language_flavor)
+        glyph_sequence = glyph_file_util.get_glyph_sequence(self._glyph_files[width_mode], [language_flavor])
         for glyph_file in glyph_sequence:
             horizontal_offset_x = 0
             horizontal_offset_y = layout_metric.baseline - self.font_size - (glyph_file.height - self.font_size) // 2
@@ -149,11 +122,13 @@ class DesignContext:
                 bitmap=glyph_file.bitmap.data,
             ))
 
-        character_mapping = self._get_character_mapping(width_mode, language_flavor)
+        character_mapping = glyph_file_util.get_character_mapping(self._glyph_files[width_mode], language_flavor)
         builder.character_mapping.update(character_mapping)
 
         if width_mode == 'proportional':
-            builder.kerning_values.update(self._get_proportional_kerning_values())
+            if self._proportional_kerning_values is None:
+                self._proportional_kerning_values = kerning_service.generate_kerning_values(self.font_size, self._contexts['proportional'])
+            builder.kerning_values.update(self._proportional_kerning_values)
 
         builder.opentype_config.fields_override.head_y_max = layout_metric.ascent
         builder.opentype_config.fields_override.head_y_min = layout_metric.descent
