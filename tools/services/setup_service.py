@@ -43,10 +43,6 @@ def setup_ark_pixel():
         shutil.rmtree(path_define.ark_pixel_glyphs_dir)
     source_unzip_dir.joinpath('assets', 'glyphs').rename(path_define.ark_pixel_glyphs_dir)
 
-    if path_define.ark_pixel_configs_dir.exists():
-        shutil.rmtree(path_define.ark_pixel_configs_dir)
-    source_unzip_dir.joinpath('assets', 'configs').rename(path_define.ark_pixel_configs_dir)
-
     if path_define.ark_pixel_mappings_dir.exists():
         shutil.rmtree(path_define.ark_pixel_mappings_dir)
     source_unzip_dir.joinpath('assets', 'mappings').rename(path_define.ark_pixel_mappings_dir)
