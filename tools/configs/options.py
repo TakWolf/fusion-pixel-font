@@ -23,6 +23,7 @@ type LanguageFlavor = Literal[
 language_flavors = list[LanguageFlavor](get_args(LanguageFlavor.__value__))
 
 type LanguageFileFlavor = Literal[
+    'latin',
     'zh_cn',
     'zh_hk',
     'zh_tw',
