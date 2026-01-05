@@ -13,21 +13,22 @@ def upgrade_ark_pixel():
     source_type = 'tag'
     source_name = None
 
-    if source_type == 'tag':
-        tag_name = source_name
-        if tag_name is None:
-            tag_name = github_api.get_releases_latest_tag_name(repository_name)
-        sha = github_api.get_tag_sha(repository_name, tag_name)
-        version = tag_name
-    elif source_type == 'branch':
-        branch_name = source_name
-        sha = github_api.get_branch_latest_commit_sha(repository_name, branch_name)
-        version = branch_name
-    elif source_type == 'commit':
-        sha = source_name
-        version = sha
-    else:
-        raise Exception(f"Unknown source type: '{source_type}'")
+    match source_type:
+        case 'tag':
+            tag_name = source_name
+            if tag_name is None:
+                tag_name = github_api.get_releases_latest_tag_name(repository_name)
+            sha = github_api.get_tag_sha(repository_name, tag_name)
+            version = tag_name
+        case 'branch':
+            branch_name = source_name
+            sha = github_api.get_branch_latest_commit_sha(repository_name, branch_name)
+            version = branch_name
+        case 'commit':
+            sha = source_name
+            version = sha
+        case _:
+            raise Exception(f"Unknown source type: '{source_type}'")
 
     version_info = {
         'sha': sha,
