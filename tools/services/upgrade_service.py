@@ -10,8 +10,8 @@ from tools.utils import github_api, download_util
 
 def upgrade_ark_pixel():
     repository_name = 'TakWolf/ark-pixel-font'
-    source_type = 'tag'
-    source_name = None
+    source_type = 'branch'
+    source_name = 'feature/hanzi-10'
 
     match source_type:
         case 'tag':
