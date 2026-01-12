@@ -14,27 +14,17 @@
 
 Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B) 中的 [「融合」](https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=4837&request_locale=ja) 魔法卡卡图。
 
-这个项目提供了从提取字模，合并字形到构建字体所需要的完整程序。
-
 ## 预览
 
-可以通过 [Playground](https://fusion-pixel-font.takwolf.com/playground.html) 实时预览字体效果。
-
 ### 8 像素
-
-[示例文本](https://fusion-pixel-font.takwolf.com/demo-8px.html) · [等宽模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-8px-monospaced.html) · [比例模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-8px-proportional.html)
 
 ![Preview-8px](docs/preview-8px.png)
 
 ### 10 像素
 
-[示例文本](https://fusion-pixel-font.takwolf.com/demo-10px.html) · [等宽模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-10px-monospaced.html) · [比例模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-10px-proportional.html)
-
 ![Preview-10px](docs/preview-10px.png)
 
 ### 12 像素
-
-[示例文本](https://fusion-pixel-font.takwolf.com/demo-12px.html) · [等宽模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-12px-monospaced.html) · [比例模式-字母表](https://fusion-pixel-font.takwolf.com/alphabet-12px-proportional.html)
 
 ![Preview-12px](docs/preview-12px.png)
 
@@ -54,13 +44,13 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 | 版本 | 含义 |
 |---|---|
-| latin | 拉丁语 |
-| zh_hans | 中文-简体 |
-| zh_hant | 中文-繁體 |
+| latin | 泛拉丁语 |
+| zh_hans | 简体中文 |
+| zh_hant | 繁體中文 |
 | ja | 日语 |
 | ko | 朝鲜语 |
 
-尽管如此，这个项目仍然是一个基于补丁的字体解决方案。你不应该对语言特定字形抱有特别的期待。
+尽管如此，这仍然是一个基于补丁的字体解决方案。你不应该对语言特定字形抱有特别的期待。
 
 ## 程序依赖
 
@@ -92,7 +82,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 使用 [「SIL 开放字体许可证第 1.1 版」](LICENSE-OFL) 授权，保留字体名称「缝合像素 / Fusion Pixel」。
 
-第三方字源许可证如下：
+上游字体许可证如下：
 
 | 字体 | 许可证 | 备注 |
 |---|---|---|
