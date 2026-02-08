@@ -2,11 +2,11 @@
 
 # 缝合像素字体 / Fusion Pixel Font
 
-[![License OFL](https://img.shields.io/badge/license-OFL--1.1-orange)](LICENSE-OFL)
-[![License MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE-MIT)
-[![Releases](https://img.shields.io/github/v/release/TakWolf/fusion-pixel-font)](https://github.com/TakWolf/fusion-pixel-font/releases)
-[![Discord](https://img.shields.io/badge/discord-像素字体工房-4E5AF0?logo=discord&logoColor=white)](https://discord.gg/3GKtPKtjdU)
-[![QQ Group](https://img.shields.io/badge/QQ群-像素字体工房-brightgreen?logo=qq&logoColor=white)](https://qm.qq.com/q/jPk8sSitUI)
+[![License OFL](https://img.shields.io/badge/license-OFL--1.1-orange?style=flat-square)](LICENSE-OFL)
+[![License MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE-MIT)
+[![Releases](https://img.shields.io/github/v/release/TakWolf/fusion-pixel-font?style=flat-square)](https://github.com/TakWolf/fusion-pixel-font/releases)
+[![Discord](https://img.shields.io/badge/discord-像素字体工房-4E5AF0?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/3GKtPKtjdU)
+[![QQ Group](https://img.shields.io/badge/QQ群-像素字体工房-brightgreen?style=flat-square&logo=qq&logoColor=white)](https://qm.qq.com/q/jPk8sSitUI)
 
 开源的泛中日韩像素字体，黑体风格。
 
