@@ -128,18 +128,3 @@
   font-size: 12
   dir-from: galmuri/AC00-D7AF Hangul Syllables
   dir-to: common
-
-
-# Galmuri 特殊私有字形
--
-  font-size: 8
-  dir-from: galmuri/E000-F8FF Private Use Area
-  dir-to: common
--
-  font-size: 10
-  dir-from: galmuri/E000-F8FF Private Use Area
-  dir-to: common
--
-  font-size: 12
-  dir-from: galmuri/E000-F8FF Private Use Area
-  dir-to: common
