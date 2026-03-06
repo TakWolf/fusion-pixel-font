@@ -80,7 +80,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 ### 字体
 
-使用 [「SIL 开放字体许可证第 1.1 版」](LICENSE-OFL) 授权，保留字体名称「缝合像素 / Fusion Pixel」。
+使用 [「SIL 开放字体许可证第 1.1 版」](LICENSE-OFL) 授权。
 
 上游字体许可证如下：
 
