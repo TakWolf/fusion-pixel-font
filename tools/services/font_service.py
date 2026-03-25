@@ -20,8 +20,8 @@ class DesignContext:
         contexts = {}
         for width_mode_dir_name in itertools.chain(['common'], options.width_modes):
             context = glyph_file_util.load_context(path_define.fallback_glyphs_dir.joinpath(str(font_size), width_mode_dir_name))
-            context.update(glyph_file_util.load_context(path_define.ark_pixel_glyphs_dir.joinpath(str(font_size), width_mode_dir_name)))
             context.update(glyph_file_util.load_context(path_define.patch_glyphs_dir.joinpath(str(font_size), width_mode_dir_name)))
+            context.update(glyph_file_util.load_context(path_define.ark_pixel_glyphs_dir.joinpath(str(font_size), width_mode_dir_name)))
 
             for flavor_group in context.values():
                 if None not in flavor_group:
