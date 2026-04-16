@@ -14,6 +14,8 @@
 
 Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B) 中的 [「融合」](https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=4837&request_locale=ja) 魔法卡卡图。
 
+此外，有一个算法粗体版本 [「缝合粗像素字体」](https://github.com/pixel-font-studio/fusion-bold-pixel-font)。
+
 ## 预览
 
 ### 8 像素
