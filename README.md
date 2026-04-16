@@ -16,6 +16,14 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 此外，有一个算法粗体版本 [「缝合粗像素字体」](https://github.com/pixel-font-studio/fusion-bold-pixel-font)。
 
+> [!IMPORTANT]
+> 
+> 我们正在进行有关像素字体的使用情况调查。
+> 
+> 如果可以，请帮忙填写下面链接的问卷。非常感谢！
+> 
+> https://wj.qq.com/s2/24009025/7f6a/
+
 ## 预览
 
 ### 8 像素
