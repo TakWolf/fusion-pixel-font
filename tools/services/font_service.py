@@ -46,10 +46,9 @@ class DesignContext:
             glyph_files[width_mode] = dict(contexts['common'])
             glyph_files[width_mode].update(contexts[width_mode])
 
-        return DesignContext(font_size, contexts, glyph_files)
+        return DesignContext(font_size, glyph_files)
 
     font_size: FontSize
-    _contexts: dict[str, dict[int, GlyphFlavorGroup]]
     _glyph_files: dict[WidthMode, dict[int, GlyphFlavorGroup]]
     _alphabet_cache: dict[str, set[str]]
     _proportional_kerning_values: dict[tuple[str, str], int] | None
@@ -57,11 +56,9 @@ class DesignContext:
     def __init__(
             self,
             font_size: FontSize,
-            contexts: dict[str, dict[int, GlyphFlavorGroup]],
             glyph_files: dict[WidthMode, dict[int, GlyphFlavorGroup]],
     ):
         self.font_size = font_size
-        self._contexts = contexts
         self._glyph_files = glyph_files
         self._alphabet_cache = {}
         self._proportional_kerning_values = None
@@ -151,7 +148,7 @@ class DesignContext:
 
         if width_mode == 'proportional':
             if self._proportional_kerning_values is None:
-                self._proportional_kerning_values = kerning_util.calculate_kerning_values(configs.kerning_config, self._contexts['proportional'])
+                self._proportional_kerning_values = kerning_util.calculate_kerning_values(configs.kerning_config, self._glyph_files['proportional'])
             builder.kerning_values.update(self._proportional_kerning_values)
 
         builder.opentype_config.fields_override.head_y_max = layout_metric.ascent
