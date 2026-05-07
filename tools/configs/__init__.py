@@ -7,7 +7,7 @@ from tools.configs.fallback import FallbackConfig
 from tools.configs.font import FontConfig
 from tools.configs.upgrade import UpgradeConfig
 
-version = '2026.02.27'
+version = '2026.05.07'
 
 font_configs = {font_size: FontConfig.load(font_size) for font_size in options.font_sizes}
 
