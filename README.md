@@ -18,6 +18,8 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 ## 预览
 
+[点击此链接](https://fusion-pixel-font.takwolf.com/playground.html) 实时预览字体效果。
+
 ### 8 像素
 
 ![Preview-8px](docs/preview-8px.png)
@@ -32,7 +34,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 ## 字符统计
 
-可以通过下面的链接来查看字体各尺寸目前支持的字符情况。
+通过下面的链接来查看字符统计信息。
 
 | 尺寸 | 等宽模式 | 比例模式 |
 |---|---|---|
@@ -40,9 +42,27 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 | 10px | [info-10px-monospaced](docs/info-10px-monospaced.md) | [info-10px-proportional](docs/info-10px-proportional.md) |
 | 12px | [info-12px-monospaced](docs/info-12px-monospaced.md) | [info-12px-proportional](docs/info-12px-proportional.md) |
 
+## 宽度模式
+
+目前支持「等宽」和「比例」两种模式。
+
+### 等宽模式
+
+字符为半宽或全宽，排版时可严格纵向对其。
+
+字体行高有限，基线位置略微偏高，这导致中西文混排时西文在视觉上重心偏高，美观性略差。
+
+### 比例模式
+
+字符宽度根据字形实际情况分配，字距和行高自然，支持自动字距调整。
+
+基线处于合适的位置，整体排版观感舒适。
+
+如无特殊使用场景，应该优先使用该模式。
+
 ## 语言特定字形
 
-目前支持以下语言特定字形版本：
+目前支持以下语言特定字形版本。
 
 | 版本 | 含义 |
 |---|---|
@@ -53,6 +73,10 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 | ko | 朝鲜语 |
 
 尽管如此，这仍然是一个基于补丁的字体解决方案。你不应该对语言特定字形抱有特别的期待。
+
+## 下载
+
+[点击此链接](https://github.com/TakWolf/fusion-pixel-font/releases) 下载最新版本。
 
 ## 程序依赖
 
