@@ -1,4 +1,3 @@
-import json
 from pathlib import Path
 
 import yaml
@@ -13,9 +12,8 @@ class DumpConfig:
         data = yaml.safe_load(path_define.configs_dir.joinpath('dump.yml').read_bytes())
         dump_configs = {font_size: [] for font_size in options.font_sizes}
         for name, items_data in data.items():
-            version = json.loads(path_define.fonts_dir.joinpath(name, 'version.json').read_bytes())['version']
             for item_data in items_data:
-                font_file_path = path_define.fonts_dir.joinpath(name, item_data['font-file-name'].format(version=version))
+                font_file_path = path_define.fonts_dir.joinpath(name, item_data['font-file-name'])
                 font_size = item_data['font-size']
                 dump_dir = path_define.dump_dir.joinpath(str(font_size), item_data['dump-dir-name'])
                 rasterize_size = item_data.get('rasterize-size', font_size)

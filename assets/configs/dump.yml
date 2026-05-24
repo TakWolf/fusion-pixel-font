@@ -12,13 +12,13 @@ miseki-bitmap:
     rasterize-offset-y: 1
 boutique-bitmap-7x7:
   -
-    font-file-name: BoutiqueBitmap7x7_{version}.ttf
+    font-file-name: BoutiqueBitmap7x7.ttf
     dump-dir-name: boutique-bitmap
     font-size: 8
     rasterize-offset-y: 1
 boutique-bitmap-9x9:
   -
-    font-file-name: BoutiqueBitmap9x9_{version}.ttf
+    font-file-name: BoutiqueBitmap9x9.ttf
     dump-dir-name: boutique-bitmap
     font-size: 10
     rasterize-offset-y: 1

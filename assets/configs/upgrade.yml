@@ -17,7 +17,7 @@
       file-name: BoutiqueBitmap7x7_{version}.zip
       copy-list:
         OFL.txt:
-        BoutiqueBitmap7x7_{version}.ttf:
+        BoutiqueBitmap7x7_{version}.ttf: BoutiqueBitmap7x7.ttf
 -
   name: boutique-bitmap-9x9
   repository-name: scott0107000/BoutiqueBitmap9x9
@@ -27,7 +27,7 @@
       file-name: BoutiqueBitmap9x9_{version}.zip
       copy-list:
         OFL.txt:
-        BoutiqueBitmap9x9_{version}.ttf:
+        BoutiqueBitmap9x9_{version}.ttf: BoutiqueBitmap9x9.ttf
 -
   name: cubic-11
   repository-name: ACh-K/Cubic-11
