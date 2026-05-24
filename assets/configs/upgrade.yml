@@ -16,7 +16,7 @@
     -
       file-name: BoutiqueBitmap7x7_{version}.zip
       copy-list:
-        OFL.txt: LICENSE.txt
+        OFL.txt:
         BoutiqueBitmap7x7_{version}.ttf:
 -
   name: boutique-bitmap-9x9
@@ -26,7 +26,7 @@
     -
       file-name: BoutiqueBitmap9x9_{version}.zip
       copy-list:
-        OFL.txt: LICENSE.txt
+        OFL.txt:
         BoutiqueBitmap9x9_{version}.ttf:
 -
   name: cubic-11
@@ -35,7 +35,7 @@
   asset-configs:
     -
       copy-list:
-        Cubic-11-{version}/OFL.txt: LICENSE.txt
+        Cubic-11-{version}/OFL.txt: OFL.txt
         Cubic-11-{version}/fonts/web/Cubic_11.woff2: Cubic_11.woff2
 -
   name: galmuri
@@ -45,8 +45,8 @@
     -
       file-name: Galmuri-v{version}.zip
       copy-list:
-        LICENSE.txt: LICENSE.txt
-        Galmuri7.ttf: Galmuri7.ttf
-        Galmuri9.ttf: Galmuri9.ttf
-        Galmuri11.ttf: Galmuri11.ttf
-        GalmuriMono7.ttf: GalmuriMono7.ttf
+        LICENSE.txt:
+        Galmuri7.ttf:
+        Galmuri9.ttf:
+        Galmuri11.ttf:
+        GalmuriMono7.ttf:

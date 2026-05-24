@@ -19,22 +19,42 @@ mappings = [
 kerning_config = KerningConfig.load(path_define.kernings_dir.joinpath('default.yml'))
 
 license_configs = {
-    8: [
-        'misaki',
-        'miseki-bitmap',
-        'boutique-bitmap-7x7',
-        'galmuri',
-    ],
-    10: [
-        'ark-pixel',
-        'boutique-bitmap-9x9',
-        'galmuri',
-    ],
-    12: [
-        'ark-pixel',
-        'cubic-11',
-        'galmuri',
-    ],
+    8: {
+        'misaki': [
+            'misaki.txt',
+        ],
+        'miseki-bitmap': [
+            'LICENSE.txt',
+        ],
+        'boutique-bitmap-7x7': [
+            'OFL.txt',
+        ],
+        'galmuri': [
+            'LICENSE.txt',
+        ],
+    },
+    10: {
+        'ark-pixel': [
+            'OFL.txt',
+        ],
+        'boutique-bitmap-9x9': [
+            'OFL.txt',
+        ],
+        'galmuri': [
+            'LICENSE.txt',
+        ],
+    },
+    12: {
+        'ark-pixel': [
+            'OFL.txt',
+        ],
+        'cubic-11': [
+            'OFL.txt',
+        ],
+        'galmuri': [
+            'LICENSE.txt',
+        ],
+    },
 }
 
 locale_to_language_flavor = {
