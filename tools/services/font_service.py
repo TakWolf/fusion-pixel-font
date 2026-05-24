@@ -11,7 +11,6 @@ from pixel_font_knife.glyph_file_util import GlyphFlavorGroup
 from tools import configs
 from tools.configs import path_define, options
 from tools.configs.options import FontSize, WidthMode, LanguageFlavor, FontFormat
-from tools.services import dump_service
 
 
 class DesignContext:
@@ -180,17 +179,3 @@ class DesignContext:
                         case _:
                             getattr(builder, f'save_{font_format}')(file_path)
                     logger.info("Make font: '{}'", file_path)
-
-
-def load_design_contexts(font_sizes: list[FontSize]) -> dict[FontSize, DesignContext]:
-    design_contexts = {}
-    for font_size in font_sizes:
-        for dump_config in configs.dump_configs[font_size]:
-            dump_service.dump_font(dump_config)
-
-        for fallback_config in configs.fallback_configs[font_size]:
-            dump_service.apply_fallback(fallback_config)
-
-        design_context = DesignContext.load(font_size)
-        design_contexts[font_size] = design_context
-    return design_contexts

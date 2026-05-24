@@ -7,7 +7,8 @@ from loguru import logger
 from tools import configs
 from tools.configs import path_define, options
 from tools.configs.options import FontSize, WidthMode, FontFormat, Attachment
-from tools.services import setup_service, font_service, publish_service, info_service, template_service, image_service
+from tools.services import setup_service, dump_service, publish_service, info_service, template_service, image_service
+from tools.services.font_service import DesignContext
 
 app = App(
     version=configs.version,
@@ -55,8 +56,17 @@ def main(
 
     setup_service.setup_ark_pixel()
 
-    design_contexts = font_service.load_design_contexts(font_sizes)
-    for design_context in design_contexts.values():
+    design_contexts = {}
+    for font_size in font_sizes:
+        for dump_config in configs.dump_configs[font_size]:
+            dump_service.dump_font(dump_config)
+
+        for fallback_config in configs.fallback_configs[font_size]:
+            dump_service.apply_fallback(fallback_config)
+
+        design_context = DesignContext.load(font_size)
+        design_contexts[font_size] = design_context
+
         for width_mode in width_modes:
             design_context.make_fonts(width_mode, font_formats)
 
