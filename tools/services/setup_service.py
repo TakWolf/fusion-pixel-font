@@ -1,6 +1,6 @@
 import json
 import shutil
-import zipfile
+from zipfile import ZipFile
 
 from loguru import logger
 
@@ -35,7 +35,7 @@ def setup_ark_pixel():
     source_unzip_dir = downloads_dir.joinpath(f'ark-pixel-font-{sha}')
     if source_unzip_dir.exists():
         shutil.rmtree(source_unzip_dir)
-    with zipfile.ZipFile(source_file_path) as file:
+    with ZipFile(source_file_path) as file:
         file.extractall(downloads_dir)
     logger.info("Unzip: '{}'", source_unzip_dir)
 

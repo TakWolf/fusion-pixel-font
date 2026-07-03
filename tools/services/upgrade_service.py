@@ -1,6 +1,6 @@
 import json
 import shutil
-import zipfile
+from zipfile import ZipFile
 
 from loguru import logger
 
@@ -83,7 +83,7 @@ def upgrade_fonts(upgrade_config: UpgradeConfig):
         asset_unzip_dir = asset_file_path.with_suffix('')
         if asset_unzip_dir.exists():
             shutil.rmtree(asset_unzip_dir)
-        with zipfile.ZipFile(asset_file_path) as file:
+        with ZipFile(asset_file_path) as file:
             file.extractall(asset_unzip_dir)
         logger.info("Unzip: '{}'", asset_unzip_dir)
 
