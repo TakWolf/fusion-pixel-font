@@ -18,9 +18,10 @@ body.amber{
   --glow2:rgba(255,176,0,.30);
   --dim:rgba(255,176,0,.45);
 }
-*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important;}
-html,body{background:#000;min-height:100%;}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0;}
+html{min-height:100%;}
 body{
+  background:#000;min-height:100vh;
   color:var(--ph);
   font-family:'Courier New','Lucida Console','Consolas',monospace;
   font-size:clamp(12px,1.5vw,15px);
@@ -31,7 +32,7 @@ body{
 /* CRT 外壳：桶形畸变感（外容器圆角为唯一允许的圆角）+ 缓慢闪烁 */
 #crt{
   max-width:100ch;margin:0 auto;padding:1.2em 1.5ch 2em;
-  border-radius:18px!important;
+  border-radius:18px;
   animation:flicker 1.7s infinite;
   position:relative;z-index:1;
 }
@@ -98,13 +99,55 @@ input[type=number]:focus{border-bottom:1px solid var(--ph);animation:caretblink 
 #help{display:none;opacity:.75;margin-top:.3em;white-space:pre-wrap;}
 #footer{margin-top:1em;opacity:.55;font-size:.9em;white-space:pre-wrap;}
 .dim{opacity:.6;}
+/* ============ 红白机 FC 主题 (MODE 第三档) ============ */
+body.fc{
+  background:#ece0c4;color:#3d2f1e;text-shadow:none;
+  --ph:#3d2f1e;--dim:rgba(61,47,30,.5);
+  --glow1:transparent;--glow2:transparent;
+}
+body.fc #scanlines,body.fc #vignette,body.fc #boot{display:none;}
+body.fc #crt{animation:none;}
+#fcbar{display:none;}
+body.fc #fcbar{
+  display:block;background:#b5483e;color:#f8ecd0;
+  border:3px solid #7e2f28;border-bottom-width:6px;
+  padding:.5em 1.5ch;font-weight:bold;letter-spacing:1px;
+}
+body.fc .panel{background:#f7efdb;border:3px solid #6b5335;box-shadow:4px 4px 0 rgba(0,0,0,.15);margin-top:1em;}
+body.fc .pcor,body.fc .pfill,body.fc .pside,body.fc .pbot{display:none;}
+body.fc .ptop{height:auto;padding:.3em 1.5ch 0;font-weight:bold;color:#8a3d30;}
+body.fc .pbody{padding:.25em 1.5ch .5em;}
+body.fc .tbtn .cap{display:none;}
+body.fc .tbtn .lab{
+  background:#e8a33d;color:#3a2a12;text-shadow:none;font-weight:bold;
+  border:2px solid #8a6420;border-bottom-width:4px;border-radius:7px;
+  padding:.15em 1ch;display:inline-block;
+}
+body.fc .tbtn:hover .lab{background:#f2b955;color:#3a2a12;text-shadow:none;}
+body.fc .tbtn:active .lab{border-bottom-width:2px;transform:translateY(2px);}
+body.fc .sel{background:#fffaf0;border:2px solid #8a6420;padding:0 .3ch;}
+body.fc .sel .ar:hover,body.fc .chk:hover{background:#b5483e;color:#f8ecd0;text-shadow:none;}
+body.fc input[type=number]{background:#fffaf0;border:2px solid #8a6420;color:#3d2f1e;}
+body.fc input[type=number]:focus{animation:none;border-color:#b5483e;}
+body.fc #modebtn{background:#b5483e;color:#f8ecd0;text-shadow:none;border:2px solid #7e2f28;}
+body.fc #modebtn:hover{background:#7e2f28;color:#f8ecd0;outline:none;}
+body.fc #status{background:#b9d4a3;border:2px solid #7fa065;color:#2b3a1e;padding:.35em 1.5ch;margin-top:1em;}
+body.fc #cursor{display:none;}
+body.fc #footer{color:#6a563a;opacity:1;}
+body.fc #roll{background:#15130f;}
+.chip{display:none;}
+body.fc .chip{display:inline-block;width:.85em;height:.85em;background:var(--chip);border:2px solid rgba(0,0,0,.3);margin-right:.6ch;vertical-align:-.05em;}
+body.fc .volbar{color:var(--chip);text-shadow:none;}
+.dotOn{color:#c0392b;}
+.dotOff{color:#777;}
 </style>
 </head>
-<body>
+<body class="fc">
 <div id="scanlines"></div>
 <div id="vignette"></div>
-<span id="modebtn" title="切换磷光颜色">[MODE]</span>
+<span id="modebtn" title="切换主题: 红白机 / CRT绿 / CRT琥珀">[MODE]</span>
 <div id="crt">
+<div id="fcbar">8-BIT 音乐产生器 ｜ 2A03 四声道 · SEED 可重现 · MIDI / WAV 导出</div>
 <pre id="boot"></pre>
 <div id="main">
 
@@ -594,8 +637,12 @@ function togglePlay(){playing?stopPlay():startPlay();}
    ================================================================ */
 const cv=$('roll'),cx=cv.getContext('2d');
 const MODES={green:[51,255,51],amber:[255,176,0]};
-let modeName='green';
-const LANE_ALPHA={p1:1,p2:.65,tri:.42,noi:.28}; // 4 轨 = 同一磷光色 3 个亮度级
+const MODE_ORDER=['fc','green','amber'];
+let modeName='fc';
+const LANE_ALPHA={p1:1,p2:.65,tri:.42,noi:.28}; // CRT: 同一磷光色 3 个亮度级
+/* FC 主题: P1 粉 / P2 黄 / TRI 青 / NOI 紫 */
+const FC_LANE={p1:[255,123,172],p2:[255,210,63],tri:[111,227,247],noi:[180,140,255]};
+const FC_HEX={p1:'#ff7bac',p2:'#ffd23f',tri:'#6fe3f7',noi:'#b48cff'};
 
 function resizeCanvas(){
   const dpr=window.devicePixelRatio||1;
@@ -609,8 +656,9 @@ function drawRoll(){
   const W=cv.width,H=cv.height,dpr=window.devicePixelRatio||1;
   cx.clearRect(0,0,W,H);
   if(!score){requestAnimationFrame(drawRoll);return;}
-  const [R,G,B]=MODES[modeName];
-  const col=a=>`rgba(${R},${G},${B},${a})`;
+  const isFC=modeName==='fc';
+  const ui=isFC?[150,140,115]:MODES[modeName]; // 网格/分隔线用色
+  const col=a=>`rgba(${ui[0]},${ui[1]},${ui[2]},${a})`;
   const fontPx=Math.round(11*dpr);
   cx.font=fontPx+'px "Courier New",monospace';
   const labelW=Math.round(4.2*fontPx*.62)+8*dpr;
@@ -633,20 +681,32 @@ function drawRoll(){
     }
   }
   /* 磷光余辉: 播放头扫过后 300ms 内增亮衰减(含上一循环圈末尾) */
-  const glow=(a,step)=>{
-    if(playStep<0)return a;
+  const glowAmt=step=>{
+    if(playStep<0)return 0;
     let dt=now-(iterBase+step*spb);
     if(dt<0)dt=now-(iterBase-totalSec+step*spb);
-    return (dt>=0&&dt<.3)?Math.min(1,a+(1-dt/.3)*.7):a;
+    return (dt>=0&&dt<.3)?(1-dt/.3):0;
   };
 
   for(let li=0;li<4;li++){
     const id=laneIds[li];
     const y0=li*(laneH+sepH);
-    const baseA=LANE_ALPHA[id];
+    const rgb=isFC?FC_LANE[id]:MODES[modeName];
+    const baseA=isFC?(id==='noi'?.88:1):LANE_ALPHA[id];
+    /* 音符颜色: CRT 用亮度级+余辉提亮; FC 用轨道色+余辉泛白 */
+    const noteCol=step=>{
+      const g=glowAmt(step);
+      if(isFC){
+        const r=(rgb[0]+(255-rgb[0])*g*.6)|0,gc=(rgb[1]+(255-rgb[1])*g*.6)|0,
+              b=(rgb[2]+(255-rgb[2])*g*.6)|0;
+        return `rgba(${r},${gc},${b},${baseA})`;
+      }
+      return `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${Math.min(1,baseA+g*.7)})`;
+    };
 
     /* 左侧标签 */
-    cx.fillStyle=col(Math.max(.4,baseA));
+    cx.fillStyle=isFC?`rgb(${rgb[0]},${rgb[1]},${rgb[2]})`
+                     :`rgba(${rgb[0]},${rgb[1]},${rgb[2]},${Math.max(.4,baseA)})`;
     cx.textBaseline='middle';
     cx.fillText(['P1','P2','TRI','NOI'][li],6*dpr,y0+laneH/2);
 
@@ -666,7 +726,7 @@ function drawRoll(){
       /* NOI: 竖线 ▎, 3 行 = H(上) S(中) K(下) */
       const rowH=laneH/3,ROW={H:0,S:1,K:2};
       for(const n of notes){
-        cx.fillStyle=col(glow(baseA,n.step));
+        cx.fillStyle=noteCol(n.step);
         const x=labelW+n.step*cw,ry=y0+ROW[n.drum]*rowH;
         cx.fillRect(x,ry+2,Math.max(1.5*dpr,cw*.3),rowH-4);
       }
@@ -677,7 +737,7 @@ function drawRoll(){
       lo--;hi++;
       const rh=laneH/(hi-lo+1);
       for(const n of notes){
-        cx.fillStyle=col(glow(baseA,n.step));
+        cx.fillStyle=noteCol(n.step);
         const y=y0+(hi-n.midi)*rh;
         const x=labelW+n.step*cw;
         if(cw>=5*dpr){ /* 逐 16 分格画 ■ 块, 字符屏质感 */
@@ -701,8 +761,8 @@ function drawRoll(){
   /* 播放头: 1 字符宽实心亮列 */
   if(playStep>=0){
     const x=labelW+Math.floor(playStep)*cw;
-    cx.fillStyle=col(.85);
-    cx.shadowColor=col(1);cx.shadowBlur=8*dpr;
+    cx.fillStyle=isFC?'rgba(255,248,208,.85)':col(.85);
+    cx.shadowColor=isFC?'rgba(255,248,208,1)':col(1);cx.shadowBlur=8*dpr;
     cx.fillRect(x,0,Math.max(2*dpr,cw),H);
     cx.shadowBlur=0;
   }
@@ -850,6 +910,8 @@ function buildChannels(){
   const body=$('chanBody');
   for(const c of CHANS){
     const row=document.createElement('div');row.className='row';row.style.gap='0 1.5ch';
+    row.style.setProperty('--chip',FC_HEX[c.id]);
+    const chip=document.createElement('span');chip.className='chip';
     const label=document.createElement('span');
     label.style.whiteSpace='pre';
     label.textContent=c.label+' '+c.name;
@@ -874,7 +936,7 @@ function buildChannels(){
     vol.addEventListener('pointermove',e=>{if(drag)setFromEvent(e);});
     vol.addEventListener('pointerup',()=>{drag=false;});
     renderVol();
-    row.append(label,mute,vol,volNum);
+    row.append(chip,label,mute,vol,volNum);
     if(c.id==='p1'||c.id==='p2'){
       const dutyWrap=document.createElement('span');
       dutyWrap.append('占空比 ');
@@ -895,7 +957,7 @@ function buildFrames(){
     const body=p.querySelector('.pbody');
     const title=p.dataset.title||'';
     const top=document.createElement('div');top.className='ptop';
-    top.innerHTML='<span>╔═ '+title+' ═</span><span class="pfill"><span>'+'═'.repeat(400)+'</span></span><span>╗</span>';
+    top.innerHTML='<span class="pcor">╔═ </span><span class="ptitle">'+title+'</span><span class="pcor"> ═</span><span class="pfill"><span>'+'═'.repeat(400)+'</span></span><span class="pcor">╗</span>';
     const bot=document.createElement('div');bot.className='pbot';
     bot.innerHTML='<span>╚</span><span class="pfill"><span>'+'═'.repeat(400)+'</span></span><span>╝</span>';
     const mid=document.createElement('div');mid.className='pmid';
@@ -908,15 +970,24 @@ function buildFrames(){
   });
 }
 
-/* ---------------- 状态条 ---------------- */
+/* ---------------- 状态条 (CRT: 终端提示符 / FC: 绿色状态条) ---------------- */
 function setStatus(txt){
-  $('status').innerHTML='&gt; '+txt+'  <span id="cursor">█</span>';
+  if(modeName==='fc')$('status').innerHTML=txt;
+  else $('status').innerHTML='&gt; '+txt+'  <span id="cursor">█</span>';
 }
 function updateStatus(){
   if(!score)return setStatus('READY');
   const m=score.meta;
-  setStatus((playing?'PLAYING':'STOPPED')+
-    '  KEY='+m.keyLabel+'  TEMPO='+P.bpm+'  BARS='+P.bars+'  SEED='+P.seed);
+  if(modeName==='fc'){
+    const keyCN=m.keyLabel.endsWith('m')
+      ?m.keyLabel.slice(0,-1)+' 小调':m.keyLabel+' 大调';
+    setStatus((playing?'<span class="dotOn">●</span> 播放中'
+                      :'<span class="dotOff">●</span> 已停止')+
+      ' — '+keyCN+' · '+P.bpm+' BPM · '+P.bars+' 小节 · 种子 '+P.seed);
+  }else{
+    setStatus((playing?'PLAYING':'STOPPED')+
+      '  KEY='+m.keyLabel+'  TEMPO='+P.bpm+'  BARS='+P.bars+'  SEED='+P.seed);
+  }
 }
 
 /* ---------------- 事件绑定 ---------------- */
@@ -950,8 +1021,11 @@ function bindUI(){
   $('btnWav').onclick=exportWav;
   $('btnStems').onclick=exportStems;
   $('modebtn').onclick=()=>{
-    document.body.classList.toggle('amber');
-    modeName=document.body.classList.contains('amber')?'amber':'green';
+    modeName=MODE_ORDER[(MODE_ORDER.indexOf(modeName)+1)%MODE_ORDER.length];
+    document.body.classList.toggle('fc',modeName==='fc');
+    document.body.classList.toggle('amber',modeName==='amber');
+    $('main').style.visibility='visible'; // CRT 开机动画未完也直接进入
+    updateStatus();
   };
   window.addEventListener('keydown',e=>{
     if(e.code==='Space'&&!(e.target instanceof HTMLInputElement)){
@@ -966,7 +1040,13 @@ const BOOT_TEXT=
 '2A03 SOUND CHIP DETECTED ... OK\n'+
 '4 CHANNELS READY. TYPE SPACE TO PLAY.\n';
 function boot(){
-  const el=$('boot');let i=0;
+  const el=$('boot');
+  if(modeName==='fc'){ // FC 主题无 CRT 开机动画, 直接进入; 文本备好供切回 CRT 时显示
+    el.textContent=BOOT_TEXT;
+    $('main').style.visibility='visible';
+    return;
+  }
+  let i=0;
   const iv=setInterval(()=>{
     el.textContent=BOOT_TEXT.slice(0,++i);
     if(i>=BOOT_TEXT.length){
