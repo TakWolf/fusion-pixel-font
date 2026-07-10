@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHIPTUNE SYNTHESIZER v1.0</title>
+<style>
+/* 内嵌像素字体, 零网络请求:
+   FusionPixel12 = 本仓库缝合像素 12px 简中源 MisekiBitmap 子集 (Mark Li, SIL OFL 1.1)
+   FusionPixel8  = 8px 源 BoutiqueBitmap7x7 子集 (Luke Liu, 自由许可), 补框线/方块/箭头缺字 */
+@font-face{font-family:'FusionPixel12';src:url(data:font/woff2;base64,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) format('woff2');}
+@font-face{font-family:'FusionPixel8';src:url(data:font/woff2;base64,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) format('woff2');}
+/* ============ 1980s 单色 CRT 终端 ============ */
+:root{
+  --ph:#33ff33;            /* P1 绿磷光 */
+  --glow1:rgba(51,255,51,.75);
+  --glow2:rgba(51,255,51,.30);
+  --dim:rgba(51,255,51,.45);
+}
+body.amber{
+  --ph:#ffb000;            /* P3 琥珀磷光 */
+  --glow1:rgba(255,176,0,.75);
+  --glow2:rgba(255,176,0,.30);
+  --dim:rgba(255,176,0,.45);
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0;}
+html{min-height:100%;}
+body{
+  background:#000;min-height:100vh;
+  color:var(--ph);
+  /* 12px 点阵像素字体 (MisekiBitmap 11×11), 16px = 12pt 显示; 缺字回退 7×7 再回退等宽 */
+  font-family:'FusionPixel12','FusionPixel8','Courier New',monospace;
+  font-size:16px;
+  line-height:1.4;
+  text-shadow:0 0 2px var(--glow1),0 0 8px var(--glow2);
+  overflow-x:hidden;
+}
+/* CRT 外壳：桶形畸变感（外容器圆角为唯一允许的圆角）+ 缓慢闪烁 */
+#crt{
+  max-width:100ch;margin:0 auto;padding:1.2em 1.5ch 2em;
+  border-radius:18px;
+  animation:flicker 1.7s infinite;
+  position:relative;z-index:1;
+}
+@keyframes flicker{0%,100%{opacity:1}50%{opacity:.974}}
+/* 水平扫描线（2px 周期）*/
+#scanlines{
+  position:fixed;inset:0;pointer-events:none;z-index:9;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0px,rgba(0,0,0,.28) 1px,transparent 1px,transparent 2px);
+}
+/* 边缘 vignette */
+#vignette{
+  position:fixed;inset:0;pointer-events:none;z-index:10;
+  background:radial-gradient(ellipse at center,transparent 52%,rgba(0,0,0,.42) 92%,rgba(0,0,0,.75) 100%);
+}
+a{color:var(--ph);}
+/* ---- 开机文本 ---- */
+#boot{white-space:pre-wrap;min-height:4.2em;}
+#modebtn{
+  position:fixed;top:.6em;right:1.2ch;z-index:11;cursor:pointer;
+  background:var(--ph);color:#000;padding:0 1ch;text-shadow:none;user-select:none;
+}
+#modebtn:hover{background:#000;color:var(--ph);outline:1px solid var(--ph);}
+#main{visibility:hidden;}
+/* ---- DOS 框线面板（╔═╗║╚╝ 由字符绘制）---- */
+.panel{margin-top:.7em;}
+.ptop,.pbot{display:flex;white-space:pre;overflow:hidden;height:1.35em;}
+.pfill{flex:1;position:relative;overflow:hidden;}
+.pfill>span{position:absolute;top:0;left:0;white-space:pre;}
+.pmid{display:flex;}
+.pside{flex:0 0 1ch;position:relative;overflow:hidden;}
+.pside>span{position:absolute;top:0;left:0;white-space:pre;}
+.pbody{flex:1;padding:.15em 1.5ch;min-width:0;}
+/* ---- 终端化控件 ---- */
+.row{margin:.15em 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 2ch;}
+.sel{white-space:pre;user-select:none;}
+.sel .ar{cursor:pointer;}
+.sel .ar:hover{background:var(--ph);color:#000;text-shadow:none;}
+.chk{cursor:pointer;user-select:none;white-space:pre;}
+.chk:hover{background:var(--ph);color:#000;text-shadow:none;}
+.volbar{cursor:pointer;user-select:none;white-space:pre;letter-spacing:0;}
+input[type=number]{
+  background:transparent;color:var(--ph);border:none;outline:none;
+  border-bottom:1px solid var(--dim);
+  font:inherit;text-shadow:inherit;caret-color:var(--ph);
+  width:6ch;text-align:center;
+  -moz-appearance:textfield;appearance:textfield;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;}
+input[type=number]:focus{border-bottom:1px solid var(--ph);animation:caretblink 1s steps(2) infinite;}
+@keyframes caretblink{50%{border-bottom-color:transparent}}
+/* ▌反色按钮▐ */
+.tbtn{cursor:pointer;user-select:none;white-space:pre;display:inline-block;margin:.1em 0;}
+.tbtn .cap{color:var(--ph);}
+.tbtn .lab{background:var(--ph);color:#000;text-shadow:none;}
+.tbtn:hover .lab{background:#000;color:var(--ph);text-shadow:0 0 2px var(--glow1),0 0 8px var(--glow2);}
+.tbtn.off{opacity:.35;pointer-events:none;}
+/* ---- 卷帘 ---- */
+#roll{display:block;width:100%;height:300px;background:#000;}
+/* ---- 状态条 ---- */
+#status{margin-top:.7em;white-space:pre-wrap;}
+#cursor{animation:blink 1s steps(2) infinite;}
+@keyframes blink{50%{opacity:0}}
+#help{display:none;opacity:.75;margin-top:.3em;white-space:pre-wrap;}
+#footer{margin-top:1em;opacity:.55;font-size:.9em;white-space:pre-wrap;}
+.dim{opacity:.6;}
+/* ============ 红白机游戏画面主题 (MODE 第一档) ============
+   颜色全部取自 NES PPU 2C02 标准 54 色调色板 (NESdev 通用表):
+   $0F #000000 黑 / $30 #FCFCFC 白 / $10 #BCBCBC 亮灰 / $00 #7C7C7C 灰
+   $16 #F83800 红 / $07 #881400 暗红 / $28 #F8B800 黄 / $2A #58D854 绿
+   $24 #F878F8 粉 / $21 #3CBCFC 天蓝 / $23 #9878F8 紫 / $27 #FCA044 橙
+   字体: 全站 12px 点阵像素字体 (本仓库缝合像素 12px 简中源 MisekiBitmap) */
+body.fc{
+  background:#000;color:#FCFCFC;text-shadow:none;
+  font-size:16px;line-height:1.6;
+  --ph:#FCFCFC;--dim:#7C7C7C;
+  --glow1:transparent;--glow2:transparent;
+}
+body.fc #scanlines,body.fc #vignette,body.fc #boot{display:none;}
+body.fc #crt{animation:none;max-width:60em;}
+/* 标题画面 */
+#fcbar{display:none;}
+body.fc #fcbar{display:block;background:none;text-align:center;padding:.8em 0 .2em;}
+#fctitle{font-size:24px;color:#F83800;text-shadow:.125em .125em 0 #881400;letter-spacing:.1em;} /* 24px = 12px 点阵整数 2 倍 */
+#fcsub{color:#BCBCBC;margin-top:.8em;}
+#fchint{color:#FCFCFC;margin-top:.8em;animation:blink 1.2s steps(2) infinite;}
+/* 勇者斗恶龙式窗口: 黑底 + 白色粗框 + 圆角 tile */
+body.fc .panel{background:#000;border:4px solid #FCFCFC;border-radius:10px;position:relative;margin-top:1.5em;box-shadow:none;}
+body.fc .pcor,body.fc .pfill,body.fc .pside,body.fc .pbot{display:none;}
+body.fc .ptop{position:absolute;top:-.85em;left:1.5ch;height:auto;background:#000;padding:0 1ch;color:#FCFCFC;}
+body.fc .pbody{padding:.7em 1.5ch .5em;}
+/* 菜单项: 白字, 悬停出现闪烁 ▶ 光标并变黄 */
+body.fc .tbtn .cap{display:none;}
+body.fc .tbtn{position:relative;padding-left:1.2em;}
+body.fc .tbtn::before{content:'▶';position:absolute;left:0;color:#F8B800;visibility:hidden;}
+body.fc .tbtn:hover::before{visibility:visible;animation:blink .5s steps(2) infinite;}
+body.fc .tbtn .lab{background:none;color:#FCFCFC;text-shadow:none;border:none;padding:0;}
+body.fc .tbtn:hover .lab{background:none;color:#F8B800;text-shadow:none;}
+body.fc .tbtn:active .lab{color:#FCA044;}
+body.fc .sel{background:none;border:none;padding:0;}
+body.fc .sel .ar{color:#BCBCBC;}
+body.fc .sel .ar:hover{background:none;color:#F8B800;text-shadow:none;}
+body.fc .chk:hover{background:none;color:#F8B800;text-shadow:none;}
+body.fc input[type=number]{background:#000;border:none;border-bottom:2px solid #7C7C7C;color:#FCFCFC;}
+body.fc input[type=number]:focus{border-bottom-color:#F8B800;animation:none;}
+body.fc #modebtn{background:#000;color:#FCFCFC;border:2px solid #FCFCFC;text-shadow:none;}
+body.fc #modebtn:hover{background:#FCFCFC;color:#000;outline:none;}
+/* 对话窗式状态条, 末尾 ▼ 闪烁 */
+body.fc #status{background:#000;border:4px solid #FCFCFC;border-radius:10px;color:#FCFCFC;padding:.55em 1.5ch;margin-top:1.5em;}
+body.fc #footer{color:#7C7C7C;opacity:1;}
+body.fc .dim{color:#7C7C7C;opacity:1;}
+body.fc #roll{background:#000;}
+#roll{image-rendering:pixelated;}
+.chip{display:none;}
+body.fc .chip{display:inline-block;width:.75em;height:.75em;background:var(--chip);border:none;margin-right:.6ch;vertical-align:-.02em;}
+body.fc .volbar{color:var(--chip);text-shadow:none;}
+.dotOn{color:#58D854;}
+.dotOff{color:#7C7C7C;}
+</style>
+</head>
+<body class="fc">
+<div id="scanlines"></div>
+<div id="vignette"></div>
+<span id="modebtn" title="切换主题: 彩色 / 绿 / 棕">[主题:彩色]</span>
+<div id="crt">
+<div id="fcbar">
+  <div id="fctitle">8-BIT 音乐产生器</div>
+  <div id="fcsub">2A03 四声道 · SEED 可重现 · MIDI / WAV 导出</div>
+  <div id="fchint">© 1983 PUSH SPACE KEY</div>
+</div>
+<pre id="boot"></pre>
+<div id="main">
+
+  <!-- 参数面板 -->
+  <div class="panel" data-title="参数 PARAMETERS">
+    <div class="pbody">
+      <div class="row">
+        <span>风格 <span class="sel" id="selStyle"></span></span>
+        <span>调性 <span class="sel" id="selKey"></span></span>
+        <span>小节 <span class="sel" id="selBars"></span></span>
+      </div>
+      <div class="row">
+        <span>BPM <input type="number" id="inBpm" min="40" max="300" value="132"></span>
+        <span>种子 <input type="number" id="inSeed" min="0" step="1" value="0" style="width:9ch">
+          <span class="tbtn" id="btnDice"><span class="cap">▌</span><span class="lab">骰</span><span class="cap">▐</span></span>
+          <span class="tbtn" id="btnHelp"><span class="cap">▌</span><span class="lab">?</span><span class="cap">▐</span></span>
+        </span>
+        <span class="chk" id="chkLoop" data-on="1">[X] 循环播放</span>
+        <span class="dim">(SPACE = 播放/停止)</span>
+      </div>
+      <div id="help">? 可复现说明: 全部随机决策来自 mulberry32(种子)。相同的 风格+调性+小节数+BPM+种子
+  组合, 任何时候(包括刷新页面后)都会逐音符生成完全相同的乐曲。记下种子即可复现或分享。</div>
+    </div>
+  </div>
+
+  <!-- 声道面板 -->
+  <div class="panel" data-title="声道 2A03 CHANNELS">
+    <div class="pbody" id="chanBody"></div>
+  </div>
+
+  <!-- 操作面板 -->
+  <div class="panel" data-title="操作 TRANSPORT / EXPORT">
+    <div class="pbody">
+      <div class="row" style="gap:0 1.5ch">
+        <span class="tbtn" id="btnPlay"><span class="cap">▌</span><span class="lab">播放 ▶</span><span class="cap">▐</span></span>
+        <span class="tbtn" id="btnStop"><span class="cap">▌</span><span class="lab">停止 ■</span><span class="cap">▐</span></span>
+        <span class="tbtn" id="btnRegen"><span class="cap">▌</span><span class="lab">重新生成</span><span class="cap">▐</span></span>
+        <span class="tbtn" id="btnMidi"><span class="cap">▌</span><span class="lab">下载 MIDI</span><span class="cap">▐</span></span>
+        <span class="tbtn" id="btnWav"><span class="cap">▌</span><span class="lab">下载混音 WAV</span><span class="cap">▐</span></span>
+        <span class="tbtn" id="btnStems"><span class="cap">▌</span><span class="lab">四轨分轨 WAV</span><span class="cap">▐</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 卷帘面板 -->
+  <div class="panel" data-title="卷帘 PIANO ROLL">
+    <div class="pbody" style="padding:.3em .5ch;">
+      <canvas id="roll"></canvas>
+    </div>
+  </div>
+
+  <div id="status">&gt; READY<span id="cursor">█</span></div>
+  <div id="footer">* DAW 后期: 导入 MIDI 后挂 chiptune 音源(如免费的 Magical 8bit Plug 2)自由换音色;
+  或把四轨分轨 WAV 拉进 DAW 分别做 EQ/压缩/残响。</div>
+</div>
+</div>
+
+<script>
+'use strict';
+/* ================================================================
+   8-BIT 音乐产生器 — NES 2A03 四声道 · 种子可复现 · MIDI/WAV 导出
+   纯原生 JS + Web Audio API + Canvas, 零外部依赖, 零网络请求
+   ================================================================ */
+
+/* ---------------- PRNG: mulberry32 ---------------- */
+function mulberry32(seed){
+  let a=seed>>>0;
+  return function(){
+    a|=0;a=(a+0x6D2B79F5)|0;
+    let t=Math.imul(a^(a>>>15),1|a);
+    t=(t+Math.imul(t^(t>>>7),61|t))^t;
+    return ((t^(t>>>14))>>>0)/4294967296;
+  };
+}
+function pickW(rng,pairs){ /* 加权选择 [[value,weight],...] */
+  let sum=0;for(const p of pairs)sum+=p[1];
+  let r=rng()*sum;
+  for(const p of pairs){r-=p[1];if(r<0)return p[0];}
+  return pairs[pairs.length-1][0];
+}
+
+/* ---------------- 六种风格预设 ---------------- */
+const ALL16=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+const STYLES=[
+ {id:'adventure',name:'冒险旅程',minor:false,
+  scales:[[0,2,4,5,7,9,11],[0,2,4,5,7,9,10]],          // 大调 / 混合利底亚
+  progs:[[1,5,6,4],[1,4,5,4],[1,6,4,5],[1,4,1,5]],
+  melLo:67,melHi:88,jump:.35,rest:.12,chroma:0,
+  durW:[[2,5],[4,4],[1,2],[8,1]],arpUnit:2,bass:'rootFifth',
+  drums:{K:[0,8],S:[4,12],H:[0,2,4,6,8,10,12,14]},
+  twoChord:.25,bpmDef:132,bpmRange:[110,150]},
+ {id:'battle',name:'战斗',minor:true,
+  scales:[[0,2,3,5,7,8,10],[0,2,3,5,7,9,10]],          // 小调 / 多利亚
+  progs:[[1,6,7,1],[1,7,6,7],[1,4,7,1],[1,3,6,7]],
+  melLo:65,melHi:86,jump:.45,rest:.08,chroma:0,
+  durW:[[1,6],[2,5],[4,2]],arpUnit:1,bass:'pump8',
+  drums:{K:[0,6,8],S:[4,12],H:ALL16},
+  twoChord:.35,bpmDef:165,bpmRange:[150,180]},
+ {id:'village',name:'村庄日常',minor:false,
+  scales:[[0,2,4,5,7,9,11]],melScale:[0,2,4,7,9],      // 大调五声音阶旋律
+  progs:[[1,4,1,5],[1,6,4,5],[1,4,5,1]],
+  melLo:64,melHi:83,jump:.25,rest:.18,chroma:0,
+  durW:[[2,6],[4,4],[8,1]],arpUnit:2,bass:'rootFifth',
+  drums:{K:[0],S:[8],H:[0,4,8,12]},
+  twoChord:.15,bpmDef:112,bpmRange:[95,125]},
+ {id:'dungeon',name:'地城神秘',minor:true,
+  scales:[[0,2,3,5,7,8,11],[0,1,3,5,7,8,10]],          // 和声小调 / 弗里几亚
+  progs:[[1,2,1,7],[1,6,7,1],[1,4,6,5],[1,2,1,2]],
+  melLo:60,melHi:81,jump:.3,rest:.3,chroma:.3,          // 半音下行动机
+  durW:[[4,5],[8,3],[2,3],[16,1]],arpUnit:4,bass:'drone',
+  drums:{K:[0],S:[],H:[8]},
+  twoChord:.1,bpmDef:96,bpmRange:[80,110]},
+ {id:'sorrow',name:'哀伤',minor:true,
+  scales:[[0,2,3,5,7,8,10]],                            // 自然小调
+  progs:[[1,6,4,5],[1,7,6,5],[1,4,1,5],[1,3,6,7]],
+  melLo:62,melHi:81,jump:.2,rest:.25,chroma:0,
+  durW:[[4,4],[8,4],[16,2],[2,1]],arpUnit:4,bass:'slow',
+  drums:{K:[],S:[],H:[]},
+  twoChord:.05,bpmDef:76,bpmRange:[60,90]},
+ {id:'boss',name:'魔王战',minor:true,
+  scales:[[0,1,4,5,7,8,10],[0,2,3,5,6,8,9]],           // 弗里几亚属 / 减音阶(七音近似)
+  progs:[[1,2,1,2],[1,7,1,2],[1,4,1,7],[1,2,7,1]],
+  melLo:65,melHi:88,jump:.5,rest:.06,chroma:.15,
+  durW:[[1,6],[2,4],[3,2],[4,1]],arpUnit:1,bass:'pump8',
+  drums:{K:[0,3,6,10,12],S:[4,7,12,15],H:ALL16},        // 不规则重音
+  twoChord:.45,bpmDef:188,bpmRange:[170,200]},
+];
+const NOTE_NAMES=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+/* 调性选项: 随机 + 12 大调 + 12 小调 */
+const KEYS=[{label:'随机'}];
+for(let i=0;i<12;i++)KEYS.push({label:NOTE_NAMES[i],tonic:i,maj:true});
+for(let i=0;i<12;i++)KEYS.push({label:NOTE_NAMES[i]+'m',tonic:i,maj:false});
+
+/* ---------------- 乐理工具 ---------------- */
+function degreeChord(scale,deg){ // 音阶内三度叠置三和弦(相对主音的半音数)
+  const L=scale.length,out=[];
+  for(let k=0;k<3;k++){const i=deg-1+2*k;out.push(scale[i%L]+12*Math.floor(i/L));}
+  return out;
+}
+function buildScaleAbs(tonic,pcs,lo,hi){ // 音域内全部音阶音(升序 MIDI)
+  const set=new Set(pcs.map(p=>((tonic+p)%12+12)%12)),out=[];
+  for(let m=lo;m<=hi;m++)if(set.has(m%12))out.push(m);
+  return out;
+}
+function chordAbs(tonic,chord,lo,hi){ // 音域内全部和弦音
+  const set=new Set(chord.map(c=>((tonic+c)%12+12)%12)),out=[];
+  for(let m=lo;m<=hi;m++)if(set.has(m%12))out.push(m);
+  return out;
+}
+function nearest(arr,target){
+  let best=arr[0],bd=1e9;
+  for(const v of arr){const d=Math.abs(v-target);if(d<bd){bd=d;best=v;}}
+  return best;
+}
+const mtof=m=>440*Math.pow(2,(m-69)/12);
+
+/* ================================================================
+   作曲引擎 — 全部随机决策只来自一个 mulberry32(seed)
+   流程: 和弦进行 → P2 琶音 → P1 动机 AA'BA' → TRI 贝斯 → NOI 鼓
+   ================================================================ */
+function generate(P){
+  const S=STYLES[P.styleIdx];
+  const rng=mulberry32(P.seed>>>0);
+
+  /* --- 调性 --- */
+  let tonic,keyLabel;
+  const K=KEYS[P.keyIdx];
+  if(K.tonic===undefined){ // 随机
+    tonic=(rng()*12)|0;
+    keyLabel=NOTE_NAMES[tonic]+(S.minor?'m':'');
+  }else{
+    // 与风格调式冲突时借用关系大小调的主音, 保持风格音阶不变
+    tonic=(K.maj===!S.minor)?K.tonic:(S.minor?(K.tonic+9)%12:(K.tonic+3)%12);
+    keyLabel=K.label;
+  }
+  const scalePcs=S.scales[(rng()*S.scales.length)|0];
+  const melPcs=S.melScale||scalePcs;
+  const bars=P.bars,total=bars*16;
+
+  /* --- 1. 和弦进行(每半小节一格, 每小节 1–2 个和弦) --- */
+  const prog=S.progs[(rng()*S.progs.length)|0];
+  const halves=[];
+  for(let b=0;b<bars;b++){
+    const c1=degreeChord(scalePcs,prog[b%prog.length]);
+    let c2=c1;
+    if(rng()<S.twoChord)c2=degreeChord(scalePcs,prog[(b+1)%prog.length]);
+    halves.push(c1,c2);
+  }
+  const chordAt=step=>halves[Math.min(halves.length-1,step>>3)];
+
+  const scaleAbs=buildScaleAbs(tonic,melPcs,S.melLo,S.melHi);
+  const center=nearest(scaleAbs,(S.melLo+S.melHi)/2);
+
+  /* --- 2. PULSE 2: 琶音 / 和声内音 --- */
+  const p2=[];
+  for(let h=0;h<halves.length;h++){
+    const start=h*8;
+    let tones=halves[h].map(c=>{let m=60+((tonic+c)%12);if(m>=68)m-=12;return m;});
+    tones.sort((a,b)=>a-b);
+    const mode=(rng()*3)|0; // 0 上行 1 下行 2 上下
+    const seq=mode===0?tones.concat(tones[0]+12)
+             :mode===1?tones.slice().reverse().concat(tones[2]-12<48?tones[0]:tones[2]-12)
+             :[tones[0],tones[1],tones[2],tones[1]];
+    const u=S.arpUnit;
+    for(let pos=0,k=0;pos<8;pos+=u,k++){
+      p2.push({step:start+pos,dur:u,midi:seq[k%seq.length],vel:70});
+    }
+  }
+
+  /* --- 3. PULSE 1: 2 小节动机, A A' B A' 结构 --- */
+  function genMotif(absStart){
+    const notes=[];let pos=0,cur=center;
+    while(pos<32){
+      let dur=pickW(rng,S.durW);dur=Math.min(dur,32-pos);
+      if(pos>0&&rng()<S.rest){pos+=dur;continue;}
+      const strong=(pos%8)===0;
+      let pitch;
+      if(strong){
+        const ch=chordAbs(tonic,chordAt(absStart+pos),S.melLo,S.melHi);
+        pitch=rng()<S.jump?ch[(rng()*ch.length)|0]
+                          :nearest(ch,cur+(rng()<.5?-2:2));
+      }else{
+        const idx=scaleAbs.indexOf(nearest(scaleAbs,cur));
+        let mv=rng()<S.jump?(((rng()*5)|0)-2):(rng()<.5?-1:1);
+        if(mv===0)mv=1;
+        pitch=scaleAbs[Math.max(0,Math.min(scaleAbs.length-1,idx+mv))];
+        if(S.chroma&&rng()<S.chroma)pitch=Math.max(S.melLo,pitch-1); // 半音下行
+      }
+      notes.push({step:pos,dur,midi:pitch,vel:strong?100:82});
+      cur=pitch;pos+=dur;
+    }
+    return notes;
+  }
+  const motifA=genMotif(0),motifB=genMotif(64%total);
+  function placeMotif(motif,startStep,varAmt){
+    return motif.map(n=>{
+      let midi=n.midi;
+      if((n.step%8)===0){ // 强拍重新贴合本地和弦
+        midi=nearest(chordAbs(tonic,chordAt(startStep+n.step),S.melLo,S.melHi),midi);
+      }
+      if(rng()<varAmt){   // 邻音变奏
+        const i=scaleAbs.indexOf(nearest(scaleAbs,midi));
+        midi=scaleAbs[Math.max(0,Math.min(scaleAbs.length-1,i+(rng()<.5?-1:1)))];
+      }
+      return {step:startStep+n.step,dur:n.dur,midi,vel:n.vel};
+    }).filter(n=>n.step<total);
+  }
+  const p1=[];
+  const PAT=['A','A2','B','A2'];
+  for(let s=0;s<bars/2;s++){
+    const pat=PAT[s%4];
+    const base=pat==='B'?motifB:motifA;
+    const varAmt=pat==='A'?0:(pat==='A2'?.3:.15);
+    p1.push(...placeMotif(base,s*32,varAmt));
+  }
+
+  /* --- 4. TRIANGLE: 根音/五音贝斯线(低 1–2 个八度, 无音量包络) --- */
+  const bassMidi=rel=>{let m=36+((tonic+rel)%12);if(m>44)m-=12;return m;};
+  const tri=[];
+  for(let b=0;b<bars;b++){
+    const st0=b*16;
+    if(S.bass==='pump8'){
+      for(let st=0;st<16;st+=2){
+        const c=chordAt(st0+st);let m=bassMidi(c[0]);
+        if(st%8===6&&rng()<.3)m+=12;
+        tri.push({step:st0+st,dur:2,midi:m,vel:100});
+      }
+    }else if(S.bass==='rootFifth'){
+      const c1=chordAt(st0),c2=chordAt(st0+8);
+      tri.push({step:st0,   dur:4,midi:bassMidi(c1[0]),vel:100});
+      tri.push({step:st0+4, dur:4,midi:bassMidi(c1[2]),vel:92});
+      tri.push({step:st0+8, dur:4,midi:bassMidi(c2[0]),vel:100});
+      if(rng()<.3){
+        tri.push({step:st0+12,dur:2,midi:bassMidi(c2[2]),vel:92});
+        tri.push({step:st0+14,dur:2,midi:bassMidi(c2[0])+12,vel:88});
+      }else{
+        tri.push({step:st0+12,dur:4,midi:bassMidi(c2[2]),vel:92});
+      }
+    }else if(S.bass==='drone'){ // 低音持续
+      const r=bassMidi(chordAt(st0)[0]);
+      if(rng()<.25){
+        tri.push({step:st0,dur:8,midi:r,vel:96});
+        tri.push({step:st0+8,dur:8,midi:r-1,vel:90}); // 半音邻音
+      }else{
+        tri.push({step:st0,dur:16,midi:r,vel:96});
+      }
+    }else{ // slow (哀伤)
+      const c1=chordAt(st0),c2=chordAt(st0+8);
+      tri.push({step:st0,dur:8,midi:bassMidi(c1[0]),vel:92});
+      tri.push({step:st0+8,dur:8,midi:rng()<.5?bassMidi(c2[2]):bassMidi(c2[0]),vel:88});
+    }
+  }
+
+  /* --- 5. NOISE: 风格鼓型 + 段落尾加花 --- */
+  const noi=[];
+  for(let b=0;b<bars;b++){
+    const st0=b*16;
+    if(S.id==='sorrow'){ // 几乎无鼓
+      if(b%4===0&&rng()<.35)noi.push({step:st0,dur:1,drum:'K',vel:80});
+      continue;
+    }
+    const fill=(b%8===7);
+    for(const st of S.drums.H)if(!(fill&&st>=8))
+      noi.push({step:st0+st,dur:1,drum:'H',vel:st%4===0?72:52});
+    for(const st of S.drums.K)noi.push({step:st0+st,dur:1,drum:'K',vel:112});
+    for(const st of S.drums.S)noi.push({step:st0+st,dur:1,drum:'S',vel:st%4===0?104:90});
+    if(S.id==='boss')for(const st of [2,5,9,11,13])
+      if(rng()<.25)noi.push({step:st0+st,dur:1,drum:'K',vel:88});
+    if(fill){
+      const fs=(S.id==='battle'||S.id==='boss')?[8,9,10,11,12,13,14,15]:[8,10,12,14];
+      for(const st of fs)if(rng()<.85)noi.push({step:st0+st,dur:1,drum:'S',vel:96});
+    }
+  }
+  noi.sort((a,b)=>a.step-b.step);
+
+  return {meta:{style:S,tonic,keyLabel,bpm:P.bpm,bars,seed:P.seed},
+          tracks:{p1,p2,tri,noi}};
+}
+
+/* ================================================================
+   音源 — 模拟 NES 2A03
+   ================================================================ */
+const TRACK_IDS=['p1','p2','tri','noi'];
+const TRACK_BASE={p1:.30,p2:.24,tri:.38,noi:.26};
+const DUTIES=[.125,.25,.5];
+const DUTY_LABELS=['12.5%','25%','50%'];
+
+function makePulseWave(ctx,duty){ // 傅里叶系数构造方波(占空比可选), 不用内置 square
+  const N=32,real=new Float32Array(N+1),imag=new Float32Array(N+1);
+  for(let n=1;n<=N;n++)real[n]=(4/(n*Math.PI))*Math.sin(Math.PI*n*duty);
+  return ctx.createPeriodicWave(real,imag);
+}
+function makeNoiseBuffer(ctx){ // 固定种子白噪声 → 离线渲染逐比特一致
+  const len=ctx.sampleRate|0,buf=ctx.createBuffer(1,len,ctx.sampleRate);
+  const d=buf.getChannelData(0),nr=mulberry32(0x2A03);
+  for(let i=0;i<len;i++)d[i]=nr()*2-1;
+  return buf;
+}
+function makeNodes(ctx){
+  const lp=ctx.createBiquadFilter();lp.type='lowpass';
+  lp.frequency.value=9000;lp.Q.value=.5;                 // 轻度 lowpass
+  const comp=ctx.createDynamicsCompressor();             // 防削波
+  comp.threshold.value=-14;comp.knee.value=18;comp.ratio.value=4;
+  comp.attack.value=.003;comp.release.value=.25;
+  const out=ctx.createGain();
+  lp.connect(comp);comp.connect(out);out.connect(ctx.destination);
+  const tg={};
+  for(const id of TRACK_IDS){const g=ctx.createGain();g.connect(lp);tg[id]=g;}
+  return {tg,out,noiseBuf:makeNoiseBuffer(ctx),waves:DUTIES.map(d=>makePulseWave(ctx,d))};
+}
+const NOISE_VOICES={ // 底鼓 / 军鼓 / 踩镲
+  K:{type:'lowpass', freq:160, q:.7,dec:.16,vol:1.5},
+  S:{type:'bandpass',freq:1700,q:.9,dec:.13,vol:.95},
+  H:{type:'highpass',freq:6800,q:.7,dec:.05,vol:.5},
+};
+function playEv(ctx,nodes,ev,t,spb,duty1,duty2,keep){
+  const dur=Math.max(.02,ev.dur*spb);
+  if(ev.tr==='p1'||ev.tr==='p2'){
+    const osc=ctx.createOscillator();
+    osc.setPeriodicWave(nodes.waves[ev.tr==='p1'?duty1:duty2]);
+    osc.frequency.value=mtof(ev.midi);
+    const g=ctx.createGain(),v=(ev.vel/127)*(ev.tr==='p1'?1:.85);
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(v,t+.004);
+    const rel=Math.max(t+.008,t+dur-.015);
+    g.gain.setValueAtTime(v,rel);
+    g.gain.linearRampToValueAtTime(0,t+dur);
+    osc.connect(g);g.connect(nodes.tg[ev.tr]);
+    osc.start(t);osc.stop(t+dur+.03);
+    if(keep)keep(osc);
+  }else if(ev.tr==='tri'){
+    // 2A03 三角波无音量包络 — 仅 3ms 去咔哒斜坡
+    const osc=ctx.createOscillator();osc.type='triangle';
+    osc.frequency.value=mtof(ev.midi);
+    const g=ctx.createGain(),v=ev.vel/127;
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(v,t+.003);
+    g.gain.setValueAtTime(v,Math.max(t+.006,t+dur-.003));
+    g.gain.linearRampToValueAtTime(0,t+dur);
+    osc.connect(g);g.connect(nodes.tg.tri);
+    osc.start(t);osc.stop(t+dur+.02);
+    if(keep)keep(osc);
+  }else{
+    const V=NOISE_VOICES[ev.drum];
+    const src=ctx.createBufferSource();src.buffer=nodes.noiseBuf;src.loop=true;
+    const f=ctx.createBiquadFilter();f.type=V.type;f.frequency.value=V.freq;f.Q.value=V.q;
+    const g=ctx.createGain(),v=V.vol*ev.vel/127;
+    g.gain.setValueAtTime(v,t);
+    g.gain.exponentialRampToValueAtTime(.001,t+V.dec);
+    g.gain.linearRampToValueAtTime(0,t+V.dec+.01);
+    src.connect(f);f.connect(g);g.connect(nodes.tg.noi);
+    src.start(t,(ev.step%7)*.11); // 固定偏移 → 可复现
+    src.stop(t+V.dec+.03);
+    if(keep)keep(src);
+  }
+}
+
+/* ================================================================
+   UI 状态
+   ================================================================ */
+const $=id=>document.getElementById(id);
+const P={styleIdx:0,keyIdx:0,barsIdx:1,bpm:132,seed:0};
+const BARS_OPTS=[8,16,32];
+const CHANS=[
+  {id:'p1', label:'P1 ',name:'PULSE 1 ',vol:8,mute:false,duty:2},
+  {id:'p2', label:'P2 ',name:'PULSE 2 ',vol:6,mute:false,duty:1},
+  {id:'tri',label:'TRI',name:'TRIANGLE',vol:7,mute:false},
+  {id:'noi',label:'NOI',name:'NOISE   ',vol:5,mute:false},
+];
+let score=null,evts=[],spb=0,totalSteps=0,totalSec=0;
+
+function readParams(){
+  P.bpm=Math.max(40,Math.min(300,parseInt($('inBpm').value,10)||120));
+  P.seed=Math.max(0,parseInt($('inSeed').value,10)||0);
+  P.bars=BARS_OPTS[P.barsIdx];
+}
+function regen(){
+  stopPlay();
+  readParams();
+  score=generate(P);
+  spb=60/P.bpm/4;totalSteps=P.bars*16;totalSec=totalSteps*spb;
+  evts=[];
+  for(const tr of TRACK_IDS)for(const n of score.tracks[tr])evts.push({...n,tr});
+  evts.sort((a,b)=>a.step-b.step);
+  updateStatus();
+}
+
+/* ---------------- 实时播放调度: lookahead + AudioContext.currentTime ---------------- */
+let AC=null,liveNodes=null,playing=false,schedTimer=null;
+let firstStart=0,iterStart=0,evIdx=0;
+let activeSrc=new Set();
+
+function ensureAC(){
+  if(!AC){
+    AC=new (window.AudioContext||window.webkitAudioContext)();
+    liveNodes=makeNodes(AC);
+    applyVolumes();
+  }
+  if(AC.state==='suspended')AC.resume();
+}
+function applyVolumes(){
+  if(!liveNodes)return;
+  for(const c of CHANS){
+    const v=c.mute?0:(c.vol/10)*TRACK_BASE[c.id];
+    liveNodes.tg[c.id].gain.setTargetAtTime(v,AC.currentTime,.01); // 实时生效
+  }
+}
+function startPlay(){
+  if(playing||!evts.length)return;
+  ensureAC();
+  firstStart=iterStart=AC.currentTime+.12;
+  evIdx=0;playing=true;
+  schedTimer=setInterval(schedTick,30);
+  schedTick();
+  updateStatus();
+}
+function schedTick(){
+  if(!playing)return;
+  const horizon=AC.currentTime+.18;
+  const loop=$('chkLoop').dataset.on==='1';
+  let guard=0;
+  while(guard++<8000){
+    if(evIdx>=evts.length){
+      if(loop){iterStart+=totalSec;evIdx=0;continue;}
+      break;
+    }
+    const ev=evts[evIdx],t=iterStart+ev.step*spb;
+    if(t>=horizon)break;
+    playEv(AC,liveNodes,ev,t,spb,CHANS[0].duty,CHANS[1].duty,
+      s=>{activeSrc.add(s);s.onended=()=>activeSrc.delete(s);});
+    evIdx++;
+  }
+  if(!loop&&evIdx>=evts.length&&AC.currentTime>iterStart+totalSec+.05)stopPlay();
+}
+function stopPlay(){
+  if(!playing)return;
+  playing=false;
+  clearInterval(schedTimer);schedTimer=null;
+  for(const s of activeSrc){try{s.stop();}catch(e){}}
+  activeSrc.clear();
+  updateStatus();
+}
+function togglePlay(){playing?stopPlay():startPlay();}
+
+/* ================================================================
+   可视化 — 字符化钢琴卷帘 (Canvas)
+   ================================================================ */
+const cv=$('roll'),cx=cv.getContext('2d');
+const MODES={green:[51,255,51],amber:[255,176,0]};
+const MODE_ORDER=['fc','green','amber'];
+const MODE_LABELS={fc:'彩色',green:'绿',amber:'棕'};
+let modeName='fc';
+const LANE_ALPHA={p1:1,p2:.65,tri:.42,noi:.28}; // CRT: 同一磷光色 3 个亮度级
+/* FC 主题轨道色 = 2C02 调色板: P1=$24 粉 / P2=$28 黄 / TRI=$21 天蓝 / NOI=$23 紫 */
+const FC_LANE={p1:[248,120,248],p2:[248,184,0],tri:[60,188,252],noi:[152,120,248]};
+const FC_HEX={p1:'#F878F8',p2:'#F8B800',tri:'#3CBCFC',noi:'#9878F8'};
+
+function resizeCanvas(){
+  /* FC: 1/3 内部分辨率 + image-rendering:pixelated 放大 → 图块颗粒感 */
+  const scale=modeName==='fc'?1/3:(window.devicePixelRatio||1);
+  const w=Math.max(2,Math.round(cv.clientWidth*scale)),
+        h=Math.max(2,Math.round(cv.clientHeight*scale));
+  if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;}
+}
+function drawRoll(){
+  resizeCanvas();
+  const W=cv.width,H=cv.height;
+  const isFC=modeName==='fc';
+  const dpr=isFC?1/3:(window.devicePixelRatio||1);
+  cx.clearRect(0,0,W,H);
+  if(!score){requestAnimationFrame(drawRoll);return;}
+  const ui=isFC?[124,124,124]:MODES[modeName]; // 网格用色 (FC: $00 灰)
+  const col=a=>`rgba(${ui[0]},${ui[1]},${ui[2]},${a})`;
+  const fontPx=isFC?8:Math.round(11*dpr);
+  cx.font=isFC?fontPx+"px 'FusionPixel8',monospace"
+              :fontPx+'px "Courier New",monospace';
+  const labelW=Math.round(4.2*fontPx*.62)+8*dpr;
+  const gridW=W-labelW;
+  const cw=gridW/totalSteps;
+
+  const laneIds=['p1','p2','tri','noi'];
+  const sepH=isFC?4:Math.round(fontPx*1.1);
+  const laneH=(H-3*sepH)/4;
+
+  /* 播放头位置 + 磷光余辉时间基准 */
+  let playStep=-1,now=0,iterBase=0;
+  if(playing&&AC){
+    now=AC.currentTime;
+    const el=now-firstStart;
+    if(el>=0){
+      const iter=Math.floor(el/totalSec);
+      iterBase=firstStart+iter*totalSec;
+      playStep=(el%totalSec)/spb;
+    }
+  }
+  /* 磷光余辉: 播放头扫过后 300ms 内增亮衰减(含上一循环圈末尾) */
+  const glowAmt=step=>{
+    if(playStep<0)return 0;
+    let dt=now-(iterBase+step*spb);
+    if(dt<0)dt=now-(iterBase-totalSec+step*spb);
+    return (dt>=0&&dt<.3)?(1-dt/.3):0;
+  };
+
+  for(let li=0;li<4;li++){
+    const id=laneIds[li];
+    const y0=li*(laneH+sepH);
+    const rgb=isFC?FC_LANE[id]:MODES[modeName];
+    const baseA=isFC?(id==='noi'?.88:1):LANE_ALPHA[id];
+    /* 音符颜色: CRT 用亮度级+余辉提亮; FC 用轨道色+余辉泛白 */
+    const noteCol=step=>{
+      const g=glowAmt(step);
+      if(isFC){
+        const r=(rgb[0]+(255-rgb[0])*g*.6)|0,gc=(rgb[1]+(255-rgb[1])*g*.6)|0,
+              b=(rgb[2]+(255-rgb[2])*g*.6)|0;
+        return `rgba(${r},${gc},${b},${baseA})`;
+      }
+      return `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${Math.min(1,baseA+g*.7)})`;
+    };
+
+    /* 左侧标签 */
+    cx.fillStyle=isFC?`rgb(${rgb[0]},${rgb[1]},${rgb[2]})`
+                     :`rgba(${rgb[0]},${rgb[1]},${rgb[2]},${Math.max(.4,baseA)})`;
+    cx.textBaseline='middle';
+    cx.fillText(['P1','P2','TRI','NOI'][li],6*dpr,y0+laneH/2);
+
+    /* 小节线 ┊ (暗色竖直点线) */
+    cx.strokeStyle=col(.18);
+    cx.setLineDash([2*dpr,4*dpr]);
+    cx.lineWidth=1;
+    for(let b=1;b<P.bars;b++){
+      const x=labelW+b*16*cw;
+      cx.beginPath();cx.moveTo(x,y0+2);cx.lineTo(x,y0+laneH-2);cx.stroke();
+    }
+    cx.setLineDash([]);
+
+    /* 音符 */
+    const notes=score.tracks[id];
+    if(id==='noi'){
+      /* NOI: 竖线 ▎, 3 行 = H(上) S(中) K(下) */
+      const rowH=laneH/3,ROW={H:0,S:1,K:2};
+      for(const n of notes){
+        cx.fillStyle=noteCol(n.step);
+        const x=labelW+n.step*cw,ry=y0+ROW[n.drum]*rowH;
+        cx.fillRect(x,ry+(isFC?1:2),Math.max(isFC?1:1.5*dpr,cw*.3),rowH-(isFC?2:4));
+      }
+    }else{
+      let lo=127,hi=0;
+      for(const n of notes){if(n.midi<lo)lo=n.midi;if(n.midi>hi)hi=n.midi;}
+      if(hi<lo){lo=60;hi=72;}
+      lo--;hi++;
+      const rh=laneH/(hi-lo+1);
+      for(const n of notes){
+        cx.fillStyle=noteCol(n.step);
+        const y=y0+(hi-n.midi)*rh;
+        const x=labelW+n.step*cw;
+        const minH=isFC?1:2,inset=isFC?.5:.8*dpr;
+        if(cw>=(isFC?3:5*dpr)){ /* 逐 16 分格画 ■ 块, 字符屏质感 */
+          for(let k=0;k<n.dur;k++)
+            cx.fillRect(x+k*cw+inset,y+1,cw-2*inset,Math.max(minH,rh-2));
+        }else{
+          cx.fillRect(x,y+1,Math.max(isFC?1:1.5*dpr,n.dur*cw-inset),Math.max(minH,rh-2));
+        }
+      }
+    }
+
+    /* lane 分隔行: CRT 用 ─ 字符, FC 用 1 图块像素灰线 */
+    if(li<3){
+      const sy=y0+laneH+sepH/2;
+      if(isFC){
+        cx.fillStyle=col(.55);
+        cx.fillRect(labelW,Math.round(sy),gridW,1);
+      }else{
+        cx.fillStyle=col(.25);
+        const nCh=Math.ceil(gridW/(fontPx*.62));
+        cx.fillText('─'.repeat(Math.min(600,nCh)),labelW,sy);
+      }
+    }
+  }
+
+  /* 播放头: 1 字符宽实心亮列 */
+  if(playStep>=0){
+    const x=labelW+Math.floor(playStep)*cw;
+    cx.fillStyle=isFC?'rgba(252,252,252,.92)':col(.85); // FC: $30 白, 无辉光
+    if(!isFC){cx.shadowColor=col(1);cx.shadowBlur=8*dpr;}
+    cx.fillRect(x,0,Math.max(isFC?1:2*dpr,cw),H);
+    cx.shadowBlur=0;
+  }
+  requestAnimationFrame(drawRoll);
+}
+
+/* ================================================================
+   MIDI 导出 — SMF Type-1, 手写字节流
+   ================================================================ */
+function vlq(n){
+  const b=[n&0x7F];n>>=7;
+  while(n>0){b.unshift((n&0x7F)|0x80);n>>=7;}
+  return b;
+}
+function midiBlob(){
+  const TPS=120; // ticks / 16 分音符 (TPQ=480)
+  const totalTicks=totalSteps*TPS;
+  const chunks=[];
+  const str=s=>[...s].map(c=>c.charCodeAt(0));
+  function trackChunk(evList){ // evList: {t,o,b}
+    evList.sort((a,b)=>a.t-b.t||a.o-b.o);
+    const bytes=[];let last=0;
+    for(const e of evList){bytes.push(...vlq(e.t-last),...e.b);last=e.t;}
+    bytes.push(...vlq(Math.max(0,totalTicks-last)),0xFF,0x2F,0x00);
+    const out=[...str('MTrk'),(bytes.length>>>24)&255,(bytes.length>>>16)&255,
+               (bytes.length>>>8)&255,bytes.length&255,...bytes];
+    return out;
+  }
+  /* Track 0: tempo + 拍号 */
+  const uspq=Math.round(60000000/P.bpm);
+  chunks.push(trackChunk([
+    {t:0,o:0,b:[0xFF,0x58,0x04,4,2,24,8]},
+    {t:0,o:0,b:[0xFF,0x51,0x03,(uspq>>>16)&255,(uspq>>>8)&255,uspq&255]},
+  ]));
+  /* 四条音符 track */
+  const DRUM_KEY={K:36,S:38,H:42}; // GM: 底鼓/军鼓/闭镲
+  const defs=[
+    {tr:'p1', name:'PULSE 1', ch:0,prog:0x50},
+    {tr:'p2', name:'PULSE 2', ch:1,prog:0x50},
+    {tr:'tri',name:'TRIANGLE',ch:2,prog:0x26},
+    {tr:'noi',name:'NOISE',   ch:9,prog:null},
+  ];
+  for(const d of defs){
+    const evList=[{t:0,o:0,b:[0xFF,0x03,d.name.length,...str(d.name)]}];
+    if(d.prog!==null)evList.push({t:0,o:0,b:[0xC0|d.ch,d.prog]});
+    for(const n of score.tracks[d.tr]){
+      const key=d.tr==='noi'?DRUM_KEY[n.drum]:n.midi;
+      evList.push({t:n.step*TPS,o:1,b:[0x90|d.ch,key,n.vel]});
+      evList.push({t:(n.step+n.dur)*TPS,o:0,b:[0x80|d.ch,key,0]});
+    }
+    chunks.push(trackChunk(evList));
+  }
+  const ntrks=chunks.length;
+  const head=[...str('MThd'),0,0,0,6,0,1,0,ntrks,(480>>>8)&255,480&255];
+  const all=head.concat(...chunks);
+  return new Blob([new Uint8Array(all)],{type:'audio/midi'});
+}
+
+/* ================================================================
+   WAV 导出 — OfflineAudioContext + 手写 44 字节头, 16-bit PCM 44.1kHz
+   ================================================================ */
+function renderOffline(solo){ // solo=null → 混音; solo='p1' → 分轨
+  const SR=44100;
+  const ctx=new OfflineAudioContext(2,Math.round(SR*totalSec),SR);
+  const nodes=makeNodes(ctx);
+  for(const c of CHANS){
+    let v;
+    if(solo)v=c.id===solo?(c.vol/10)*TRACK_BASE[c.id]:0;
+    else v=c.mute?0:(c.vol/10)*TRACK_BASE[c.id];
+    nodes.tg[c.id].gain.value=v;
+  }
+  for(const ev of evts)playEv(ctx,nodes,ev,ev.step*spb,spb,CHANS[0].duty,CHANS[1].duty);
+  // 结尾 4ms 主输出淡出, 消除被缓冲区截断的鼓尾咔哒声
+  nodes.out.gain.setValueAtTime(1,Math.max(0,totalSec-.004));
+  nodes.out.gain.linearRampToValueAtTime(0,totalSec);
+  return ctx.startRendering();
+}
+function wavBlob(buf){
+  const n=buf.length,ch=buf.numberOfChannels,sr=buf.sampleRate;
+  const bytes=n*ch*2;
+  const dv=new DataView(new ArrayBuffer(44+bytes));
+  const wstr=(o,s)=>{for(let i=0;i<s.length;i++)dv.setUint8(o+i,s.charCodeAt(i));};
+  wstr(0,'RIFF');dv.setUint32(4,36+bytes,true);wstr(8,'WAVE');
+  wstr(12,'fmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);
+  dv.setUint16(22,ch,true);dv.setUint32(24,sr,true);
+  dv.setUint32(28,sr*ch*2,true);dv.setUint16(32,ch*2,true);dv.setUint16(34,16,true);
+  wstr(36,'data');dv.setUint32(40,bytes,true);
+  const chans=[];for(let c=0;c<ch;c++)chans.push(buf.getChannelData(c));
+  let off=44;
+  for(let i=0;i<n;i++)for(let c=0;c<ch;c++){
+    let s=Math.max(-1,Math.min(1,chans[c][i]));
+    dv.setInt16(off,s<0?s*0x8000:s*0x7FFF,true);off+=2;
+  }
+  return new Blob([dv],{type:'audio/wav'});
+}
+function download(blob,name){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download=name;
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+}
+function fileBase(){
+  return `chiptune_${score.meta.style.id}_${score.meta.keyLabel.replace('#','s')}_${P.bpm}bpm_seed${P.seed}`;
+}
+let exporting=false;
+async function exportWav(){
+  if(exporting)return;exporting=true;setStatus('RENDERING WAV ...');
+  try{
+    const buf=await renderOffline(null);
+    download(wavBlob(buf),fileBase()+'_mix.wav');
+  }finally{exporting=false;updateStatus();}
+}
+async function exportStems(){
+  if(exporting)return;exporting=true;
+  const NAMES={p1:'P1_pulse1',p2:'P2_pulse2',tri:'TRI_triangle',noi:'NOI_noise'};
+  try{
+    for(const id of TRACK_IDS){
+      setStatus('RENDERING STEM '+NAMES[id]+' ...');
+      const buf=await renderOffline(id);
+      download(wavBlob(buf),fileBase()+'_'+NAMES[id]+'.wav');
+      await new Promise(r=>setTimeout(r,250)); // 依次触发 4 个下载
+    }
+  }finally{exporting=false;updateStatus();}
+}
+
+/* ================================================================
+   终端化 UI 控件
+   ================================================================ */
+function mkSelector(el,options,getIdx,setIdx,pad){
+  function render(){
+    const v=options[getIdx()];
+    el.innerHTML='';
+    const l=document.createElement('span');l.className='ar';l.textContent='[<';
+    const m=document.createElement('span');m.textContent=' '+v+' ';
+    const r=document.createElement('span');r.className='ar';r.textContent='>]';
+    l.onclick=()=>{setIdx((getIdx()-1+options.length)%options.length);render();};
+    r.onclick=()=>{setIdx((getIdx()+1)%options.length);render();};
+    el.append(l,m,r);
+  }
+  render();
+  return render;
+}
+/* 声道面板行 */
+function buildChannels(){
+  const body=$('chanBody');
+  for(const c of CHANS){
+    const row=document.createElement('div');row.className='row';row.style.gap='0 1.5ch';
+    row.style.setProperty('--chip',FC_HEX[c.id]);
+    const chip=document.createElement('span');chip.className='chip';
+    const label=document.createElement('span');
+    label.style.whiteSpace='pre';
+    label.textContent=c.label+' '+c.name;
+    const mute=document.createElement('span');mute.className='chk';
+    mute.textContent='[ ] MUTE';
+    mute.onclick=()=>{c.mute=!c.mute;mute.textContent=(c.mute?'[X]':'[ ]')+' MUTE';applyVolumes();};
+    const vol=document.createElement('span');vol.className='volbar';
+    const volNum=document.createElement('span');
+    function renderVol(){
+      vol.textContent='VOL '+'█'.repeat(c.vol)+'░'.repeat(10-c.vol);
+      volNum.textContent=' '+c.vol+'/10';
+    }
+    function setFromEvent(e){
+      const r=vol.getBoundingClientRect();
+      /* 'VOL '=4 个半宽, 10 个全宽块=20 个半宽 → 前缀占 4/24 */
+      const pre=r.width*4/24,cellW=(r.width-pre)/10;
+      const x=e.clientX-r.left-pre;
+      c.vol=Math.max(0,Math.min(10,Math.round(x/cellW+.5)));
+      renderVol();applyVolumes();
+    }
+    let drag=false;
+    vol.addEventListener('pointerdown',e=>{drag=true;vol.setPointerCapture(e.pointerId);setFromEvent(e);});
+    vol.addEventListener('pointermove',e=>{if(drag)setFromEvent(e);});
+    vol.addEventListener('pointerup',()=>{drag=false;});
+    renderVol();
+    row.append(chip,label,mute,vol,volNum);
+    if(c.id==='p1'||c.id==='p2'){
+      const dutyWrap=document.createElement('span');
+      dutyWrap.append('占空比 ');
+      const dsel=document.createElement('span');dsel.className='sel';
+      dutyWrap.append(dsel);
+      mkSelector(dsel,DUTY_LABELS,()=>c.duty,i=>{c.duty=i;});
+      row.append(dutyWrap);
+    }
+    body.append(row);
+  }
+}
+
+/* DOS 框线绘制 */
+function buildFrames(){
+  document.querySelectorAll('.panel').forEach(p=>{
+    if(p.dataset.framed)return;
+    p.dataset.framed='1';
+    const body=p.querySelector('.pbody');
+    const title=p.dataset.title||'';
+    const top=document.createElement('div');top.className='ptop';
+    top.innerHTML='<span class="pcor">╔═ </span><span class="ptitle">'+title+'</span><span class="pcor"> ═</span><span class="pfill"><span>'+'═'.repeat(400)+'</span></span><span class="pcor">╗</span>';
+    const bot=document.createElement('div');bot.className='pbot';
+    bot.innerHTML='<span>╚</span><span class="pfill"><span>'+'═'.repeat(400)+'</span></span><span>╝</span>';
+    const mid=document.createElement('div');mid.className='pmid';
+    const l=document.createElement('div');l.className='pside';
+    l.innerHTML='<span>'+'║\n'.repeat(400)+'</span>';
+    const r=l.cloneNode(true);
+    p.insertBefore(top,body);
+    mid.append(l,body,r);
+    p.append(mid,bot);
+  });
+}
+
+/* ---------------- 状态条 (CRT: 终端提示符 / FC: 绿色状态条) ---------------- */
+function setStatus(txt){
+  if(modeName==='fc')$('status').innerHTML=txt+' <span id="cursor">▼</span>';
+  else $('status').innerHTML='&gt; '+txt+'  <span id="cursor">█</span>';
+}
+function updateStatus(){
+  if(!score)return setStatus('READY');
+  const m=score.meta;
+  if(modeName==='fc'){
+    const keyCN=m.keyLabel.endsWith('m')
+      ?m.keyLabel.slice(0,-1)+' 小调':m.keyLabel+' 大调';
+    setStatus((playing?'<span class="dotOn">▶</span> 播放中'
+                      :'<span class="dotOff">■</span> 已停止')+
+      '　'+keyCN+' · '+P.bpm+' BPM · '+P.bars+' 小节 · SEED '+P.seed);
+  }else{
+    setStatus((playing?'PLAYING':'STOPPED')+
+      '  KEY='+m.keyLabel+'  TEMPO='+P.bpm+'  BARS='+P.bars+'  SEED='+P.seed);
+  }
+}
+
+/* ---------------- 事件绑定 ---------------- */
+function bindUI(){
+  buildChannels();
+  const renderStyle=mkSelector($('selStyle'),STYLES.map(s=>s.name),
+    ()=>P.styleIdx,
+    i=>{P.styleIdx=i;$('inBpm').value=STYLES[i].bpmDef;regen();});
+  mkSelector($('selKey'),KEYS.map(k=>k.label),
+    ()=>P.keyIdx,i=>{P.keyIdx=i;regen();});
+  mkSelector($('selBars'),BARS_OPTS,
+    ()=>P.barsIdx,i=>{P.barsIdx=i;regen();});
+  $('inBpm').addEventListener('change',regen);
+  $('inSeed').addEventListener('change',regen);
+  $('btnDice').onclick=()=>{
+    $('inSeed').value=(Math.random()*0xFFFFFFFF)>>>0; // 仅骰子本身用真随机, 生成仍只用种子
+    regen();
+  };
+  $('btnHelp').onclick=()=>{
+    const h=$('help');h.style.display=h.style.display==='block'?'none':'block';
+  };
+  $('chkLoop').onclick=e=>{
+    const el=$('chkLoop');
+    el.dataset.on=el.dataset.on==='1'?'0':'1';
+    el.textContent=(el.dataset.on==='1'?'[X]':'[ ]')+' 循环播放';
+  };
+  $('btnPlay').onclick=()=>{ensureAC();startPlay();};
+  $('btnStop').onclick=stopPlay;
+  $('btnRegen').onclick=regen;
+  $('btnMidi').onclick=()=>download(midiBlob(),fileBase()+'.mid');
+  $('btnWav').onclick=exportWav;
+  $('btnStems').onclick=exportStems;
+  $('modebtn').onclick=()=>{
+    modeName=MODE_ORDER[(MODE_ORDER.indexOf(modeName)+1)%MODE_ORDER.length];
+    document.body.classList.toggle('fc',modeName==='fc');
+    document.body.classList.toggle('amber',modeName==='amber');
+    $('modebtn').textContent='[主题:'+MODE_LABELS[modeName]+']';
+    $('main').style.visibility='visible'; // CRT 开机动画未完也直接进入
+    updateStatus();
+  };
+  window.addEventListener('keydown',e=>{
+    if(e.code==='Space'&&!(e.target instanceof HTMLInputElement)){
+      e.preventDefault();ensureAC();togglePlay();
+    }
+  });
+}
+
+/* ---------------- 开机自检: 逐字符打字机 (~1.5s) ---------------- */
+const BOOT_TEXT=
+'CHIPTUNE SYNTHESIZER v1.0  (C) 1983\n'+
+'2A03 SOUND CHIP DETECTED ... OK\n'+
+'4 CHANNELS READY. TYPE SPACE TO PLAY.\n';
+function boot(){
+  const el=$('boot');
+  if(modeName==='fc'){ // FC 主题无 CRT 开机动画, 直接进入; 文本备好供切回 CRT 时显示
+    el.textContent=BOOT_TEXT;
+    $('main').style.visibility='visible';
+    return;
+  }
+  let i=0;
+  const iv=setInterval(()=>{
+    el.textContent=BOOT_TEXT.slice(0,++i);
+    if(i>=BOOT_TEXT.length){
+      clearInterval(iv);
+      setTimeout(()=>{$('main').style.visibility='visible';},180);
+    }
+  },1500/BOOT_TEXT.length);
+}
+
+/* ---------------- 启动 ---------------- */
+buildFrames();
+bindUI();
+regen();
+boot();
+requestAnimationFrame(drawRoll);
+</script>
+</body>
+</html>
