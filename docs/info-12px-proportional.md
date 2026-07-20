@@ -4,8 +4,8 @@
 
 | 属性 | 值 |
 |---|---|
-| 版本号 | 2026.07.01 |
-| 字符总数 | 36512 |
+| 版本号 | 2026.07.20 |
+| 字符总数 | 36518 |
 
 ## Unicode 字符统计
 
@@ -47,7 +47,7 @@ Unicode 版本：17.0.0
 | 4E00 ~ 9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 19212 / 20992 | 1780 | 91.52% 🚧 |
 | A720 ~ A7FF | Latin Extended-D | 拉丁扩充-D | 7 / 204 | 197 | 3.43% 🚧 |
 | AC00 ~ D7AF | Hangul Syllables | 谚文音节 | 11172 / 11172 | 0 | 100.00% 🚩 |
-| E000 ~ F8FF | Private Use Area | 私用区域 | 243 / 0 | 0 | 100.00% 🚩 |
+| E000 ~ F8FF | Private Use Area | 私用区域 | 249 / 0 | 0 | 100.00% 🚩 |
 | FE10 ~ FE1F | Vertical Forms | 竖排形式 | 10 / 10 | 0 | 100.00% 🚩 |
 | FE30 ~ FE4F | CJK Compatibility Forms | 中日韩兼容形式 | 32 / 32 | 0 | 100.00% 🚩 |
 | FF00 ~ FFEF | Halfwidth and Fullwidth Forms | 半宽与全宽形式 | 173 / 225 | 52 | 76.89% 🚧 |
