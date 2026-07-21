@@ -15,7 +15,7 @@ class DownloadAssetConfig:
 class UpgradeConfig:
     @staticmethod
     def load() -> list[UpgradeConfig]:
-        data = yaml.safe_load(path_define.configs_dir.joinpath('upgrade.yml').read_bytes())
+        data = yaml.safe_load(path_define.configs_dir.joinpath('upgrade.yaml').read_bytes())
         upgrade_configs = []
         for config_data in data:
             name = config_data['name']
