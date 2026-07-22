@@ -1,5 +1,3 @@
-from pathlib import Path
-
 import yaml
 
 from tools.configs import path_define, options
@@ -13,30 +11,30 @@ class FallbackConfig:
         fallback_configs = {font_size: [] for font_size in options.font_sizes}
         for config_data in data:
             font_size = config_data['font-size']
-            dir_from = path_define.dump_dir.joinpath(str(font_size), config_data['dir-from'])
-            dir_to = path_define.fallback_glyphs_dir.joinpath(str(font_size), config_data['dir-to'])
+            dir_from = config_data['dir-from']
+            width_mode_dir_name = config_data['width-mode-dir-name']
             flavor = config_data.get('flavor', None)
             fallback_configs[font_size].append(FallbackConfig(
                 font_size,
                 dir_from,
-                dir_to,
+                width_mode_dir_name,
                 flavor,
             ))
         return fallback_configs
 
     font_size: FontSize
-    dir_from: Path
-    dir_to: Path
+    dir_from: str
+    width_mode_dir_name: str
     flavor: LanguageFileFlavor | None
 
     def __init__(
             self,
             font_size: FontSize,
-            dir_from: Path,
-            dir_to: Path,
+            dir_from: str,
+            width_mode_dir_name: str,
             flavor: LanguageFileFlavor | None,
     ):
         self.font_size = font_size
         self.dir_from = dir_from
-        self.dir_to = dir_to
+        self.width_mode_dir_name = width_mode_dir_name
         self.flavor = flavor

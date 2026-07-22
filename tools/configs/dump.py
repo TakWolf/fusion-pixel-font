@@ -11,47 +11,43 @@ class DumpConfig:
     def load() -> dict[FontSize, list[DumpConfig]]:
         data = yaml.safe_load(path_define.configs_dir.joinpath('dump.yaml').read_bytes())
         dump_configs = {font_size: [] for font_size in options.font_sizes}
-        for name, items_data in data.items():
+        for font_name, items_data in data.items():
             for item_data in items_data:
-                font_file_path = path_define.fonts_dir.joinpath(name, item_data['font-file-name'])
+                font_file_path = path_define.fonts_dir.joinpath(font_name, item_data['font-file-name'])
                 font_size = item_data['font-size']
-                dump_dir = path_define.dump_dir.joinpath(str(font_size), item_data['dump-dir-name'])
+                dump_dir_name = item_data['dump-dir-name']
                 rasterize_size = item_data.get('rasterize-size', font_size)
                 rasterize_offset_x = item_data.get('rasterize-offset-x', 0)
                 rasterize_offset_y = item_data.get('rasterize-offset-y', 0)
                 dump_configs[font_size].append(DumpConfig(
-                    name,
                     font_file_path,
                     font_size,
-                    dump_dir,
+                    dump_dir_name,
                     rasterize_size,
                     rasterize_offset_x,
                     rasterize_offset_y,
                 ))
         return dump_configs
 
-    name: str
     font_file_path: Path
     font_size: FontSize
-    dump_dir: Path
+    dump_dir_name: str
     rasterize_size: int
     rasterize_offset_x: int
     rasterize_offset_y: int
 
     def __init__(
             self,
-            name: str,
             font_file_path: Path,
             font_size: FontSize,
-            dump_dir: Path,
+            dump_dir_name: str,
             rasterize_size: int,
             rasterize_offset_x: int,
             rasterize_offset_y: int,
     ):
-        self.name = name
         self.font_file_path = font_file_path
         self.font_size = font_size
-        self.dump_dir = dump_dir
+        self.dump_dir_name = dump_dir_name
         self.rasterize_size = rasterize_size
         self.rasterize_offset_x = rasterize_offset_x
         self.rasterize_offset_y = rasterize_offset_y
