@@ -58,11 +58,8 @@ def main(
 
     design_contexts = {}
     for font_size in font_sizes:
-        for dump_config in configs.dump_configs[font_size]:
-            dump_service.dump_font(dump_config)
-
-        for fallback_config in configs.fallback_configs[font_size]:
-            dump_service.apply_fallback(fallback_config)
+        dump_service.dump_fonts(font_size)
+        dump_service.apply_fallbacks(font_size)
 
         design_context = DesignContext.load(font_size)
         design_contexts[font_size] = design_context
