@@ -13,20 +13,20 @@ Unicode 版本：17.0.0
 
 | 区块范围 | 区块名称 | 区块含义 | 完成数 | 缺失数 | 进度 |
 |---|---|---|---:|---:|---:|
-| 0000 ~ 007F | Basic Latin | 基本拉丁 | 95 / 95 | 0 | 100.00% 🚩 |
-| 0080 ~ 00FF | Latin-1 Supplement | 拉丁-1 增补 | 94 / 94 | 0 | 100.00% 🚩 |
-| 0100 ~ 017F | Latin Extended-A | 拉丁扩充-A | 128 / 128 | 0 | 100.00% 🚩 |
-| 0180 ~ 024F | Latin Extended-B | 拉丁扩充-B | 77 / 208 | 131 | 37.02% 🚧 |
-| 2000 ~ 206F | General Punctuation | 通用标点 | 36 / 71 | 35 | 50.70% 🚧 |
+| 0000 ~ 007F | Basic Latin | 基本拉丁字母 | 95 / 95 | 0 | 100.00% 🚩 |
+| 0080 ~ 00FF | Latin-1 Supplement | 拉丁字母-1 增补 | 94 / 95 | 1 | 98.95% 🚧 |
+| 0100 ~ 017F | Latin Extended-A | 拉丁字母扩充-A | 128 / 128 | 0 | 100.00% 🚩 |
+| 0180 ~ 024F | Latin Extended-B | 拉丁字母扩充-B | 77 / 208 | 131 | 37.02% 🚧 |
+| 2000 ~ 206F | General Punctuation | 通用标点 | 36 / 84 | 48 | 42.86% 🚧 |
 | 2100 ~ 214F | Letterlike Symbols | 字母式符号 | 2 / 80 | 78 | 2.50% 🚧 |
 | 2150 ~ 218F | Number Forms | 数字形式 | 24 / 60 | 36 | 40.00% 🚧 |
 | 2190 ~ 21FF | Arrows | 箭头 | 49 / 112 | 63 | 43.75% 🚧 |
 | 2200 ~ 22FF | Mathematical Operators | 数学运算符 | 37 / 256 | 219 | 14.45% 🚧 |
 | 2460 ~ 24FF | Enclosed Alphanumerics | 包围字母数字 | 20 / 160 | 140 | 12.50% 🚧 |
-| 2500 ~ 257F | Box Drawing | 制表符 | 128 / 128 | 0 | 100.00% 🚩 |
+| 2500 ~ 257F | Box Drawing | 方框绘制字符 | 128 / 128 | 0 | 100.00% 🚩 |
 | 2580 ~ 259F | Block Elements | 方块元素 | 32 / 32 | 0 | 100.00% 🚩 |
 | 25A0 ~ 25FF | Geometric Shapes | 几何形状 | 96 / 96 | 0 | 100.00% 🚩 |
-| 2600 ~ 26FF | Miscellaneous Symbols | 各式符号 | 75 / 256 | 181 | 29.30% 🚧 |
+| 2600 ~ 26FF | Miscellaneous Symbols | 杂项符号 | 75 / 256 | 181 | 29.30% 🚧 |
 | 2800 ~ 28FF | Braille Patterns | 盲文图案 | 256 / 256 | 0 | 100.00% 🚩 |
 | 2E80 ~ 2EFF | CJK Radicals Supplement | 中日韩部首增补 | 78 / 115 | 37 | 67.83% 🚧 |
 | 2F00 ~ 2FDF | Kangxi Radicals | 康熙部首 | 214 / 214 | 0 | 100.00% 🚩 |
@@ -43,7 +43,7 @@ Unicode 版本：17.0.0
 | FE30 ~ FE4F | CJK Compatibility Forms | 中日韩兼容形式 | 27 / 32 | 5 | 84.38% 🚧 |
 | FE50 ~ FE6F | Small Form Variants | 小型形式变体 | 25 / 26 | 1 | 96.15% 🚧 |
 | FF00 ~ FFEF | Halfwidth and Fullwidth Forms | 半宽与全宽形式 | 167 / 225 | 58 | 74.22% 🚧 |
-| FFF0 ~ FFFF | Specials | 特殊 | 2 / 2 | 0 | 100.00% 🚩 |
+| FFF0 ~ FFFF | Specials | 特殊字符 | 2 / 2 | 0 | 100.00% 🚩 |
 
 ## GB2312 字符统计
 
