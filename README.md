@@ -10,7 +10,7 @@
 
 开源的泛中日韩像素字体，黑体风格。
 
-该项目为 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 的临时性过渡方案。使用多个像素字体合并而成，因此以「缝合」命名。
+该项目是 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 的临时过渡方案，以「方舟像素字体」作为基础字形和度量参数，并使用其他可适配的同尺寸字体补充字形。由于字体由多个来源拼合而成，因此以「缝合」命名。
 
 Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B2%E7%8E%8B) 中的 [「融合」](https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=4837&request_locale=ja) 魔法卡卡图。
 
@@ -44,7 +44,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 ## 宽度模式
 
-目前支持「等宽」和「比例」两种模式。
+目前支持「等宽模式」和「比例模式」两种。
 
 ### 等宽模式
 
@@ -58,7 +58,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 基线处于合适的位置，整体排版观感舒适。
 
-如无特殊使用场景，应该优先使用该模式。
+如无特殊需求，应该优先使用「比例模式」。
 
 ## 语言特定字形
 
@@ -97,8 +97,8 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 ## 官方社区
 
-- [「像素字体工房」Discord 服务器](https://discord.gg/3GKtPKtjdU)
-- [「像素字体工房」QQ 群](https://qm.qq.com/q/jPk8sSitUI)
+- [像素字体工房 - Discord 服务器](https://discord.gg/3GKtPKtjdU)
+- [像素字体工房 - QQ 群](https://qm.qq.com/q/jPk8sSitUI)
 
 ## 许可证
 
@@ -106,13 +106,13 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 ### 字体
 
-使用 [「SIL 开放字体许可证第 1.1 版」](LICENSE-OFL) 授权。
+采用 [SIL Open Font License version 1.1](LICENSE-OFL) 授权。
 
 上游字体许可证如下：
 
 | 字体 | 许可证 | 备注 |
 |---|---|---|
-| [方舟像素字体 / Ark Pixel Font](https://github.com/TakWolf/ark-pixel-font) | [OFL-1.1](https://github.com/TakWolf/ark-pixel-font/blob/develop/LICENSE-OFL) | 提供 10、12 像素基础字形和参数 |
+| [方舟像素字体 / Ark Pixel Font](https://github.com/TakWolf/ark-pixel-font) | [OFL-1.1](https://github.com/TakWolf/ark-pixel-font/blob/develop/LICENSE-OFL) | 提供 10、12 像素基础字形和度量参数 |
 | [美咲フォント / Misaki](https://littlelimit.net/misaki.htm) | [无类型许可证](assets/fonts/misaki/LICENSE.txt)，兼容 OFL-1.1 | 提供 8 像素日语汉字字形 |
 | [美績点陣體 / MisekiBitmap](https://github.com/ItMarki/MisekiBitmap) | [OFL-1.1](https://github.com/ItMarki/MisekiBitmap/blob/main/LICENSE) | 提供 8 像素简体中文汉字字形 |
 | [精品點陣體7×7 / BoutiqueBitmap7x7](https://github.com/scott0107000/BoutiqueBitmap7x7) | [OFL-1.1](https://github.com/scott0107000/BoutiqueBitmap7x7/blob/main/OFL.txt) | 提供 8 像素繁体中文汉字字形 |
@@ -122,11 +122,11 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 ### 构建程序
 
-使用 [「MIT 许可证」](LICENSE-MIT) 授权。
+采用 [MIT License](LICENSE-MIT) 授权。
 
 ## 赞助
 
-如果这个项目对您有帮助，请考虑赞助来支持开发工作。
+如果这个项目对您有帮助，请考虑赞助来支持后续开发。
 
 [![赞赏码](https://raw.githubusercontent.com/TakWolf/TakWolf/master/images/badge-payqr@2x.png)](https://github.com/TakWolf/TakWolf/blob/master/payment-qr-codes.md)
 [![爱发电](https://raw.githubusercontent.com/TakWolf/TakWolf/master/images/badge-afdian@2x.png)](https://afdian.com/a/takwolf)
