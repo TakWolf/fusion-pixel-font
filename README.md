@@ -8,7 +8,7 @@
 [![Discord](https://img.shields.io/badge/discord-像素字体工房-4E5AF0?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/3GKtPKtjdU)
 [![QQ Group](https://img.shields.io/badge/QQ群-像素字体工房-brightgreen?style=flat-square&logo=qq&logoColor=white)](https://qm.qq.com/q/jPk8sSitUI)
 
-开源的泛中日韩像素字体，黑体风格。
+开源的泛拉丁与泛中日韩像素字体，黑体风格。
 
 该项目是 [「方舟像素字体」](https://github.com/TakWolf/ark-pixel-font) 的临时过渡方案，以「方舟像素字体」作为基础字形和度量参数，并使用其他可适配的同尺寸字体补充字形。由于字体由多个来源拼合而成，因此以「缝合」命名。
 
