@@ -6,10 +6,10 @@ from tools.services import upgrade_service
 def main():
     upgrade_service.upgrade_ark_pixel()
 
-    for upgrade_config in configs.upgrade_configs:
+    for upgrade_config in configs.UPGRADE_CONFIGS:
         upgrade_service.upgrade_fonts(upgrade_config)
 
-    for parent_dir, dir_names, file_names in path_define.fonts_dir.walk():
+    for parent_dir, dir_names, file_names in path_define.FONTS_DIR.walk():
         for file_name in file_names:
             if not file_name.endswith('.txt'):
                 continue

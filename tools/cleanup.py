@@ -12,16 +12,16 @@ from tools.services import setup_service
 def main():
     setup_service.setup_ark_pixel()
 
-    for font_size in options.font_sizes:
+    for font_size in options.FONT_SIZES:
         ark_contexts = {}
         patch_contexts = {}
-        for width_mode_dir_name in itertools.chain(['common'], options.width_modes):
-            ark_context = glyph_file_util.load_context(path_define.ark_pixel_glyphs_dir.joinpath(str(font_size), width_mode_dir_name))
-            for mapping in configs.mappings:
+        for width_mode_dir_name in itertools.chain(['common'], options.WIDTH_MODES):
+            ark_context = glyph_file_util.load_context(path_define.ARK_PIXEL_GLYPHS_DIR.joinpath(str(font_size), width_mode_dir_name))
+            for mapping in configs.MAPPINGS:
                 glyph_mapping_util.apply_mapping(ark_context, mapping)
             ark_contexts[width_mode_dir_name] = ark_context
 
-            patch_context = glyph_file_util.load_context(path_define.patch_glyphs_dir.joinpath(str(font_size), width_mode_dir_name))
+            patch_context = glyph_file_util.load_context(path_define.PATCH_GLYPHS_DIR.joinpath(str(font_size), width_mode_dir_name))
             patch_contexts[width_mode_dir_name] = patch_context
 
         pending_deletion = set()
@@ -42,7 +42,7 @@ def main():
             glyph_file.file_path.unlink()
             logger.info("Delete: '{}'", glyph_file.file_path)
 
-    for file_dir, _, _ in path_define.patch_glyphs_dir.walk(top_down=False):
+    for file_dir, _, _ in path_define.PATCH_GLYPHS_DIR.walk(top_down=False):
         if fs_util.is_empty_dir(file_dir):
             shutil.rmtree(file_dir)
 

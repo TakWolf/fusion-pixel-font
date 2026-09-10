@@ -8,7 +8,7 @@ from tools.configs.options import FontSize, WidthMode, LanguageFlavor
 
 
 def _load_font(font_size: FontSize, width_mode: WidthMode, language_flavor: LanguageFlavor, scale: int = 1) -> FreeTypeFont:
-    file_path = path_define.outputs_dir.joinpath(f'fusion-pixel-{font_size}px-{width_mode}-{language_flavor}.otf.woff2')
+    file_path = path_define.OUTPUTS_DIR.joinpath(f'fusion-pixel-{font_size}px-{width_mode}-{language_flavor}.otf.woff2')
     return ImageFont.truetype(file_path, font_size * scale)
 
 
@@ -45,7 +45,7 @@ def make_preview_image(font_size: FontSize):
     font_zh_hans = _load_font(font_size, 'proportional', 'zh_hans')
     font_zh_hant = _load_font(font_size, 'proportional', 'zh_hant')
     font_ja = _load_font(font_size, 'proportional', 'ja')
-    line_height = configs.font_configs[font_size].line_height
+    line_height = configs.FONT_CONFIGS[font_size].line_height
 
     image = Image.new('RGBA', (font_size * 27, font_size * 2 + line_height * 9), (255, 255, 255, 255))
     _draw_text(image, (font_size, font_size), '缝合像素字体 / Fusion Pixel Font', font_zh_hans)
@@ -59,7 +59,7 @@ def make_preview_image(font_size: FontSize):
     _draw_text(image, (font_size, font_size + line_height * 8), '★☆☺☹♠♡♢♣♤♥♦♧☀☼♩♪♫♬☂☁⚓✈⚔☯', font_latin)
     image = image.resize((image.width * 2, image.height * 2), Image.Resampling.NEAREST)
 
-    path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
-    file_path = path_define.outputs_dir.joinpath(f'preview-{font_size}px.png')
+    path_define.OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
+    file_path = path_define.OUTPUTS_DIR.joinpath(f'preview-{font_size}px.png')
     image.save(file_path)
     logger.info("Make preview image: '{}'", file_path)

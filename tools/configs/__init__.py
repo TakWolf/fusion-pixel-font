@@ -7,25 +7,25 @@ from tools.configs.fallback import FallbackConfig
 from tools.configs.font import FontConfig
 from tools.configs.upgrade import UpgradeConfig
 
-version = '2026.09.01'
+VERSION = '2026.09.01'
 
-upgrade_configs = UpgradeConfig.load()
+UPGRADE_CONFIGS = UpgradeConfig.load()
 
-dump_configs = DumpConfig.load()
+DUMP_CONFIGS = DumpConfig.load()
 
-fallback_configs = FallbackConfig.load()
+FALLBACK_CONFIGS = FallbackConfig.load()
 
-font_configs = {font_size: FontConfig.load(font_size) for font_size in options.font_sizes}
+FONT_CONFIGS = {font_size: FontConfig.load(font_size) for font_size in options.FONT_SIZES}
 
-mappings = [
-    glyph_mapping_util.load_mapping(path_define.mappings_dir.joinpath('0080-00FF Latin-1 Supplement.yaml')),
-    glyph_mapping_util.load_mapping(path_define.mappings_dir.joinpath('2E80-2EFF CJK Radicals Supplement.yaml')),
-    glyph_mapping_util.load_mapping(path_define.mappings_dir.joinpath('2F00-2FDF Kangxi Radicals.yaml')),
+MAPPINGS = [
+    glyph_mapping_util.load_mapping(path_define.MAPPINGS_DIR.joinpath('0080-00FF Latin-1 Supplement.yaml')),
+    glyph_mapping_util.load_mapping(path_define.MAPPINGS_DIR.joinpath('2E80-2EFF CJK Radicals Supplement.yaml')),
+    glyph_mapping_util.load_mapping(path_define.MAPPINGS_DIR.joinpath('2F00-2FDF Kangxi Radicals.yaml')),
 ]
 
-kerning_config = KerningConfig.load(path_define.kernings_dir.joinpath('default.yaml'))
+KERNING_CONFIG = KerningConfig.load(path_define.KERNINGS_DIR.joinpath('default.yaml'))
 
-license_configs = {
+LICENSE_CONFIGS = {
     8: {
         'misaki': [
             'misaki.txt',
@@ -64,7 +64,7 @@ license_configs = {
     },
 }
 
-locale_to_language_flavor = {
+LOCALE_TO_LANGUAGE_FLAVOR = {
     'en': 'latin',
     'zh-hans': 'zh_hans',
     'zh-hant': 'zh_hant',
