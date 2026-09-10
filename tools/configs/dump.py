@@ -9,11 +9,11 @@ from tools.configs.options import FontSize
 class DumpConfig:
     @staticmethod
     def load() -> dict[FontSize, list[DumpConfig]]:
-        data = yaml.safe_load(path_define.configs_dir.joinpath('dump.yaml').read_bytes())
-        dump_configs = {font_size: [] for font_size in options.font_sizes}
+        data = yaml.safe_load(path_define.CONFIGS_DIR.joinpath('dump.yaml').read_bytes())
+        dump_configs = {font_size: [] for font_size in options.FONT_SIZES}
         for font_name, items_data in data.items():
             for item_data in items_data:
-                font_file_path = path_define.fonts_dir.joinpath(font_name, item_data['font-file-name'])
+                font_file_path = path_define.FONTS_DIR.joinpath(font_name, item_data['font-file-name'])
                 font_size = item_data['font-size']
                 dump_dir_name = item_data['dump-dir-name']
                 rasterize_size = item_data.get('rasterize-size', font_size)

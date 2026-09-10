@@ -17,19 +17,19 @@ class DesignContext:
     @staticmethod
     def load(font_size: FontSize) -> DesignContext:
         contexts = {}
-        for width_mode_dir_name in itertools.chain(['common'], options.width_modes):
-            context = glyph_file_util.load_context(path_define.fallback_glyphs_dir.joinpath(str(font_size), width_mode_dir_name))
-            context.update(glyph_file_util.load_context(path_define.ark_pixel_glyphs_dir.joinpath(str(font_size), width_mode_dir_name)))
-            context.update(glyph_file_util.load_context(path_define.patch_glyphs_dir.joinpath(str(font_size), width_mode_dir_name)))
+        for width_mode_dir_name in itertools.chain(['common'], options.WIDTH_MODES):
+            context = glyph_file_util.load_context(path_define.FALLBACK_GLYPHS_DIR.joinpath(str(font_size), width_mode_dir_name))
+            context.update(glyph_file_util.load_context(path_define.ARK_PIXEL_GLYPHS_DIR.joinpath(str(font_size), width_mode_dir_name)))
+            context.update(glyph_file_util.load_context(path_define.PATCH_GLYPHS_DIR.joinpath(str(font_size), width_mode_dir_name)))
 
             for flavor_group in context.values():
                 if None not in flavor_group:
-                    for language_flavor in options.language_file_flavors:
+                    for language_flavor in options.LANGUAGE_FILE_FLAVORS:
                         if language_flavor in flavor_group:
                             flavor_group[None] = flavor_group[language_flavor]
                             break
 
-            for mapping in configs.mappings:
+            for mapping in configs.MAPPINGS:
                 glyph_mapping_util.apply_mapping(context, mapping)
 
             for flavor_group in context.values():
@@ -42,7 +42,7 @@ class DesignContext:
 
         glyph_files = {
             width_mode: contexts['common'] | contexts[width_mode]
-            for width_mode in options.width_modes
+            for width_mode in options.WIDTH_MODES
         }
 
         return DesignContext(font_size, glyph_files)
@@ -71,7 +71,7 @@ class DesignContext:
         return alphabet
 
     def _create_builder(self, width_mode: WidthMode, language_flavor: LanguageFlavor) -> FontBuilder:
-        layout_metric = configs.font_configs[self.font_size].layout_metrics[width_mode]
+        layout_metric = configs.FONT_CONFIGS[self.font_size].layout_metrics[width_mode]
 
         builder = FontBuilder()
         builder.font_metric.font_size = self.font_size
@@ -86,8 +86,8 @@ class DesignContext:
         builder.font_metric.strikeout_position = layout_metric.strikeout_position
         builder.font_metric.strikeout_thickness = 1
 
-        builder.meta_info.version = configs.version
-        builder.meta_info.created_time = datetime.fromisoformat(f'{configs.version.replace('.', '-')}T00:00:00Z')
+        builder.meta_info.version = configs.VERSION
+        builder.meta_info.created_time = datetime.fromisoformat(f'{configs.VERSION.replace('.', '-')}T00:00:00Z')
         builder.meta_info.modified_time = builder.meta_info.created_time
         builder.meta_info.family_name = f'Fusion Pixel {self.font_size}px {width_mode[:4].capitalize()} {language_flavor}'
         builder.meta_info.weight_name = WeightName.REGULAR
@@ -161,7 +161,7 @@ class DesignContext:
 
         if width_mode == 'proportional':
             if self._proportional_kerning_values is None:
-                self._proportional_kerning_values = kerning_util.calculate_kerning_values(configs.kerning_config, self._glyph_files['proportional'])
+                self._proportional_kerning_values = kerning_util.calculate_kerning_values(configs.KERNING_CONFIG, self._glyph_files['proportional'])
             builder.kerning_values.update(self._proportional_kerning_values)
 
         builder.opentype_config.fields_override.head_y_max = layout_metric.ascent
@@ -170,12 +170,12 @@ class DesignContext:
         return builder
 
     def make_fonts(self, width_mode: WidthMode, font_formats: list[FontFormat]):
-        path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
+        path_define.OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 
         if len(font_formats) > 0:
-            for language_flavor in options.language_flavors:
+            for language_flavor in options.LANGUAGE_FLAVORS:
                 builder = self._create_builder(width_mode, language_flavor)
                 for font_format in font_formats:
-                    file_path = path_define.outputs_dir.joinpath(f'fusion-pixel-{self.font_size}px-{width_mode}-{language_flavor}.{font_format}')
+                    file_path = path_define.OUTPUTS_DIR.joinpath(f'fusion-pixel-{self.font_size}px-{width_mode}-{language_flavor}.{font_format}')
                     getattr(builder, f'save_{font_format.replace('.', '_')}')(file_path)
                     logger.info("Make font: '{}'", file_path)
