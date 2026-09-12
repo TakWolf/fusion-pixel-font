@@ -23,7 +23,7 @@ def _draw_text(
         line_gap: int = 0,
         is_horizontal_centered: bool = False,
         is_vertical_centered: bool = False,
-):
+) -> None:
     draw = ImageDraw.Draw(image)
     x, y = xy
     default_line_height = sum(font.getmetrics())
@@ -40,7 +40,7 @@ def _draw_text(
     draw.text((x, y), text, fill=text_color, font=font, spacing=spacing)
 
 
-def make_preview_image(font_size: FontSize):
+def make_preview_image(font_size: FontSize) -> None:
     font_latin = _load_font(font_size, 'proportional', 'latin')
     font_zh_hans = _load_font(font_size, 'proportional', 'zh_hans')
     font_zh_hant = _load_font(font_size, 'proportional', 'zh_hant')

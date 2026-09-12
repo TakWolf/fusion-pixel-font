@@ -44,7 +44,7 @@ class DumpConfig:
             rasterize_size: int,
             rasterize_offset_x: int,
             rasterize_offset_y: int,
-    ):
+    ) -> None:
         self.font_file_path = font_file_path
         self.font_size = font_size
         self.dump_dir_name = dump_dir_name

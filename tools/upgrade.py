@@ -3,7 +3,7 @@ from tools.configs import path_define
 from tools.services import upgrade_service
 
 
-def main():
+def main() -> None:
     upgrade_service.upgrade_ark_pixel()
 
     for upgrade_config in configs.UPGRADE_CONFIGS:

@@ -9,7 +9,7 @@ from tools.configs import path_define, options
 from tools.services import setup_service
 
 
-def main():
+def main() -> None:
     setup_service.setup_ark_pixel()
 
     for font_size in options.FONT_SIZES:

@@ -8,7 +8,7 @@ from tools.configs import path_define, UpgradeConfig
 from tools.utils import github_api, download_util
 
 
-def upgrade_ark_pixel():
+def upgrade_ark_pixel() -> None:
     repository_name = 'TakWolf/ark-pixel-font'
     source_type = 'tag'
     source_name = None
@@ -42,7 +42,7 @@ def upgrade_ark_pixel():
     logger.info("Update version file: '{}'", version_file_path)
 
 
-def upgrade_fonts(upgrade_config: UpgradeConfig):
+def upgrade_fonts(upgrade_config: UpgradeConfig) -> None:
     if upgrade_config.tag_name is None:
         tag_name = github_api.get_releases_latest_tag_name(upgrade_config.repository_name)
     else:

@@ -33,7 +33,7 @@ class FallbackConfig:
             dir_from: str,
             width_mode_dir_name: str,
             flavors: list[LanguageFileFlavor] | None,
-    ):
+    ) -> None:
         self.font_size = font_size
         self.dir_from = dir_from
         self.width_mode_dir_name = width_mode_dir_name
