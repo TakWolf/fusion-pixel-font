@@ -8,7 +8,7 @@ from tools.configs import path_define
 from tools.utils import download_util
 
 
-def setup_ark_pixel():
+def setup_ark_pixel() -> None:
     cache_version_file_path = path_define.CACHE_DIR.joinpath('ark-pixel-version.json')
     if cache_version_file_path.is_file():
         cache_sha = json.loads(cache_version_file_path.read_bytes())['sha']

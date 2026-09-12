@@ -4,7 +4,7 @@ import httpx
 from tqdm import tqdm
 
 
-def download_file(url: str, file_path: Path):
+def download_file(url: str, file_path: Path) -> None:
     with httpx.stream('GET', url, follow_redirects=True) as response:
         assert response.is_success, url
         tmp_file_path = file_path.with_suffix(f'{file_path.suffix}.download')

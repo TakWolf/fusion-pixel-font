@@ -7,7 +7,7 @@ class DownloadAssetConfig:
     file_name: str | None
     copy_list: list[tuple[str, str]]
 
-    def __init__(self, file_name: str | None, copy_list: list[tuple[str, str]]):
+    def __init__(self, file_name: str | None, copy_list: list[tuple[str, str]]) -> None:
         self.file_name = file_name
         self.copy_list = copy_list
 
@@ -44,7 +44,7 @@ class UpgradeConfig:
             repository_name: str,
             tag_name: str | None,
             asset_configs: list[DownloadAssetConfig],
-    ):
+    ) -> None:
         self.name = name
         self.repository_name = repository_name
         self.tag_name = tag_name
