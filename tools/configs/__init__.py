@@ -64,10 +64,10 @@ LICENSE_CONFIGS = {
     },
 }
 
-LOCALE_TO_LANGUAGE_FLAVOR = {
-    'en': 'latin',
-    'zh-hans': 'zh_hans',
-    'zh-hant': 'zh_hant',
+LANGUAGE_FLAVOR_TO_LOCALE = {
+    'latin': 'en',
+    'zh_hans': 'zh-Hans',
+    'zh_hant': 'zh-Hant',
     'ja': 'ja',
     'ko': 'ko',
 }
