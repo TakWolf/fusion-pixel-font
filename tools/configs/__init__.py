@@ -64,6 +64,14 @@ LICENSE_CONFIGS = {
     },
 }
 
+LANGUAGE_FLAVOR_TO_FONT_NAME = {
+    'latin': 'latin',
+    'zh_hans': 'zh-Hans',
+    'zh_hant': 'zh-Hant',
+    'ja': 'ja',
+    'ko': 'ko',
+}
+
 LANGUAGE_FLAVOR_TO_LOCALE = {
     'latin': 'en',
     'zh_hans': 'zh-Hans',

@@ -62,12 +62,12 @@
   font-size: 8
   dir-from: miseki-bitmap/4E00-9FFF CJK Unified Ideographs
   width-mode-dir-name: common
-  flavors: zh_cn
+  flavors: zh_hans
 -
   font-size: 8
   dir-from: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
   width-mode-dir-name: common
-  flavors: zh_hk,zh_tw,zh_tr
+  flavors: zh_hant,zh_hk,zh_tw
 -
   font-size: 8
   dir-from: misaki/4E00-9FFF CJK Unified Ideographs
@@ -82,7 +82,7 @@
   font-size: 10
   dir-from: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
   width-mode-dir-name: common
-  flavors: zh_hk,zh_tw,zh_tr
+  flavors: zh_hant,zh_hk,zh_tw
 -
   font-size: 10
   dir-from: galmuri/4E00-9FFF CJK Unified Ideographs
@@ -92,7 +92,7 @@
   font-size: 12
   dir-from: cubic-11/4E00-9FFF CJK Unified Ideographs
   width-mode-dir-name: common
-  flavors: zh_hk,zh_tw,zh_tr
+  flavors: zh_hant,zh_hk,zh_tw
 -
   font-size: 12
   dir-from: galmuri/4E00-9FFF CJK Unified Ideographs

@@ -32,12 +32,6 @@ class DesignContext:
             for mapping in configs.MAPPINGS:
                 glyph_mapping_util.apply_mapping(context, mapping)
 
-            for flavor_group in context.values():
-                if 'zh_cn' in flavor_group:
-                    flavor_group['zh_hans'] = flavor_group['zh_cn']
-                if 'zh_tr' in flavor_group:
-                    flavor_group['zh_hant'] = flavor_group['zh_tr']
-
             contexts[width_mode_dir_name] = context
 
         glyph_files = {
@@ -89,7 +83,7 @@ class DesignContext:
         builder.meta_info.version = configs.VERSION
         builder.meta_info.created_time = datetime.fromisoformat(f'{configs.VERSION.replace('.', '-')}T00:00:00Z')
         builder.meta_info.modified_time = builder.meta_info.created_time
-        builder.meta_info.family_name = f'Fusion Pixel {self.font_size}px {width_mode[:4].capitalize()} {language_flavor}'
+        builder.meta_info.family_name = f'Fusion Pixel {self.font_size}px {width_mode[:4].capitalize()} {configs.LANGUAGE_FLAVOR_TO_FONT_NAME[language_flavor]}'
         builder.meta_info.weight_name = WeightName.REGULAR
         builder.meta_info.serif_style = SerifStyle.SANS_SERIF
         builder.meta_info.slant_style = SlantStyle.NORMAL
