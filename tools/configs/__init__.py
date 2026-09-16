@@ -68,6 +68,8 @@ LANGUAGE_FLAVOR_TO_FONT_NAME = {
     'latin': 'latin',
     'zh_hans': 'zh-Hans',
     'zh_hant': 'zh-Hant',
+    'zh_hk': 'zh-HK',
+    'zh_tw': 'zh-TW',
     'ja': 'ja',
     'ko': 'ko',
 }
@@ -76,6 +78,8 @@ LANGUAGE_FLAVOR_TO_LOCALE = {
     'latin': 'en',
     'zh_hans': 'zh-Hans',
     'zh_hant': 'zh-Hant',
+    'zh_hk': 'zh-Hant-HK',
+    'zh_tw': 'zh-Hant-TW',
     'ja': 'ja',
     'ko': 'ko',
 }

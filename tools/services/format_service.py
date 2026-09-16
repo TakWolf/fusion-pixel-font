@@ -10,7 +10,7 @@ def format_glyphs(font_size: FontSize) -> None:
     for width_mode_dir_name in itertools.chain(['common'], options.WIDTH_MODES):
         width_mode_dir = path_define.PATCH_GLYPHS_DIR.joinpath(str(font_size), width_mode_dir_name)
         context = glyph_file_util.load_context(width_mode_dir)
-        glyph_file_util.normalize_context(context, width_mode_dir, options.LANGUAGE_FILE_FLAVORS)
+        glyph_file_util.normalize_context(context, width_mode_dir, options.LANGUAGE_FLAVORS)
 
 
 def format_mappings() -> None:
@@ -18,4 +18,4 @@ def format_mappings() -> None:
         if file_path.suffix != '.yaml':
             continue
         mapping = glyph_mapping_util.load_mapping(file_path)
-        glyph_mapping_util.save_mapping(mapping, file_path, options.LANGUAGE_FILE_FLAVORS)
+        glyph_mapping_util.save_mapping(mapping, file_path, options.LANGUAGE_FLAVORS)

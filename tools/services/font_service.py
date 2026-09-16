@@ -25,7 +25,7 @@ class DesignContext:
 
             for flavor_group in context.values():
                 if None not in flavor_group:
-                    for language_flavor in options.LANGUAGE_FILE_FLAVORS:
+                    for language_flavor in options.LANGUAGE_FLAVORS:
                         if language_flavor in flavor_group:
                             flavor_group[None] = flavor_group[language_flavor]
                             break

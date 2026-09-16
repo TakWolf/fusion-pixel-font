@@ -29,7 +29,7 @@ def check_glyphs(font_size: FontSize) -> None:
                 assert None in flavor_group, f'[{font_size}px] missing default flavor: {width_mode_dir_name} {code_point:04X}'
 
             for language_flavor, glyph_file in flavor_group.items():
-                assert language_flavor is None or language_flavor in options.LANGUAGE_FILE_FLAVORS, f"[{font_size}px] unknown file flavor: {language_flavor}\n'{glyph_file.file_path}'"
+                assert language_flavor is None or language_flavor in options.LANGUAGE_FLAVORS, f"[{font_size}px] unknown flavor: {language_flavor}\n'{glyph_file.file_path}'"
 
             bitmap_strings = {}
             for glyph_file in set(flavor_group.values()):
@@ -80,5 +80,5 @@ def check_mappings() -> None:
 
         for code_point, flavor_group in sorted(mapping.items()):
             for language_flavor, source_glyph in flavor_group.items():
-                assert language_flavor is None or language_flavor == '*' or language_flavor in options.LANGUAGE_FILE_FLAVORS, f"unknown target flavor: 0x{code_point:04X} {language_flavor}\n'{file_path}'"
-                assert source_glyph.flavor is None or source_glyph.flavor in options.LANGUAGE_FILE_FLAVORS, f"unknown source flavor: 0x{code_point:04X} {language_flavor} -> 0x{source_glyph.code_point:04X} {source_glyph.flavor}\n'{file_path}'"
+                assert language_flavor is None or language_flavor == '*' or language_flavor in options.LANGUAGE_FLAVORS, f"unknown target flavor: 0x{code_point:04X} {language_flavor}\n'{file_path}'"
+                assert source_glyph.flavor is None or source_glyph.flavor in options.LANGUAGE_FLAVORS, f"unknown source flavor: 0x{code_point:04X} {language_flavor} -> 0x{source_glyph.code_point:04X} {source_glyph.flavor}\n'{file_path}'"

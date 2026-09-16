@@ -17,21 +17,12 @@ type LanguageFlavor = Literal[
     'latin',
     'zh_hans',
     'zh_hant',
-    'ja',
-    'ko',
-]
-LANGUAGE_FLAVORS = list[LanguageFlavor](get_args(LanguageFlavor.__value__))
-
-type LanguageFileFlavor = Literal[
-    'latin',
-    'zh_hans',
-    'zh_hant',
     'zh_hk',
     'zh_tw',
     'ja',
     'ko',
 ]
-LANGUAGE_FILE_FLAVORS = list[LanguageFileFlavor](get_args(LanguageFileFlavor.__value__))
+LANGUAGE_FLAVORS = list[LanguageFlavor](get_args(LanguageFlavor.__value__))
 
 type FontFormat = Literal[
     'otf',

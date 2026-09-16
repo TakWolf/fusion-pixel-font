@@ -1,7 +1,7 @@
 import yaml
 
 from tools.configs import path_define, options
-from tools.configs.options import FontSize, LanguageFileFlavor
+from tools.configs.options import FontSize, LanguageFlavor
 
 
 class FallbackConfig:
@@ -25,14 +25,14 @@ class FallbackConfig:
     font_size: FontSize
     dir_from: str
     width_mode_dir_name: str
-    flavors: list[LanguageFileFlavor] | None
+    flavors: list[LanguageFlavor] | None
 
     def __init__(
             self,
             font_size: FontSize,
             dir_from: str,
             width_mode_dir_name: str,
-            flavors: list[LanguageFileFlavor] | None,
+            flavors: list[LanguageFlavor] | None,
     ) -> None:
         self.font_size = font_size
         self.dir_from = dir_from

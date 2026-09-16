@@ -111,7 +111,7 @@ def apply_fallbacks(font_size: FontSize) -> None:
 
             for bitmap, flavors in bitmap_strings.values():
                 if len(flavors) > 0:
-                    flavors = sorted(flavors, key=lambda x: options.LANGUAGE_FILE_FLAVORS.index(x))
+                    flavors = sorted(flavors, key=lambda x: options.LANGUAGE_FLAVORS.index(x))
                     file_name = f'{code_name} {",".join(flavors)}.png'
                 else:
                     file_name = f'{code_name}.png'
