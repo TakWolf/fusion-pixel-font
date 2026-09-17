@@ -8,7 +8,7 @@ from tools import configs
 from tools.configs import path_define, options
 from tools.configs.options import FontSize, WidthMode, FontFormat, Attachment
 from tools.services import setup_service, dump_service, publish_service, info_service, template_service, image_service
-from tools.services.font_service import DesignContext
+from tools.services.font_service import FontBuildContext
 
 app = App(
     version=configs.VERSION,
@@ -56,16 +56,16 @@ def main(
 
     setup_service.setup_ark_pixel()
 
-    design_contexts = {}
+    build_contexts = {}
     for font_size in font_sizes:
         dump_service.dump_fonts(font_size)
         dump_service.apply_fallbacks(font_size)
 
-        design_context = DesignContext.load(font_size)
-        design_contexts[font_size] = design_context
+        build_context = FontBuildContext.load(font_size)
+        build_contexts[font_size] = build_context
 
         for width_mode in width_modes:
-            design_context.make_fonts(width_mode, font_formats)
+            build_context.make_fonts(width_mode, font_formats)
 
     if 'release' in attachments:
         for font_size in font_sizes:
@@ -74,22 +74,22 @@ def main(
 
     if 'info' in attachments:
         for font_size in font_sizes:
-            design_context = design_contexts[font_size]
+            build_context = build_contexts[font_size]
             for width_mode in width_modes:
-                info_service.make_info(design_context, width_mode)
+                info_service.make_info(build_context, width_mode)
 
     if 'alphabet' in attachments:
         for font_size in font_sizes:
-            design_context = design_contexts[font_size]
+            build_context = build_contexts[font_size]
             for width_mode in width_modes:
-                info_service.make_alphabet_txt(design_context, width_mode)
+                info_service.make_alphabet_txt(build_context, width_mode)
 
     if 'html' in attachments:
         for font_size in font_sizes:
-            design_context = design_contexts[font_size]
+            build_context = build_contexts[font_size]
             for width_mode in width_modes:
-                template_service.make_alphabet_html(design_context, width_mode)
-            template_service.make_demo_html(design_context)
+                template_service.make_alphabet_html(build_context, width_mode)
+            template_service.make_demo_html(build_context)
         if all_font_sizes:
             template_service.make_index_html()
             template_service.make_playground_html()
