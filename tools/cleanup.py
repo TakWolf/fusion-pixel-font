@@ -15,12 +15,12 @@ def main() -> None:
         ark_contexts = {}
         patch_contexts = {}
         for glyph_scope in options.GLYPH_SCOPES:
-            ark_context = glyph_file_util.load_context(path_define.ARK_PIXEL_GLYPHS_DIR.joinpath(str(font_size), glyph_scope))
+            ark_context = glyph_file_util.load_context(path_define.ARK_PIXEL_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope))
             for mapping in configs.MAPPINGS:
                 glyph_mapping_util.apply_mapping(ark_context, mapping)
             ark_contexts[glyph_scope] = ark_context
 
-            patch_context = glyph_file_util.load_context(path_define.PATCH_GLYPHS_DIR.joinpath(str(font_size), glyph_scope))
+            patch_context = glyph_file_util.load_context(path_define.PATCH_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope))
             patch_contexts[glyph_scope] = patch_context
 
         pending_deletion = set()

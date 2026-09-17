@@ -20,10 +20,9 @@ class FontBuildContext:
 
         contexts = {}
         for glyph_scope in options.GLYPH_SCOPES:
-            context = glyph_file_util.load_context(path_define.FALLBACK_GLYPHS_DIR.joinpath(str(font_size), glyph_scope))
-            context.update(glyph_file_util.load_context(path_define.ARK_PIXEL_GLYPHS_DIR.joinpath(str(font_size), glyph_scope)))
-            context.update(glyph_file_util.load_context(path_define.PATCH_GLYPHS_DIR.joinpath(str(font_size), glyph_scope)))
-            context.pop(-1, None)
+            context = glyph_file_util.load_context(path_define.FALLBACK_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope))
+            context.update(glyph_file_util.load_context(path_define.ARK_PIXEL_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope)))
+            context.update(glyph_file_util.load_context(path_define.PATCH_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope)))
 
             for flavor_group in context.values():
                 if None not in flavor_group:

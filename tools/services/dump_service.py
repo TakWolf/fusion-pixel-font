@@ -100,7 +100,7 @@ def apply_fallbacks(font_size: FontSize) -> None:
                     flavors.update(fallback_config.flavors)
 
     for glyph_scope, context in contexts.items():
-        glyph_scope_dir = path_define.FALLBACK_GLYPHS_DIR.joinpath(str(font_size), glyph_scope)
+        glyph_scope_dir = path_define.FALLBACK_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope)
         for code_point, bitmap_strings in context.items():
             code_name = f'{code_point:04X}'
             block = unidata_blocks.get_block_by_code_point(code_point)
