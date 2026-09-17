@@ -1,49 +1,12 @@
-import shutil
-
-from loguru import logger
-from pixel_font_knife import glyph_file_util, glyph_mapping_util, fs_util
-
-from tools import configs
-from tools.configs import path_define, options
-from tools.services import setup_service
+from tools.configs import options
+from tools.services import setup_service, cleanup_service
 
 
 def main() -> None:
     setup_service.setup_ark_pixel()
 
     for font_size in options.FONT_SIZES:
-        ark_contexts = {}
-        patch_contexts = {}
-        for glyph_scope in options.GLYPH_SCOPES:
-            ark_context = glyph_file_util.load_context(path_define.ARK_PIXEL_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope))
-            for mapping in configs.MAPPINGS:
-                glyph_mapping_util.apply_mapping(ark_context, mapping)
-            ark_contexts[glyph_scope] = ark_context
-
-            patch_context = glyph_file_util.load_context(path_define.PATCH_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope))
-            patch_contexts[glyph_scope] = patch_context
-
-        pending_deletion = set()
-
-        for code_point, flavor_group in patch_contexts['common'].items():
-            if code_point in ark_contexts['common'] or (code_point in ark_contexts['monospaced'] and code_point in ark_contexts['proportional']):
-                pending_deletion.update(flavor_group.values())
-
-        for code_point, flavor_group in patch_contexts['monospaced'].items():
-            if code_point in ark_contexts['common'] or code_point in ark_contexts['monospaced']:
-                pending_deletion.update(flavor_group.values())
-
-        for code_point, flavor_group in patch_contexts['proportional'].items():
-            if code_point in ark_contexts['common'] or code_point in ark_contexts['proportional']:
-                pending_deletion.update(flavor_group.values())
-
-        for glyph_file in pending_deletion:
-            glyph_file.file_path.unlink()
-            logger.info("Delete: '{}'", glyph_file.file_path)
-
-    for file_dir, _, _ in path_define.PATCH_GLYPHS_DIR.walk(top_down=False):
-        if fs_util.is_empty_dir(file_dir):
-            shutil.rmtree(file_dir)
+        cleanup_service.cleanup_cmap_glyphs(font_size)
 
 
 if __name__ == '__main__':
