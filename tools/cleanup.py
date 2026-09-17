@@ -1,4 +1,3 @@
-import itertools
 import shutil
 
 from loguru import logger
@@ -15,14 +14,14 @@ def main() -> None:
     for font_size in options.FONT_SIZES:
         ark_contexts = {}
         patch_contexts = {}
-        for width_mode_dir_name in itertools.chain(['common'], options.WIDTH_MODES):
-            ark_context = glyph_file_util.load_context(path_define.ARK_PIXEL_GLYPHS_DIR.joinpath(str(font_size), width_mode_dir_name))
+        for glyph_scope in options.GLYPH_SCOPES:
+            ark_context = glyph_file_util.load_context(path_define.ARK_PIXEL_GLYPHS_DIR.joinpath(str(font_size), glyph_scope))
             for mapping in configs.MAPPINGS:
                 glyph_mapping_util.apply_mapping(ark_context, mapping)
-            ark_contexts[width_mode_dir_name] = ark_context
+            ark_contexts[glyph_scope] = ark_context
 
-            patch_context = glyph_file_util.load_context(path_define.PATCH_GLYPHS_DIR.joinpath(str(font_size), width_mode_dir_name))
-            patch_contexts[width_mode_dir_name] = patch_context
+            patch_context = glyph_file_util.load_context(path_define.PATCH_GLYPHS_DIR.joinpath(str(font_size), glyph_scope))
+            patch_contexts[glyph_scope] = patch_context
 
         pending_deletion = set()
 

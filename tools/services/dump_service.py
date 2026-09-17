@@ -54,15 +54,15 @@ def apply_fallbacks(font_size: FontSize) -> None:
     for fallback_config in configs.FALLBACK_CONFIGS[font_size]:
         dir_from = path_define.DUMP_DIR.joinpath(str(font_size), fallback_config.dir_from)
         assert dir_from.is_dir(), f"dump dir not exist: '{dir_from}'"
-        logger.info("Fallback glyphs: '{}' '{}' '{}'", fallback_config.width_mode_dir_name, fallback_config.flavors, dir_from)
+        logger.info("Fallback glyphs: '{}' '{}' '{}'", fallback_config.glyph_scope, fallback_config.flavors, dir_from)
 
-        if fallback_config.width_mode_dir_name in contexts:
-            context = contexts[fallback_config.width_mode_dir_name]
+        if fallback_config.glyph_scope in contexts:
+            context = contexts[fallback_config.glyph_scope]
         else:
             context = {}
-            contexts[fallback_config.width_mode_dir_name] = context
+            contexts[fallback_config.glyph_scope] = context
 
-        if fallback_config.width_mode_dir_name == 'proportional':
+        if fallback_config.glyph_scope == 'proportional':
             canvas_size = font_config.canvas_size
         else:
             canvas_size = font_size
@@ -99,12 +99,12 @@ def apply_fallbacks(font_size: FontSize) -> None:
                 if fallback_config.flavors is not None:
                     flavors.update(fallback_config.flavors)
 
-    for width_mode_dir_name, context in contexts.items():
-        width_mode_dir = path_define.FALLBACK_GLYPHS_DIR.joinpath(str(font_size), width_mode_dir_name)
+    for glyph_scope, context in contexts.items():
+        glyph_scope_dir = path_define.FALLBACK_GLYPHS_DIR.joinpath(str(font_size), glyph_scope)
         for code_point, bitmap_strings in context.items():
             code_name = f'{code_point:04X}'
             block = unidata_blocks.get_block_by_code_point(code_point)
-            file_dir = width_mode_dir.joinpath(f'{block.code_start:04X}-{block.code_end:04X} {block.name}')
+            file_dir = glyph_scope_dir.joinpath(f'{block.code_start:04X}-{block.code_end:04X} {block.name}')
             if block.name == 'CJK Unified Ideographs':
                 file_dir = file_dir.joinpath(f'{code_name[0:-2]}-')
             file_dir.mkdir(parents=True, exist_ok=True)
@@ -118,4 +118,4 @@ def apply_fallbacks(font_size: FontSize) -> None:
 
                 file_path = file_dir.joinpath(file_name)
                 bitmap.save_png(file_path)
-        logger.info("Fallback context: {} '{}'", font_size, width_mode_dir_name)
+        logger.info("Fallback context: {} '{}'", font_size, glyph_scope)

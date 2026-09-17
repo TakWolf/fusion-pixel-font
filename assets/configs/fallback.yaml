@@ -2,101 +2,101 @@
 -
   font-size: 8
   dir-from: miseki-bitmap/0080-00FF Latin-1 Supplement
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: miseki-bitmap/0100-017F Latin Extended-A
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: miseki-bitmap/0180-024F Latin Extended-B
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: boutique-bitmap/2000-206F General Punctuation
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: boutique-bitmap/2150-218F Number Forms
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: miseki-bitmap/2200-22FF Mathematical Operators
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: miseki-bitmap/2460-24FF Enclosed Alphanumerics
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: miseki-bitmap/2600-26FF Miscellaneous Symbols
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: boutique-bitmap/3100-312F Bopomofo
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: boutique-bitmap/3200-32FF Enclosed CJK Letters and Months
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: galmuri/FE10-FE1F Vertical Forms
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: boutique-bitmap/FE30-FE4F CJK Compatibility Forms
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: boutique-bitmap/FE50-FE6F Small Form Variants
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: boutique-bitmap/FF00-FFEF Halfwidth and Fullwidth Forms
-  width-mode-dir-name: common
+  glyph-scope: common
 
 
 # 汉字
 -
   font-size: 8
   dir-from: miseki-bitmap/4E00-9FFF CJK Unified Ideographs
-  width-mode-dir-name: common
+  glyph-scope: common
   flavors: zh_hans
 -
   font-size: 8
   dir-from: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
-  width-mode-dir-name: common
+  glyph-scope: common
   flavors: zh_hant,zh_hk,zh_tw
 -
   font-size: 8
   dir-from: misaki/4E00-9FFF CJK Unified Ideographs
-  width-mode-dir-name: common
+  glyph-scope: common
   flavors: ja
 -
   font-size: 8
   dir-from: galmuri/4E00-9FFF CJK Unified Ideographs
-  width-mode-dir-name: common
+  glyph-scope: common
   flavors: ko
 -
   font-size: 10
   dir-from: boutique-bitmap/4E00-9FFF CJK Unified Ideographs
-  width-mode-dir-name: common
+  glyph-scope: common
   flavors: zh_hant,zh_hk,zh_tw
 -
   font-size: 10
   dir-from: galmuri/4E00-9FFF CJK Unified Ideographs
-  width-mode-dir-name: common
+  glyph-scope: common
   flavors: ko
 -
   font-size: 12
   dir-from: cubic-11/4E00-9FFF CJK Unified Ideographs
-  width-mode-dir-name: common
+  glyph-scope: common
   flavors: zh_hant,zh_hk,zh_tw
 -
   font-size: 12
   dir-from: galmuri/4E00-9FFF CJK Unified Ideographs
-  width-mode-dir-name: common
+  glyph-scope: common
   flavors: ko
 
 
@@ -104,27 +104,27 @@
 -
   font-size: 8
   dir-from: misaki/3040-309F Hiragana
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: misaki/30A0-30FF Katakana
-  width-mode-dir-name: common
+  glyph-scope: common
 
 
 # 谚文
 -
   font-size: 8
   dir-from: galmuri/3130-318F Hangul Compatibility Jamo
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 8
   dir-from: galmuri/AC00-D7AF Hangul Syllables
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 10
   dir-from: galmuri/AC00-D7AF Hangul Syllables
-  width-mode-dir-name: common
+  glyph-scope: common
 -
   font-size: 12
   dir-from: galmuri/AC00-D7AF Hangul Syllables
-  width-mode-dir-name: common
+  glyph-scope: common

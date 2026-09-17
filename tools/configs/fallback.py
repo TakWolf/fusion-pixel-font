@@ -1,7 +1,7 @@
 import yaml
 
 from tools.configs import path_define, options
-from tools.configs.options import FontSize, LanguageFlavor
+from tools.configs.options import FontSize, GlyphScope, LanguageFlavor
 
 
 class FallbackConfig:
@@ -12,29 +12,29 @@ class FallbackConfig:
         for config_data in data:
             font_size = config_data['font-size']
             dir_from = config_data['dir-from']
-            width_mode_dir_name = config_data['width-mode-dir-name']
+            glyph_scope = config_data['glyph-scope']
             flavors = config_data.get('flavors', None)
             fallback_configs[font_size].append(FallbackConfig(
                 font_size,
                 dir_from,
-                width_mode_dir_name,
+                glyph_scope,
                 flavors.split(',') if flavors is not None else None,
             ))
         return fallback_configs
 
     font_size: FontSize
     dir_from: str
-    width_mode_dir_name: str
+    glyph_scope: GlyphScope
     flavors: list[LanguageFlavor] | None
 
     def __init__(
             self,
             font_size: FontSize,
             dir_from: str,
-            width_mode_dir_name: str,
+            glyph_scope: GlyphScope,
             flavors: list[LanguageFlavor] | None,
     ) -> None:
         self.font_size = font_size
         self.dir_from = dir_from
-        self.width_mode_dir_name = width_mode_dir_name
+        self.glyph_scope = glyph_scope
         self.flavors = flavors
