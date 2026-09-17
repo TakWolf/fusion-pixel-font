@@ -4,7 +4,7 @@ import unidata_blocks
 from PIL import ImageFont, Image, ImageDraw
 from fontTools.ttLib import TTFont
 from loguru import logger
-from pixel_font_knife.mono_bitmap import MonoBitmap
+from pixel_font_knife.bitmap.mono_bitmap import MonoBitmap
 
 from tools import configs
 from tools.configs import path_define, options
@@ -75,7 +75,7 @@ def apply_fallbacks(font_size: FontSize) -> None:
 
                 bitmap = MonoBitmap.load_png(file_path)
                 if bitmap.height > canvas_size:
-                    padding = min((bitmap.height - canvas_size) // 2, bitmap.calculate_top_padding(), bitmap.calculate_bottom_padding())
+                    padding = min((bitmap.height - canvas_size) // 2, bitmap.measure_top_padding(), bitmap.measure_bottom_padding())
                     if padding != 0:
                         bitmap = bitmap.resize(top=-padding, bottom=-padding)
                 elif bitmap.height < canvas_size:
