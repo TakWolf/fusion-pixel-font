@@ -67,37 +67,35 @@ def apply_fallbacks(font_size: FontSize) -> None:
         else:
             canvas_size = font_size
 
-        for parent_dir, _, file_names in dir_from.walk():
-            for file_name in file_names:
-                if not file_name.endswith('.png'):
-                    continue
-                file_path = parent_dir.joinpath(file_name)
+        for file_path in dir_from.rglob('*.png'):
+            if not file_path.is_file():
+                continue
 
-                bitmap = MonoBitmap.load_png(file_path)
-                if bitmap.height > canvas_size:
-                    padding = min((bitmap.height - canvas_size) // 2, bitmap.measure_top_padding(), bitmap.measure_bottom_padding())
-                    if padding != 0:
-                        bitmap = bitmap.resize(top=-padding, bottom=-padding)
-                elif bitmap.height < canvas_size:
-                    padding = (canvas_size - bitmap.height) // 2
-                    bitmap = bitmap.resize(top=padding, bottom=padding)
+            bitmap = MonoBitmap.load_png(file_path)
+            if bitmap.height > canvas_size:
+                padding = min((bitmap.height - canvas_size) // 2, bitmap.measure_top_padding(), bitmap.measure_bottom_padding())
+                if padding != 0:
+                    bitmap = bitmap.resize(top=-padding, bottom=-padding)
+            elif bitmap.height < canvas_size:
+                padding = (canvas_size - bitmap.height) // 2
+                bitmap = bitmap.resize(top=padding, bottom=padding)
 
-                code_point = int(file_path.stem, 16)
-                if code_point in context:
-                    bitmap_strings = context[code_point]
-                else:
-                    bitmap_strings = {}
-                    context[code_point] = bitmap_strings
+            code_point = int(file_path.stem, 16)
+            if code_point in context:
+                bitmap_strings = context[code_point]
+            else:
+                bitmap_strings = {}
+                context[code_point] = bitmap_strings
 
-                bitmap_string = str(bitmap)
-                if bitmap_string in bitmap_strings:
-                    _, flavors = bitmap_strings[bitmap_string]
-                else:
-                    flavors = set()
-                    bitmap_strings[bitmap_string] = bitmap, flavors
+            bitmap_string = str(bitmap)
+            if bitmap_string in bitmap_strings:
+                _, flavors = bitmap_strings[bitmap_string]
+            else:
+                flavors = set()
+                bitmap_strings[bitmap_string] = bitmap, flavors
 
-                if fallback_config.flavors is not None:
-                    flavors.update(fallback_config.flavors)
+            if fallback_config.flavors is not None:
+                flavors.update(fallback_config.flavors)
 
     for glyph_scope, context in contexts.items():
         glyph_scope_dir = path_define.FALLBACK_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope)

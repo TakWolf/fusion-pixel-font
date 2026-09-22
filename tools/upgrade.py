@@ -9,13 +9,12 @@ def main() -> None:
     for upgrade_config in configs.UPGRADE_CONFIGS:
         upgrade_service.upgrade_fonts(upgrade_config)
 
-    for parent_dir, dir_names, file_names in path_define.FONTS_DIR.walk():
-        for file_name in file_names:
-            if not file_name.endswith('.txt'):
-                continue
-            file_path = parent_dir.joinpath(file_name)
-            text = file_path.read_text('utf-8')
-            file_path.write_text(text, 'utf-8')
+    for file_path in path_define.FONTS_DIR.rglob('*.txt'):
+        if not file_path.is_file():
+            continue
+
+        text = file_path.read_text('utf-8')
+        file_path.write_text(text, 'utf-8')
 
 
 if __name__ == '__main__':
