@@ -2,9 +2,8 @@ from pathlib import Path
 
 import yaml
 
-from tools.config import path_define
-from tools.configs import options
-from tools.configs.options import FontSize
+from tools.config import path_define, options
+from tools.config.options import FontSize
 
 
 class DumpConfig:

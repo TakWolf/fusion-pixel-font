@@ -3,10 +3,8 @@ from zipfile import ZipFile
 
 from loguru import logger
 
-from tools import configs
-from tools.config import project, path_define
-from tools.configs import options
-from tools.configs.options import FontSize, WidthMode, FontFormat
+from tools.config import path_define, project, manifest, options
+from tools.config.options import FontSize, WidthMode, FontFormat
 
 
 def make_release_zips(font_size: FontSize, width_mode: WidthMode, font_formats: Sequence[FontFormat]) -> None:
@@ -17,7 +15,7 @@ def make_release_zips(font_size: FontSize, width_mode: WidthMode, font_formats: 
         with ZipFile(zip_file_path, 'w') as file:
             file.write(path_define.PROJECT_ROOT_DIR.joinpath('LICENSE-OFL'), 'OFL.txt')
 
-            for font_name, file_names in sorted(configs.LICENSE_CONFIGS[font_size].items()):
+            for font_name, file_names in sorted(manifest.LICENSE_CONFIGS[font_size].items()):
                 for file_name in file_names:
                     file.write(path_define.FONTS_DIR.joinpath(font_name, file_name), f'LICENSES/{font_name}/{file_name}')
 

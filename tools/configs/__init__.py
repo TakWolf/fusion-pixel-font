@@ -1,8 +1,7 @@
 from pixel_font_knife.cmap.kerning.template import CmapKerningTemplate
 from pixel_font_knife.cmap.mapping.mapping import CmapMapping
 
-from tools.config import path_define
-from tools.configs import options
+from tools.config import path_define, options
 from tools.configs.dump import DumpConfig
 from tools.configs.fallback import FallbackConfig
 from tools.configs.font import FontConfig
@@ -36,62 +35,3 @@ MAPPINGS = [
 ]
 
 KERNING_TEMPLATE_DEFAULT = CmapKerningTemplate.load(path_define.CONFIGS_KERNING_DIR.joinpath('default.yaml'))
-
-LICENSE_CONFIGS = {
-    8: {
-        'misaki': [
-            'misaki.txt',
-        ],
-        'miseki-bitmap': [
-            'LICENSE.txt',
-        ],
-        'boutique-bitmap-7x7': [
-            'OFL.txt',
-        ],
-        'galmuri': [
-            'LICENSE.txt',
-        ],
-    },
-    10: {
-        'ark-pixel': [
-            'OFL.txt',
-        ],
-        'boutique-bitmap-9x9': [
-            'OFL.txt',
-        ],
-        'galmuri': [
-            'LICENSE.txt',
-        ],
-    },
-    12: {
-        'ark-pixel': [
-            'OFL.txt',
-        ],
-        'cubic-11': [
-            'OFL.txt',
-        ],
-        'galmuri': [
-            'LICENSE.txt',
-        ],
-    },
-}
-
-LANGUAGE_FLAVOR_TO_FONT_NAME = {
-    'latin': 'latin',
-    'zh_hans': 'zh-Hans',
-    'zh_hant': 'zh-Hant',
-    'zh_hk': 'zh-HK',
-    'zh_tw': 'zh-TW',
-    'ja': 'ja',
-    'ko': 'ko',
-}
-
-LANGUAGE_FLAVOR_TO_LOCALE = {
-    'latin': 'en',
-    'zh_hans': 'zh-Hans',
-    'zh_hant': 'zh-Hant',
-    'zh_hk': 'zh-Hant-HK',
-    'zh_tw': 'zh-Hant-TW',
-    'ja': 'ja',
-    'ko': 'ko',
-}
