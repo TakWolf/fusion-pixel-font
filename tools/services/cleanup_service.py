@@ -1,7 +1,8 @@
 from loguru import logger
 from pixel_font_knife.cmap.context import CmapContext
 
-from tools.configs import path_define, options
+from tools.config import path_define
+from tools.configs import options
 from tools.configs.options import FontSize
 
 

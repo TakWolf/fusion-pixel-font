@@ -7,7 +7,8 @@ from loguru import logger
 from pixel_font_knife.bitmap.mono_bitmap import MonoBitmap
 
 from tools import configs
-from tools.configs import path_define, options
+from tools.config import path_define
+from tools.configs import options
 from tools.configs.options import FontSize
 
 

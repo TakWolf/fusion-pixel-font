@@ -4,7 +4,8 @@ from zipfile import ZipFile
 
 from loguru import logger
 
-from tools.configs import path_define, UpgradeConfig
+from tools.config import path_define
+from tools.configs import UpgradeConfig
 from tools.utils import github_api, download_util
 
 

@@ -1,6 +1,6 @@
 import yaml
 
-from tools.configs import path_define
+from tools.config import path_define
 
 
 class DownloadAssetConfig:

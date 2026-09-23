@@ -4,7 +4,7 @@ from zipfile import ZipFile
 
 from loguru import logger
 
-from tools.configs import path_define
+from tools.config import path_define
 from tools.utils import download_util
 
 
