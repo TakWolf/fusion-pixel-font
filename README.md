@@ -96,6 +96,7 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 - [tqdm](https://github.com/tqdm/tqdm)
 - [Loguru](https://github.com/Delgan/loguru)
 - [Cyclopts](https://github.com/BrianPugh/cyclopts)
+- [pytest](https://github.com/pytest-dev/pytest)
 
 ## 官方社区
 
