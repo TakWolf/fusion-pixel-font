@@ -7,8 +7,6 @@ from tools.configs.fallback import FallbackConfig
 from tools.configs.font import FontConfig
 from tools.configs.upgrade import UpgradeConfig
 
-VERSION = '2026.09.01'
-
 UPGRADE_CONFIGS = UpgradeConfig.load()
 
 DUMP_CONFIGS = DumpConfig.load()
