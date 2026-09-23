@@ -63,21 +63,21 @@ def apply_fallbacks(font_size: FontSize) -> None:
             contexts[fallback_config.glyph_scope] = context
 
         if fallback_config.glyph_scope == 'proportional':
-            canvas_size = font_config.canvas_size
+            canvas_height = font_config.canvas_height
         else:
-            canvas_size = font_size
+            canvas_height = font_size
 
         for file_path in dir_from.rglob('*.png'):
             if not file_path.is_file():
                 continue
 
             bitmap = MonoBitmap.load_png(file_path)
-            if bitmap.height > canvas_size:
-                padding = min((bitmap.height - canvas_size) // 2, bitmap.measure_top_padding(), bitmap.measure_bottom_padding())
+            if bitmap.height > canvas_height:
+                padding = min((bitmap.height - canvas_height) // 2, bitmap.measure_top_padding(), bitmap.measure_bottom_padding())
                 if padding != 0:
                     bitmap = bitmap.resize(top=-padding, bottom=-padding)
-            elif bitmap.height < canvas_size:
-                padding = (canvas_size - bitmap.height) // 2
+            elif bitmap.height < canvas_height:
+                padding = (canvas_height - bitmap.height) // 2
                 bitmap = bitmap.resize(top=padding, bottom=padding)
 
             code_point = int(file_path.stem, 16)
