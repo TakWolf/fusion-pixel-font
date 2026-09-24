@@ -40,7 +40,7 @@ def upgrade_ark_pixel() -> None:
     version_file_path = path_define.FONTS_DIR.joinpath('ark-pixel').joinpath('version.json')
     version_file_path.parent.mkdir(parents=True, exist_ok=True)
     version_file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
-    logger.info("Update version file: '{}'", version_file_path)
+    logger.info('Update version file: {!r}', str(version_file_path))
 
 
 def upgrade_fonts(upgrade_config: UpgradeConfig) -> None:
@@ -79,20 +79,20 @@ def upgrade_fonts(upgrade_config: UpgradeConfig) -> None:
             logger.info("Start download: '{}'", asset_url)
             download_util.download_file(asset_url, asset_file_path)
         else:
-            logger.info("Already downloaded: '{}'", asset_file_path)
+            logger.info('Already downloaded: {!r}', str(asset_file_path))
 
         asset_unzip_dir = asset_file_path.with_suffix('')
         if asset_unzip_dir.exists():
             shutil.rmtree(asset_unzip_dir)
         with ZipFile(asset_file_path) as file:
             file.extractall(asset_unzip_dir)
-        logger.info("Unzip: '{}'", asset_unzip_dir)
+        logger.info('Unzip: {!r}', str(asset_unzip_dir))
 
         for copy_info in asset_config.copy_list:
             from_path = asset_unzip_dir.joinpath(copy_info[0].format(version=version))
             to_path = fonts_dir.joinpath(copy_info[1].format(version=version))
             from_path.copy(to_path)
-            logger.info("Copy from '{}' to '{}'", from_path, to_path)
+            logger.info('Copy from {!r} to {!r}', str(from_path), str(to_path))
         if asset_unzip_dir.exists():
             shutil.rmtree(asset_unzip_dir)
 
@@ -103,4 +103,4 @@ def upgrade_fonts(upgrade_config: UpgradeConfig) -> None:
     }
     version_file_path = fonts_dir.joinpath('version.json')
     version_file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
-    logger.info("Update version file: '{}'", version_file_path)
+    logger.info('Update version file: {!r}', str(version_file_path))

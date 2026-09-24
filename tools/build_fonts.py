@@ -37,7 +37,7 @@ def main(
 
     if cleanup and path_define.BUILD_DIR.exists():
         shutil.rmtree(path_define.BUILD_DIR)
-        logger.info("Delete dir: '{}'", path_define.BUILD_DIR)
+        logger.info('Delete dir: {!r}', str(path_define.BUILD_DIR))
 
     setup_service.setup_ark_pixel()
 

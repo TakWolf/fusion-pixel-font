@@ -17,7 +17,7 @@ from tools.config.options import FontSize
 def dump_fonts(font_size: FontSize, dump_configs: Sequence[DumpConfig]) -> None:
     for dump_config in dump_configs:
         dump_dir = path_define.DUMP_DIR.joinpath(str(font_size), dump_config.dump_dir_name)
-        logger.info("Dump glyphs: '{}'", dump_dir)
+        logger.info('Dump glyphs: {!r}', str(dump_dir))
 
         font = TTFont(dump_config.font_file_path)
         image_font = ImageFont.truetype(dump_config.font_file_path, dump_config.rasterize_size)
@@ -56,8 +56,8 @@ def apply_fallbacks(font_config: FontConfig, fallback_configs: Sequence[Fallback
     contexts = {}
     for fallback_config in fallback_configs:
         dir_from = path_define.DUMP_DIR.joinpath(str(font_size), fallback_config.dir_from)
-        assert dir_from.is_dir(), f"dump dir not exist: '{dir_from}'"
-        logger.info("Fallback glyphs: '{}' '{}' '{}'", fallback_config.glyph_scope, fallback_config.flavors, dir_from)
+        assert dir_from.is_dir(), f'dump dir not exist: {str(dir_from)!r}'
+        logger.info("Fallback glyphs: '{}' '{}' {!r}", fallback_config.glyph_scope, fallback_config.flavors, str(dir_from))
 
         if fallback_config.glyph_scope in contexts:
             context = contexts[fallback_config.glyph_scope]

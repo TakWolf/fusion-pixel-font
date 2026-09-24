@@ -64,4 +64,4 @@ def make_preview_image(font_config: FontConfig) -> None:
     path_define.OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     file_path = path_define.OUTPUTS_DIR.joinpath(f'preview-{font_size}px.png')
     image.save(file_path)
-    logger.info("Make preview image: '{}'", file_path)
+    logger.info('Make preview image: {!r}', str(file_path))

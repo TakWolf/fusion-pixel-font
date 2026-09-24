@@ -30,14 +30,14 @@ def setup_ark_pixel() -> None:
         downloads_dir.mkdir(parents=True, exist_ok=True)
         download_util.download_file(asset_url, source_file_path)
     else:
-        logger.info("Already downloaded: '{}'", source_file_path)
+        logger.info('Already downloaded: {!r}', str(source_file_path))
 
     source_unzip_dir = downloads_dir.joinpath(f'ark-pixel-font-{sha}')
     if source_unzip_dir.exists():
         shutil.rmtree(source_unzip_dir)
     with ZipFile(source_file_path) as file:
         file.extractall(downloads_dir)
-    logger.info("Unzip: '{}'", source_unzip_dir)
+    logger.info('Unzip: {!r}', str(source_unzip_dir))
 
     if path_define.ARK_PIXEL_GLYPHS_DIR.exists():
         shutil.rmtree(path_define.ARK_PIXEL_GLYPHS_DIR)

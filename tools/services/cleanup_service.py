@@ -37,4 +37,4 @@ def cleanup_cmap_glyphs(font_size: FontSize) -> None:
 
     for glyph_file in pending_deletion:
         glyph_file.file_path.unlink()
-        logger.info("Delete: '{}'", glyph_file.file_path)
+        logger.info('Delete: {!r}', str(glyph_file.file_path))
