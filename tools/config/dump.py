@@ -10,7 +10,10 @@ class DumpConfig:
     @staticmethod
     def load() -> dict[FontSize, list[DumpConfig]]:
         data = yaml.safe_load(path_define.CONFIGS_DIR.joinpath('dump.yaml').read_bytes())
-        dump_configs = {font_size: [] for font_size in options.FONT_SIZES}
+        dump_configs = {
+            font_size: []
+            for font_size in options.FONT_SIZES
+        }
         for font_name, items_data in data.items():
             for item_data in items_data:
                 font_file_path = path_define.FONTS_DIR.joinpath(font_name, item_data['font-file-name'])

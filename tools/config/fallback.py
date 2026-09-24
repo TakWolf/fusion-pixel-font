@@ -8,7 +8,10 @@ class FallbackConfig:
     @staticmethod
     def load() -> dict[FontSize, list[FallbackConfig]]:
         data = yaml.safe_load(path_define.CONFIGS_DIR.joinpath('fallback.yaml').read_bytes())
-        fallback_configs = {font_size: [] for font_size in options.FONT_SIZES}
+        fallback_configs = {
+            font_size: []
+            for font_size in options.FONT_SIZES
+        }
         for config_data in data:
             font_size = config_data['font-size']
             dir_from = config_data['dir-from']

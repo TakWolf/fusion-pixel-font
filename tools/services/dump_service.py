@@ -1,4 +1,5 @@
 import math
+from collections.abc import Sequence
 
 import unidata_blocks
 from PIL import ImageFont, Image, ImageDraw
@@ -6,13 +7,15 @@ from fontTools.ttLib import TTFont
 from loguru import logger
 from pixel_font_knife.bitmap.mono_bitmap import MonoBitmap
 
-from tools import configs
 from tools.config import path_define, options
+from tools.config.dump import DumpConfig
+from tools.config.fallback import FallbackConfig
+from tools.config.font import FontConfig
 from tools.config.options import FontSize
 
 
-def dump_fonts(font_size: FontSize) -> None:
-    for dump_config in configs.DUMP_CONFIGS[font_size]:
+def dump_fonts(font_size: FontSize, dump_configs: Sequence[DumpConfig]) -> None:
+    for dump_config in dump_configs:
         dump_dir = path_define.DUMP_DIR.joinpath(str(font_size), dump_config.dump_dir_name)
         logger.info("Dump glyphs: '{}'", dump_dir)
 
@@ -47,11 +50,11 @@ def dump_fonts(font_size: FontSize) -> None:
             image.save(glyph_file_path)
 
 
-def apply_fallbacks(font_size: FontSize) -> None:
-    font_config = configs.FONT_CONFIGS[font_size]
+def apply_fallbacks(font_config: FontConfig, fallback_configs: Sequence[FallbackConfig]) -> None:
+    font_size = font_config.font_size
 
     contexts = {}
-    for fallback_config in configs.FALLBACK_CONFIGS[font_size]:
+    for fallback_config in fallback_configs:
         dir_from = path_define.DUMP_DIR.joinpath(str(font_size), fallback_config.dir_from)
         assert dir_from.is_dir(), f"dump dir not exist: '{dir_from}'"
         logger.info("Fallback glyphs: '{}' '{}' '{}'", fallback_config.glyph_scope, fallback_config.flavors, dir_from)

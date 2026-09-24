@@ -2,8 +2,8 @@ from PIL import Image, ImageFont, ImageDraw
 from PIL.ImageFont import FreeTypeFont
 from loguru import logger
 
-from tools import configs
 from tools.config import path_define, project
+from tools.config.font import FontConfig
 from tools.config.options import FontSize, WidthMode, LanguageFlavor
 
 
@@ -40,12 +40,14 @@ def _draw_text(
     draw.text((x, y), text, fill=text_color, font=font, spacing=spacing)
 
 
-def make_preview_image(font_size: FontSize) -> None:
+def make_preview_image(font_config: FontConfig) -> None:
+    font_size = font_config.font_size
+    line_height = font_config.line_height
+
     font_latin = _load_font(font_size, 'proportional', 'latin')
     font_zh_hans = _load_font(font_size, 'proportional', 'zh_hans')
     font_zh_hant = _load_font(font_size, 'proportional', 'zh_hant')
     font_ja = _load_font(font_size, 'proportional', 'ja')
-    line_height = configs.FONT_CONFIGS[font_size].line_height
 
     image = Image.new('RGBA', (font_size * 27, font_size * 2 + line_height * 9), (255, 255, 255, 255))
     _draw_text(image, (font_size, font_size), '缝合像素字体 / Fusion Pixel Font', font_zh_hans)
