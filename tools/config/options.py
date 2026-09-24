@@ -45,12 +45,3 @@ type FontFormat = Literal[
     'pcf',
 ]
 FONT_FORMATS = list[FontFormat](get_args(FontFormat.__value__))
-
-type Attachment = Literal[
-    'release',
-    'info',
-    'alphabet',
-    'html',
-    'image',
-]
-ATTACHMENTS = list[Attachment](get_args(Attachment.__value__))
