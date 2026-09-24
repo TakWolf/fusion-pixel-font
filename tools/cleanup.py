@@ -1,5 +1,5 @@
 from tools.config import options
-from tools.services import setup_service, cleanup_service
+from tools.resource import setup_service, cleanup_service
 
 
 def main() -> None:

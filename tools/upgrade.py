@@ -1,6 +1,6 @@
 from tools.config import path_define
 from tools.config.upgrade import UpgradeConfig
-from tools.services import upgrade_service
+from tools.resource import upgrade_service
 
 
 def main() -> None:

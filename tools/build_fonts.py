@@ -10,8 +10,9 @@ from tools.config.dump import DumpConfig
 from tools.config.fallback import FallbackConfig
 from tools.config.font import FontConfig
 from tools.config.options import FontSize, WidthMode, FontFormat
-from tools.services import setup_service, dump_service, publish_service, info_service
-from tools.services.font_service import FontBuildContext
+from tools.extra import publish_service, info_service
+from tools.font.context import FontBuildContext
+from tools.resource import setup_service, dump_service
 
 app = App(
     version=project.VERSION,
