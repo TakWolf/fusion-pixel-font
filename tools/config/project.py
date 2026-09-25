@@ -1,5 +1,5 @@
 
-VERSION = '2026.09.01'
+VERSION = '2026.09.25'
 
 FAMILY_NAME_PREFIX = 'Fusion Pixel'
 FILE_NAME_PREFIX = 'fusion-pixel'
