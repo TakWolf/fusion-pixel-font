@@ -9,6 +9,7 @@ from tools.config import path_define, project, manifest, options
 from tools.config.dump import DumpConfig
 from tools.config.fallback import FallbackConfig
 from tools.config.font import FontConfig
+from tools.config.glyph.metric import GlyphMetricRules
 from tools.config.options import FontSize, WidthMode, FontFormat
 from tools.extra import publish_service, info_service
 from tools.font.context import FontBuildContext
@@ -42,6 +43,8 @@ def main(
 
     setup_service.setup_ark_pixel()
 
+    glyph_metric_rules = GlyphMetricRules.load()
+
     scope_mappings = {
         glyph_scope: [
             CmapMapping.load_yaml(
@@ -64,7 +67,7 @@ def main(
         dump_service.dump_fonts(font_size, dump_configs[font_size])
         dump_service.apply_fallbacks(font_config, fallback_configs[font_size])
 
-        build_context = FontBuildContext.load(font_config, scope_mappings, kerning_template)
+        build_context = FontBuildContext.load(font_config, glyph_metric_rules, scope_mappings, kerning_template)
 
         for width_mode in width_modes:
             alphabet = build_context.get_alphabet(width_mode)
