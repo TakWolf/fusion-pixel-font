@@ -50,7 +50,7 @@ def make_preview_image(font_config: FontConfig) -> None:
     font_ja = _load_font(font_size, 'proportional', 'ja')
 
     image = Image.new('RGBA', (font_size * 27, font_size * 2 + line_height * 9), (255, 255, 255, 255))
-    _draw_text(image, (font_size, font_size), '缝合像素字体 / Fusion Pixel Font', font_zh_hans)
+    _draw_text(image, (font_size, font_size), f'{project.NAME_ZH} / {project.NAME}', font_zh_hans)
     _draw_text(image, (font_size, font_size + line_height), '我们度过的每个平凡的日常，也许就是连续发生的奇迹。', font_zh_hans)
     _draw_text(image, (font_size, font_size + line_height * 2), '我們度過的每個平凡的日常，也許就是連續發生的奇蹟。', font_zh_hant)
     _draw_text(image, (font_size, font_size + line_height * 3), '日々、私たちが過ごしている日常は、', font_ja)
