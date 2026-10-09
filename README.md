@@ -80,6 +80,13 @@ Logo 捏他自 [《游戏王》](https://zh.wikipedia.org/wiki/%E9%81%8A%E6%88%B
 
 [点击此链接](https://github.com/TakWolf/fusion-pixel-font/releases) 下载最新版本。
 
+## 游戏引擎使用示例
+
+以下示例项目演示了如何在游戏引擎中集成本字体并实现本地化：
+
+- [Godot - 像素字体本地化示例](https://github.com/TakWolf/godot-pixel-font-localization-sample)
+- [Unity - 像素字体本地化示例](https://github.com/TakWolf/unity-pixel-font-localization-sample)
+
 ## 程序依赖
 
 - [Pixel Font Builder](https://github.com/TakWolf/pixel-font-builder)
