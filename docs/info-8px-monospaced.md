@@ -4,8 +4,8 @@
 
 | 属性 | 值 |
 |---|---|
-| 版本号 | 2026.09.25 |
-| 字符总数 | 28409 |
+| 版本号 | 2026.10.16 |
+| 字符总数 | 28410 |
 
 ## Unicode 字符统计
 
@@ -14,7 +14,7 @@ Unicode 版本：18.0.0
 | 区块范围 | 区块名称 | 区块含义 | 完成数 | 缺失数 | 进度 |
 |---|---|---|---:|---:|---:|
 | 0000 ~ 007F | Basic Latin | 基本拉丁字母 | 95 / 95 | 0 | 100.00% 🚩 |
-| 0080 ~ 00FF | Latin-1 Supplement | 拉丁字母-1 增补 | 95 / 95 | 0 | 100.00% 🚩 |
+| 0080 ~ 00FF | Latin-1 Supplement | 拉丁字母增补-1 | 95 / 95 | 0 | 100.00% 🚩 |
 | 0100 ~ 017F | Latin Extended-A | 拉丁字母扩充-A | 128 / 128 | 0 | 100.00% 🚩 |
 | 0180 ~ 024F | Latin Extended-B | 拉丁字母扩充-B | 77 / 208 | 131 | 37.02% 🚧 |
 | 2000 ~ 206F | General Punctuation | 通用标点 | 36 / 84 | 48 | 42.86% 🚧 |
@@ -37,7 +37,7 @@ Unicode 版本：18.0.0
 | 3130 ~ 318F | Hangul Compatibility Jamo | 谚文兼容字母 | 52 / 94 | 42 | 55.32% 🚧 |
 | 3200 ~ 32FF | Enclosed CJK Letters and Months | 包围中日韩字母与月份 | 31 / 255 | 224 | 12.16% 🚧 |
 | 3400 ~ 4DBF | CJK Unified Ideographs Extension A | 中日韩统一表意文字扩充 A | 1 / 6592 | 6591 | 0.02% 🚧 |
-| 4E00 ~ 9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 14718 / 20992 | 6274 | 70.11% 🚧 |
+| 4E00 ~ 9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 14719 / 20992 | 6273 | 70.12% 🚧 |
 | AC00 ~ D7AF | Hangul Syllables | 谚文音节 | 11172 / 11172 | 0 | 100.00% 🚩 |
 | E000 ~ F8FF | Private Use Area | 私用区域 | 62 / 0 | 0 | 100.00% 🚩 |
 | F900 ~ FAFF | CJK Compatibility Ideographs | 中日韩兼容表意文字 | 429 / 472 | 43 | 90.89% 🚧 |

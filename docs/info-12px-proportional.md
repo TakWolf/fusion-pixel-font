@@ -4,8 +4,8 @@
 
 | 属性 | 值 |
 |---|---|
-| 版本号 | 2026.09.25 |
-| 字符总数 | 36999 |
+| 版本号 | 2026.10.16 |
+| 字符总数 | 37689 |
 
 ## Unicode 字符统计
 
@@ -14,12 +14,12 @@ Unicode 版本：18.0.0
 | 区块范围 | 区块名称 | 区块含义 | 完成数 | 缺失数 | 进度 |
 |---|---|---|---:|---:|---:|
 | 0000 ~ 007F | Basic Latin | 基本拉丁字母 | 95 / 95 | 0 | 100.00% 🚩 |
-| 0080 ~ 00FF | Latin-1 Supplement | 拉丁字母-1 增补 | 95 / 95 | 0 | 100.00% 🚩 |
+| 0080 ~ 00FF | Latin-1 Supplement | 拉丁字母增补-1 | 95 / 95 | 0 | 100.00% 🚩 |
 | 0100 ~ 017F | Latin Extended-A | 拉丁字母扩充-A | 128 / 128 | 0 | 100.00% 🚩 |
 | 0180 ~ 024F | Latin Extended-B | 拉丁字母扩充-B | 127 / 208 | 81 | 61.06% 🚧 |
 | 0370 ~ 03FF | Greek and Coptic | 希腊字母与科普特字母 | 99 / 135 | 36 | 73.33% 🚧 |
 | 0400 ~ 04FF | Cyrillic | 西里尔字母 | 153 / 256 | 103 | 59.77% 🚧 |
-| 1E00 ~ 1EFF | Latin Extended Additional | 拉丁字母扩充附加 | 1 / 256 | 255 | 0.39% 🚧 |
+| 1E00 ~ 1EFF | Latin Extended Additional | 拉丁字母扩充附加 | 256 / 256 | 0 | 100.00% 🚩 |
 | 2000 ~ 206F | General Punctuation | 通用标点 | 39 / 84 | 45 | 46.43% 🚧 |
 | 2070 ~ 209F | Superscripts and Subscripts | 上标与下标 | 42 / 46 | 4 | 91.30% 🚧 |
 | 2100 ~ 214F | Letterlike Symbols | 字母式符号 | 9 / 80 | 71 | 11.25% 🚧 |
@@ -44,25 +44,25 @@ Unicode 版本：18.0.0
 | 3130 ~ 318F | Hangul Compatibility Jamo | 谚文兼容字母 | 94 / 94 | 0 | 100.00% 🚩 |
 | 3200 ~ 32FF | Enclosed CJK Letters and Months | 包围中日韩字母与月份 | 92 / 255 | 163 | 36.08% 🚧 |
 | 3300 ~ 33FF | CJK Compatibility | 中日韩兼容 | 60 / 256 | 196 | 23.44% 🚧 |
-| 3400 ~ 4DBF | CJK Unified Ideographs Extension A | 中日韩统一表意文字扩充 A | 1481 / 6592 | 5111 | 22.47% 🚧 |
-| 4E00 ~ 9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 19219 / 20992 | 1773 | 91.55% 🚧 |
+| 3400 ~ 4DBF | CJK Unified Ideographs Extension A | 中日韩统一表意文字扩充 A | 1626 / 6592 | 4966 | 24.67% 🚧 |
+| 4E00 ~ 9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 19317 / 20992 | 1675 | 92.02% 🚧 |
 | A720 ~ A7FF | Latin Extended-D | 拉丁字母扩充-D | 7 / 206 | 199 | 3.40% 🚧 |
 | AC00 ~ D7AF | Hangul Syllables | 谚文音节 | 11172 / 11172 | 0 | 100.00% 🚩 |
 | E000 ~ F8FF | Private Use Area | 私用区域 | 249 / 0 | 0 | 100.00% 🚩 |
-| F900 ~ FAFF | CJK Compatibility Ideographs | 中日韩兼容表意文字 | 434 / 472 | 38 | 91.95% 🚧 |
+| F900 ~ FAFF | CJK Compatibility Ideographs | 中日韩兼容表意文字 | 435 / 472 | 37 | 92.16% 🚧 |
 | FE10 ~ FE1F | Vertical Forms | 竖排形式 | 10 / 10 | 0 | 100.00% 🚩 |
 | FE30 ~ FE4F | CJK Compatibility Forms | 中日韩兼容形式 | 32 / 32 | 0 | 100.00% 🚩 |
 | FF00 ~ FFEF | Halfwidth and Fullwidth Forms | 半宽与全宽形式 | 173 / 225 | 52 | 76.89% 🚧 |
 | FFF0 ~ FFFF | Specials | 特殊字符 | 2 / 2 | 0 | 100.00% 🚩 |
 | 16FE0 ~ 16FFF | Ideographic Symbols and Punctuation | 表意文字符号与标点 | 5 / 12 | 7 | 41.67% 🚧 |
 | 1F100 ~ 1F1FF | Enclosed Alphanumeric Supplement | 包围字母数字增补 | 145 / 201 | 56 | 72.14% 🚧 |
-| 1FA00 ~ 1FA6F | Chess Symbols | 国际象棋符号 | 36 / 102 | 66 | 35.29% 🚧 |
-| 20000 ~ 2A6DF | CJK Unified Ideographs Extension B | 中日韩统一表意文字扩充 B | 1147 / 42720 | 41573 | 2.68% 🚧 |
-| 2A700 ~ 2B73F | CJK Unified Ideographs Extension C | 中日韩统一表意文字扩充 C | 36 / 4160 | 4124 | 0.87% 🚧 |
+| 1FA00 ~ 1FA6F | Chess Symbols | 棋类符号 | 36 / 102 | 66 | 35.29% 🚧 |
+| 20000 ~ 2A6DF | CJK Unified Ideographs Extension B | 中日韩统一表意文字扩充 B | 1324 / 42720 | 41396 | 3.10% 🚧 |
+| 2A700 ~ 2B73F | CJK Unified Ideographs Extension C | 中日韩统一表意文字扩充 C | 38 / 4160 | 4122 | 0.91% 🚧 |
 | 2B740 ~ 2B81F | CJK Unified Ideographs Extension D | 中日韩统一表意文字扩充 D | 11 / 223 | 212 | 4.93% 🚧 |
-| 2B820 ~ 2CEAF | CJK Unified Ideographs Extension E | 中日韩统一表意文字扩充 E | 39 / 5774 | 5735 | 0.68% 🚧 |
-| 2CEB0 ~ 2EBEF | CJK Unified Ideographs Extension F | 中日韩统一表意文字扩充 F | 4 / 7473 | 7469 | 0.05% 🚧 |
-| 30000 ~ 3134F | CJK Unified Ideographs Extension G | 中日韩统一表意文字扩充 G | 6 / 4939 | 4933 | 0.12% 🚧 |
+| 2B820 ~ 2CEAF | CJK Unified Ideographs Extension E | 中日韩统一表意文字扩充 E | 45 / 5774 | 5729 | 0.78% 🚧 |
+| 2CEB0 ~ 2EBEF | CJK Unified Ideographs Extension F | 中日韩统一表意文字扩充 F | 7 / 7473 | 7466 | 0.09% 🚧 |
+| 30000 ~ 3134F | CJK Unified Ideographs Extension G | 中日韩统一表意文字扩充 G | 9 / 4939 | 4930 | 0.18% 🚧 |
 
 ## GB2312 字符统计
 
@@ -71,9 +71,9 @@ Unicode 版本：18.0.0
 | 区块名称 | 完成数 | 缺失数 | 进度 |
 |---|---:|---:|---:|
 | 一级汉字 | 3755 / 3755 | 0 | 100.00% 🚩 |
-| 二级汉字 | 2865 / 3008 | 143 | 95.25% 🚧 |
+| 二级汉字 | 2880 / 3008 | 128 | 95.74% 🚧 |
 | 其他字符 | 651 / 682 | 31 | 95.45% 🚧 |
-| 总计 | 7271 / 7445 | 174 | 97.66% 🚧 |
+| 总计 | 7286 / 7445 | 159 | 97.86% 🚧 |
 
 ## Big5 字符统计
 
@@ -82,9 +82,9 @@ Unicode 版本：18.0.0
 | 区块名称 | 完成数 | 缺失数 | 进度 |
 |---|---:|---:|---:|
 | 常用汉字 | 5401 / 5401 | 0 | 100.00% 🚩 |
-| 次常用汉字 | 6692 / 7652 | 960 | 87.45% 🚧 |
+| 次常用汉字 | 6742 / 7652 | 910 | 88.11% 🚧 |
 | 其他字符 | 345 / 408 | 63 | 84.56% 🚧 |
-| 总计 | 12438 / 13461 | 1023 | 92.40% 🚧 |
+| 总计 | 12488 / 13461 | 973 | 92.77% 🚧 |
 
 ## Shift-JIS 字符统计
 
@@ -105,6 +105,6 @@ Unicode 版本：18.0.0
 | 区块名称 | 完成数 | 缺失数 | 进度 |
 |---|---:|---:|---:|
 | 谚文音节 | 2350 / 2350 | 0 | 100.00% 🚩 |
-| 汉字 | 4852 / 4888 | 36 | 99.26% 🚧 |
+| 汉字 | 4853 / 4888 | 35 | 99.28% 🚧 |
 | 其他字符 | 803 / 988 | 185 | 81.28% 🚧 |
-| 总计 | 8005 / 8226 | 221 | 97.31% 🚧 |
+| 总计 | 8006 / 8226 | 220 | 97.33% 🚧 |
