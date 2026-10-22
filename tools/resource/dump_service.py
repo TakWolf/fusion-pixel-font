@@ -6,6 +6,7 @@ from PIL import ImageFont, Image, ImageDraw
 from fontTools.ttLib import TTFont
 from loguru import logger
 from pixel_font_knife.bitmap.mono_bitmap import MonoBitmap
+from pixel_font_knife.cmap.file import CmapGlyphFile
 
 from tools.config import path_define, options
 from tools.config.dump import DumpConfig
@@ -41,12 +42,9 @@ def dump_fonts(font_size: FontSize, dump_configs: Sequence[DumpConfig]) -> None:
             image = Image.new('RGBA', (canvas_width, canvas_height), (0, 0, 0, 0))
             ImageDraw.Draw(image).text(dump_config.rasterize_offset, c, fill=(0, 0, 0, 255), font=image_font)
 
-            glyph_file_dir = dump_dir.joinpath(f'{block.code_start:04X}-{block.code_end:04X} {block.name}')
-            code_name = f'{code_point:04X}'
-            if block == unidata_blocks.BLOCK_CJK_UNIFIED_IDEOGRAPHS:
-                glyph_file_dir = glyph_file_dir.joinpath(f'{code_name[0:-2]}-')
-            glyph_file_path = glyph_file_dir.joinpath(f'{code_name}.png')
+            glyph_file_dir = CmapGlyphFile.get_normalized_dir(code_point, dump_dir)
             glyph_file_dir.mkdir(parents=True, exist_ok=True)
+            glyph_file_path = glyph_file_dir.joinpath(f'{code_point:04X}.png')
             image.save(glyph_file_path)
 
 
@@ -103,19 +101,15 @@ def apply_fallbacks(font_config: FontConfig, fallback_configs: Sequence[Fallback
     for glyph_scope, context in contexts.items():
         glyph_scope_dir = path_define.FALLBACK_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope)
         for code_point, bitmap_strings in context.items():
-            code_name = f'{code_point:04X}'
-            block = unidata_blocks.get_block_by_code_point(code_point)
-            file_dir = glyph_scope_dir.joinpath(f'{block.code_start:04X}-{block.code_end:04X} {block.name}')
-            if block == unidata_blocks.BLOCK_CJK_UNIFIED_IDEOGRAPHS:
-                file_dir = file_dir.joinpath(f'{code_name[0:-2]}-')
+            file_dir = CmapGlyphFile.get_normalized_dir(code_point, glyph_scope_dir)
             file_dir.mkdir(parents=True, exist_ok=True)
 
             for bitmap, flavors in bitmap_strings.values():
                 if len(flavors) > 0:
                     flavors = sorted(flavors, key=lambda x: options.LANGUAGE_FLAVORS.index(x))
-                    file_name = f'{code_name} {",".join(flavors)}.png'
+                    file_name = f'{code_point:04X} {",".join(flavors)}.png'
                 else:
-                    file_name = f'{code_name}.png'
+                    file_name = f'{code_point:04X}.png'
 
                 file_path = file_dir.joinpath(file_name)
                 bitmap.save_png(file_path)
