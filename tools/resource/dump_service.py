@@ -29,13 +29,13 @@ def dump_fonts(font_size: FontSize, dump_configs: Sequence[DumpConfig]) -> None:
         for code_point, glyph_name in font.getBestCmap().items():
             c = chr(code_point)
             block = unidata_blocks.get_block_by_code_point(code_point)
-            if not c.isprintable() and block.name != 'Private Use Area':
+            if not c.isprintable() and block != unidata_blocks.BLOCK_PRIVATE_USE_AREA:
                 continue
 
             canvas_width = math.ceil(font['hmtx'].metrics[glyph_name][0] / font['head'].unitsPerEm * dump_config.rasterize_size)
             if canvas_width <= 0:
                 continue
-            elif canvas_width > font_size and block.name != 'Private Use Area':
+            elif canvas_width > font_size and block != unidata_blocks.BLOCK_PRIVATE_USE_AREA:
                 canvas_width = font_size
 
             image = Image.new('RGBA', (canvas_width, canvas_height), (0, 0, 0, 0))
@@ -43,7 +43,7 @@ def dump_fonts(font_size: FontSize, dump_configs: Sequence[DumpConfig]) -> None:
 
             glyph_file_dir = dump_dir.joinpath(f'{block.code_start:04X}-{block.code_end:04X} {block.name}')
             code_name = f'{code_point:04X}'
-            if block.name == 'CJK Unified Ideographs':
+            if block == unidata_blocks.BLOCK_CJK_UNIFIED_IDEOGRAPHS:
                 glyph_file_dir = glyph_file_dir.joinpath(f'{code_name[0:-2]}-')
             glyph_file_path = glyph_file_dir.joinpath(f'{code_name}.png')
             glyph_file_dir.mkdir(parents=True, exist_ok=True)
@@ -106,7 +106,7 @@ def apply_fallbacks(font_config: FontConfig, fallback_configs: Sequence[Fallback
             code_name = f'{code_point:04X}'
             block = unidata_blocks.get_block_by_code_point(code_point)
             file_dir = glyph_scope_dir.joinpath(f'{block.code_start:04X}-{block.code_end:04X} {block.name}')
-            if block.name == 'CJK Unified Ideographs':
+            if block == unidata_blocks.BLOCK_CJK_UNIFIED_IDEOGRAPHS:
                 file_dir = file_dir.joinpath(f'{code_name[0:-2]}-')
             file_dir.mkdir(parents=True, exist_ok=True)
 
