@@ -4,8 +4,8 @@
 
 | 属性 | 值 |
 |---|---|
-| 版本号 | 2026.10.16 |
-| 字符总数 | 25385 |
+| 版本号 | 2026.10.25 |
+| 字符总数 | 25386 |
 
 ## Unicode 字符统计
 
@@ -42,7 +42,7 @@ Unicode 版本：18.0.0
 | 3130 ~ 318F | Hangul Compatibility Jamo | 谚文兼容字母 | 94 / 94 | 0 | 100.00% 🚩 |
 | 3200 ~ 32FF | Enclosed CJK Letters and Months | 包围中日韩字母与月份 | 40 / 255 | 215 | 15.69% 🚧 |
 | 3300 ~ 33FF | CJK Compatibility | 中日韩兼容 | 60 / 256 | 196 | 23.44% 🚧 |
-| 3400 ~ 4DBF | CJK Unified Ideographs Extension A | 中日韩统一表意文字扩充 A | 14 / 6592 | 6578 | 0.21% 🚧 |
+| 3400 ~ 4DBF | CJK Unified Ideographs Extension A | 中日韩统一表意文字扩充 A | 15 / 6592 | 6577 | 0.23% 🚧 |
 | 4E00 ~ 9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 10683 / 20992 | 10309 | 50.89% 🚧 |
 | A720 ~ A7FF | Latin Extended-D | 拉丁字母扩充-D | 7 / 206 | 199 | 3.40% 🚧 |
 | AC00 ~ D7AF | Hangul Syllables | 谚文音节 | 11172 / 11172 | 0 | 100.00% 🚩 |
