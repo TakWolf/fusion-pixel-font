@@ -1,21 +1,21 @@
 from loguru import logger
 from pixel_font_knife.cmap.context import CmapContext
 
-from tools.config import path_define, options
+from tools.config import paths, options
 from tools.config.options import FontSize
 
 
 def cleanup_cmap_glyphs(font_size: FontSize) -> None:
     ark_contexts = {
         glyph_scope: CmapContext.load(
-            path_define.ARK_PIXEL_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope),
+            paths.ARK_PIXEL_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope),
             allowed_flavors=options.LANGUAGE_FLAVORS,
         )
         for glyph_scope in options.GLYPH_SCOPES
     }
     patch_contexts = {
         glyph_scope: CmapContext.load(
-            path_define.PATCH_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope),
+            paths.PATCH_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope),
             allowed_flavors=options.LANGUAGE_FLAVORS,
         )
         for glyph_scope in options.GLYPH_SCOPES

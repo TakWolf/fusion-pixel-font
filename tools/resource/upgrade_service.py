@@ -4,7 +4,7 @@ from zipfile import ZipFile
 
 from loguru import logger
 
-from tools.config import path_define
+from tools.config import paths
 from tools.config.upgrade import UpgradeConfig
 from tools.utils import github_api, download_util
 
@@ -37,7 +37,7 @@ def upgrade_ark_pixel() -> None:
         'version_url': f'https://github.com/{repository_name}/tree/{version}',
         'asset_url': f'https://github.com/{repository_name}/archive/{sha}.zip',
     }
-    version_file_path = path_define.FONTS_DIR.joinpath('ark-pixel').joinpath('version.json')
+    version_file_path = paths.FONTS_DIR.joinpath('ark-pixel').joinpath('version.json')
     version_file_path.parent.mkdir(parents=True, exist_ok=True)
     version_file_path.write_text(f'{json.dumps(version_info, indent=2, ensure_ascii=False)}\n', 'utf-8')
     logger.info('Update version file: {!r}', str(version_file_path))
@@ -51,7 +51,7 @@ def upgrade_fonts(upgrade_config: UpgradeConfig) -> None:
     logger.info("'{}' tag: '{}'", upgrade_config.repository_name, tag_name)
     version = tag_name.removeprefix('v')
 
-    fonts_dir = path_define.FONTS_DIR.joinpath(upgrade_config.name)
+    fonts_dir = paths.FONTS_DIR.joinpath(upgrade_config.name)
     version_file_path = fonts_dir.joinpath('version.json')
     if version_file_path.exists():
         version_info = json.loads(version_file_path.read_bytes())
@@ -60,7 +60,7 @@ def upgrade_fonts(upgrade_config: UpgradeConfig) -> None:
     logger.info("Need upgrade fonts: '{}'", upgrade_config.name)
 
     repository_url = f'https://github.com/{upgrade_config.repository_name}'
-    downloads_dir = path_define.DOWNLOADS_DIR.joinpath(upgrade_config.repository_name, tag_name)
+    downloads_dir = paths.DOWNLOADS_DIR.joinpath(upgrade_config.repository_name, tag_name)
     downloads_dir.mkdir(parents=True, exist_ok=True)
 
     if fonts_dir.exists():

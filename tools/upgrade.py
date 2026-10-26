@@ -1,4 +1,4 @@
-from tools.config import path_define
+from tools.config import paths
 from tools.config.upgrade import UpgradeConfig
 from tools.resource import upgrade_service
 
@@ -10,7 +10,7 @@ def main() -> None:
     for upgrade_config in upgrade_configs:
         upgrade_service.upgrade_fonts(upgrade_config)
 
-    for file_path in path_define.FONTS_DIR.rglob('*.txt'):
+    for file_path in paths.FONTS_DIR.rglob('*.txt'):
         if not file_path.is_file():
             continue
 

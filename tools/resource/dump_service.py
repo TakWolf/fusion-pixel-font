@@ -8,7 +8,7 @@ from loguru import logger
 from pixel_font_knife.bitmap.mono_bitmap import MonoBitmap
 from pixel_font_knife.cmap.file import CmapGlyphFile
 
-from tools.config import path_define, options
+from tools.config import paths, options
 from tools.config.dump import DumpConfig
 from tools.config.fallback import FallbackConfig
 from tools.config.font import FontConfig
@@ -17,7 +17,7 @@ from tools.config.options import FontSize
 
 def dump_fonts(font_size: FontSize, dump_configs: Sequence[DumpConfig]) -> None:
     for dump_config in dump_configs:
-        dump_dir = path_define.DUMP_DIR.joinpath(str(font_size), dump_config.dump_dir_name)
+        dump_dir = paths.DUMP_DIR.joinpath(str(font_size), dump_config.dump_dir_name)
         logger.info('Dump glyphs: {!r}', str(dump_dir))
 
         font = TTFont(dump_config.font_file_path)
@@ -53,7 +53,7 @@ def apply_fallbacks(font_config: FontConfig, fallback_configs: Sequence[Fallback
 
     contexts = {}
     for fallback_config in fallback_configs:
-        dir_from = path_define.DUMP_DIR.joinpath(str(font_size), fallback_config.dir_from)
+        dir_from = paths.DUMP_DIR.joinpath(str(font_size), fallback_config.dir_from)
         assert dir_from.is_dir(), f'dump dir not exist: {str(dir_from)!r}'
         logger.info("Fallback glyphs: '{}' '{}' {!r}", fallback_config.glyph_scope, fallback_config.flavors, str(dir_from))
 
@@ -99,7 +99,7 @@ def apply_fallbacks(font_config: FontConfig, fallback_configs: Sequence[Fallback
                 flavors.update(fallback_config.flavors)
 
     for glyph_scope, context in contexts.items():
-        glyph_scope_dir = path_define.FALLBACK_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope)
+        glyph_scope_dir = paths.FALLBACK_GLYPHS_DIR.joinpath(str(font_size), 'cmap', glyph_scope)
         for code_point, bitmap_strings in context.items():
             file_dir = CmapGlyphFile.get_normalized_dir(code_point, glyph_scope_dir)
             file_dir.mkdir(parents=True, exist_ok=True)

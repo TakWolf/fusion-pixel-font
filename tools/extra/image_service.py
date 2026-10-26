@@ -2,13 +2,13 @@ from PIL import Image, ImageFont, ImageDraw
 from PIL.ImageFont import FreeTypeFont
 from loguru import logger
 
-from tools.config import path_define, project
+from tools.config import paths, project
 from tools.config.font import FontConfig
 from tools.config.options import FontSize, WidthMode, LanguageFlavor
 
 
 def _load_font(font_size: FontSize, width_mode: WidthMode, language_flavor: LanguageFlavor, scale: int = 1) -> FreeTypeFont:
-    file_path = path_define.OUTPUTS_DIR.joinpath(f'{project.FILE_NAME_PREFIX}-{font_size}px-{width_mode}-{language_flavor}.otf.woff2')
+    file_path = paths.OUTPUTS_DIR.joinpath(f'{project.FILE_NAME_PREFIX}-{font_size}px-{width_mode}-{language_flavor}.otf.woff2')
     return ImageFont.truetype(file_path, font_size * scale)
 
 
@@ -61,7 +61,7 @@ def make_preview_image(font_config: FontConfig) -> None:
     _draw_text(image, (font_size, font_size + line_height * 8), '★☆☺☹♠♡♢♣♤♥♦♧☀☼♩♪♫♬☂☁⚓✈⚔☯', font_latin)
     image = image.resize((image.width * 2, image.height * 2), Image.Resampling.NEAREST)
 
-    path_define.OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
-    file_path = path_define.OUTPUTS_DIR.joinpath(f'preview-{font_size}px.png')
+    paths.OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
+    file_path = paths.OUTPUTS_DIR.joinpath(f'preview-{font_size}px.png')
     image.save(file_path)
     logger.info('Make preview image: {!r}', str(file_path))

@@ -4,25 +4,25 @@ from zipfile import ZipFile
 
 from loguru import logger
 
-from tools.config import path_define
+from tools.config import paths
 from tools.utils import download_util
 
 
 def setup_ark_pixel() -> None:
-    cache_version_file_path = path_define.CACHE_DIR.joinpath('ark-pixel-version.json')
+    cache_version_file_path = paths.CACHE_DIR.joinpath('ark-pixel-version.json')
     if cache_version_file_path.is_file():
         cache_sha = json.loads(cache_version_file_path.read_bytes())['sha']
     else:
         cache_sha = None
 
-    version_file_path = path_define.FONTS_DIR.joinpath('ark-pixel', 'version.json')
+    version_file_path = paths.FONTS_DIR.joinpath('ark-pixel', 'version.json')
     version_info = json.loads(version_file_path.read_bytes())
     sha = version_info['sha']
     if cache_sha == sha:
         return
     logger.info('Need setup glyphs')
 
-    downloads_dir = path_define.DOWNLOADS_DIR.joinpath('ark-pixel-font')
+    downloads_dir = paths.DOWNLOADS_DIR.joinpath('ark-pixel-font')
     source_file_path = downloads_dir.joinpath(f'{sha}.zip')
     if not source_file_path.exists():
         asset_url = version_info['asset_url']
@@ -39,9 +39,9 @@ def setup_ark_pixel() -> None:
         file.extractall(downloads_dir)
     logger.info('Unzip: {!r}', str(source_unzip_dir))
 
-    if path_define.ARK_PIXEL_GLYPHS_DIR.exists():
-        shutil.rmtree(path_define.ARK_PIXEL_GLYPHS_DIR)
-    source_unzip_dir.joinpath('assets', 'glyphs').rename(path_define.ARK_PIXEL_GLYPHS_DIR)
+    if paths.ARK_PIXEL_GLYPHS_DIR.exists():
+        shutil.rmtree(paths.ARK_PIXEL_GLYPHS_DIR)
+    source_unzip_dir.joinpath('assets', 'glyphs').rename(paths.ARK_PIXEL_GLYPHS_DIR)
 
     if source_unzip_dir.exists():
         shutil.rmtree(source_unzip_dir)

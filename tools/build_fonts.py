@@ -5,7 +5,7 @@ from loguru import logger
 from pixel_font_knife.cmap.kerning.template import CmapKerningTemplate
 from pixel_font_knife.cmap.mapping.mapping import CmapMapping
 
-from tools.config import path_define, project, manifest, options
+from tools.config import paths, project, manifest, options
 from tools.config.dump import DumpConfig
 from tools.config.fallback import FallbackConfig
 from tools.config.font import FontConfig
@@ -37,9 +37,9 @@ def main(
     logger.info('width_modes = {}', width_modes)
     logger.info('font_formats = {}', font_formats)
 
-    if cleanup and path_define.BUILD_DIR.exists():
-        shutil.rmtree(path_define.BUILD_DIR)
-        logger.info('Delete dir: {!r}', str(path_define.BUILD_DIR))
+    if cleanup and paths.BUILD_DIR.exists():
+        shutil.rmtree(paths.BUILD_DIR)
+        logger.info('Delete dir: {!r}', str(paths.BUILD_DIR))
 
     setup_service.setup_ark_pixel()
 

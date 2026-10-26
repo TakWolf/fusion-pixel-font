@@ -1,6 +1,6 @@
 import yaml
 
-from tools.config import path_define
+from tools.config import paths
 
 
 class DownloadAssetConfig:
@@ -15,7 +15,7 @@ class DownloadAssetConfig:
 class UpgradeConfig:
     @staticmethod
     def load() -> list[UpgradeConfig]:
-        data = yaml.safe_load(path_define.CONFIGS_DIR.joinpath('upgrade.yaml').read_bytes())
+        data = yaml.safe_load(paths.CONFIGS_DIR.joinpath('upgrade.yaml').read_bytes())
         upgrade_configs = []
         for config_data in data:
             name = config_data['name']

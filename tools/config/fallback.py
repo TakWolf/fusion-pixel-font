@@ -1,13 +1,13 @@
 import yaml
 
-from tools.config import path_define, options
+from tools.config import paths, options
 from tools.config.options import FontSize, GlyphScope, LanguageFlavor
 
 
 class FallbackConfig:
     @staticmethod
     def load() -> dict[FontSize, list[FallbackConfig]]:
-        data = yaml.safe_load(path_define.CONFIGS_DIR.joinpath('fallback.yaml').read_bytes())
+        data = yaml.safe_load(paths.CONFIGS_DIR.joinpath('fallback.yaml').read_bytes())
         fallback_configs = {
             font_size: []
             for font_size in options.FONT_SIZES
