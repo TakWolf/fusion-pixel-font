@@ -105,7 +105,7 @@ def apply_fallbacks(font_config: FontConfig, fallback_configs: Sequence[Fallback
             file_dir.mkdir(parents=True, exist_ok=True)
 
             for bitmap, flavors in bitmap_strings.values():
-                if len(flavors) > 0:
+                if flavors:
                     flavors = sorted(flavors, key=lambda x: options.LANGUAGE_FLAVORS.index(x))
                     file_name = f'{code_point:04X} {",".join(flavors)}.png'
                 else:
