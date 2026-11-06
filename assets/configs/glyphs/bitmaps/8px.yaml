@@ -1,0 +1,11 @@
+
+cmap:
+  padding:
+    allow-no-top-only:
+      file-ids:
+        # Letterlike Symbols
+        - monospaced/0x2103  # ℃
+        - monospaced/0x2109  # ℉
+
+named:
+  padding: {}
