@@ -194,12 +194,28 @@ class FontBuildContext:
         builder.opentype_config.field_overrides.head_y_max = layout_metric.ascent
         builder.opentype_config.field_overrides.head_y_min = layout_metric.descent
 
-        builder.opentype_config.features = opentype.FeatureProgram([
+        feature_sources = [
             opentype.FeatureFile(
                 paths.CONFIGS_FEATURES_DIR.joinpath('calt.fea'),
                 include_dir=paths.CONFIGS_FEATURES_DIR,
             ),
-        ])
+            opentype.FeatureFile(
+                paths.CONFIGS_FEATURES_DIR.joinpath('ccmp.fea'),
+                include_dir=paths.CONFIGS_FEATURES_DIR,
+            ),
+        ]
+        if self.font_size != 8:
+            feature_sources.extend([
+                opentype.FeatureFile(
+                    paths.CONFIGS_FEATURES_DIR.joinpath('vert.fea'),
+                    include_dir=paths.CONFIGS_FEATURES_DIR,
+                ),
+                opentype.FeatureFile(
+                    paths.CONFIGS_FEATURES_DIR.joinpath(f'vert.{language_flavor}.fea'),
+                    include_dir=paths.CONFIGS_FEATURES_DIR,
+                ),
+            ])
+        builder.opentype_config.features = opentype.FeatureProgram(feature_sources)
 
         return builder
 
