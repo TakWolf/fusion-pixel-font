@@ -4,8 +4,8 @@
 
 | 属性 | 值 |
 |---|---|
-| 版本号 | 2026.10.25 |
-| 字符总数 | 25386 |
+| 版本号 | 2026.11.10 |
+| 字符总数 | 25394 |
 
 ## Unicode 字符统计
 
@@ -32,7 +32,7 @@ Unicode 版本：18.0.0
 | 2700 ~ 27BF | Dingbats | 装饰符号 | 34 / 192 | 158 | 17.71% 🚧 |
 | 2800 ~ 28FF | Braille Patterns | 盲文图案 | 256 / 256 | 0 | 100.00% 🚩 |
 | 2C60 ~ 2C7F | Latin Extended-C | 拉丁字母扩充-C | 4 / 32 | 28 | 12.50% 🚧 |
-| 2E80 ~ 2EFF | CJK Radicals Supplement | 中日韩部首增补 | 80 / 115 | 35 | 69.57% 🚧 |
+| 2E80 ~ 2EFF | CJK Radicals Supplement | 中日韩部首增补 | 81 / 115 | 34 | 70.43% 🚧 |
 | 2F00 ~ 2FDF | Kangxi Radicals | 康熙部首 | 213 / 214 | 1 | 99.53% 🚧 |
 | 2FF0 ~ 2FFF | Ideographic Description Characters | 表意文字描述字符 | 16 / 16 | 0 | 100.00% 🚩 |
 | 3000 ~ 303F | CJK Symbols and Punctuation | 中日韩符号与标点 | 64 / 64 | 0 | 100.00% 🚩 |
@@ -43,10 +43,10 @@ Unicode 版本：18.0.0
 | 3200 ~ 32FF | Enclosed CJK Letters and Months | 包围中日韩字母与月份 | 40 / 255 | 215 | 15.69% 🚧 |
 | 3300 ~ 33FF | CJK Compatibility | 中日韩兼容 | 60 / 256 | 196 | 23.44% 🚧 |
 | 3400 ~ 4DBF | CJK Unified Ideographs Extension A | 中日韩统一表意文字扩充 A | 15 / 6592 | 6577 | 0.23% 🚧 |
-| 4E00 ~ 9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 10683 / 20992 | 10309 | 50.89% 🚧 |
+| 4E00 ~ 9FFF | CJK Unified Ideographs | 中日韩统一表意文字 | 10687 / 20992 | 10305 | 50.91% 🚧 |
 | A720 ~ A7FF | Latin Extended-D | 拉丁字母扩充-D | 7 / 206 | 199 | 3.40% 🚧 |
 | AC00 ~ D7AF | Hangul Syllables | 谚文音节 | 11172 / 11172 | 0 | 100.00% 🚩 |
-| E000 ~ F8FF | Private Use Area | 私用区域 | 249 / 0 | 0 | 100.00% 🚩 |
+| E000 ~ F8FF | Private Use Area | 私用区域 | 252 / 0 | 0 | 100.00% 🚩 |
 | F900 ~ FAFF | CJK Compatibility Ideographs | 中日韩兼容表意文字 | 418 / 472 | 54 | 88.56% 🚧 |
 | FE10 ~ FE1F | Vertical Forms | 竖排形式 | 10 / 10 | 0 | 100.00% 🚩 |
 | FE30 ~ FE4F | CJK Compatibility Forms | 中日韩兼容形式 | 32 / 32 | 0 | 100.00% 🚩 |
@@ -65,9 +65,9 @@ Unicode 版本：18.0.0
 | 区块名称 | 完成数 | 缺失数 | 进度 |
 |---|---:|---:|---:|
 | 一级汉字 | 3755 / 3755 | 0 | 100.00% 🚩 |
-| 二级汉字 | 2186 / 3008 | 822 | 72.67% 🚧 |
+| 二级汉字 | 2190 / 3008 | 818 | 72.81% 🚧 |
 | 其他字符 | 537 / 682 | 145 | 78.74% 🚧 |
-| 总计 | 6478 / 7445 | 967 | 87.01% 🚧 |
+| 总计 | 6482 / 7445 | 963 | 87.07% 🚧 |
 
 ## Big5 字符统计
 
