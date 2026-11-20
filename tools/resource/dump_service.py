@@ -5,7 +5,7 @@ import unidata_blocks
 from PIL import ImageFont, Image, ImageDraw
 from fontTools.ttLib import TTFont
 from loguru import logger
-from pixel_font_knife.bitmap.mono_bitmap import MonoBitmap
+from pixel_font_knife.bitmap.mono import MonoBitmap
 from pixel_font_knife.cmap.file import CmapGlyphFile
 
 from tools.config import paths, options
